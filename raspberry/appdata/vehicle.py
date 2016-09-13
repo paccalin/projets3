@@ -5,6 +5,6 @@ from appdata.DbAccess import *
 import pg8000
 import datetime
 
-class utilityVehicle():
+class vehicle():
     def __init__(self):
         
