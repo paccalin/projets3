@@ -54,5 +54,5 @@ class diapoData(QWidget):
     @classmethod 
     def Singleton(cls):
         if(cls.__classSingleton == None):
-            cls.__classSingleton = diapoData()
+            cls.__classSingleton = diapoData(
         return cls.__classSingleton
