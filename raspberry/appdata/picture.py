@@ -22,12 +22,9 @@ class picture():
         else:
             self.__path = pPath
 
-    #get/set
-    def InsertionDate(self, pInsertionDate=None):
-        if(pInsertionDate == None):
-            return self.__insertionDate
-        else:
-            self.__insertionDate = pInsertionDate
+    #get
+    def InsertionDate(self):
+        return self.__insertionDate
     
     #chargement de toutes les photos
     @classmethod
@@ -41,14 +38,12 @@ class picture():
             pictureList.append(aPicture)
         return pictureList
 
-    #chargement de toutes les orrurences d'un complément de requete passé en paramètre
+    #chargement de l'orrurence correspondant à un id passé en paramètre
     @classmethod
-    def FindBySelection(cls, pRequestComplement):
-        pictureList = []
-        cursor = DbAccess.Querry("SELECT * FROM photo" + pRequestComplement)
+    def FindBySelection(cls, pId):
+        cursor = DbAccess.Querry("SELECT * FROM photo WHERE photo_id = " + pId)
         results = cursor.fetchall()
         for row in results:
             id, path, insertionDate = row
             aPicture = picture(path, insertionDate, id)
-            pictureList.append(aPicture)
-        return pictureList
+        return aPicture
