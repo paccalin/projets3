@@ -19,15 +19,15 @@ class CDescription(QWidget):
 
         labelInformations = QLabel("Vehicule", self)
         labelInformations.move(0.5*WindowList()["description"].Size().X(),0.8*WindowList()["description"].Size().Y())
+        labelInformations.show()
 
         labelMarque = QLabel("Marque", self)
         labelMarque.move(0.5*WindowList()["description"].Size().X(),0.6*WindowList()["description"].Size().Y())
+        labelMarque.show()
 
         labelModele = QLabel("Modele", self)
         labelModele.move(0.5*WindowList()["description"].Size().X(),0.4*WindowList()["description"].Size().Y())
-
-        labelPrix = QLabel("Prix", self)
-        labelPrix.move(0.5*WindowList()["description"].Size().X(),0.2*WindowList()["description"].Size().Y())
+        labelModele.show()
 
         appWindow::WindowList()["description"].Size().Y()
         appWindow::WindowList()["description"].Size().X()
