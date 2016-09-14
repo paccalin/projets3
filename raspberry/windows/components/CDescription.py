@@ -15,10 +15,22 @@ class CDescription(QWidget):
         QWidget.__init__(self)
 		
 		#Création des éléments
-		#Création d'un QLabel, qui permet d'afficher du texte sur la fenêtre, puis positionnement et dimensionnement de celui-ci
-        self.label = QLabel("Informations", self)
-        self.label.setGeometry(, , , )
-		self.show()
+		#Création de plusieurs QLabel, qui permettent d'afficher du texte sur la fenêtre, puis positionnement et dimensionnement de celui-ci
+
+        labelInformations = QLabel("Vehicule", self)
+        labelInformations.move(0.5*WindowList()["description"].Size().X(),0.8*WindowList()["description"].Size().Y())
+
+        labelMarque = QLabel("Marque", self)
+        labelMarque.move(0.5*WindowList()["description"].Size().X(),0.6*WindowList()["description"].Size().Y())
+
+        labelModele = QLabel("Modele", self)
+        labelModele.move(0.5*WindowList()["description"].Size().X(),0.4*WindowList()["description"].Size().Y())
+
+        labelPrix = QLabel("Prix", self)
+        labelPrix.move(0.5*WindowList()["description"].Size().X(),0.2*WindowList()["description"].Size().Y())
+
+        appWindow::WindowList()["description"].Size().Y()
+        appWindow::WindowList()["description"].Size().X()
 		
 		#Affichage de la description suivant l'objet
 		
