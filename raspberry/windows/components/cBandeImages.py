@@ -12,4 +12,4 @@ from windows.classes.appWindow import *
 #fenêtre diaporama
 class CImgDiapo(QWidget):
     def __init__(self):
-        QWidget.__init__(self):
+        QWidget.__init__(self)
