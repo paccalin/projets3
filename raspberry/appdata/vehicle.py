@@ -43,7 +43,7 @@ class vehicle():
     #chargement de l'orrurence correspondant à un id passé en paramètre
     @classmethod
     def FindBySelection(cls, pId):
-        cursor = DbAccess.Querry("SELECT * FROM vehicule")
+        cursor = DbAccess.Querry("SELECT * FROM vehicule WHERE vehicule_id = " + pId)
         results = cursor.fetchall()
         for row in results:
             id, modelId, insertionDate = row
