@@ -3,6 +3,9 @@
 
 from PyQt5.QtWidgets import *
 from windows.components.CImgDiapo import *
+from windows.components.CBandeImages import *
+from windows.components.CDescription import *
+
 
 class MdiContent(object):
     __classSingleton = None
@@ -10,37 +13,27 @@ class MdiContent(object):
     #!ne pas instancier cette classe manuellement
     #constructeur du singleton
     def __init__(self, pMdi):
-        self.__mdiSingleton = pMdi
-
-        #création de la fenêtre de diapo
-        self.__diapoSingleton = QMdiSubWindow()
-        self.__diapoSingleton.setWidget(CImgDiapo())
-
-        #création de la fenêtre bande d'images
-        self.__bandeSingleton = QMdiSubWindow()
-        self.__bandeSingleton.setWidget(CImgDiapo())#changer CImgDiapo par le widget une fois terminé
-
-        #création de la fenêtre de description
-        self.__descriptionSingleton = QMdiSubWindow()
-        self.__descriptionSingleton.setWidget(CImgDiapo())#changer CImgDiapo par le widget une fois terminé
-
-        #ajout des fenêtres à la mdi
-        self.__mdiSingleton.mdi.addSubWindow(self.__diapoSingleton)
-        self.__mdiSingleton.mdi.addSubWindow(self.__bandeSingleton)
-        self.__mdiSingleton.mdi.addSubWindow(self.__descriptionSingleton)
+        #initialisation de la liste
+        self.__windowList = {}
+        #ajout de la fenêtre MDI
+        self.__windowList["mdi"] = pMdi
+        #création de la sous-fenêtre de diapo
+        self.__windowList["diapo"] = QMdiSubWindow()
+        self.__windowList["diapo"].setWidget(CImgDiapo())
+        #création de la sous-fenêtre bande d'images
+        self.__windowList["bandeImages"] = QMdiSubWindow()
+        self.__windowList["bandeImages"].setWidget(CImgDiapo())#changer CImgDiapo par le widget une fois terminé
+        #création de la sous-fenêtre de description
+        self.__windowList["description"] = QMdiSubWindow()
+        self.__windowList["description"].setWidget(CDescription())
+        #ajout des sous-fenêtres à la mdi
+        for anIndex, aSubWindow in self.__windowList.items():
+            if(anIndex != "mdi"):
+                self.__windowList["mdi"].mdi.addSubWindow(aSubWindow)
 
     #get
-    def Mdi(self):
-        return self.__mdiSingleton
-    #get
-    def Diapo(self):
-        return self.__diapoSingleton
-    #get
-    def BandeImages(self):
-        return self.__bandeSingleton
-    #get
-    def Description(self):
-        return self.__descriptionSingleton
+    def WindowList(self):
+        return self.__windowList
 
     #gestion de la création du singleton
     @classmethod
@@ -56,6 +49,6 @@ class MdiContent(object):
     #methode pour afficher les fenetres
     @classmethod
     def StartGui(cls):
-        cls.Singleton().Mdi().showFullScreen()
-        for aWidget in cls.Singleton().Mdi().subWindows:
+        cls.Singleton().WindowList()["mdi"].showFullScreen()
+        for aWidget in cls.Singleton().WindowList()["mdi"].subWindows:
             aWidget.show()

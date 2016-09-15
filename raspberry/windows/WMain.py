@@ -10,9 +10,14 @@ from windows.classes.vector2D import *
 class WMain(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.__windowStruct = appWindow()
         self.subWindows = []
         self.initUI()
         self.setCentralWidget(self.mdi)
+
+    #get
+    def WindowStruct(self):
+        return self.__windowStruct
 
     def initUI(self):
         self.setWindowTitle('Projet ShowRoom')

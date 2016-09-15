@@ -3,7 +3,6 @@
 
 import sys
 
-
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -13,11 +12,20 @@ from windows.classes.appWindow import *
 class CImgDiapo(QWidget):
     def __init__(self):
         QWidget.__init__(self)
+        self.__windowStruct = appWindow()
         #permet à la classe appwindow de différencier les différentes fenêtres
         self.__image_files = []
         self.imgLabel = QLabel("", self)
         self.imgLabel.setScaledContents(True)
+
+    #get
+    def WindowStruct(self):
+        return self.__windowStruct
     
+    #mise à l'échelle des composants
+    def ScaleContent(self):
+        self.imgLabel.setGeometry(self.WindowStruct().Pos().X(), self.WindowStruct().Pos().Y(), self.WindowStruct().Size().X(), self.WindowStruct().Size().Y())
+
     #rafraichissement de l'image affichée
     def ShowImg(self, pPath):
             image = QPixmap(pPath)

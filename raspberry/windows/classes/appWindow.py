@@ -4,26 +4,17 @@
 import math
 
 from windows.classes.vector2D import *
-from windows.classes.MdiContent import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 #permet de structurer les fenêtres enfant de la mdi
-class appWindow(object):
-
-    __windowList = {}
-    
-    def __init__(self, pTargetWindow):
-        self.__targetWindow = pTargetWindow
+class appWindow(object):    
+    def __init__(self):
         self.__pos = vector2D(0, 0)
         self.__size = vector2D(0, 0)
         self.__onTop = False
         self.__borderLess = True
-    
-    #get
-    def TargetWindow(self):
-        return self.__targetWindow
     
     #get/set
     def Pos(self, pPos=None):
@@ -52,69 +43,68 @@ class appWindow(object):
             return self.__borderLess
         else:
             self.__borderLess = pBorderless
-    
-    @classmethod
-    def __load(cls):
-        cls.__windowList = {"mdi": appWindow(MdiContent.Singleton().Mdi),
-            "diapo": appWindow(MdiContent.Singleton().Diapo),
-            "bandeImages": appWindow(MdiContent.Singleton().BandeImages),
-            "description": appWindow(MdiContent.Singleton().Description)}
 
 
     #applique la structure aux fenêtres
     @classmethod
-    def SetStruct(cls):
-        for anIndex, aWindow in cls.__windowList.items():
-            targetWindow = aWindow.TargetWindow()
-            targetWindow().setGeometry(aWindow.Pos().X(), aWindow.Pos().Y(), aWindow.Size().X(), aWindow.Size().Y())
-            if(aWindow.OnTop() and aWindow.BorderLess()):
-                targetWindow().setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-            elif(aWindow.OnTop()):
-                targetWindow().setWindowFlags(Qt.WindowStaysOnTopHint)
-            elif(aWindow.BorderLess()):
-                targetWindow().setWindowFlags(Qt.FramelessWindowHint)
-            if(anIndex == "diapo"):
-                targetWindow().widget().imgLabel.setGeometry(aWindow.Pos().X(), aWindow.Pos().Y(), aWindow.Size().X(), aWindow.Size().Y())
+    def SetStruct(cls, pWindowList):
+        for anIndex, aWindow in pWindowList.items():
+            if(anIndex == "mdi"):
+                targetStruct = aWindow.WindowStruct()
+            else:
+                targetStruct = aWindow.widget().WindowStruct()
+            aWindow.setGeometry(targetStruct.Pos().X(), targetStruct.Pos().Y(), targetStruct.Size().X(), targetStruct.Size().Y())
+            if(targetStruct.OnTop() and targetStruct.BorderLess()):
+                aWindow.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+            elif(targetStruct.OnTop()):
+                aWindow.setWindowFlags(Qt.WindowStaysOnTopHint)
+            elif(targetStruct.BorderLess()):
+                aWindow.setWindowFlags(Qt.FramelessWindowHint)
+            if(anIndex != "mdi"):
+                aWindow.widget().ScaleContent()
 
 
     #calcul de la structure à appliquer
     @classmethod
-    def CaltulateStruct(cls):
-        cls.__load()
+    def CaltulateStruct(cls, pWindowList):
         #calcul de la structure de la mdi
+        mdiStruct = pWindowList["mdi"].WindowStruct()
         screen = QDesktopWidget().screenGeometry()
         screenSize = vector2D(screen.width(), screen.height())
-        cls.__windowList["mdi"].Pos(vector2D(0, 0))
-        cls.__windowList["mdi"].Size(screenSize)
-        cls.__windowList["mdi"].OnTop(False)
-        cls.__windowList["mdi"].BorderLess(True)
+        mdiStruct.Pos(vector2D(0, 0))
+        mdiStruct.Size(screenSize)
+        mdiStruct.OnTop(False)
+        mdiStruct.BorderLess(True)
 
         #calcul de la structure du diapo
+        diapoStruct = pWindowList["diapo"].widget().WindowStruct()
         diapoSize = None
-        if(cls.__windowList["mdi"].Size().X() / 16 * 9 <= cls.__windowList["mdi"].Size().Y()):
-            diapoSize = vector2D(int(math.floor(cls.__windowList["mdi"].Size().X() * 0.8)), 
-                int(math.floor(cls.__windowList["mdi"].Size().X() / 16 * 9 * 0.8)))
+        if(mdiStruct.Size().X() / 16 * 9 <= mdiStruct.Size().Y()):
+            diapoSize = vector2D(int(math.floor(mdiStruct.Size().X() * 0.8)), 
+                int(math.floor(mdiStruct.Size().X() / 16 * 9 * 0.8)))
         else:
-            diapoSize = vector2D(int(math.floor(cls.__windowList["mdi"].Size().Y()*0.8)),
-                int(math.floor(cls.__windowList["mdi"].Size().Y() / 9 * 16 * 0.8)))
+            diapoSize = vector2D(int(math.floor(mdiStruct.Size().Y()*0.8)),
+                int(math.floor(mdiStruct.Size().Y() / 9 * 16 * 0.8)))
 
-        cls.__windowList["diapo"].Pos(vector2D(0, 0))
-        cls.__windowList["diapo"].Size(diapoSize)
-        cls.__windowList["diapo"].OnTop(True)
-        cls.__windowList["diapo"].BorderLess(True)
+        diapoStruct.Pos(vector2D(0, 0))
+        diapoStruct.Size(diapoSize)
+        diapoStruct.OnTop(True)
+        diapoStruct.BorderLess(True)
         
         #calcul de la structure de la bande d'images
+        bandeImagesStruct = pWindowList["bandeImages"].widget().WindowStruct()
         bandeImagesPos = vector2D(0,diapoSize.Y())
         bandeImagesSize = vector2D(diapoSize.X(),screenSize.Y()-diapoSize.Y())
-        cls.__windowList["bandeImages"].Pos(bandeImagesPos)
-        cls.__windowList["bandeImages"].Size(bandeImagesSize)
-        cls.__windowList["bandeImages"].OnTop(False)
-        cls.__windowList["bandeImages"].BorderLess(False)
+        bandeImagesStruct.Pos(bandeImagesPos)
+        bandeImagesStruct.Size(bandeImagesSize)
+        bandeImagesStruct.OnTop(False)
+        bandeImagesStruct.BorderLess(False)
 
         #calcul de la structure de la Description
+        descriptionStruct = pWindowList["description"].widget().WindowStruct()
         descriptionPos = vector2D(diapoSize.X(), 0)
         descriptionSize = vector2D(screenSize.X() - diapoSize.X(),screenSize.Y()) 
-        cls.__windowList["description"].Pos(descriptionPos)
-        cls.__windowList["description"].Size(descriptionSize)
-        cls.__windowList["description"].OnTop(False)
-        cls.__windowList["description"].BorderLess(False)
+        descriptionStruct.Pos(descriptionPos)
+        descriptionStruct.Size(descriptionSize)
+        descriptionStruct.OnTop(False)
+        descriptionStruct.BorderLess(False)

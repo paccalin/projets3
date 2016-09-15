@@ -13,25 +13,25 @@ from windows.classes.appWindow import *
 class CDescription(QWidget):
     def __init__(self):
         QWidget.__init__(self)
+        self.__windowStruct = appWindow()
 		
 		#Création des éléments
 		#Création de plusieurs QLabel, qui permettent d'afficher du texte sur la fenêtre, puis positionnement et dimensionnement de celui-ci
-
-        labelInformations = QLabel("Vehicule", self)
-        labelInformations.move(0.5*WindowList()["description"].Size().X(),0.8*WindowList()["description"].Size().Y())
-        labelInformations.show()
-
-        labelMarque = QLabel("Marque", self)
-        labelMarque.move(0.5*WindowList()["description"].Size().X(),0.6*WindowList()["description"].Size().Y())
-        labelMarque.show()
-
-        labelModele = QLabel("Modele", self)
-        labelModele.move(0.5*WindowList()["description"].Size().X(),0.4*WindowList()["description"].Size().Y())
-        labelModele.show()
-
-        appWindow::WindowList()["description"].Size().Y()
-        appWindow::WindowList()["description"].Size().X()
-		
-		#Affichage de la description suivant l'objet
+        self.windowSize = self.__windowStruct.Size()
+        self.labelInformations = QLabel("Vehicule", self)
+        self.labelMarque = QLabel("Marque", self)
+        self.labelModele = QLabel("Modele", self)
+    
+    #get
+    def WindowStruct(self):
+        return self.__windowStruct
+    #mise à l'échelle des composants
+    def ScaleContent(self):
+        self.labelInformations.move(0.5*self.windowSize.X(),0.8*self.windowSize.Y())
+        self.labelInformations.show()
+        self.labelMarque.move(0.5*self.windowSize.X(),0.6*self.windowSize.Y())
+        self.labelMarque.show()
+        self.labelModele.move(0.5*self.windowSize.X(),0.4*self.windowSize.Y())
+        self.labelModele.show()
 		
 		

@@ -10,6 +10,6 @@ from PyQt5.QtWidgets import *
 from windows.classes.appWindow import *
 
 #fenêtre diaporama
-class CImgDiapo(QWidget):
+class CBandeImage(QWidget):
     def __init__(self):
         QWidget.__init__(self)
