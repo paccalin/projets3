@@ -6,6 +6,8 @@ import pg8000
 import datetime
 
 class model():
+    __modleList = []
+
     def __init__(self, pLibelle, pManufacturer, pInsertionDate, pDbId = None):
         self.__dbId = pDbId
         self.__libelle = pLibelle
@@ -36,7 +38,7 @@ class model():
     #chargement de tout les modèles
     @classmethod
     def FindAll(cls):
-        modelList = []
+        provModelList = []
         cursor = DbAccess.Querry("SELECT * FORM modele")
         results = cursor.fetchall()
         for row in results:
@@ -44,18 +46,24 @@ class model():
             manufacturer = manufacturerId
             #load manufacturer
             aModel = model(libelle, manufacturer, insertionDate, id)
-            model.append(aModel)
-        return modelList
+            provModelList.append(aModel)
+        cls.__modelList = provModelList
+        return cls.__modelList
 
     #chargement de tout les modèles
     @classmethod
-    def FindBysSelection(cls, pId):
-        cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + pId)
-        results = cursor.fetchall()
-        for row in results:
-            id, libelle, manufacturerId, insertionDate = row
-            manufacturer = manufacturerId
-            #load manufacturer
-            aModel = model(libelle, manufacturer, insertionDate, id)
-        return aModel
+    def FindById(cls, pId):
+        result = filter(lambda x: x.DbId() == pId, cls.__modelList)
+        if(len(result) != 0):
+            return result[0]
+        else:
+            cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + pId)
+            results = cursor.fetchall()
+            for row in results:
+                id, libelle, manufacturerId, insertionDate = row
+                manufacturer = manufacturerId
+                #load manufacturer
+                aModel = model(libelle, manufacturer, insertionDate, id)
+            cls.__modelList.append(aModel)
+            return aModel
 
