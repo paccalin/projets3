@@ -13,3 +13,7 @@ from windows.classes.appWindow import *
 class CBandeImage(QWidget):
     def __init__(self):
         QWidget.__init__(self)
+        self.__windowStruct = appWindow()
+
+    def ScaleContent(self):
+        #lol
