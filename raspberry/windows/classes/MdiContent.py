@@ -22,7 +22,7 @@ class MdiContent(object):
         self.__windowList["diapo"].setWidget(CImgDiapo())
         #création de la sous-fenêtre bande d'images
         self.__windowList["bandeImages"] = QMdiSubWindow()
-        self.__windowList["bandeImages"].setWidget(CImgDiapo())#changer CImgDiapo par le widget une fois terminé
+        self.__windowList["bandeImages"].setWidget(CBandeImages())#changer CImgDiapo par le widget une fois terminé
         #création de la sous-fenêtre de description
         self.__windowList["description"] = QMdiSubWindow()
         self.__windowList["description"].setWidget(CDescription())

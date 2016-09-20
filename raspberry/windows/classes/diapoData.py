@@ -13,7 +13,7 @@ class diapoData(QWidget):
     #constructeur du singleton
     def __init__(self):
         QWidget.__init__(self)
-        self.__no_image = picture("pictures/no-image.png", datetime.datetime.now())
+        self.__no_image = picture("pictures/no-image.png", None, datetime.datetime.now())
         self.__imgList = [self.__no_image]
         self.__step = 0
         self.timer = QBasicTimer()

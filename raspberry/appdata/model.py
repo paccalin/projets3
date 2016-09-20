@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from appdata.DbAccess import * 
+from appdata.DbAccess import *
+from appdata.manufacturer import * 
 import pg8000
 import datetime
 

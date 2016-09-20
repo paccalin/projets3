@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from appdata.DbAccess import * 
+from appdata.model import *
 import pg8000
 import datetime
 
 class vehicle():
-    __vehicleList
+    __vehicleList = []
     def __init__(self, pModel, pInsertionDate, pDbId = None):
         self.__dbId = pDbId
         self.__model = pModel
@@ -35,9 +36,8 @@ class vehicle():
         results = cursor.fetchall()
         for row in results:
             id, modelId, insertionDate = row
-            model = modelId
-            #load model
-            aVehicle = vehicle(model, insertionDate, id)
+            aModel =  model.FindById(modelId)
+            aVehicle = vehicle(aModel, insertionDate, id)
             vehicleList.append(aVehicle)
         cls.__vehicleList = provVehicleList
         return cls.__vehicleList
@@ -53,8 +53,7 @@ class vehicle():
             results = cursor.fetchall()
             for row in results:
                 id, modelId, insertionDate = row
-                model = modelId
-                #load model
-                aVehicle = vehicle(model, insertionDate, id)
+                aModel =  model.FindById(modelId)
+                aVehicle = vehicle(aModel, insertionDate, id)
             cls.__vehicleList.append(aVehicle)
             return aVehicle
