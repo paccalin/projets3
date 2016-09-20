@@ -16,4 +16,4 @@ class CBandeImage(QWidget):
         self.__windowStruct = appWindow()
 
     def ScaleContent(self):
-        #lol
+        echo("alexis doit faire son taff")
