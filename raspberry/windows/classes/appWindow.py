@@ -98,7 +98,7 @@ class appWindow(object):
         bandeImagesStruct.Pos(bandeImagesPos)
         bandeImagesStruct.Size(bandeImagesSize)
         bandeImagesStruct.OnTop(False)
-        bandeImagesStruct.BorderLess(False)
+        bandeImagesStruct.BorderLess(True)
 
         #calcul de la structure de la Description
         descriptionStruct = pWindowList["description"].widget().WindowStruct()

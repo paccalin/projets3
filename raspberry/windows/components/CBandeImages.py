@@ -10,10 +10,14 @@ from PyQt5.QtWidgets import *
 from windows.classes.appWindow import *
 
 #fenêtre diaporama
-class CBandeImage(QWidget):
+class CBandeImages(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.__windowStruct = appWindow()
+    
+    #get
+    def WindowStruct(self):
+        return self.__windowStruct
 
     def ScaleContent(self):
-        echo("alexis doit faire son taff")
+        print("alexis doit faire son taff")
