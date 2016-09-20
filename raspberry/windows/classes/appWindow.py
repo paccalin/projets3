@@ -107,4 +107,4 @@ class appWindow(object):
         descriptionStruct.Pos(descriptionPos)
         descriptionStruct.Size(descriptionSize)
         descriptionStruct.OnTop(False)
-        descriptionStruct.BorderLess(False)
+        descriptionStruct.BorderLess(True)
