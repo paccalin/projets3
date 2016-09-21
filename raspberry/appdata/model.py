@@ -44,8 +44,7 @@ class model():
         results = cursor.fetchall()
         for row in results:
             id, libelle, manufacturerId, insertionDate = row
-            manufacturer = manufacturerId
-            #load manufacturer
+            aManufacturer = manufacturer.FindById(manufacturerId)
             aModel = model(libelle, manufacturer, insertionDate, id)
             provModelList.append(aModel)
         cls.__modelList = provModelList

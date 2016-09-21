@@ -18,11 +18,8 @@ class manufacturer():
         return self.__dbId
     
     #get/set
-    def Libelle(self, pLibelle = None):
-        if(pPath == None):
-            return self.__libelle
-        else:
-            self.__libelle = pLibelle
+    def Libelle(self):
+        return self.__libelle
 
     #get
     def InsertionDate(self):
