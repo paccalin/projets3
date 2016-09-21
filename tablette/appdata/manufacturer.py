@@ -19,7 +19,7 @@ class manufacturer():
     
     #get/set
     def Libelle(self, pLibelle = None):
-        if(pPath == None):
+        if(pLibelle == None):
             return self.__libelle
         else:
             self.__libelle = pLibelle
