@@ -3,15 +3,16 @@
 
 from appdata.DbAccess import * 
 from appdata.model import *
+from appdate.option import *
 import pg8000
 import datetime
 
 class vehicle():
     __vehicleList = []
-    def __init__(self, pModel, pInsertionDate, pOptionList, pDbId = None):
+    def __init__(self, pModel, pInsertionDate, pDbId = None):
         self.__dbId = pDbId
         self.__model = pModel
-        self.__optionList = pOptionList
+        self.__optionList = option.FindByVehicle(pDbId)
         self.__insertionDate = pInsertionDate
     
     #get
@@ -37,7 +38,7 @@ class vehicle():
         results = cursor.fetchall()
         for row in results:
             id, modelId, insertionDate = row
-            aModel =  model.FindById(modelId)
+            aModel = model.FindById(modelId)
             aVehicle = vehicle(aModel, insertionDate, id)
             vehicleList.append(aVehicle)
         cls.__vehicleList = provVehicleList
