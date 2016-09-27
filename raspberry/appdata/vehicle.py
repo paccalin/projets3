@@ -8,9 +8,10 @@ import datetime
 
 class vehicle():
     __vehicleList = []
-    def __init__(self, pModel, pInsertionDate, pDbId = None):
+    def __init__(self, pModel, pInsertionDate, pOptionList, pDbId = None):
         self.__dbId = pDbId
         self.__model = pModel
+        self.__optionList = pOptionList
         self.__insertionDate = pInsertionDate
     
     #get

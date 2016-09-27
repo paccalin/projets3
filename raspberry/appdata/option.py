@@ -55,3 +55,14 @@ class option():
                 anOption = option(libelle, desc, insertionDate, id)
             cls.__optionList.append(anOption)
             return anOption
+
+    #chargement des orrurences correspondantes à un l'id d'un véhicule passé en paramètre
+    @classmethod
+    def FindByVehicle(cls, pVehicleId):
+        provOptionList = []
+        cursor = DbAccess.Querry("SELECT o.option_id FROM option o JOIN join_vheicule_option vo ON o.option_id = vo.option_id WHERE vo.vehicule_id = " + pVehicleId)
+        results = cursor.fetchall()
+        for row in results:
+            id = row
+            provOptionList.append(cls.FindById(id))
+        return cls.__optionList
