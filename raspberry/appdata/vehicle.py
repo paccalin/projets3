@@ -3,7 +3,7 @@
 
 from appdata.DbAccess import * 
 from appdata.model import *
-from appdate.option import *
+from appdata.option import *
 import pg8000
 import datetime
 
@@ -35,12 +35,14 @@ class vehicle():
     def FindAll(cls):
         provVehicleList = []
         cursor = DbAccess.Querry("SELECT * FROM vehicule")
-        results = cursor.fetchall()
-        for row in results:
-            id, modelId, insertionDate = row
-            aModel = model.FindById(modelId)
-            aVehicle = vehicle(aModel, insertionDate, id)
-            vehicleList.append(aVehicle)
+        results = None
+        if(cursor != None):
+            results = cursor.fetchall()
+            for row in results:
+                id, modelId, insertionDate = row
+                aModel = model.FindById(modelId)
+                aVehicle = vehicle(aModel, insertionDate, id)
+                vehicleList.append(aVehicle)
         cls.__vehicleList = provVehicleList
         return cls.__vehicleList
 
@@ -52,10 +54,12 @@ class vehicle():
             return result[0]
         else:
             cursor = DbAccess.Querry("SELECT * FROM vehicule WHERE vehicule_id = " + pId)
-            results = cursor.fetchall()
-            for row in results:
-                id, modelId, insertionDate = row
-                aModel =  model.FindById(modelId)
-                aVehicle = vehicle(aModel, insertionDate, id)
+            results = None
+            if(cursor != None):
+                results = cursor.fetchall()
+                for row in results:
+                    id, modelId, insertionDate = row
+                    aModel =  model.FindById(modelId)
+                    aVehicle = vehicle(aModel, insertionDate, id)
             cls.__vehicleList.append(aVehicle)
             return aVehicle

@@ -4,6 +4,7 @@
 from PyQt5.QtCore import *
 from appdata.picture import *
 from windows.classes.MdiContent import *
+from windows.classes.appWindow import *
 import datetime
 
 class diapoData(QWidget):
@@ -29,7 +30,7 @@ class diapoData(QWidget):
                 self.__imgList = pList
             else:
                 self.__imgList = [self.__no_image]
-            self.__mdi.sub.widget().Update()
+            appWindow.SetStruct(MdiContent.Singleton().WindowList())
     
     #get/set
     def Step(self, pStep = None):

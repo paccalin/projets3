@@ -30,11 +30,13 @@ class manufacturer():
     def FindAll(cls):
         provManufacturerList = []
         cursor = DbAccess.Querry("SELECT * FROM constructeur")
-        results = cursor.fetchall()
-        for row in results:
-            id, libelle, insertionDate = row
-            aManufacturer = manufacturer(libelle, insertionDate, id)
-            provManufacturerList.append(aManufacturer)
+        results = None
+        if(cursor != None):
+            results = cursor.fetchall()
+            for row in results:
+                id, libelle, insertionDate = row
+                aManufacturer = manufacturer(libelle, insertionDate, id)
+                provManufacturerList.append(aManufacturer)
         cls.__manufacturerList = provManufacturerList
         return cls.__manufacturerList
 
@@ -46,9 +48,11 @@ class manufacturer():
             return result[0]
         else:
             cursor = DbAccess.Querry("SELECT * FROM constructeur WHERE constructeur_id = " + pId)
-            results = cursor.fetchall()
-            for row in results:
-                id, libelle, insertionDate = row
-                aManufacturer = manufacturer(libelle, insertionDate, id)
+            results = None
+            if(cursor != None):
+                results = cursor.fetchall()
+                for row in results:
+                    id, libelle, insertionDate = row
+                    aManufacturer = manufacturer(libelle, insertionDate, id)
             cls.__manufacturerList.append(aManufacturer)
             return aManufacturer

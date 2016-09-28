@@ -7,11 +7,12 @@ from windows.WMain import *
 from windows.classes.MdiContent import *
 from windows.classes.diapoData import *
 from windows.classes.appWindow import *
+from appdata.picture import *
 
 app = QApplication(sys.argv)
 MdiContent.Singleton(WMain())
 appWindow.CaltulateStruct(MdiContent.Singleton().WindowList())
 appWindow.SetStruct(MdiContent.Singleton().WindowList())
-diapoData.Singleton()
+diapoData.Singleton().ImgList(picture.FindAll())
 MdiContent.StartGui()
 sys.exit(app.exec_())

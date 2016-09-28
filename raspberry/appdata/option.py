@@ -33,11 +33,13 @@ class option():
     def FindAll(cls):
         provOptionList = []
         cursor = DbAccess.Querry("SELECT * FROM option")
-        results = cursor.fetchall()
-        for row in results:
-            id, libelle, pDesc, insertionDate = row
-            anOption = option(libelle, desc, insertionDate, id)
-            provOptionList.append(anOption)
+        results = None
+        if(cursor != None):
+            results = cursor.fetchall()
+            for row in results:
+                id, libelle, pDesc, insertionDate = row
+                anOption = option(libelle, desc, insertionDate, id)
+                provOptionList.append(anOption)
         cls.__optionList = provOptionList
         return cls.__optionList
 
@@ -49,10 +51,12 @@ class option():
             return result[0]
         else:
             cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + pId)
-            results = cursor.fetchall()
-            for row in results:
-                id, libelle, pDesc, insertionDate = row
-                anOption = option(libelle, desc, insertionDate, id)
+            results = None
+            if(cursor != None):
+                results = cursor.fetchall()
+                for row in results:
+                    id, libelle, pDesc, insertionDate = row
+                    anOption = option(libelle, desc, insertionDate, id)
             cls.__optionList.append(anOption)
             return anOption
 
@@ -61,8 +65,10 @@ class option():
     def FindByVehicle(cls, pVehicleId):
         provOptionList = []
         cursor = DbAccess.Querry("SELECT o.option_id FROM option o JOIN join_vheicule_option vo ON o.option_id = vo.option_id WHERE vo.vehicule_id = " + pVehicleId)
-        results = cursor.fetchall()
-        for row in results:
-            id = row
-            provOptionList.append(cls.FindById(id))
+        results = None
+        if(cursor != None):
+            results = cursor.fetchall()
+            for row in results:
+                id = row
+                provOptionList.append(cls.FindById(id))
         return cls.__optionList

@@ -41,12 +41,14 @@ class model():
     def FindAll(cls):
         provModelList = []
         cursor = DbAccess.Querry("SELECT * FORM modele")
-        results = cursor.fetchall()
-        for row in results:
-            id, libelle, manufacturerId, insertionDate = row
-            aManufacturer = manufacturer.FindById(manufacturerId)
-            aModel = model(libelle, manufacturer, insertionDate, id)
-            provModelList.append(aModel)
+        results = None
+        if(cursor != None):
+            results = cursor.fetchall()
+            for row in results:
+                id, libelle, manufacturerId, insertionDate = row
+                aManufacturer = manufacturer.FindById(manufacturerId)
+                aModel = model(libelle, manufacturer, insertionDate, id)
+                provModelList.append(aModel)
         cls.__modelList = provModelList
         return cls.__modelList
 
@@ -58,12 +60,14 @@ class model():
             return result[0]
         else:
             cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + pId)
-            results = cursor.fetchall()
-            for row in results:
-                id, libelle, manufacturerId, insertionDate = row
-                manufacturer = manufacturerId
-                #load manufacturer
-                aModel = model(libelle, manufacturer, insertionDate, id)
+            results = None
+            if(cursor != None):
+                results = cursor.fetchall()
+                for row in results:
+                    id, libelle, manufacturerId, insertionDate = row
+                    manufacturer = manufacturerId
+                    #load manufacturer
+                    aModel = model(libelle, manufacturer, insertionDate, id)
             cls.__modelList.append(aModel)
             return aModel
 
