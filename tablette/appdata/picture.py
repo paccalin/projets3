@@ -2,15 +2,17 @@
 # -*- coding: utf-8 -*-
 
 from appdata.DbAccess import * 
+from appdata.vehicle import *
 import pg8000
 import datetime
 
 class picture():
     __pictureList = []
 
-    def __init__(self, pPath, pInsertionDate, pDbId=None):
+    def __init__(self, pPath, pVehicle, pInsertionDate, pDbId=None):
         self.__dbId = pDbId
         self.__path = pPath
+        self.__vehicle = pVehicle
         self.__insertionDate = pInsertionDate
 
     #get
@@ -28,16 +30,23 @@ class picture():
     def InsertionDate(self):
         return self.__insertionDate
 
+    #get
+    def Vehicle(self):
+        return self.__vehicle
+
     #chargement de toutes les photos
     @classmethod
     def FindAll(cls):
         provPictureList = []
         cursor = DbAccess.Querry("SELECT * FROM photo")
-        results = cursor.fetchall()
-        for row in results:
-            id, path, insertionDate = row
-            aPicture = picture(path, insertionDate, id)
-            provPictureList.append(aPicture)
+        results = None
+        if(cursor != None):
+            results = cursor.fetchall()
+            for row in results:
+                id, path, vehicleId, insertionDate = row
+                aVehicle = vehicle.FindById(vehicleId)
+                aPicture = picture(path, vehicle, insertionDate, id)
+                provPictureList.append(aPicture)
         cls.__pictureList = provPictureList
         return cls.__pictureList
 
@@ -49,9 +58,12 @@ class picture():
             return result[0]
         else:
             cursor = DbAccess.Querry("SELECT * FROM photo WHERE photo_id = " + pId)
-            results = cursor.fetchall()
-            for row in results:
-                id, path, insertionDate = row
-                aPicture = picture(path, insertionDate, id)
+            results = None
+            if(cursor != None):
+                results = cursor.fetchall()
+                for row in results:
+                    id, path, vehicleId, insertionDate = row
+                    vehicle = vehicle.FindById(vehicleId)
+                    aPicture = picture(path, vehicle, insertionDate, id)
             cls.__pictureList.append(aPicture)
             return aPicture
