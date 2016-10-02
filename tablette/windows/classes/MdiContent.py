@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import *
-from windows.components.CImgDiapo import *
-from windows.components.CBandeImages import *
-from windows.components.CDescription import *
 
 
 class MdiContent(object):
@@ -17,6 +14,8 @@ class MdiContent(object):
         self.__windowList = {}
         #ajout de la fenêtre MDI
         self.__windowList["mdi"] = pMdi
+        #ajout de la fenetre header
+        self.__windowList["header"]
 
     #get
     def WindowList(self):
