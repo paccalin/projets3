@@ -15,8 +15,8 @@ class CImgDiapo(QWidget):
         self.__windowStruct = appWindow()
         #permet à la classe appwindow de différencier les différentes fenêtres
         self.__image_files = []
-        self.imgLabel = QLabel("", self)
-        self.imgLabel.setScaledContents(True)
+        self.__imgLabel = QLabel("", self)
+        self.__imgLabel.setScaledContents(True)
 
     #get
     def WindowStruct(self):
@@ -24,10 +24,12 @@ class CImgDiapo(QWidget):
     
     #mise à l'échelle des composants
     def ScaleContent(self):
-        self.imgLabel.setGeometry(self.WindowStruct().Pos().X(), self.WindowStruct().Pos().Y(), self.WindowStruct().Size().X(), self.WindowStruct().Size().Y())
+        self.__imgLabel.setGeometry(
+            self.WindowStruct().Pos().X(), self.WindowStruct().Pos().Y(), 
+            self.WindowStruct().Size().X(), self.WindowStruct().Size().Y())
 
     #rafraichissement de l'image affichée
     def ShowImg(self, pPath):
             image = QPixmap(pPath)
-            self.imgLabel.setPixmap(image)
+            self.__imgLabel.setPixmap(image)
 

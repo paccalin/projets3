@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import *
-
+from windows.components.CHeader import *
+from windows.components.CMenuButton import *
 
 class MdiContent(object):
     __classSingleton = None
@@ -10,13 +11,22 @@ class MdiContent(object):
     #!ne pas instancier cette classe manuellement
     #constructeur du singleton
     def __init__(self, pMdi):
-        #initialisation de la liste
+        #initialisation de la bibliothèque
         self.__windowList = {}
         #ajout de la fenêtre MDI
         self.__windowList["mdi"] = pMdi
         #ajout de la fenetre header
-        self.__windowList["header"]
+        self.__windowList["header"] = QMdiSubWindow()
+        self.__windowList["header"].setWidget(CHeader())
+        #ajout du boutton de menu
+        self.__windowList["menuButton"] = QMdiSubWindow()
+        self.__windowList["menuButton"].setWidget(CMenuButton())
 
+        #ajout des sous-fenêtres à la mdi
+        for anIndex, aSubWindow in self.__windowList.items():
+            if(anIndex != "mdi"):
+                self.__windowList["mdi"].mdi.addSubWindow(aSubWindow)
+        
     #get
     def WindowList(self):
         return self.__windowList

@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import math
-
 from windows.classes.vector2D import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -35,7 +33,7 @@ class appWindow(object):
         if(pOnTop == None):
             return self.__onTop
         else:
-            self.__onTop == pOnTop
+            self.__onTop = pOnTop
 
     #get/set
     def BorderLess(self, pBorderless=None):
@@ -53,7 +51,11 @@ class appWindow(object):
                 targetStruct = aWindow.WindowStruct()
             else:
                 targetStruct = aWindow.widget().WindowStruct()
-            aWindow.setGeometry(targetStruct.Pos().X(), targetStruct.Pos().Y(), targetStruct.Size().X(), targetStruct.Size().Y())
+
+            aWindow.setGeometry(
+                targetStruct.Pos().X(), targetStruct.Pos().Y(), 
+                targetStruct.Size().X(), targetStruct.Size().Y())
+
             if(targetStruct.OnTop() and targetStruct.BorderLess()):
                 aWindow.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
             elif(targetStruct.OnTop()):
@@ -76,4 +78,25 @@ class appWindow(object):
         mdiStruct.OnTop(False)
         mdiStruct.BorderLess(True)
 
-        
+        #calcul de la structure du header
+        headerStruct = pWindowList["header"].widget().WindowStruct()
+        headerStruct.Pos(vector2D(0, 0))
+        headerSize = vector2D(
+            mdiStruct.Size().X(),    
+            mdiStruct.Size().Y()*0.1)
+        headerSize.Floor()
+        headerStruct.Pos(vector2D(0, 0))
+        headerStruct.Size(headerSize)
+        headerStruct.OnTop(False)
+        headerStruct.BorderLess(True)
+
+        #calcul de la structure du boutton de menu
+        menuButtonStruct = pWindowList["menuButton"].widget().WindowStruct()
+        menuButtonStruct.Pos(vector2D(
+            headerStruct.Size().X() - headerStruct.Size().Y(),
+            headerStruct.Pos().Y()))
+        menuButtonStruct.Size(vector2D(
+            headerStruct.Size().Y(),
+            headerStruct.Size().Y()))
+        menuButtonStruct.OnTop(True)
+        menuButtonStruct.BorderLess(True)

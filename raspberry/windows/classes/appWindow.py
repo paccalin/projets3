@@ -35,7 +35,7 @@ class appWindow(object):
         if(pOnTop == None):
             return self.__onTop
         else:
-            self.__onTop == pOnTop
+            self.__onTop = pOnTop
 
     #get/set
     def BorderLess(self, pBorderless=None):
@@ -80,12 +80,12 @@ class appWindow(object):
         diapoStruct = pWindowList["diapo"].widget().WindowStruct()
         diapoSize = None
         if(mdiStruct.Size().X() / 16 * 9 <= mdiStruct.Size().Y()):
-            diapoSize = vector2D(int(math.floor(mdiStruct.Size().X() * 0.8)), 
-                int(math.floor(mdiStruct.Size().X() / 16 * 9 * 0.8)))
+            diapoSize = vector2D(mdiStruct.Size().X() * 0.8, 
+                mdiStruct.Size().X() / 16 * 9 * 0.8)
         else:
-            diapoSize = vector2D(int(math.floor(mdiStruct.Size().Y()*0.8)),
-                int(math.floor(mdiStruct.Size().Y() / 9 * 16 * 0.8)))
-
+            diapoSize = vector2D(mdiStruct.Size().Y()*0.8,
+                mdiStruct.Size().Y() / 9 * 16 * 0.8)
+        diapoSize.Floor()
         diapoStruct.Pos(vector2D(0, 0))
         diapoStruct.Size(diapoSize)
         diapoStruct.OnTop(True)
@@ -95,6 +95,8 @@ class appWindow(object):
         bandeImagesStruct = pWindowList["bandeImages"].widget().WindowStruct()
         bandeImagesPos = vector2D(0,diapoSize.Y())
         bandeImagesSize = vector2D(diapoSize.X(),screenSize.Y()-diapoSize.Y())
+        bandeImagesPos.Floor()
+        bandeImagesSize.Floor()
         bandeImagesStruct.Pos(bandeImagesPos)
         bandeImagesStruct.Size(bandeImagesSize)
         bandeImagesStruct.OnTop(False)
@@ -104,6 +106,8 @@ class appWindow(object):
         descriptionStruct = pWindowList["description"].widget().WindowStruct()
         descriptionPos = vector2D(diapoSize.X(), 0)
         descriptionSize = vector2D(screenSize.X() - diapoSize.X(),screenSize.Y()) 
+        descriptionPos.Floor()
+        descriptionSize.Floor()
         descriptionStruct.Pos(descriptionPos)
         descriptionStruct.Size(descriptionSize)
         descriptionStruct.OnTop(False)
