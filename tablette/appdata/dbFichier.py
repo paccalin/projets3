@@ -209,5 +209,5 @@ class dbFichier():
         return objets
 
 dbManu = dbFichier("manufacturer")
-man1 = manufacturer('TEST',datetime.date(2010,5,10))
-dbManu.insert(man1)
+manuf = manufacturer('TEST',datetime.date(2010,5,10))
+dbManu.insert(manuf)
