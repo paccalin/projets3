@@ -51,19 +51,18 @@ class appWindow(object):
                 targetStruct = aWindow.WindowStruct()
             else:
                 targetStruct = aWindow.widget().WindowStruct()
+                if(targetStruct.OnTop() and targetStruct.BorderLess()):
+                    aWindow.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+                elif(targetStruct.OnTop()):
+                    aWindow.setWindowFlags(Qt.WindowStaysOnTopHint)
+                elif(targetStruct.BorderLess()):
+                    aWindow.setWindowFlags(Qt.FramelessWindowHint)
+                aWindow.widget().ScaleContent()
 
             aWindow.setGeometry(
                 targetStruct.Pos().X(), targetStruct.Pos().Y(), 
                 targetStruct.Size().X(), targetStruct.Size().Y())
 
-            if(targetStruct.OnTop() and targetStruct.BorderLess()):
-                aWindow.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-            elif(targetStruct.OnTop()):
-                aWindow.setWindowFlags(Qt.WindowStaysOnTopHint)
-            elif(targetStruct.BorderLess()):
-                aWindow.setWindowFlags(Qt.FramelessWindowHint)
-            if(anIndex != "mdi"):
-                aWindow.widget().ScaleContent()
 
 
     #calcul de la structure à appliquer
@@ -90,13 +89,36 @@ class appWindow(object):
         headerStruct.OnTop(False)
         headerStruct.BorderLess(True)
 
+        #calcul de la structure du menu
+        menuStructGlobal = pWindowList["menu"].widget().Struct()
+        menuWidth = 0
+        if(mdiStruct.Size().X() >= 500):
+            menuWidth = 500
+        else:
+            menuWidth = mdiStruct.Size().X()
+
+        menuStructGlobal["open"].Pos(
+            vector2D(mdiStruct.Size().X()-menuWidth, 0))
+        menuStructGlobal["hidden"].Pos(
+            vector2D(mdiStruct.Size().X(), 0))
+
+        for anIndex, aStruct in menuStructGlobal.items():
+            aStruct.Size(vector2D(menuWidth, mdiStruct.Size().Y()))
+            aStruct.OnTop(True)
+            aStruct.BorderLess(True)
+
         #calcul de la structure du boutton de menu
-        menuButtonStruct = pWindowList["menuButton"].widget().WindowStruct()
-        menuButtonStruct.Pos(vector2D(
+        menuButtonStructGlobal = pWindowList["menuButton"].widget().Struct()
+        menuButtonStructGlobal["hidden"].Pos(vector2D(
             headerStruct.Size().X() - headerStruct.Size().Y(),
             headerStruct.Pos().Y()))
-        menuButtonStruct.Size(vector2D(
-            headerStruct.Size().Y(),
-            headerStruct.Size().Y()))
-        menuButtonStruct.OnTop(True)
-        menuButtonStruct.BorderLess(True)
+        menuButtonStructGlobal["open"].Pos(vector2D(
+            headerStruct.Size().X() - headerStruct.Size().Y() - menuWidth,
+            headerStruct.Pos().Y()))
+
+        for anIndex, aStruct in menuButtonStructGlobal.items():
+            aStruct.OnTop(True)
+            aStruct.BorderLess(True)
+            aStruct.Size(vector2D(
+                headerStruct.Size().Y(),
+                headerStruct.Size().Y()))

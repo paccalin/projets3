@@ -4,6 +4,8 @@
 from PyQt5.QtWidgets import *
 from windows.components.CHeader import *
 from windows.components.CMenuButton import *
+from windows.components.CMenu import *
+from windows.classes.appWindow import *
 
 class MdiContent(object):
     __classSingleton = None
@@ -20,7 +22,10 @@ class MdiContent(object):
         self.__windowList["header"].setWidget(CHeader())
         #ajout du boutton de menu
         self.__windowList["menuButton"] = QMdiSubWindow()
-        self.__windowList["menuButton"].setWidget(CMenuButton())
+        self.__windowList["menuButton"].setWidget(CMenuButton(self.__animeMenu))
+        #ajout du menu
+        self.__windowList["menu"] = QMdiSubWindow()
+        self.__windowList["menu"].setWidget(CMenu())
 
         #ajout des sous-fenêtres à la mdi
         for anIndex, aSubWindow in self.__windowList.items():
@@ -30,6 +35,17 @@ class MdiContent(object):
     #get
     def WindowList(self):
         return self.__windowList
+    
+    #gestion de l'affichage du menu
+    def __animeMenu(self, pStatus):
+        if(pStatus):
+            self.__windowList["menuButton"].widget().Show()
+            self.__windowList["menu"].widget().Show()
+        else:
+            self.__windowList["menuButton"].widget().Hide() 
+            self.__windowList["menu"].widget().Hide()
+        appWindow.SetStruct(self.WindowList())
+                                       
 
     #gestion de la création du singleton
     @classmethod
