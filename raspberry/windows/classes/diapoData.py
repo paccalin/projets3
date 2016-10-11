@@ -48,7 +48,9 @@ class diapoData(QWidget):
         if self.__step >= len(self.__imgList):
             self.__step = 0
         self.timer.start(self.__delay, self)
-        MdiContent.Singleton().WindowList()["diapo"].widget().ShowImg(self.__imgList[self.__step].Path())
+        MdiContent.Singleton().WindowList()["diapo"].widget().Update(self.__imgList[self.__step].Path())
+        MdiContent.Singleton().WindowList()["bandeImages"].widget().Update(self.__imgList, self.Step)
+        MdiContent.Singleton().WindowList()["description"].widget().Update(self.__imgList[self.__step])
         self.__step += 1
 
     #gestion de la création du singleton
