@@ -29,7 +29,7 @@ class CImgDiapo(QWidget):
             self.WindowStruct().Size().X(), self.WindowStruct().Size().Y())
 
     #rafraichissement de l'image affichée
-    def ShowImg(self, pPath):
+    def Update(self, pPath):
             image = QPixmap(pPath)
             self.__imgLabel.setPixmap(image)
 
