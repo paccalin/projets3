@@ -14,6 +14,9 @@ class dbFichier():
         self.__nomClasse=nomClasse
         self.__nomFichier="../DB/"+nomClasse+"s.csv"
 
+    def getNomFichier(self):
+        return self.__nomFichier
+
     def insert(self,objet):
         #ouverture du csv en lecture
         file  = open(self.__nomFichier,"rb")
@@ -150,7 +153,7 @@ class dbFichier():
         for row in reader:
             string = row[0]
             st=string.split(';')
-            if(row[numCol]==value):
+            if(str(st[numCol])==str(value)):
                 if(self.__nomClasse=="client"):
                     objets.append(client(st[1],st[2],st[3],st[4],st[5],st[6],st[7],st[0]))
                 elif(self.__nomClasse=="manufacturer"):
