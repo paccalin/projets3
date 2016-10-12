@@ -16,24 +16,39 @@ class CDescription(QWidget):
         self.__windowStruct = appWindow()
 		
 		#Création des éléments
-		#Création de plusieurs QLabel, qui permettent d'afficher du texte sur la fenêtre, puis positionnement et dimensionnement de celui-ci
+		#Création de plusieurs QLabel, qui permettent d'afficher du texte sur la fenêtre
         self.windowSize = self.__windowStruct.Size()
-        self.labelInformations = QLabel("Vehicule", self)
+        self.labeltitre = QLabel("Description du produit", self)
         self.labelMarque = QLabel("Marque", self)
         self.labelModele = QLabel("Modele", self)
+        self.labelOption = QLabel ("Options :", self)
     
     #get
     def WindowStruct(self):
         return self.__windowStruct
     #mise à l'échelle des composants
     def ScaleContent(self):
-        self.labelInformations.move(0.5*self.windowSize.X(),0.8*self.windowSize.Y())
-        self.labelInformations.show()
-        self.labelMarque.move(0.5*self.windowSize.X(),0.6*self.windowSize.Y())
+        windowSize = self.__windowStruct.Size()
+        self.labeltitre.move(0.25*windowSize.X(),0.05*windowSize.Y())
+        self.labeltitre.show()
+        self.labelMarque.move(0.25*windowSize.X(),0.15*windowSize.Y())
         self.labelMarque.show()
-        self.labelModele.move(0.5*self.windowSize.X(),0.4*self.windowSize.Y())
+        self.labelModele.move(0.60*windowSize.X(),0.15*windowSize.Y())
         self.labelModele.show()
-		
-    def Update(self, pImage):
-        print("youssouf doit faire son taff")
-		
+        self.labelOption.move(0.40*windowSize.X(), 0.30*windowSize.Y())
+        self.labelOption.show()
+
+    def Update(self, pImg):
+        windowSize = self.__windowStruct.Size()
+        currentVehicle = pImg.Vehicle()
+        if (currentVehicle==None):
+            self.labelTest=QLabel("Il n'y a rien à afficher pour le moment", self)
+            self.labelTest.move(0.05*windowSize.X(),0.40*windowSize.Y())
+            self.labelTest.show()
+        else:
+            self.labelLibelle = QLabel(" " + currentVehicle.model().libelle(), self)
+            self.labelLibelle.move(0.25*windowSize.X(),0.50*windowSize.Y())
+            self.labelLibelle.show()
+            self.labelMarque.setText(" " + currentVehicle.manufacturer())
+            self.labelModele.setText(" " + currentVehicle.model())
+        
