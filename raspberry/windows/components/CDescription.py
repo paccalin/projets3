@@ -22,6 +22,7 @@ class CDescription(QWidget):
         self.labelMarque = QLabel("Marque", self)
         self.labelModele = QLabel("Modele", self)
         self.labelOption = QLabel ("Options :", self)
+        self.labelVide = QLabel("Il n'y a rien à afficher pour le moment", self)
     
     #get
     def WindowStruct(self):
@@ -42,13 +43,14 @@ class CDescription(QWidget):
         windowSize = self.__windowStruct.Size()
         currentVehicle = pImg.Vehicle()
         if (currentVehicle==None):
-            self.labelTest=QLabel("Il n'y a rien à afficher pour le moment", self)
-            self.labelTest.move(0.05*windowSize.X(),0.40*windowSize.Y())
-            self.labelTest.show()
+            self.labelVide.move(0.05*windowSize.X(),0.40*windowSize.Y())
+            self.labelVide.show()
         else:
-            self.labelLibelle = QLabel(" " + currentVehicle.model().libelle(), self)
-            self.labelLibelle.move(0.25*windowSize.X(),0.50*windowSize.Y())
-            self.labelLibelle.show()
-            self.labelMarque.setText(" " + currentVehicle.manufacturer())
-            self.labelModele.setText(" " + currentVehicle.model())
+
+            self.labelVide.hide()
+            #self.labelLibelle = QLabel(" " + currentVehicle.model().libelle(), self)
+            #self.labelLibelle.move(0.25*windowSize.X(),0.50*windowSize.Y())
+            #self.labelLibelle.show()
+            #self.labelMarque.setText(" " + currentVehicle.manufacturer())
+            #self.labelModele.setText(" " + currentVehicle.model())
         
