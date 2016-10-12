@@ -1,13 +1,13 @@
 insert into constructeur(constructeur_libelle, constructeur_date_insertion) values('Mercedes','2016-09-27 00:00:01');
 insert into constructeur(constructeur_libelle, constructeur_date_insertion) values('Renault','2016-09-27 00:00:01');
 insert into constructeur(constructeur_libelle, constructeur_date_insertion) values('Nissan','2016-09-27 00:00:01');
-insert into constructeur(constructeur_libelle, constructeur_date_insertion) values('Citroën','2016-09-27 00:00:01');
+insert into constructeur(constructeur_libelle, constructeur_date_insertion) values('CitroÃ«n','2016-09-27 00:00:01');
 insert into constructeur(constructeur_libelle, constructeur_date_insertion) values('Ford','2016-09-27 00:00:01');
 
 insert into modele(modele_libelle, constructeur_id, modele_date_insertion) values('Sprinter', (select constructeur_id from constructeur where constructeur_libelle='Mercedes'), '2016-09-27 00:00:00');
 insert into modele(modele_libelle, constructeur_id, modele_date_insertion) values('Master', (select constructeur_id from constructeur where constructeur_libelle='Renault'), '2016-09-27 00:00:00');
 insert into modele(modele_libelle, constructeur_id, modele_date_insertion) values('Movano', (select constructeur_id from constructeur where constructeur_libelle='Nissan'), '2016-09-27 00:00:00');
-insert into modele(modele_libelle, constructeur_id, modele_date_insertion) values('Jumper', (select constructeur_id from constructeur where constructeur_libelle='Citroën'), '2016-09-27 00:00:00');
+insert into modele(modele_libelle, constructeur_id, modele_date_insertion) values('Jumper', (select constructeur_id from constructeur where constructeur_libelle='CitroÃ«n'), '2016-09-27 00:00:00');
 insert into modele(modele_libelle, constructeur_id, modele_date_insertion) values('Transit', (select constructeur_id from constructeur where constructeur_libelle='Ford'), '2016-09-27 00:00:00');
 
 insert into vehicule(modele_id, vehicule_date_insertion) values ((select modele_id from modele where modele_libelle='Sprinter'), '2016-09-27 00:00:01');
@@ -35,9 +35,9 @@ insert into photo(photo_path, vehicule_id, photo_date_insertion) values ('pictur
 
 insert into option(option_libelle, option_desc, option_date_insertion) values('couleur', 'changement de la couleur du camion', '2016-09-27 00:00:20');
 insert into option(option_libelle, option_desc, option_date_insertion) values('passager', 'ajout de siege afin de transporter des passagers', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('benne', 'trasformation de l arrière du camion afin d y ajouter une benne', '2016-09-27 00:00:20');
+insert into option(option_libelle, option_desc, option_date_insertion) values('benne', 'trasformation de l arriÃ«re du camion afin d y ajouter une benne', '2016-09-27 00:00:20');
 insert into option(option_libelle, option_desc, option_date_insertion) values('luxe', 'modification afin d apporter du luxe au vehicule', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('rally', 'modification afin de créer un véritable véhicule de rally', '2016-09-27 00:00:20');
+insert into option(option_libelle, option_desc, option_date_insertion) values('rally', 'modification afin de crÃ©er un vÃ©ritable vÃ©hicule de rally', '2016-09-27 00:00:20');
 insert into option(option_libelle, option_desc, option_date_insertion) values('sport', 'changement du moteur et ajout de bande sportive', '2016-09-27 00:00:20');
 
 insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:01'), (select option_id from option where option_libelle='luxe'));
