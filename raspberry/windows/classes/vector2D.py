@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import math
+
 class vector2D(object):
     def __init__(self, pX = 0, pY = 0):
         self.__x = pX
@@ -19,3 +21,8 @@ class vector2D(object):
             return self.__y
         else:
             self.__y = pY
+
+    #transformer en entiers
+    def Floor(self):
+        self.__x = int(math.floor(self.__x))
+        self.__y = int(math.floor(self.__y))

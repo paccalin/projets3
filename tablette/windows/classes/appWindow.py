@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import math
-
 from windows.classes.vector2D import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -35,7 +33,7 @@ class appWindow(object):
         if(pOnTop == None):
             return self.__onTop
         else:
-            self.__onTop == pOnTop
+            self.__onTop = pOnTop
 
     #get/set
     def BorderLess(self, pBorderless=None):
@@ -53,15 +51,18 @@ class appWindow(object):
                 targetStruct = aWindow.WindowStruct()
             else:
                 targetStruct = aWindow.widget().WindowStruct()
-            aWindow.setGeometry(targetStruct.Pos().X(), targetStruct.Pos().Y(), targetStruct.Size().X(), targetStruct.Size().Y())
-            if(targetStruct.OnTop() and targetStruct.BorderLess()):
-                aWindow.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
-            elif(targetStruct.OnTop()):
-                aWindow.setWindowFlags(Qt.WindowStaysOnTopHint)
-            elif(targetStruct.BorderLess()):
-                aWindow.setWindowFlags(Qt.FramelessWindowHint)
-            if(anIndex != "mdi"):
+                if(targetStruct.OnTop() and targetStruct.BorderLess()):
+                    aWindow.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+                elif(targetStruct.OnTop()):
+                    aWindow.setWindowFlags(Qt.WindowStaysOnTopHint)
+                elif(targetStruct.BorderLess()):
+                    aWindow.setWindowFlags(Qt.FramelessWindowHint)
                 aWindow.widget().ScaleContent()
+
+            aWindow.setGeometry(
+                targetStruct.Pos().X(), targetStruct.Pos().Y(), 
+                targetStruct.Size().X(), targetStruct.Size().Y())
+
 
 
     #calcul de la structure à appliquer
@@ -76,4 +77,48 @@ class appWindow(object):
         mdiStruct.OnTop(False)
         mdiStruct.BorderLess(True)
 
-        
+        #calcul de la structure du header
+        headerStruct = pWindowList["header"].widget().WindowStruct()
+        headerStruct.Pos(vector2D(0, 0))
+        headerSize = vector2D(
+            mdiStruct.Size().X(),    
+            mdiStruct.Size().Y()*0.1)
+        headerSize.Floor()
+        headerStruct.Pos(vector2D(0, 0))
+        headerStruct.Size(headerSize)
+        headerStruct.OnTop(False)
+        headerStruct.BorderLess(True)
+
+        #calcul de la structure du menu
+        menuStructGlobal = pWindowList["menu"].widget().Struct()
+        menuWidth = 0
+        if(mdiStruct.Size().X() >= 500):
+            menuWidth = 500
+        else:
+            menuWidth = mdiStruct.Size().X()
+
+        menuStructGlobal["open"].Pos(
+            vector2D(mdiStruct.Size().X()-menuWidth, 0))
+        menuStructGlobal["hidden"].Pos(
+            vector2D(mdiStruct.Size().X(), 0))
+
+        for anIndex, aStruct in menuStructGlobal.items():
+            aStruct.Size(vector2D(menuWidth, mdiStruct.Size().Y()))
+            aStruct.OnTop(True)
+            aStruct.BorderLess(True)
+
+        #calcul de la structure du boutton de menu
+        menuButtonStructGlobal = pWindowList["menuButton"].widget().Struct()
+        menuButtonStructGlobal["hidden"].Pos(vector2D(
+            headerStruct.Size().X() - headerStruct.Size().Y(),
+            headerStruct.Pos().Y()))
+        menuButtonStructGlobal["open"].Pos(vector2D(
+            headerStruct.Size().X() - headerStruct.Size().Y() - menuWidth,
+            headerStruct.Pos().Y()))
+
+        for anIndex, aStruct in menuButtonStructGlobal.items():
+            aStruct.OnTop(True)
+            aStruct.BorderLess(True)
+            aStruct.Size(vector2D(
+                headerStruct.Size().Y(),
+                headerStruct.Size().Y()))
