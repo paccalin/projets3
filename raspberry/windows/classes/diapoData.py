@@ -18,7 +18,7 @@ class diapoData(QWidget):
         self.__imgList = [self.__no_image]
         self.__step = 0
         self.timer = QBasicTimer()
-        self.__delay = 5000  # milliseconds
+        self.__delay = 100  # milliseconds
         self.timerEvent()
 
     #get/set

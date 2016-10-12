@@ -7,7 +7,7 @@ import pg8000
 import datetime
 
 class model():
-    __modleList = []
+    __modelList = []
 
     def __init__(self, pLibelle, pManufacturer, pInsertionDate, pDbId = None):
         self.__dbId = pDbId
@@ -55,11 +55,12 @@ class model():
     #chargement de tout les modèles
     @classmethod
     def FindById(cls, pId):
-        result = filter(lambda x: x.DbId() == pId, cls.__modelList)
-        if(len(result) != 0):
-            return result[0]
-        else:
-            cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + pId)
+        modelToReturn = None
+        for aModel in cls.__modelList:
+            if (aModel.DbId()) == pId:
+                modelToReturn = aModel
+        if (modelToReturn == None):
+            cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + str(pId) + ";")
             results = None
             if(cursor != None):
                 results = cursor.fetchall()
@@ -68,6 +69,7 @@ class model():
                     manufacturer = manufacturerId
                     #load manufacturer
                     aModel = model(libelle, manufacturer, insertionDate, id)
-            cls.__modelList.append(aModel)
-            return aModel
+                    cls.__modelList.append(aModel)
+                    modelToReturn = aModel
+        return modelToReturn
 

@@ -34,7 +34,7 @@ class vehicle():
     @classmethod
     def FindAll(cls):
         provVehicleList = []
-        cursor = DbAccess.Querry("SELECT * FROM vehicule")
+        cursor = DbAccess.Querry("SELECT * FROM vehicule;")
         results = None
         if(cursor != None):
             results = cursor.fetchall()
@@ -49,11 +49,12 @@ class vehicle():
     #chargement de l'orrurence correspondant à un id passé en paramètre
     @classmethod
     def FindById(cls, pId):
-        result = filter(lambda x: x.DbId() == pId, cls.__vehicleList)
-        if(len(result) != 0):
-            return result[0]
-        else:
-            cursor = DbAccess.Querry("SELECT * FROM vehicule WHERE vehicule_id = " + pId)
+        vehicleToReturn = None
+        for aVehicle in cls.__vehicleList:
+            if (aVehicle.DbId()) == pId:
+                vehicleToReturn = aVehicle
+        if (vehicleToReturn == None):
+            cursor = DbAccess.Querry("SELECT * FROM vehicule WHERE vehicule_id = " + str(pId) + ";")
             results = None
             if(cursor != None):
                 results = cursor.fetchall()
@@ -61,5 +62,6 @@ class vehicle():
                     id, modelId, insertionDate = row
                     aModel =  model.FindById(modelId)
                     aVehicle = vehicle(aModel, insertionDate, id)
-            cls.__vehicleList.append(aVehicle)
-            return aVehicle
+                    cls.__vehicleList.append(aVehicle)
+                    vehicleToReturn = aVehicle
+        return vehicleToReturn

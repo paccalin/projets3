@@ -13,7 +13,6 @@ class CImgDiapo(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.__windowStruct = appWindow()
-        #permet à la classe appwindow de différencier les différentes fenêtres
         self.__image_files = []
         self.__imgLabel = QLabel("", self)
         self.__imgLabel.setScaledContents(True)
