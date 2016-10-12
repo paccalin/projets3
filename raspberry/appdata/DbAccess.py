@@ -15,7 +15,7 @@ class DbAccess(object):
     def __init__(self, pHost, pName, pUser, pPass):
         self.__conn = None
         try:
-            __conn = pg8000.connect(user=pUser, host=pHost, password=pPass, database=pName)
+            self.__conn = pg8000.connect(user=pUser, host=pHost, password=pPass, database=pName)
         except:
             print("erreur lors de la connection a la base de donnée: {}, a l'adresse: //{}, avec l'utilisateur: {}, en utilisant le mot de passe: {}".format(
                 pName, pHost, pUser, pPass))

@@ -48,6 +48,8 @@ class picture():
                 aPicture = picture(path, vehicle, insertionDate, id)
                 provPictureList.append(aPicture)
         cls.__pictureList = provPictureList
+        if(len(cls.__pictureList) == 0):
+            print("retourne une liste vide !")
         return cls.__pictureList
 
     #chargement de l'orrurence correspondant à un id passé en paramètre
@@ -57,7 +59,7 @@ class picture():
         if(len(result) != 0):
             return result[0]
         else:
-            cursor = DbAccess.Querry("SELECT * FROM photo WHERE photo_id = " + pId)
+            cursor = DbAccess.Querry("SELECT * FROM photo WHERE photo_id = " + str(pId))
             results = None
             if(cursor != None):
                 results = cursor.fetchall()

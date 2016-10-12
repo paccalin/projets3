@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from appdata.DbAccess import *
 import pg8000
 import datetime
 
 class option():
     __optionList = []
 
-    def __init__(self, pLibelle, pDesc, pDbId = None):
+    def __init__(self, pLibelle, pDesc, pInsertionDate, pDbId = None):
         self.__dbId = pDbId
         self.__libelle = pLibelle
         self.__desc = pDesc
@@ -46,29 +47,31 @@ class option():
     #chargement de l'orrurence correspondant à un id passé en paramètre
     @classmethod
     def FindById(cls, pId):
-        result = filter(lambda x: x.DbId() == pId, cls.__optionList)
-        if(len(result) != 0):
-            return result[0]
-        else:
-            cursor = DbAccess.Querry("SELECT * FROM modele WHERE modele_id = " + pId)
+        optionToReturn = None
+        for anOption in cls.__optionList:
+            if (anOption.DbId()) == pId:
+                optionToReturn = anOption
+        if (optionToReturn == None):
+            cursor = DbAccess.Querry("SELECT * FROM option WHERE option_id = " + str(pId))
             results = None
             if(cursor != None):
                 results = cursor.fetchall()
                 for row in results:
-                    id, libelle, pDesc, insertionDate = row
+                    id, libelle, desc, insertionDate = row
                     anOption = option(libelle, desc, insertionDate, id)
-            cls.__optionList.append(anOption)
-            return anOption
+                    cls.__optionList.append(anOption)
+                    optionToReturn = anOption
+        return optionToReturn
 
     #chargement des orrurences correspondantes à un l'id d'un véhicule passé en paramètre
     @classmethod
     def FindByVehicle(cls, pVehicleId):
         provOptionList = []
-        cursor = DbAccess.Querry("SELECT o.option_id FROM option o JOIN join_vheicule_option vo ON o.option_id = vo.option_id WHERE vo.vehicule_id = " + pVehicleId)
+        cursor = DbAccess.Querry("SELECT o.option_id FROM option o JOIN join_vehicule_option vo ON o.option_id = vo.option_id WHERE vo.vehicule_id = " + str(pVehicleId))
         results = None
         if(cursor != None):
             results = cursor.fetchall()
             for row in results:
-                id = row
+                id = row[0]
                 provOptionList.append(cls.FindById(id))
         return cls.__optionList
