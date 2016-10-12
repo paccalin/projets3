@@ -4,6 +4,7 @@
 import sys
 import csv
 from manufacturer import manufacturer
+from option import option
 import datetime
 from socket import socket
 
@@ -46,27 +47,29 @@ class dbFichier():
                 insertID=int(st[0])
             
         #fermeture du fichier en lecture et ouverture en ecriture
+        #range(1,4) pour [1,2,3] et pas range(1,3)
         file.close()
         file  = open(self.__nomFichier, "wb")
         if(self.__nomClasse=="client"):
-            fieldnames = range(1, 8)
+            fieldnames = range(1, 9)
         elif(self.__nomClasse=="manufacturer"):
-            fieldnames = range(1, 3)
+            fieldnames = range(1, 4)
         elif(self.__nomClasse=="devis"):
-            fieldnames = range(1, 5)
-        elif(self.__nomClasse=="modele"):
-            fieldnames = range(1, 4)
-        elif(self.__nomClasse=="option"):
-            fieldnames = range(1, 4)
-        elif(self.__nomClasse=="picture"):
-            fieldnames = range(1, 4)
-        elif(self.__nomClasse=="rdv"):
             fieldnames = range(1, 6)
+        elif(self.__nomClasse=="modele"):
+            fieldnames = range(1, 5)
+        elif(self.__nomClasse=="option"):
+            fieldnames = range(1, 5)
+        elif(self.__nomClasse=="picture"):
+            fieldnames = range(1, 5)
+        elif(self.__nomClasse=="rdv"):
+            fieldnames = range(1, 7)
         elif(self.__nomClasse=="utilisateur"):
-            fieldnames = range(1, 4)
+            fieldnames = range(1, 5)
         elif(self.__nomClasse=="vehicule"):
-            fieldnames = range(1, 3)
-        writer = csv.DictWriter(file, delimiter=';', fieldnames=fieldnames, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            fieldnames = range(1, 4)
+        writer = csv.writer(file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        # writer = csv.DictWriter(file, fieldnames=fieldnames)
 
         #ajout des objets avec les nouveaux et insertion dans le fichier CSV
         objets.append(objet)
@@ -75,66 +78,66 @@ class dbFichier():
             if(self.__nomClasse=="client"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Nom(), '3': ob.Prenom(),'4': ob.Rue(), '5': ob.Ville(),'6': ob.CP(), '7': ob.Mail(),'8': ob.Tel()})
+                    writer.writerow([insertID, ob.Nom(), ob.Prenom(), ob.Rue(), ob.Ville(), ob.CP(), ob.Mail(), ob.Tel()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Nom(), '3': ob.Prenom(),'4': ob.Rue(), '5': ob.Ville(),'6': ob.CP(), '7': ob.Mail(),'8': ob.Tel()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Nom(), ob.Prenom(), ob.Rue(), ob.Ville(), ob.CP(), ob.Mail(), ob.Tel()])
             elif(self.__nomClasse=="manufacturer"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Libelle(), '3': ob.Date_insertion()})
+                    writer.writerow([insertID, ob.Libelle(), ob.InsertionDate()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Libelle(), '3': ob.Date_insertion()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Libelle(), ob.InsertionDate()])
             elif(self.__nomClasse=="devis"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Client_id(), '3': ob.Utilisateur_id(), '4': ob.Path(), '5': ob.Actif()})
+                    writer.writerow([insertID, ob.Client_id(), ob.Utilisateur_id(), ob.Path(), ob.Actif()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Client_id(), '3': ob.Utilisateur_id(), '4': ob.Path(), '5': ob.Actif()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Client_id(), ob.Utilisateur_id(), ob.Path(), ob.Actif()])
             elif(self.__nomClasse=="modele"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Libelle(), '3': ob.Constructeur_id(), '4': ob.Date_insertion()})
+                    writer.writerow([insertID, ob.Libelle(), ob.Constructeur_id(), ob.InsertionDate()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Libelle(), '3': ob.Constructeur_id(), '4': ob.Date_insertion()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Libelle(), ob.Constructeur_id(), ob.InsertionDate()])
             elif(self.__nomClasse=="option"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Libelle(), '3': ob.Description(), '4': ob.Date_insertion()})
+                    writer.writerow([insertID, ob.Libelle(), ob.Description(), ob.InsertionDate()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Libelle(), '3': ob.Description(), '4': ob.Date_insertion()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([ob.DbId(), ob.Libelle(), ob.Description(), ob.InsertionDate()])
             elif(self.__nomClasse=="photo"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Path(), '3': ob.Vehicle_id(), '4': ob.Date_creation()})
+                    writer.writerow([insertID, ob.Path(), ob.Vehicle_id(), ob.Date_creation()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Path(), '3': ob.Vehicle_id(), '4': ob.Date_creation()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Path(), ob.Vehicle_id(), ob.Date_creation()])
             elif(self.__nomClasse=="rdv"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Libelle(), '3': ob.Utilisateur_id(), '4': ob.Client_id(), '5': ob.rdv_Date(), '6': ob.rdv_Duree()})
+                    writer.writerow([insertID, ob.Libelle(), ob.Utilisateur_id(), ob.Client_id(), ob.rdv_Date(), ob.rdv_Duree()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Libelle(), '3': ob.Utilisateur_id(), '4': ob.Client_id(), '5': ob.rdv_Date(), '6': ob.rdv_Duree()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Libelle(), ob.Utilisateur_id(), ob.Client_id(), ob.rdv_Date(), ob.rdv_Duree()])
             elif(self.__nomClasse=="utilisateur"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.Pseudo(), '3': ob.MotPasse(), '4': ob.Droits()})
+                    writer.writerow([insertID, ob.Pseudo(), ob.MotPasse(), ob.Droits()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.Pseudo(), '3': ob.MotPasse(), '4': ob.Droits()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.Pseudo(), ob.MotPasse(), ob.Droits()])
             elif(self.__nomClasse=="vehicule"):
                 if(ob.DbId()==None):
                     insertID+=1
-                    writer.writerow({'1': insertID,'2': ob.modele_id(), '3': ob.Date_insertion()})
+                    writer.writerow([insertID, ob.modele_id(), ob.Date_insertion()])
                 else:
-                    insertID=ob.DbId()
-                    writer.writerow({'1': ob.DbId(),'2': ob.modele_id(), '3': ob.Date_insertion()})
+                    insertID=int(ob.DbId())
+                    writer.writerow([insertID, ob.modele_id(), ob.Date_insertion()])
         
         #fermeture du fichier
         file.close()
@@ -207,7 +210,3 @@ class dbFichier():
                     objets.append(vehicule(st[1],st[2],st[0]))
 
         return objets
-
-dbManu = dbFichier("manufacturer")
-manuf = manufacturer('TEST',datetime.date(2010,5,10))
-dbManu.insert(manuf)
