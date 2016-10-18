@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
-
 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -48,9 +46,10 @@ class CDescription(QWidget):
         else:
 
             self.labelVide.hide()
-            #self.labelLibelle = QLabel(" " + currentVehicle.model().libelle(), self)
-            #self.labelLibelle.move(0.25*windowSize.X(),0.50*windowSize.Y())
-            #self.labelLibelle.show()
-            #self.labelMarque.setText(" " + currentVehicle.manufacturer())
-            #self.labelModele.setText(" " + currentVehicle.model())
+            self.labelLibelle = QLabel(" " + pImg.Vehicle().Model().Libelle())
+            self.labelLibelle.move(0.25*windowSize.X(),0.50*windowSize.Y())
+            self.labelLibelle.show()
+            self.labelMarque.setText(" " + currentVehicle.Model().Manufacturer().Libelle())
+            self.labelModele.setText(" " + currentVehicle.Model().Libelle())
+
         

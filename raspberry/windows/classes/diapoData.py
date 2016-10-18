@@ -14,11 +14,11 @@ class diapoData(QWidget):
     #constructeur du singleton
     def __init__(self):
         QWidget.__init__(self)
-        self.__no_image = picture("pictures/no-image.png", None, datetime.datetime.now())
+        self.__no_image = picture("pictures/no-image.png", None, datetime.datetime.now(), 0)
         self.__imgList = [self.__no_image]
         self.__step = 0
         self.timer = QBasicTimer()
-        self.__delay = 100  # milliseconds
+        self.__delay = 2500  # milliseconds
         self.timerEvent()
 
     #get/set
@@ -42,15 +42,17 @@ class diapoData(QWidget):
             else:
                 self.__step = pStep
         
+    def UpdateDiapo(self):
+        MdiContent.Singleton().WindowList()["diapo"].widget().Update(self.__imgList[self.__step].Path())
+        MdiContent.Singleton().WindowList()["bandeImages"].widget().Update(self.__imgList, self.Step)
+        MdiContent.Singleton().WindowList()["description"].widget().Update(self.__imgList[self.__step])
 
     #methode déclenchée par le timer
     def timerEvent(self, e=None):
         if self.__step >= len(self.__imgList):
             self.__step = 0
         self.timer.start(self.__delay, self)
-        MdiContent.Singleton().WindowList()["diapo"].widget().Update(self.__imgList[self.__step].Path())
-        MdiContent.Singleton().WindowList()["bandeImages"].widget().Update(self.__imgList, self.Step)
-        MdiContent.Singleton().WindowList()["description"].widget().Update(self.__imgList[self.__step])
+        self.UpdateDiapo()
         self.__step += 1
 
     #gestion de la création du singleton

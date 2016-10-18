@@ -66,9 +66,8 @@ class model():
                 results = cursor.fetchall()
                 for row in results:
                     id, libelle, manufacturerId, insertionDate = row
-                    manufacturer = manufacturerId
-                    #load manufacturer
-                    aModel = model(libelle, manufacturer, insertionDate, id)
+                    aManufacturer = manufacturer.FindById(manufacturerId)
+                    aModel = model(libelle, aManufacturer, insertionDate, id)
                     cls.__modelList.append(aModel)
                     modelToReturn = aModel
         return modelToReturn

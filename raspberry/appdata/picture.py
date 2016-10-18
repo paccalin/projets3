@@ -44,8 +44,8 @@ class picture():
             results = cursor.fetchall()
             for row in results:
                 id, path, vehicleId, insertionDate = row
-                aVehicle = vehicle.FindById(vehicleId)
-                aPicture = picture(path, vehicle, insertionDate, id)
+                iVehicle = vehicle.FindById(vehicleId)
+                aPicture = picture(path, iVehicle, insertionDate, id)
                 provPictureList.append(aPicture)
         cls.__pictureList = provPictureList
         if(len(cls.__pictureList) == 0):
@@ -65,7 +65,7 @@ class picture():
                 results = cursor.fetchall()
                 for row in results:
                     id, path, vehicleId, insertionDate = row
-                    vehicle = vehicle.FindById(vehicleId)
-                    aPicture = picture(path, vehicle, insertionDate, id)
+                    iVehicle = vehicle.FindById(vehicleId)
+                    aPicture = picture(path, iVehicle, insertionDate, id)
             cls.__pictureList.append(aPicture)
             return aPicture

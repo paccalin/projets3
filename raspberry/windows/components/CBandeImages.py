@@ -20,7 +20,7 @@ class CBandeImages(QWidget):
         return self.__windowStruct
 
     def ScaleContent(self):
-        print("edouard doit faire son taff")
+        print("Fonction non implémentée")
 
     def Update(self, pImgList, pStep):
-        print("edouard doit faire son taff")
+        print("Fonction non implémentée")

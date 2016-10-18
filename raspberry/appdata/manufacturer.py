@@ -43,16 +43,17 @@ class manufacturer():
     #chargement de l'orrurence correspondant à un id passé en paramètre
     @classmethod
     def FindById(cls, pId):
-        result = filter(lambda x: x.DbId() == pId, cls.__manufacturerList)
-        if(len(result) != 0):
-            return result[0]
-        else:
-            cursor = DbAccess.Querry("SELECT * FROM constructeur WHERE constructeur_id = " + pId)
+        manufacturerToReturn = None
+        for aManufacturer in cls.__manufacturerList:
+            if (aManufacturer.DbId()) == pId:
+                manufacturerToReturn = aManufacturer
+        if(manufacturerToReturn == None):
+            cursor = DbAccess.Querry("SELECT * FROM constructeur WHERE constructeur_id = " + str(pId))
             results = None
             if(cursor != None):
                 results = cursor.fetchall()
                 for row in results:
                     id, libelle, insertionDate = row
-                    aManufacturer = manufacturer(libelle, insertionDate, id)
-            cls.__manufacturerList.append(aManufacturer)
-            return aManufacturer
+                    manufacturerToReturn = manufacturer(libelle, insertionDate, id)
+            cls.__manufacturerList.append(manufacturerToReturn)
+        return manufacturerToReturn
