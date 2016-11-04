@@ -25,6 +25,10 @@ class vehicle():
             return self.__model
         else:
             self.__model = pModel
+
+    #get
+    def OptionList(self):
+        return self.__optionList
     
     #get
     def InsertionDate(self):
