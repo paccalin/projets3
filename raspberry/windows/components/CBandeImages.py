@@ -70,9 +70,7 @@ class CBandeImages(QWidget):
 				PosImg.X(PosImg.X() + TailleImg.X() + self.__marges.X())
 				aLabel.show()
 				compteur+=1
-		
-	
-	
+				
 	#toutes les images qui vont apparaître dans la barre
 	def Update (self, pList, pStep):
 		self.__step = pStep()

@@ -67,11 +67,11 @@ class option():
     @classmethod
     def FindByVehicle(cls, pVehicleId):
         provOptionList = []
-        cursor = DbAccess.Querry("SELECT o.option_id FROM option o JOIN join_vehicule_option vo ON o.option_id = vo.option_id WHERE vo.vehicule_id = " + str(pVehicleId))
+        cursor = DbAccess.Querry("SELECT option_id FROM join_vehicule_option WHERE vehicule_id = " + str(pVehicleId))
         results = None
         if(cursor != None):
             results = cursor.fetchall()
             for row in results:
                 id = row[0]
                 provOptionList.append(cls.FindById(id))
-        return cls.__optionList
+        return provOptionList
