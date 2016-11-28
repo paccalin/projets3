@@ -1,8 +1,8 @@
 <?php
 class Modele extends Model{
-    var modele_id;
-    var modele_libelle;
-    var constructeur_id;
-    var modele_date_insertion;
+    protected modele_id;
+    protected modele_libelle;
+    protected constructeur_id;
+    protected modele_date_insertion;
 }
 ?>

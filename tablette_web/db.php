@@ -17,14 +17,4 @@ function db(){
 	return $db;
 }
 
-function dbExecute($request){
-	$st = db()->prepare($request);
-	$st->execute();
-	$reponse = $st->fetchAll(PDO::FETCH_ASSOC);
-	
-	//print_r(db()->errorInfo());
-	
-	return $reponse;
-}
-
 ?>

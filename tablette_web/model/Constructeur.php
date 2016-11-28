@@ -1,8 +1,8 @@
 <?php
 class Constructeur extends Model{
-    var contructeur_id;
-    var contructeur_libelle;
-    var constructeur_date_insertion;
+    protected contructeur_id;
+    protected contructeur_libelle;
+    protected constructeur_date_insertion;
 }
 
 ?>
