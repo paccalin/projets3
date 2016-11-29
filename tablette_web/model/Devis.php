@@ -1,10 +1,10 @@
 <?php
 class Devis extends Model{
-    var devis_id;
-    var client_id;
-    var utilisateur_id;
-    var devis_path;
-    var devis_actif;
+    protected devis_id;
+    protected client_id;
+    protected utilisateur_id;
+    protected devis_path;
+    protected devis_actif;
 }
 
 ?>

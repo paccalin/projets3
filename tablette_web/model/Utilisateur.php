@@ -1,8 +1,8 @@
 <?php
 class Utilisateur extends Model{
-    var utilisateur_id;
-    var utilisateur_pseudo;
-    var utilisateur_motDePasse;
-    var utilisateur_droits;
+    protected utilisateur_id;
+    protected utilisateur_pseudo;
+    protected utilisateur_motDePasse;
+    protected utilisateur_droits;
 }
 ?>

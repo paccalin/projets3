@@ -1,8 +1,8 @@
 <?php
 class Option extends Model{
-    var option_id;
-    var option_libelle;
-    var option_desc;
-    var option_date_insertion;
+    protected option_id;
+    protected option_libelle;
+    protected option_desc;
+    protected option_date_insertion;
 }
 ?>

@@ -1,10 +1,10 @@
 <?php
 class Rdv extends Model{
-    var rdv_id;
-    var rdv_libelle;
-    var utilisateur_id;
-    var client_id;
-    var rdv_date;
-    var rdv_duree;
+    protected rdv_id;
+    protected rdv_libelle;
+    protected utilisateur_id;
+    protected client_id;
+    protected rdv_date;
+    protected rdv_duree;
 }
 ?>
