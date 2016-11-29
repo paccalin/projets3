@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     margin: 0; 
     padding: 0; 
@@ -38,4 +39,32 @@ section{
 #desc{
     height: 90vh;
     width: 20vw;
+=======
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#menuButton{
+	height: 67.5px;
+	border: solid;
+	border-radius: 17.5%;
+	border-width: 5px;
+}
+
+#menuDiv{
+	display: none;
+}
+
+#menuUl{
+}
+
+.menu{
+	border : solid;
+	border-width: 1px;
+	padding: 2.5px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+>>>>>>> 75d1d865b7e4bdad4fabcc41572c38f0a5b930a4
 }
