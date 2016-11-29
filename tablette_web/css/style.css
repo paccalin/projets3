@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *{
     margin: 0; 
     padding: 0; 
@@ -39,7 +38,7 @@ section{
 #desc{
     height: 90vh;
     width: 20vw;
-=======
+}
 
 *{
 	margin: 0;
@@ -66,5 +65,4 @@ section{
 	padding: 2.5px;
 	margin-top: 2px;
 	margin-bottom: 2px;
->>>>>>> 75d1d865b7e4bdad4fabcc41572c38f0a5b930a4
 }

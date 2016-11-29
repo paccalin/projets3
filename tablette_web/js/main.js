@@ -84,8 +84,6 @@ $(document).ready(function() {
     	prepareLeft();
 	});
 
-
-<<<<<<< HEAD
 	$("body").keydown(function(e) {
 		if(e.keyCode == 37)
 			prepareLeft();
@@ -97,9 +95,7 @@ $(document).ready(function() {
 		responsiveAdapter();
 	};
   });
-=======
 	header();
-
 });
 
 
@@ -171,4 +167,3 @@ function header(){
 
 	
 }
->>>>>>> 75d1d865b7e4bdad4fabcc41572c38f0a5b930a4
