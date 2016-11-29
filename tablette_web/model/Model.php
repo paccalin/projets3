@@ -14,27 +14,6 @@ class Model {
 	}
 	public function __set($fieldname,$value) {
 	        $this->$fieldname = $value;
-	        global $db;
-	        $class = strtolower(get_class($this));
-	        $index = strrpos($class,"_");
-	        $abr = substr($class,$index+1);
-	        $colName =  $abr."_id";
-	        $st = $db->prepare("update $class set $fieldname=:value where $colName=:id");
-	        $st->bindValue(":id",$this->$colName);
-	        $st->bindValue(":value",$value);
-	        /*$st->bindValue(":value",$db->quote($value));*/ ///AJOUTER POUR EVITER FAILLE XLS
-	        $st->execute();
 	    }
-
-
-
-
-
-/*
-	public function __toString() {
-		return "";//get_class($this).": ".$this->name;
-	}
-*/
-
 
 }
