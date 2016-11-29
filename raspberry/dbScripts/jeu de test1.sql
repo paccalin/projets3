@@ -33,21 +33,21 @@ insert into photo(photo_path, vehicule_id, photo_date_insertion) values ('pictur
 insert into photo(photo_path, vehicule_id, photo_date_insertion) values ('pictures/transit_1.jpg', (select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:09'), '2016-09-27 00:00:11');
 insert into photo(photo_path, vehicule_id, photo_date_insertion) values ('pictures/transit_2.jpg', (select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:10'), '2016-09-27 00:00:11');
 
-insert into option(option_libelle, option_desc, option_date_insertion) values('couleur', 'changement de la couleur du camion', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('passager', 'ajout de siege afin de transporter des passagers', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('benne', 'trasformation de l arriëre du camion afin d y ajouter une benne', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('luxe', 'modification afin d apporter du luxe au vehicule', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('rally', 'modification afin de créer un véritable véhicule de rally', '2016-09-27 00:00:20');
-insert into option(option_libelle, option_desc, option_date_insertion) values('sport', 'changement du moteur et ajout de bande sportive', '2016-09-27 00:00:20');
+insert into options(option_libelle, option_desc, option_date_insertion) values('couleur', 'changement de la couleur du camion', '2016-09-27 00:00:20');
+insert into options(option_libelle, option_desc, option_date_insertion) values('passager', 'ajout de siege afin de transporter des passagers', '2016-09-27 00:00:20');
+insert into options(option_libelle, option_desc, option_date_insertion) values('benne', 'trasformation de l arriëre du camion afin d y ajouter une benne', '2016-09-27 00:00:20');
+insert into options(option_libelle, option_desc, option_date_insertion) values('luxe', 'modification afin d apporter du luxe au vehicule', '2016-09-27 00:00:20');
+insert into options(option_libelle, option_desc, option_date_insertion) values('rally', 'modification afin de créer un véritable véhicule de rally', '2016-09-27 00:00:20');
+insert into options(option_libelle, option_desc, option_date_insertion) values('sport', 'changement du moteur et ajout de bande sportive', '2016-09-27 00:00:20');
 
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:01'), (select option_id from option where option_libelle='luxe'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:02'), (select option_id from option where option_libelle='rally'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:03'), (select option_id from option where option_libelle='couleur'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:04'), (select option_id from option where option_libelle='couleur'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:04'), (select option_id from option where option_libelle='passager'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:05'), (select option_id from option where option_libelle='benne'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:06'), (select option_id from option where option_libelle='couleur'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:07'), (select option_id from option where option_libelle='couleur'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:08'), (select option_id from option where option_libelle='passager'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:09'), (select option_id from option where option_libelle='luxe'));
-insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:10'), (select option_id from option where option_libelle='sport'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:01'), (select option_id from options where option_libelle='luxe'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:02'), (select option_id from options where option_libelle='rally'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:03'), (select option_id from options where option_libelle='couleur'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:04'), (select option_id from options where option_libelle='couleur'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:04'), (select option_id from options where option_libelle='passager'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:05'), (select option_id from options where option_libelle='benne'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:06'), (select option_id from options where option_libelle='couleur'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:07'), (select option_id from options where option_libelle='couleur'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:08'), (select option_id from options where option_libelle='passager'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:09'), (select option_id from options where option_libelle='luxe'));
+insert into join_vehicule_option(vehicule_id, option_id) values ((select vehicule_id from vehicule where vehicule_date_insertion = '2016-09-27 00:00:10'), (select option_id from options where option_libelle='sport'));
