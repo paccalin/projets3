@@ -1,8 +1,45 @@
-
 *{
-	margin: 0;
-	padding: 0;
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    outline: 0;
+    box-sizing: border-box;
 }
+
+body{
+	height: 100vh;
+	width: 100vw;
+}
+
+header{
+    height: 10vh;
+    width: 100vw;
+}
+
+section{
+    height: 90vh;
+    width: 100vw;
+}
+
+#leftContainer{
+    width: 80vw;
+}
+
+#diapo{
+    height: 80vh;
+    width: 100%;
+}
+
+#bandeImg{
+    height: 10vh;
+    width: 100%
+}
+
+#desc{
+    height: 90vh;
+    width: 20vw;
+}
+
 
 #menuButton{
 	height: 67.5px;
