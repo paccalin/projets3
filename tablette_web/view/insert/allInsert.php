@@ -1,7 +1,7 @@
 <?php
 	
 echo <<<HTML
-	<form action ='./?choice' method='post'>
+	<form action ='./?r=choice/viewInsert' method='post'>
 		<select>
 			<option value='null'>--- choisir ---</option>
 			<option value='client'>client</option>
