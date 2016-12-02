@@ -1,7 +1,7 @@
 <?php
 	
 echo <<<HTML
-	<form action ='{a definir}' method='post'>
+	<form action ='./?choice' method='post'>
 		<select>
 			<option value='null'>--- choisir ---</option>
 			<option value='client'>client</option>
