@@ -11,5 +11,5 @@ session_start();
 
 include_once "view/head.php";
 include_once "controller/route.php";
-
+include_once "view/footer.php";
 ?>
