@@ -6,20 +6,17 @@ class ChoiceController extends Controller{
 		
 		if(isset($_POST['insert'])){
 			$insert = $_POST['insert'];
-			if(True/*{$_SESSION['connecter'] == true}*/){
+			if($_SESSION['droits'] >= 1){ /* connecté, admin, super-admin, ou plus si affinité */
 				//si utilisateur connecter alors verif si insert == $choix
-
 				if($insert == "client"){
 					$this->render('insertClient');
 				}else if($insert == "rdv"){
 					$this->render('insertRDV');
 				}else if($insert == "devis"){
 					$this->render('insertDevis');
-				}else if($insert == "devis"){
 				}
-				/*
 				//si utilisateur admin veri si $insert == $choix
-				if({utilisateur_droits} == "administrateur"){
+				if($_SESSION['droits'] >= 2){ /* admin, super-admin, ou plus */
 					if($insert == "vehicule"){
 						$this->render('insertVehicule');
 					}else if($insert == "photo"){
@@ -31,14 +28,15 @@ class ChoiceController extends Controller{
 					}else if($insert == "modele"){
 						$this->render('insertModele');
 					}
-				}
-				//si super adminstrateur verif si $insert == $choix
-				if({utilisateur_droits} == "super_administrateur"){
-					if($insert == "user"){
-						$this->render('insertUtilisateur');
+					//si super adminstrateur verif si $insert == $choix
+					if($_SESSION['droits'] >= 3){ /* super admin ou plus si il y a encore un autre rôle*/
+						if($insert == "user"){
+							$this->render('insertUtilisateur');
+						}
 					}
-				}		
-				*/
+				
+
+				}
 				
 				//si render n'est pas renseigné alors redirection vers index.php avec la page home
 				// le but étant d'éviter n'importe qui à partir de l'url de ce connecter

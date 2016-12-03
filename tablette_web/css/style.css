@@ -48,7 +48,14 @@ section{
 	border-width: 5px;
 }
 
-#menuDiv{
+#reglagesButton{
+	height: 67.5px;
+	border: solid;
+	border-radius: 17.5%;
+	border-width: 5px;
+}
+
+#menuDiv,#reglagesDiv{
 	display: none;
 }
 
@@ -98,6 +105,7 @@ input{
 	background-color: #e9f7fc;
 	font-weight: bold;
 }
+
 .form_boutons{
 	text-align: center;
 }

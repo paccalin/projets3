@@ -119,7 +119,9 @@ function header(){
 
 
 	$('#menuButton').click(function(){
-
+		if($('#reglagesDiv').length>0){
+			$('#reglagesDiv').remove();
+		}
 		if($('#menuDiv').length<=0){
 			var div = $("<div id='menuDiv'/>");
 
@@ -133,7 +135,7 @@ function header(){
 				type : 'GET',
 				dataType : 'json',
 				success : function(json){
-					if(json == true){
+					if(json >= 1){
 						ul.append("<li class='menu'><a href='"+maj+"''>Mise à jour</a></li>");
 						ul.append("<li class='menu'><a href='"+rdv+"''>Rendez-vous</a></li>");
 						ul.append("<li class='menu'><a href='"+add+"'>Ajouter</a></li>");
@@ -145,12 +147,6 @@ function header(){
 					console.log('erreur');
 				} 
 			})
-
-
-
-
-
-
 			div.append(ul);
 			$('nav').after(div);
 
@@ -165,13 +161,55 @@ function header(){
 								    })
 							.css('display', 'block');
 			}
-
-
 		}else{
 			$('#menuDiv').remove();
 		}
 	});
+	$('#reglagesButton').click(function(){
+		if($('#menuDiv').length>0){
+			$('#menuDiv').remove();
+		}
+		if($('#reglagesDiv').length<=0){
+			var div = $("<div id='reglagesDiv'/>");
 
+			var ul = $("<ul id='reglagesUl'/>");
+			$.ajax({
+				url : './controller/IsConnectedController.php',
+				type : 'GET',
+				dataType : 'json',
+				success : function(json){
+					console.log(json);
+					if(json >= 2){
+						ul.append("<li class='menu'><a href='"+'./?r=site/index'+"''>Administrateur</a></li>");
+						if(json >= 3){
+							ul.append("<li class='menu'><a href='"+'/?r=site/index'+"''>Super-administrateur</a></li>");
+						}
+					}else{
+						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
+					}
+				},
+				error : function(){
+					console.log('erreur');
+				} 
+			})
+			div.append(ul);
+			$('nav').after(div);
+
+			if ($(window).height() < $(window).width()){
+				$('#reglagesDiv').animate({width: "300px"}, 500).css('display', 'block');
+			}else{
+				$('#reglagesDiv').animate({top:0},1000,function () {
+								        $('#line').css({
+								            bottom: '100%',
+								            top: 'auto'
+								        });
+								    })
+							.css('display', 'block');
+			}
+		}else{
+			$('#reglagesDiv').remove();
+		}
+	});
 	
 }
 
