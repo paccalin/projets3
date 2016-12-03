@@ -125,8 +125,8 @@ function header(){
 
 			var ul = $("<ul id='menuUl'/>");
 
-			ul.append("<li class='menu'><a href='"+home+"'>Home</a></li>");
-			ul.append("<li class='menu'><a href='"+devis+"'>devis</a></li>");
+			ul.append("<li class='menu'><a href='"+home+"'>Accueil</a></li>");
+			ul.append("<li class='menu'><a href='"+devis+"'>Devis</a></li>");
 
 			$.ajax({
 				url : './controller/IsConnectedController.php',
@@ -134,11 +134,11 @@ function header(){
 				dataType : 'json',
 				success : function(json){
 					if(json == true){
-						ul.append("<li class='menu'><a href='"+maj+"''>MAJ</a></li>");
-						ul.append("<li class='menu'><a href='"+rdv+"''>rendez-vous</a></li>");
-						ul.append("<li class='menu'><a href='"+add+"'>ajouter</a></li>");
-						ul.append("<li class='menu'><a href='"+del+"'>supprimer</a></li>");
-						ul.append("<li class='menu'><a href='"+upd+"'>modifier</a></li>");
+						ul.append("<li class='menu'><a href='"+maj+"''>Mise à jour</a></li>");
+						ul.append("<li class='menu'><a href='"+rdv+"''>Rendez-vous</a></li>");
+						ul.append("<li class='menu'><a href='"+add+"'>Ajouter</a></li>");
+						ul.append("<li class='menu'><a href='"+del+"'>Supprimer</a></li>");
+						ul.append("<li class='menu'><a href='"+upd+"'>Modifier</a></li>");
 					}
 				},
 				error : function(){

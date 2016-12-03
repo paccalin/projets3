@@ -29,8 +29,9 @@ if({utilisateur_droit} == '{super_admin}'){
 echo <<<HTML
 
 		</select>
-
-		<input type='submit' value='valider' name='submit' id='submit'/>
+		<div class="form_boutons">
+			<input type='submit' value='valider' name='submit' id='submit'/>
+		</div>
 
 	</form>
 
