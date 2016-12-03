@@ -77,45 +77,43 @@ function prepareLeft(){
 }
 
 $(document).ready(function() {
-    $('#right_scroll').click(function(){
-    	prepareRight();
-    });
-
-    $('#left_scroll').click(function(){
-    	prepareLeft();
+	$('#right_scroll').click(function(){
+		prepareRight();
 	});
 
-<<<<<<< HEAD
+	$('#left_scroll').click(function(){
+		prepareLeft();
+	});
+
 	var route = $_GET('r');
 
 	if(route == 'insert'){
 		insert();
 	}
-=======
 	$("body").keydown(function(e) {
-		if(e.keyCode == 37)
+		if(e.keyCode == 37){
 			prepareLeft();
-		if(e.keyCode == 39)
+		}
+		if(e.keyCode == 39){
 			prepareRight();
+		}
 	});
 
 	window.onresize = function() {
 		responsiveAdapter();
 	};
-  });
 	header();
->>>>>>> 7053fdbb8d0a49db0b2c25daf1567a29889f3de4
 });
 
 
 
 function header(){
 	//si changement de route pour les lien
-	var home = "./";
+	var home = "./?r=site/index";
 	var devis = "./";
 	var maj = "./";
 	var rdv = "./";
-	var add = "./";
+	var add = "./?r=insert/viewInsert";
 	var del = "./";
 	var upd = "./";
 
@@ -176,7 +174,6 @@ function header(){
 
 	
 }
-<<<<<<< HEAD
 
 
 
@@ -194,5 +191,3 @@ function $_GET(param) {
 	}
 	return vars;
 }
-=======
->>>>>>> 7053fdbb8d0a49db0b2c25daf1567a29889f3de4

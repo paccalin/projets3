@@ -55,11 +55,19 @@ section{
 #menuUl{
 
 }
-
 .menu{
 	border : solid;
-	border-width: 1px;
+	border-width: 0px;
 	padding: 2.5px;
 	margin-top: 2px;
 	margin-bottom: 2px;
+	padding-left: 10px;
+	border-radius: 5px;
+	background-color: #0fa2d5;
+}
+
+.menu a{
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
 }
