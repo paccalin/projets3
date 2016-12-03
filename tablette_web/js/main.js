@@ -179,14 +179,17 @@ function header(){
 				dataType : 'json',
 				success : function(json){
 					console.log(json);
-					if(json >= 2){
-						ul.append("<li class='menu'><a href='"+'./?r=site/index'+"''>Portail administrateur</a></li>");
-						if(json >= 3){
-							ul.append("<li class='menu'><a href='"+'/?r=site/index'+"''>Portail Super-administrateur</a></li>");
+					if(json == 0){
+						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
+					}else{
+						if(json >= 2){
+							ul.append("<li class='menu'><a href='"+'./?r=site/index'+"''>Portail administrateur</a></li>");
+							if(json >= 3){
+								ul.append("<li class='menu'><a href='"+'/?r=site/index'+"''>Portail Super-administrateur</a></li>");
+							}
 						}
 						ul.append("<li class='menu'><a href='"+'./?r=connexion/deconnexion'+"''>Se déconnecter</a></li>");
-					}else{
-						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
+						
 					}
 				},
 				error : function(){
