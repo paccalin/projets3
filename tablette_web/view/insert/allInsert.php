@@ -2,7 +2,7 @@
 	
 echo <<<HTML
 	<form action ='./?r=choice/viewInsert' method='post'>
-		<select>
+		<select name='insert'>
 			<option value='null'>--- choisir ---</option>
 			<option value='client'>client</option>
 			<option value='rdv'>rendez-vous</option>php

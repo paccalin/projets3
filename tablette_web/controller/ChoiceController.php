@@ -7,16 +7,16 @@ class ChoiceController extends Controller{
 		if(isset($_POST['insert'])){
 			$insert = $_POST['insert'];
 			if(True/*{$_SESSION['connecter'] == true}*/){
-					
 				//si utilisateur connecter alors verif si insert == $choix
+
 				if($insert == "client"){
 					$this->render('insertClient');
 				}else if($insert == "rdv"){
 					$this->render('insertRDV');
 				}else if($insert == "devis"){
 					$this->render('insertDevis');
+				}else if($insert == "devis"){
 				}
-				
 				/*
 				//si utilisateur admin veri si $insert == $choix
 				if({utilisateur_droits} == "administrateur"){
@@ -58,6 +58,6 @@ class ChoiceController extends Controller{
 
 
 function home(){
-	header('Location: ./');
+	header('Location: ./?r=site/index');
 }
 ?>

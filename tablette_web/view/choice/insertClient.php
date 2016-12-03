@@ -1,4 +1,4 @@
-<form action='{a definir}' method='post'>
+<form action='' method='post'>
 
 	<label for='surname'>Nom : </label><input type='text' name='surname' id='surname'/>
 	<label for='name'>Prenom : </label><input type='text' name='name' id='name'/>
