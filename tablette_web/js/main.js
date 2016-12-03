@@ -180,10 +180,11 @@ function header(){
 				success : function(json){
 					console.log(json);
 					if(json >= 2){
-						ul.append("<li class='menu'><a href='"+'./?r=site/index'+"''>Administrateur</a></li>");
+						ul.append("<li class='menu'><a href='"+'./?r=site/index'+"''>Portail administrateur</a></li>");
 						if(json >= 3){
-							ul.append("<li class='menu'><a href='"+'/?r=site/index'+"''>Super-administrateur</a></li>");
+							ul.append("<li class='menu'><a href='"+'/?r=site/index'+"''>Portail Super-administrateur</a></li>");
 						}
+						ul.append("<li class='menu'><a href='"+'./?r=connexion/deconnexion'+"''>Se déconnecter</a></li>");
 					}else{
 						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
 					}

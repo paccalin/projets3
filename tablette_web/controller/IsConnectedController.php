@@ -7,7 +7,8 @@
  */
 session_start();
 if(!isset($_SESSION['droits'])){
-	$_SESSION['droits'] = 1;
+	$_SESSION['droits'] = 0;
+	$_SESSION['identifiant'] = "";
 }
 echo json_encode($_SESSION['droits']);
 
