@@ -3,7 +3,7 @@
 	<label for='identifiant'>Identifiant :</label><!--
 	--><input type='text' name='identifiant' id='identifiant'/><!--
 	--><label for='mdp'>Mot de passe :</label><!--
-	--><input type='text' name='motPasse' id='motPasse'/>
+	--><input type='password' name='motPasse' id='motPasse'/>
 	
 	<div class="form_boutons">
 		<input type='submit' name='cancel' value='Annuler' id='cancel'/><!--
@@ -11,3 +11,4 @@
 	</div>
 
 </form>
+<p><i>Identifiants: user, admin, superadmin. Mot de passe: 123 pour tous.</i></p>

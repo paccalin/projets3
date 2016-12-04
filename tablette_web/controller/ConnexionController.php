@@ -12,9 +12,9 @@ class ConnexionController extends Controller{
 				pour l'instant, test avec des valeurs locales
 			*/
 			$users=array();
-			$users[0]=['identifiant'=>'jean','motPasse'=>'123','droits'=>'1'];
-			$users[1]=['identifiant'=>'marmoud','motPasse'=>'123','droits'=>'2'];
-			$users[2]=['identifiant'=>'bob','motPasse'=>'123','droits'=>'3'];
+			$users[0]=['identifiant'=>'user','motPasse'=>'123','droits'=>'1'];
+			$users[1]=['identifiant'=>'admin','motPasse'=>'123','droits'=>'2'];
+			$users[2]=['identifiant'=>'superadmin','motPasse'=>'123','droits'=>'3'];
 			
 			$trouve=False;
 			foreach($users as $user){

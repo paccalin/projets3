@@ -110,7 +110,7 @@ $(document).ready(function() {
 function header(){
 	//si changement de route pour les lien
 	var home = "./?r=site/index";
-	var devis = "./";
+	var devis = "./?r=devis/show";
 	var maj = "./";
 	var rdv = "./";
 	var add = "./?r=insert/viewInsert";
