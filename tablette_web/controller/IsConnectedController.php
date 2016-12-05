@@ -1,9 +1,15 @@
 <?php 
-
+/* Droits des utilisateurs:
+	0:non connecté
+	1:connecté
+	2:administrateur
+	3:super-administrateur
+ */
 session_start();
-
-$_SESSION['connecter'] = True;
-
-echo json_encode($_SESSION['connecter']);
+if(!isset($_SESSION['droits'])){
+	$_SESSION['droits'] = 0;
+	$_SESSION['identifiant'] = "";
+}
+echo json_encode($_SESSION['droits']);
 
 ?>
