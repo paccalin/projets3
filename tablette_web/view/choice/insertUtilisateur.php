@@ -6,7 +6,7 @@
 
 
 	<?php
-		$droits = array("user"=>"utilisateur", "administrateur"=>"administrateur", "superadmin"=>"superadministrateur");
+		$droits = array(1=>"utilisateur", 2=>"administrateur", 3=>"superadministrateur");
 
 		echo '<select>';
 
