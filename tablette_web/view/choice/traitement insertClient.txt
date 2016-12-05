@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
 			$_SESSION['info'] = 'Le champ "nom" doit etre littéral';
 		}
 	}else{
-		$_SESSION['info'] = 'Le champ "nom" est obligatoire'
+		$_SESSION['info'] = 'Le champ "nom" est obligatoire';
 	}
 	
 	if(isset($_POST['name'])){
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 			$_SESSION['info'] = 'Le champ "rue" est obligatoire';
 		}
 	}else{
-		$_SESSION['info'] = 'Le champ "rue" est obligatoire'
+		$_SESSION['info'] = 'Le champ "rue" est obligatoire';
 	}
 	
 	if(isset($_POST['cp'])){
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
 			$_SESSION['info'] = 'Le champ "code postal" est obligatoire';
 		}
 	}else{
-		$_SESSION['info'] = 'Le champ "code postal" est obligatoire'
+		$_SESSION['info'] = 'Le champ "code postal" est obligatoire';
 	}
 	
 	if(isset($_POST['city'])){
@@ -83,11 +83,14 @@ if(isset($_POST['submit'])){
 		$st -> execute;
 		$reponse -> $st->fetch(PDO::FETCH_ASSOC);
 		
+		//gèrer réussite/erreur
+		
 	}else{
 		//reirection vers la page de saisi avec les champs prérempli et le message d'erreur
 		header('Location: ./?r=insert/viewInsert');
 	}	
 }else{
+	//mettre le lien vers formulaire client
 	header('Location: ./');
 }
 
