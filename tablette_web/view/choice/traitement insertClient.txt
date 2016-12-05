@@ -1,0 +1,95 @@
+<?php
+
+if(isset($_POST['submit'])){
+	$lastname = null;
+	$name = null;
+	$street = null;
+	$cp = null;
+	$city = null;
+	$mail = null;
+	$phone = null;
+	
+	if(isset($_POST['lastname'])){
+		if(preg_match("[A-Za-z]", $_POST['lastname'])){
+			$lastname = $_POST['lastname'];
+		}else{
+			$_SESSION['info'] = 'Le champ "nom" doit etre littéral';
+		}
+	}else{
+		$_SESSION['info'] = 'Le champ "nom" est obligatoire'
+	}
+	
+	if(isset($_POST['name'])){
+		if(preg_match("[A-Za-z]", $_POST['name'])){
+			$name = $_POST['name'];
+		}else{
+			$_SESSION['info'] = 'Le champ "prenom" est littéral';
+		}
+	}else{
+		$_SESSION['info'] = 'Le champ "prénom" est obligatoire';
+	}
+	
+	if(isset($_POST['street'])){
+		if(preg_match("[0-9]*[A-Za-z]", $_POST['street'])){
+			$street = $_POST['street'] = 'Le champ "rue" est littéral';
+		}else{
+			$_SESSION['info'] = 'Le champ "rue" est obligatoire';
+		}
+	}else{
+		$_SESSION['info'] = 'Le champ "rue" est obligatoire'
+	}
+	
+	if(isset($_POST['cp'])){
+		if(preg_match("[0-9]{6}", $_POST['cp'])){
+			
+		}else{
+			$_SESSION['info'] = 'Le champ "code postal" est obligatoire';
+		}
+	}else{
+		$_SESSION['info'] = 'Le champ "code postal" est obligatoire'
+	}
+	
+	if(isset($_POST['city'])){
+		if(preg_match("[A-Za-z]", $_POST['city'])){
+			$city = $_POST['city'];
+		}else{
+			$_SESSION['info'] = 'Le cahmp "ville" est littéral';
+		}
+	}else{
+		$_SESSION['info'] = 'Le champ "ville" est obligatoire';
+	}
+	
+	if(isset($_POST['mail'])){
+		if(preg_match("/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/", $_POST['mail'])){
+			$mail = $_POST['mail'];
+		}else{
+			$_SESSION['info'] = 'Le champ "email" est incorrect, veuillez bien le saisir : {nom}@{domaine}.{extention}';
+		}
+	}
+	
+	if(isset($_POST['phone'])){
+		if(preg_match("#^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$#", $_POST['phone'])){
+			$phone = $_POST['phone'];
+		}else{
+			$_SESSION['info'] = 'Le champ "telephone" est incorrect, veuillez bien le saisir';
+		}
+	}
+	
+	if($lastanme != null && $prenom != null && $street != null $cp != null && $city != null){
+		
+		$request = 'insert into client(client_nom, client_prenom, client_rue, client_ville , client_cp, client_mail, client_tel) values('+lastname+', '+$name+', '+$street+', '+$cp+', '+$city+', '+$mail+', '+$phone+')';		
+		
+		$st -> db()->prepare($request);
+		$st -> execute;
+		$reponse -> $st->fetch(PDO::FETCH_ASSOC);
+		
+	}else{
+		//reirection vers la page de saisi avec les champs prérempli et le message d'erreur
+		header('Location: ./?r=insert/viewInsert');
+	}	
+}else{
+	header('Location: ./');
+}
+
+
+?>

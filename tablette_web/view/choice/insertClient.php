@@ -1,6 +1,6 @@
 <form action='{a definir}' method='post'>
 
-	<label for='surname'>Nom : </label><input type='text' name='surname' id='surname'/>
+	<label for='lastname'>Nom : </label><input type='text' name='lastname' id='lastname'/>
 	<label for='name'>Prenom : </label><input type='text' name='name' id='name'/>
 	<label for='street'>Rue : </label><input type='text' name='street' id='street'/>
 	<label for='CP'>Code postal : </label><input type='text' name='cp' id='cp'/>
