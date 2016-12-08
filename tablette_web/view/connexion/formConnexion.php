@@ -11,4 +11,4 @@
 	</div>
 
 </form>
-<p><i>Identifiants: user, admin, superadmin. Mot de passe: 123 pour tous.</i></p>
+<!--<p><i>Identifiants: user, admin, superadmin. Mot de passe: 123 pour tous.</i></p>-->
