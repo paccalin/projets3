@@ -10,6 +10,7 @@ include_once "tools.php";
 session_start(); 
 
 include_once "view/head.php";
+date_default_timezone_set('Australia/Melbourne');
 include_once "controller/route.php";
 include_once "view/footer.php";
 ?>

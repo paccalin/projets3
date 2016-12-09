@@ -1,9 +1,8 @@
 <?php
-/*
 $host = "localhost";
-$databaseName = "test";
-$user = "moalexan";
-$password = "BCiXck";
+$databaseName = "showRoom";
+$user = "root";
+$password = "root";
 
 $db = new PDO("mysql:host=".$host.";dbname=".$databaseName,
 				$user,
@@ -13,5 +12,4 @@ function db(){
 	global $db;
 	return $db;
 }
-*/
 ?>

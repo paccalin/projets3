@@ -1,25 +1,39 @@
 <?php
 class Modele extends Model{
-    public function __construct($pId=null){
-        $query = db()->prepare("SELECT * FROM modele WHERE modele_id = ?");
+    public function __construct($pLibelle, $pConstructeur, $pDateInsertion = null, $pModeleId = null){
+        $this->id = $row['modele_id'];
+        $this->libelle = $row['modele_libelle'];
+        $this->constructeur = new Constructeur($row['constructeur_id']);
+        if($pDateInsertion == null)
+            $this->dateInsertion = date('d/m/Y h:i:s a', time());
+        else
+            $this->dateInsertion = $row['modele_date_insertion'];
+    }
+    
+    static public $tableName = "modele";
+    protected $id;
+    protected $libelle;
+    protected $constructeur;
+    protected $dateInsertion;
+
+    static public function FindByID($pId) {
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE modele_id = ?");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $this->modele_id = $row['modele_id'];
-            $this->modele_libelle = $row['modele_libelle'];
-            $this->constructeur = new Constructeur($row['constructeur_id']);
-            $this->modele_date_insertion = $row['modele_date_insertion'];       
+            $id = $row['modele_id'];
+            $libelle = $row['modele_libelle'];
+            $constructeur = new Constructeur($row['constructeur_id']);
+            $dateInsertion = $row['modele_date_insertion'];     
+            return new Modele($libelle, $constructeur, $dateInsertion, $id)  
         }
+        else 
+            return null;
     }
-    
-    protected modele_id;
-    protected modele_libelle;
-    protected constructeur;
-    protected modele_date_insertion;
 
-    public function GetAll() {
-        $query = db()->prepare("SELECT modele_id FROM modele");
+    static public function FindAll() {
+        $query = db()->prepare("SELECT modele_id ". self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

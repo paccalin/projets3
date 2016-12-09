@@ -17,14 +17,15 @@ class Client extends Model{
         }
     }
 
-    protected client_id;
-    protected client_nom;
-    protected client_prenom;
-    protected client_rue;
-    protected client_ville;
-    protected client_cp;
-    protected client_mail;
-    protected client_tel;
+    protected $client_id;
+    protected $client_nom;
+    protected $client_prenom;
+    protected $client_rue;
+    protected $client_ville;
+    protected $client_cp;
+    protected $client_mail;
+    protected $client_tel;
+    protected $client_tel;
 
     public function GetAll() {
         $query = db()->prepare("SELECT client_id FROM client");
