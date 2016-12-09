@@ -1,31 +1,47 @@
 <?php
 class Photo extends Model{
-    public function __construct($pId=null){
-        $query = db()->prepare("SELECT * FROM photo WHERE photo_id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+    public function __construct($pPath, $pVehicule, $pDateInsertion = null, $pId=null){
+        $this->id = $p;
+        $this->path = $p;
+        $this->vehicule = $p;
+        if($pDateInsertion == null)
+            $this->dateInsertion = date('d/m/Y h:i:s a', time());
+        else
+            $this->dateInsertion = $pDateInsertion;
+    }
+
+    static public $tableName = "photo";
+    protected $id;
+    protected $path;
+    protected $vehicule;
+    protected $dateInsertion;
+
+    static public function FindByID($pId) {
+        $query = db()->prepare("SELECT * FROM ? WHERE photo_id = ?");
+        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+        $query->bindParam(2, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $this->photo_id = $row['photo_id'];
-            $this->photo_path = $row['photo_path'];
-            $this->vehicule = new Vehicle($row['vehicule_id']);
-            $this->photo_date_insertion = $row['photo_date_insertion'];       
+            $id = $row['photo_id'];
+            $path = $row['photo_path'];
+            $vehicule = Vehicle::FindById($row['vehicule_id']);
+            $dateInsertion = $row['photo_date_insertion'];
+            return new Photo($path, $vehicule, $dateInsertion, $id);
         }
+        return null;
     }
+        
 
-    protected photo_id;
-    protected photo_path;
-    protected vehicule;
-    protected photo_date_insertion;
-
-    public function GetAll() {
-        $query = db()->prepare("SELECT photo_id FROM photo");
+    public function FindAll() {
+        $query = db()->prepare("SELECT photo_id FROM ?");
+        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, new Photo($row["photo_id"]));
+                array_push($returnList, self::FindById($row["photo_id"]));
             }
         }
         return $returnList;

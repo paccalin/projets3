@@ -183,13 +183,9 @@ function header(){
 						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
 					}else{
 						if(json >= 2){
-							ul.append("<li class='menu'><a href='"+'./?r=administration/creerUtilisateur'+"''>Ajouter un utilisateur</a></li>");
-							if(json >= 3){
-								ul.append("<li class='menu'><a href='"+'/?r=administration/creerAdmin'+"''>Ajouter un administrateur</a></li>");
-							}
+							ul.append("<li class='menu'><a href='"+'./?r=administration/creerCompte'+"''>Créer un Compte</a></li>");
 						}
 						ul.append("<li class='menu'><a href='"+'./?r=connexion/deconnexion'+"''>Se déconnecter</a></li>");
-						
 					}
 				},
 				error : function(){

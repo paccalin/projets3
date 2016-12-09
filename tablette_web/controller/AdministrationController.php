@@ -1,24 +1,16 @@
 <?php
 
 class AdministrationController extends Controller{
-	public function creerUtilisateur(){
+	public function creerCompte(){
 		if($_SESSION['droits']>=1){
-			$this->render("formCreationCompte",null,"0");
-		}else{
-			$this->render("erreurAutorisation");
-		}
-	}
-
-	public function creerAdministrateur(){
-		if($_SESSION['droits']>=2){
-			$this->render("formCreationCompte",null,"1");
+			$this->render("formCreationCompte");
 		}else{
 			$this->render("erreurAutorisation");
 		}
 	}
 
 	public function verifieCreationCompte(){
-		global $globOption;
+		/* intégrer le user=Utilisateur.findByNom() d'Axel */
 		if($_POST['motPasse']!=$_POST['motPasse2']){
 			$this->render("erreurCreation","Les mots de passe saisis sont différents.");
 		}elseif($_POST['identifiant']==""){
@@ -26,11 +18,21 @@ class AdministrationController extends Controller{
 		}elseif($_POST['motPasse']==""){
 			$this->render("erreurCreation","Veuillez saisir un mot de passe.");
 		}elseif(false){
-			$this->render("erreurCreation","Ce compte utilisateur existe déjà.");
+			/*condition: user!=null*/
+			/*
+			if(user->droits==1){
+				$this->render("erreurCreation","Il y a déjà un compte utilisateur à ce nom.");
+			}elseif(user->droits==2){
+				$this->render("erreurCreation","Il y a déjà un compte administrateur à ce nom.");
+			}elseif(user->droits==3){
+				$this->render("erreurCreation","Il y a déjà un compte superadministrateur à ce nom.");
+			}
+			*/
 		}elseif(false){
 			$this->render("erreurCreation","Il y a déjà un compte administrateur correspondant à ce nom.");
 		}else{
-			$this->render("reussiteCreation",null,$globOption);
+			/** Insertion BD **/
+			$this->render("reussiteCreationCompte");
 		}
 	}
 }

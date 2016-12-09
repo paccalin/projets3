@@ -1,39 +1,62 @@
 <?php
+
 class Client extends Model{
-	public function __construct($pId=null){
-        $query = db()->prepare("SELECT * FROM client WHERE client_id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+	public function __construct($pNom, $pPrenom, $pRue, $pVille, $pCp, $pMail, $pTel, $pDateInsertion = null, $pId=null){
+        $this->id = $pId;
+        $this->nom = $pNom;
+        $this->prenom = $pPrenom;
+        $this->rue = $pRue;
+        $this->ville = $pVille;
+        $this->cp = $pCp;
+        $this->mail = $pMail;
+        $this->tel = $pTel;
+        if($pDateInsertion == null)
+            $this->dateInsertion = date('d/m/Y h:i:s a', time());
+        else
+            $this->dateInsertion = $pDateInsertion;
+    }
+
+    static public $tableName = "client";
+    protected $id;
+    protected $nom;
+    protected $prenom;
+    protected $rue;
+    protected $ville;
+    protected $cp;
+    protected $mail;
+    protected $tel;
+    protected $dateInsertion;
+
+    static public function FindByID($pId) {
+        $query = db()->prepare("SELECT * FROM ? WHERE client_id = ?");
+        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+        $query->bindParam(2, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $this->client_id = $row['client_id'];
-            $this->client_nom = $row['client_nom'];
-            $this->client_prenom = $row['client_prenom'];
-            $this->client_rue = $row['client_rue'];
-            $this->client_ville = $row['client_ville'];
-            $this->client_cp = $row['client_cp'];
-            $this->client_mail = $row['client_mail'];
-            $this->client_tel = $row['client_tel'];
+            $id = $row['client_id'];
+            $nom = $row['client_nom'];
+            $prenom = $row['client_prenom'];
+            $rue = $row['client_rue'];
+            $ville = $row['client_ville'];
+            $cp = $row['client_cp'];
+            $mail = $row['client_mail'];
+            $tel = $row['client_tel'];
+            $dateInsertion = $row['client_date_insertion'];  
+            return new Client($nom, $prenom, $rue, $ville, $cp, $mail, $tel, $dateInsertion, $id);
         }
+        return null;
     }
 
-    protected client_id;
-    protected client_nom;
-    protected client_prenom;
-    protected client_rue;
-    protected client_ville;
-    protected client_cp;
-    protected client_mail;
-    protected client_tel;
-
-    public function GetAll() {
-        $query = db()->prepare("SELECT client_id FROM client");
+    static public function FindAll() {
+        $query = db()->prepare("SELECT client_id FROM ?");
+        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, new Client($row["client_id"]));
+                array_push($returnList, new self::FindById($row["client_id"]));
             }
         }
         return $returnList;

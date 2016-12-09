@@ -1,0 +1,1 @@
+La création du compte à échouée: <?php echo $data;?>

@@ -18,6 +18,7 @@ CREATE TABLE client (
   client_cp varchar(6) DEFAULT '',
   client_mail varchar(100) DEFAULT '',
   client_tel varchar(12) DEFAULT '',
+  client_date_insertion timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_client_id PRIMARY KEY (client_id)
 );
 
@@ -36,6 +37,7 @@ CREATE TABLE devis (
   utilisateur_id integer NOT NULL,
   devis_path varchar(30) DEFAULT '',
   devis_actif boolean NOT NULL,
+  devis_date_insertion timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (devis_id),
   CONSTRAINT uq_devis_id UNIQUE (devis_id)
 );
@@ -75,6 +77,7 @@ CREATE TABLE rdv (
   client_id integer NOT NULL,
   rdv_date timestamp NOT NULL,
   rdv_duree time NOT NULL,
+  rdv_date_insertion timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_rdv_id PRIMARY KEY (rdv_id),
   CONSTRAINT uq_rdv_id UNIQUE (rdv_id)
 );
@@ -84,6 +87,7 @@ CREATE TABLE utilisateur (
   utilisateur_pseudo varchar(255) DEFAULT '',
   utilisateur_motDePasse varchar(255) DEFAULT '',
   utilisateur_droits int NOT NULL,
+  utilisateur_date_insertion timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_utilisateur_id PRIMARY KEY (utilisateur_id),
   CONSTRAINT uq_utilisateur_id UNIQUE (utilisateur_id)
 );
@@ -100,6 +104,7 @@ CREATE TABLE join_vehicule_option (
   join_id int NOT NULL AUTO_INCREMENT,
   vehicule_id integer NOT NULL,
   option_id integer NOT NULL,
+  join_date_insertion timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_join_id PRIMARY KEY (join_id),
   CONSTRAINT uq_join_id UNIQUE (join_id)
 );
