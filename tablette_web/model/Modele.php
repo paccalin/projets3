@@ -7,7 +7,7 @@ class Modele extends Model{
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
-            $this->dateInsertion = $row['modele_date_insertion'];
+            $this->dateInsertion = $pDateInsertion;
     }
     
     static public $tableName = "modele";
@@ -26,20 +26,20 @@ class Modele extends Model{
             $libelle = $row['modele_libelle'];
             $constructeur = new Constructeur($row['constructeur_id']);
             $dateInsertion = $row['modele_date_insertion'];     
-            return new Modele($libelle, $constructeur, $dateInsertion, $id)  
+            return new Modele($libelle, $constructeur, $dateInsertion, $id);
         }
         else 
             return null;
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT modele_id ". self::$tableName);
+        $query = db()->prepare("SELECT modele_id FROM ". self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, new Modele($row["modele_id"]));
+                array_push($returnList, self::FindAll($row["modele_id"]));
             }
         }
         return $returnList;
