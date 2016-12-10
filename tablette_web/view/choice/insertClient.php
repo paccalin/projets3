@@ -6,10 +6,10 @@
 	--><label for='CP'>Code postal : </label><input type='text' name='cp' id='cp'/><!--
 	--><label for='city'>Ville : </label><input type='text' name='city' id='city'/><!--
 	--><label for='mail'>Email : </label><input type='email' name='mail' id='mail'/><!--
-	--><label for='phone'>Telephone : </label><input type='text' name='phone' id='phone'/>
+	--><label for='phone'>Téléphone : </label><input type='text' name='phone' id='phone'/>
 
 	<div class="form_boutons">
-		<input type='submit' name='cancel' value='Annuler' id='cancel'/><!--
-		--><input type='submit' name='submit' value='Créer' id='submit'/>
+		<input type='submit' name='submit' value='Créer' id='submit'/><!--
+		--><input type='submit' name='cancel' value='Annnuler' id='cancel'/>
 	</div>
 </form>

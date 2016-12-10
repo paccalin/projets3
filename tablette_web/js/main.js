@@ -111,11 +111,11 @@ function header(){
 	//si changement de route pour les lien
 	var home = "./?r=site/index";
 	var devis = "./?r=devis/show";
-	var maj = "./";
-	var rdv = "./";
+	var maj = "./?r=site/aFaire";
+	var rdv = "./?r=site/aFaire";
 	var add = "./?r=insert/viewInsert";
-	var del = "./";
-	var upd = "./";
+	var del = "./?r=site/aFaire";
+	var upd = "./?r=site/aFaire";
 
 
 	$('#menuButton').click(function(){
@@ -152,6 +152,7 @@ function header(){
 
 			if ($(window).height() < $(window).width()){
 				$('#menuDiv').animate({width: "300px"}, 500).css('display', 'block');
+				$('#contenu').animate({top: "300px"}, 500);
 			}else{
 				$('#menuDiv').animate({top:0},1000,function () {
 								        $('#line').css({
