@@ -215,7 +215,6 @@ function header(){
 			$('#contenu').animate({top: "80px"}, 350);
 		}
 	});
-	
 }
 
 
