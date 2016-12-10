@@ -67,20 +67,24 @@ section{
 
 }
 .menu{
-	border : solid;
-	border-width: 0px;
 	padding: 2.5px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding-left: 10px;
-	border-radius: 5px;
+	background-color: #e6edf2;
+}
+
+.menu:hover{
 	background-color: #0fa2d5;
 }
 
 .menu a{
-	color: white;
+	color: #7a828f;
 	text-decoration: none;
-	font-weight: bold;
+}
+
+.menu a:hover{
+	color: #e6edf2;
 }
 
 form{
@@ -98,26 +102,30 @@ label, input,.input{
 
 label{
 	text-align: center;
+	color: #7a828f;
 }
 
 input, .input{
 /*input[type="text"],input[type="date"],input[type="time"],input[type="email"]{*/
 	border : solid;
-	border-width: 2px;
+	border-width: 1px;
 	border-radius: 3px;
-	border-color: #0fa1d5;
+	border-color: #7a828f;
 	background-color: white;
 }
 
+input:focus{
+	box-shadow: 0px 0px 10px #0fa2d5;
+}
+
 .form_boutons input{
-	border : solid;
 	border-width: 0px;
+	border-radius: 0px;
 	padding: 2.5px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding-left: 10px;
-	border-radius: 5px;
-	background-color: #0fa1d5;
+	background-color: #0fa2d5;
 	color: white;
 	font-weight: bold;
 }
