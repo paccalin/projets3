@@ -105,7 +105,7 @@ input, .input{
 	border : solid;
 	border-width: 2px;
 	border-radius: 3px;
-	border-color: #0fa2d5;
+	border-color: #0fa1d5;
 	background-color: white;
 }
 
@@ -117,7 +117,7 @@ input, .input{
 	margin-bottom: 2px;
 	padding-left: 10px;
 	border-radius: 5px;
-	background-color: #0fa2d5;
+	background-color: #0fa1d5;
 	color: white;
 	font-weight: bold;
 }

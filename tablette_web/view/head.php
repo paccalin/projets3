@@ -5,6 +5,7 @@
 		<title>ShowRoom</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate.css" />
+		<link rel="icon" type="image/png" href="images/favicon.png" />
 	</head>
 	<?php
 		/*
