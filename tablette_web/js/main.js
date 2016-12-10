@@ -134,6 +134,7 @@ function header(){
 				url : './controller/IsConnectedController.php',
 				type : 'GET',
 				dataType : 'json',
+				async: false,
 				success : function(json){
 					if(json >= 1){
 						ul.append("<li class='menu'><a href='"+maj+"''>Mise à jour</a></li>");
@@ -152,7 +153,7 @@ function header(){
 
 			if ($(window).height() < $(window).width()){
 				$('#menuDiv').animate({width: "300px"}, 500).css('display', 'block');
-				$('#contenu').animate({top: "300px"}, 500);
+				$('#contenu').animate({top: (80+ul[0].childElementCount*26)+"px"}, 350);
 			}else{
 				$('#menuDiv').animate({top:0},1000,function () {
 								        $('#line').css({
@@ -164,6 +165,7 @@ function header(){
 			}
 		}else{
 			$('#menuDiv').remove();
+			$('#contenu').animate({top: "80px"}, 350);
 		}
 	});
 	$('#reglagesButton').click(function(){
@@ -178,8 +180,8 @@ function header(){
 				url : './controller/IsConnectedController.php',
 				type : 'GET',
 				dataType : 'json',
+				async: false,
 				success : function(json){
-					console.log(json);
 					if(json == 0){
 						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
 					}else{
@@ -198,6 +200,7 @@ function header(){
 
 			if ($(window).height() < $(window).width()){
 				$('#reglagesDiv').animate({width: "300px"}, 500).css('display', 'block');
+				$('#contenu').animate({top: (80+ul[0].childElementCount*26)+"px"}, 350);
 			}else{
 				$('#reglagesDiv').animate({top:0},1000,function () {
 								        $('#line').css({
@@ -209,6 +212,7 @@ function header(){
 			}
 		}else{
 			$('#reglagesDiv').remove();
+			$('#contenu').animate({top: "80px"}, 350);
 		}
 	});
 	

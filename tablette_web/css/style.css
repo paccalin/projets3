@@ -25,6 +25,11 @@ section{
     width: 100vw;
 }
 
+#contenu{
+	position: absolute;
+	top: 80px;
+}
+
 #leftContainer{
     width: 80vw;
 }
