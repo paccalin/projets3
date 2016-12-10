@@ -7,7 +7,7 @@
 	--><label for='mdp'>Confirmer le mot de passe :</label><!--
 	--><input type='password' name='motPasse2' id='motPasse2'/><!--
 	--><label for='droits'>Droits :</label><!--
-	--><select id='droits'>
+	--><select id='droits' class="input">
 		<?php
 			if($_SESSION['droits']>=2){
 				echo '<option value="0">Utilisateur</option>';
