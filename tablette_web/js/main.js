@@ -127,8 +127,8 @@ function header(){
 
 			var ul = $("<ul id='menuUl'/>");
 
-			ul.append("<li class='menu'><a href='"+home+"'>Accueil</a></li>");
-			ul.append("<li class='menu'><a href='"+devis+"'>Devis</a></li>");
+			ul.append("<a href='"+home+"' class='lien'><li class='menu'>Accueil</li></a>");
+			ul.append("<a href='"+devis+"' class='lien'><li class='menu'>Devis</li></a>");
 
 			$.ajax({
 				url : './controller/IsConnectedController.php',
@@ -137,11 +137,11 @@ function header(){
 				async: false,
 				success : function(json){
 					if(json >= 1){
-						ul.append("<li class='menu'><a href='"+maj+"''>Mise à jour</a></li>");
-						ul.append("<li class='menu'><a href='"+rdv+"''>Rendez-vous</a></li>");
-						ul.append("<li class='menu'><a href='"+add+"'>Ajouter</a></li>");
-						ul.append("<li class='menu'><a href='"+del+"'>Supprimer</a></li>");
-						ul.append("<li class='menu'><a href='"+upd+"'>Modifier</a></li>");
+						ul.append("<a href='"+maj+"' class='lien'><li class='menu'>Mise à jour</li></a>");
+						ul.append("<a href='"+rdv+"'' class='lien'><li class='menu'>Rendez-vous</li></a>");
+						ul.append("<a href='"+add+"' class='lien'><li class='menu'>Ajouter</li></a>");
+						ul.append("<a href='"+del+"' class='lien'><li class='menu'>Supprimer</li></a>");
+						ul.append("<a href='"+upd+"' class='lien'><li class='menu'>Modifier</li></a>");
 					}
 				},
 				error : function(){
@@ -183,12 +183,12 @@ function header(){
 				async: false,
 				success : function(json){
 					if(json == 0){
-						ul.append("<li class='menu'><a href='"+'./?r=connexion/formConnexion'+"''>Se connecter</a></li>");
+						ul.append("<a href='"+'./?r=connexion/formConnexion'+"' class='lien'><li class='menu'>Se connecter</li></a>");
 					}else{
 						if(json >= 2){
-							ul.append("<li class='menu'><a href='"+'./?r=administration/creerCompte'+"''>Créer un Compte</a></li>");
+							ul.append("<a href='"+'./?r=administration/creerCompte'+"' class='lien'><li class='menu'>Créer un Compte</li></a>");
 						}
-						ul.append("<li class='menu'><a href='"+'./?r=connexion/deconnexion'+"''>Se déconnecter</a></li>");
+						ul.append("<a href='"+'./?r=connexion/deconnexion'+"' class='lien'><li class='menu'>Se déconnecter</li></a>");
 					}
 				},
 				error : function(){

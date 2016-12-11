@@ -64,12 +64,12 @@ section{
 	background-color: #0fa2d5;
 }
 
-.menu a{
+.lien {
 	color: #7a828f;
 	text-decoration: none;
 }
 
-.menu a:hover{
+.menu:hover{
 	color: #e6edf2;
 }
 
@@ -102,6 +102,10 @@ input, .input{
 
 input:focus{
 	box-shadow: 0px 0px 10px #0fa2d5;
+}
+
+input[type="submit"]:focus{
+	box-shadow: 0px 0px 0px;
 }
 
 .form_boutons input{
