@@ -19,6 +19,7 @@ function header(){
 	var add = "./?r=insert/viewInsert";
 	var del = "./?r=site/aFaire";
 	var upd = "./?r=site/aFaire";
+	var diapo = "./?r=Diapo/view_diapo";
 
 
 	$('#menuButton').click(function(){
@@ -31,7 +32,8 @@ function header(){
 			var ul = $("<ul id='menuUl'/>");
 
 			ul.append("<a href='"+home+"' class='lien'><li class='menu'>Accueil</li></a>");
-			ul.append("<a href='"+devis+"' class='lien'><li class='menu'>Devis</li></a>");
+			ul.append("<a href='"+diapo+"' class='lien'><li class='menu'>Diapo</li></a>");
+			//ul.append("<a href='"+devis+"' class='lien'><li class='menu'>Devis</li></a>");
 
 			$.ajax({
 				url : './controller/IsConnectedController.php',
