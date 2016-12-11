@@ -1,4 +1,4 @@
-<form action='{a definir}' method='post'>
+<form action='?r=site/aFaire' method='post'>
 
 	<label for='path'>Chemin de l'image : </label><input type='text' name='path' id='path' disabled>
 	<input type='button' name='browse' value='parcourir ...' id='browse'/> 

@@ -1,4 +1,4 @@
-<form action='{a definir}' method='post'>
+<form action='?r=site/aFaire' method='post'>
 
 	<label for='name'>Libelle : </label><input type='text' name='name' id='name'/>
 	<label for='description'>Description : </label><textarea name='description' id='description'></textarea>

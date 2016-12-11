@@ -1,4 +1,4 @@
-<form action='' method='post'>
+<form action='?r=site/aFaire' method='post'>
 	<!-- Les commentaires ont pour but de corriger un bug HTML ou des trucs sans margin/padding ne se collent pas -->
 	<label for='surname'>Nom : </label><input type='text' name='surname' id='surname'/><!--
 	--><label for='name'>Prenom : </label><input type='text' name='name' id='name'/><!--

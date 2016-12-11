@@ -1,4 +1,4 @@
-<form action ='{a definir}' method='post'>
+<form action ='?r=site/aFaire' method='post'>
 
 	<label>Pseudo : </label><input type='text' name='pseudo' id='pseudo'/>
 	<label>Mot de passe : </label><input type='password' name='password' id='password'/>
