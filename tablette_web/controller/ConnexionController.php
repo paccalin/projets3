@@ -7,27 +7,18 @@ class ConnexionController extends Controller{
 		if(isset($_POST['cancel'])){
 			header('Location: ./?r=site/index');
 		}elseif(isset($_POST['submit'])){
-			/*
-				intégrer la fonction de connexion avec DB
-				pour l'instant, test avec des valeurs locales
-			*/
-			$users=array();
-			$users[0]=['identifiant'=>'user','motPasse'=>'123','droits'=>'1'];
-			$users[1]=['identifiant'=>'admin','motPasse'=>'123','droits'=>'2'];
-			$users[2]=['identifiant'=>'superadmin','motPasse'=>'123','droits'=>'3'];
-			
-			$trouve=False;
-			foreach($users as $user){
-				if($user['identifiant']==$_POST['identifiant'] and $user['motPasse']==$_POST['motPasse']){
-					$_SESSION['droits'] = $user['droits'];
-					$_SESSION['identifiant'] = $user['identifiant'];
-					$trouve=True;
+			include_once("model/Utilisateur.php");
+			$user = Utilisateur::findByPseudo($_POST['identifiant']);
+			if($user!=null){
+				if ($user->motDePasse==$_POST['motPasse']){
+					$_SESSION['identifiant']=$user->pseudo;
+					$_SESSION['droits']=$user->droits;
+					$this->render('displayConnexionReussite');
+				}else{
+					$this->render('displayConnexionEchec',"Le mot de passe est incorrect: |".$user->motDePasse."|");
 				}
-			}
-			if($trouve){
-				header('Location: ./?r=connexion/displayConnexionReussite');
 			}else{
-				header('Location: ./?r=connexion/displayConnexionEchec');
+				$this->render('displayConnexionEchec',"Ce compte n'existe pas.");
 			}
 		}
 		

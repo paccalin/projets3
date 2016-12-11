@@ -31,22 +31,25 @@ section{
 }
 
 
-#menuButton{
+#menuButton,#reglagesButton{
 	height: 67.5px;
 	border: solid;
 	border-radius: 17.5%;
 	border-width: 5px;
-}
-
-#reglagesButton{
-	height: 67.5px;
-	border: solid;
-	border-radius: 17.5%;
-	border-width: 5px;
+	position: absolute;
 }
 
 #menuDiv,#reglagesDiv{
 	display: none;
+	position: absolute;
+}
+
+#reglagesDiv{
+	right: 0px;
+}
+
+#reglagesButton{
+	right: 0px;
 }
 
 #menuUl{
@@ -58,6 +61,7 @@ section{
 	margin-bottom: 2px;
 	padding-left: 10px;
 	background-color: #e6edf2;
+	list-style-type: none;
 }
 
 .menu:hover{

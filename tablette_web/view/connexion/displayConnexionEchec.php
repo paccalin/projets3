@@ -1,1 +1,1 @@
-<p>Connexion échouée.<a href="./?r=site/index">Retour à l'accueil</a></p>
+<p>Connexion échouée: <?php echo $data;?><a href="./?r=site/index">Retour à l'accueil</a></p>
