@@ -7,14 +7,14 @@
 	--><label for='mdp'>Confirmer le mot de passe :</label><!--
 	--><input type='password' name='motPasse2' id='motPasse2'/><!--
 	--><label for='droits'>Droits :</label><!--
-	--><select id='droits' class="input">
+	--><select name='droits' id='droits' class="input">
 		<?php
 			if($_SESSION['droits']>=2){
-				echo '<option value="0">Utilisateur</option>';
+				echo '<option value="1">Utilisateur</option>';
 			}
 			if($_SESSION['droits']>=3){
-				echo '<option value="1">Administrateur</option>
-		<option value="2">Super admintrateur</option>';
+				echo '<option value="2">Administrateur</option>
+		<option value="3">Super admintrateur</option>';
 			}
 		?>
 		

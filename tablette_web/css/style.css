@@ -31,22 +31,25 @@ section{
 }
 
 
-#menuButton{
+#menuButton,#reglagesButton{
 	height: 67.5px;
 	border: solid;
 	border-radius: 17.5%;
 	border-width: 5px;
-}
-
-#reglagesButton{
-	height: 67.5px;
-	border: solid;
-	border-radius: 17.5%;
-	border-width: 5px;
+	position: absolute;
 }
 
 #menuDiv,#reglagesDiv{
 	display: none;
+	position: absolute;
+}
+
+#reglagesDiv{
+	right: 0px;
+}
+
+#reglagesButton{
+	right: 0px;
 }
 
 #menuUl{
@@ -58,18 +61,19 @@ section{
 	margin-bottom: 2px;
 	padding-left: 10px;
 	background-color: #e6edf2;
+	list-style-type: none;
 }
 
 .menu:hover{
 	background-color: #0fa2d5;
 }
 
-.menu a{
+.lien {
 	color: #7a828f;
 	text-decoration: none;
 }
 
-.menu a:hover{
+.menu:hover{
 	color: #e6edf2;
 }
 
@@ -102,6 +106,10 @@ input, .input{
 
 input:focus{
 	box-shadow: 0px 0px 10px #0fa2d5;
+}
+
+input[type="submit"]:focus{
+	box-shadow: 0px 0px 0px;
 }
 
 .form_boutons input{
