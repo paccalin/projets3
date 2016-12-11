@@ -28,6 +28,8 @@ class AdministrationController extends Controller{
 			$this->render("erreurCreationCompte","Veuillez saisir un mot de passe.");
 		}else{
 			/** Insertion BD **/
+			$newUser = new Utilisateur($_POST['identifiant'],$_POST['motPasse'],$_POST['droits']);
+			Utilisateur::insert($newUser);
 			$this->render("reussiteCreationCompte");
 		}
 	}
