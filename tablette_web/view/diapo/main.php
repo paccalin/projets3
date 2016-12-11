@@ -22,7 +22,7 @@ echo "<div id='DiapoView'>";
 	echo "</div>";
 
 	echo "<div id='desc'>";
-		echo "Mdèr";
+		echo showDesc($photoList);
 	echo "</div>";
 echo "</div>";
 ?>

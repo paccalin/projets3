@@ -1,30 +1,10 @@
 $(document).ready(function() {
-	$('#right_scroll').click(function(){
-		prepareRight();
-	});
-
-	$('#left_scroll').click(function(){
-		prepareLeft();
-	});
 
 	var route = $_GET('r');
 
 	if(route == 'insert'){
 		insert();
 	}
-	$("body").keydown(function(e) {
-		if(e.keyCode == 37){
-			prepareLeft();
-		}
-		if(e.keyCode == 39){
-			prepareRight();
-		}
-	});
-
-	window.onresize = function() {
-		responsiveAdapter();
-	};
-	responsiveAdapter();
 	header();
 });
 

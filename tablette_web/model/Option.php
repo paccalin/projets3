@@ -10,7 +10,7 @@ class Option extends Model{
             $this->dateInsertion = $pDateInsertion;
     }
 
-    static public $tableName = "option";
+    static public $tableName = "options";
     protected $id;
     protected $libelle;
     protected $desc;
@@ -32,7 +32,7 @@ class Option extends Model{
     }
 
     static function FindByVehicule($pVehicleId){
-        $query = db()->prepare("SELECT option_id FROM join_vehicule_option WHERE vehicle_id = ?");
+        $query = db()->prepare("SELECT option_id FROM join_vehicule_option WHERE vehicule_id = ?");
         $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
         $query->execute();
         $returnList = array();

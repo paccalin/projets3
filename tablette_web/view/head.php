@@ -1,12 +1,16 @@
 <!DOCTYPE html> 
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title>ShowRoom</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/diapo.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate.css" />
 		<link rel="icon" type="image/png" href="images/favicon.png" />
+
+		<script type='text/javascript' src='./js/jquery.js'></script>
+		<script type='text/javascript' src='./js/jquery-ui.js'></script>
+		
 	</head>
 	<?php
 		/*

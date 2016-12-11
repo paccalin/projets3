@@ -26,14 +26,21 @@
 }
 
 #diapo{
-    height: var(--DiapoView-height);
+    height: var(--DiapoView-diapo-height);
 }
 
 #bandeImg{
     height: var(--DiapoView-bande-height);
 }
 
-#mainCarousel_ul, #bandeCarousel_ul {
+#desc{
+    height: var(--DiapoView-height);
+    width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
+    overflow: hidden;
+    border-left: 1px solid black;
+}
+
+#mainCarousel_ul, #bandeCarousel_ul, #descCarousel_ul {
 	display: flex;
 	flex-flow: row;
 	position:relative;
@@ -52,7 +59,12 @@
 	left: calc(0vw - var(--DiapoView-bande-elemWidth));
 } 
 
-#mainCarousel_ul li, #bandeCarousel_ul li{
+#descCarousel_ul{
+	left: calc(0vw - calc(var(--DiapoView-width) - var(--DiapoView-diapo-width)));
+}
+
+
+#mainCarousel_ul li, #bandeCarousel_ul li, #descCarousel_ul li{
 	display: inline-block;
 	height: 100%;
 	overflow: hidden;
@@ -64,14 +76,20 @@
 
 #bandeCarousel_ul li{
 	width: var(--DiapoView-bande-elemWidth);
-} 
+}
 
+#descCarousel_ul li{
+	width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
+}  
 
 #mainCarousel_ul li img, #bandeCarousel_ul img{
 }
 
-#desc{
-    height: 100%;
-    width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
-    overflow: hidden;
+.aDesc{
+	width: 100%;
+	height: 100%;
+}
+
+.aDesc h3, .aDesc h4, .aDesc p{
+	text-align: center;
 }

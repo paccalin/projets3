@@ -16,6 +16,11 @@ header{
     width: 100vw;
 }
 
+header img{
+    max-height: 10vh;
+    width: auto;
+}
+
 .imageButton:hover{
 	cursor: pointer;
 }
@@ -27,12 +32,12 @@ section{
 
 #contenu{
 	position: absolute;
-	top: 80px;
+	top: 10vh;
 }
 
 
 #menuButton,#reglagesButton{
-	height: 67.5px;
+	height: 8vh;
 	border: solid;
 	border-radius: 17.5%;
 	border-width: 5px;
