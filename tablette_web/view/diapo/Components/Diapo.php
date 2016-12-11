@@ -2,10 +2,12 @@
 function showDiapo($pPhotoList){
     $returnValue = "";
     $returnValue .= "<ul id='mainCarousel_ul'>";
+    $i=0;
     foreach ($pPhotoList as $aPhoto) {
-        $returnValue .= "<li>";
-        $returnValue .= "<img src='".$aPhoto->path."'>";
+        $returnValue .= "<li class = '".$i."'>";
+        $returnValue .= "<img class='diapoImg' src='".$aPhoto->path."'>";
         $returnValue .= "</li>";
+        $i++;
     }
     $returnValue .= "</ul>";
 
@@ -15,10 +17,12 @@ function showDiapo($pPhotoList){
 function showBandeImg($pPhotoList){
     $returnValue = "";
     $returnValue .= "<ul id='bandeCarousel_ul'>";
+    $i=0;
     foreach ($pPhotoList as $aPhoto) {
-        $returnValue .= "<li>";
-        $returnValue .= "<p>Mdèr</p>";
+        $returnValue .= "<li class = '".$i."'>";
+        $returnValue .= "<img class='diapoImg' src='".$aPhoto->path."'>";
         $returnValue .= "</li>";
+        $i++;
     }
     $returnValue .= "</ul>";
 

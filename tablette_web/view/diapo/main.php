@@ -26,3 +26,4 @@ echo "<div id='DiapoView'>";
 	echo "</div>";
 echo "</div>";
 ?>
+<script type='text/javascript' src='./js/diapo.js'></script>
