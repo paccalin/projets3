@@ -33,5 +33,35 @@ class AdministrationController extends Controller{
 			$this->render("reussiteCreationCompte");
 		}
 	}
+
+	public function gererComptes(){
+		if($_SESSION['droits']>=2){
+			include_once("model/Utilisateur.php");
+			$users = Utilisateur::findAll();
+			$data = array();
+			$droits = ['Utilisateur','Administrateur','Super-administrateur'];
+			foreach($users as $user){
+				$usr = array();
+				$usr['pseudo']=$user->pseudo;
+				$usr['droits']=$droits[$user->droits-1];
+				array_push($data,$usr);
+			}
+			if($_SESSION['droits']==2){
+				$this->render("tableauComptesAffichage",$data);
+			}else{
+				$this->render("tableauComptesGestion",$data);
+			}
+		}else{
+			$this->render("erreurAutorisation");
+		}
+	}
+	
+	public function augmenteDroit(){
+
+	}
+
+	public function reduitDroit(){
+
+	}
 }
 ?>

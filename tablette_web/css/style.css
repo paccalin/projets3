@@ -132,3 +132,39 @@ input[type="submit"]:focus{
 .form_boutons{
 	text-align: center;
 }
+
+#tableUsers{
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 1.25em;
+	width: 80%;
+}
+
+#tableUsers th{
+	text-align: center;
+	background-color: #0fa2d5;
+	width: 40%;
+	color: white;
+}
+
+#tableUsers td{
+	text-align: center;
+	width: 40%;
+	color: #7a828f;
+}
+
+.boutonTableUser{
+	margin-left: auto;
+	margin-right: auto;
+	border: solid;
+	border-radius: 2px;
+	border-width: 1px;
+	height: 3vh;
+	width: 3vh;
+	background-color: #e6edf2;
+}
+
+.boutonTableUser a{
+	color: #7a828f;
+	text-decoration: none;
+}

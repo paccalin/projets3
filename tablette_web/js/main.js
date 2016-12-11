@@ -92,6 +92,11 @@ function header(){
 					}else{
 						if(json >= 2){
 							ul.append("<a href='"+'./?r=administration/creerCompte'+"' class='lien'><li class='menu'>Créer un Compte</li></a>");
+							if(json==2){
+								ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Afficher les Comptes</li></a>");
+							}else{
+							ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Gérer les Comptes</li></a>");
+							}
 						}
 						ul.append("<a href='"+'./?r=connexion/deconnexion'+"' class='lien'><li class='menu'>Se déconnecter</li></a>");
 					}
