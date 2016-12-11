@@ -17,9 +17,8 @@ class Option extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE option_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE option_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -32,7 +31,7 @@ class Option extends Model{
         return null;
     }
 
-    static function FindByVehicle($pVehicleId){
+    static function FindByVehicule($pVehicleId){
         $query = db()->prepare("SELECT option_id FROM join_vehicule_option WHERE vehicle_id = ?");
         $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
         $query->execute();
@@ -46,9 +45,8 @@ class Option extends Model{
         return $returnList;
     }
 
-    public function FindAll() {
-        $query = db()->prepare("SELECT option_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+    static public function FindAll() {
+        $query = db()->prepare("SELECT option_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

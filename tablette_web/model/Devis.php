@@ -21,9 +21,8 @@ class Devis extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId){
-        $query = db()->prepare("SELECT * FROM ? WHERE devis_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE devis_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -39,9 +38,8 @@ class Devis extends Model{
     }
 
 
-    public function FindAll() {
-        $query = db()->prepare("SELECT devis_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+    static public function FindAll() {
+        $query = db()->prepare("SELECT devis_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

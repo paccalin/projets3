@@ -1,12 +1,12 @@
 <?php
 class Rdv extends Model{
     public function __construct($pLibelle, $pClient, $pUtilisateur, $pDate, $pDuree, $pDateInstertion = null, $pId=null){
-        $this->id = $row['rdv_id'];
-        $this->libelle = $row['rdv_libelle'];
-        $this->client = new Client($row['client']);
-        $this->utilisateur = new Utilisateur($row['utilisateur']);
-        $this->date = $row['rdv_date'];
-        $this->duree = $row['rdv_duree'];
+        $this->id = $pId;
+        $this->libelle = $pLibelle;
+        $this->client = $pClient;
+        $this->utilisateur = $pUtilisateur;
+        $this->date = $pDate;
+        $this->duree = $pDuree;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -23,9 +23,8 @@ class Rdv extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE rdv_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE rdv_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -41,9 +40,8 @@ class Rdv extends Model{
         return null;
     }
 
-    public function FindAll() {
-        $query = db()->prepare("SELECT rdv_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+    static public function FindAll() {
+        $query = db()->prepare("SELECT rdv_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

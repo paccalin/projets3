@@ -4,15 +4,6 @@ abstract class Model {
 	public function __construct(){
     }
 
-    abstract public function FindById($pId){
-    }
-
-    abstract public function FindAll(){
-    }
-
-    abstract public function UpdateDb(){
-    }
-
 	public function __get($fieldName) {
 		$varName = $fieldName;
 		if (property_exists(get_class($this), $varName))

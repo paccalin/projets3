@@ -1,7 +1,7 @@
 <?php
 class Vehicule  extends Model{
     public function __construct($pModele, $pDateInsertion = null, $pId=null){
-        $this->id = $row['vehicule_id'];
+        $this->id = $pId;
         $this->modele = $pModele;
         $this->optionList = Option::FindByVehicule($this->id);
         if($pDateInsertion == null)
@@ -17,9 +17,8 @@ class Vehicule  extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE vehicule_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE vehicule_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -31,8 +30,8 @@ class Vehicule  extends Model{
         return null;
     }
 
-    public function FindAll() {
-        $query = db()->prepare("SELECT vehicule_id FROM ?");
+    static public function FindAll() {
+        $query = db()->prepare("SELECT vehicule_id FROM ".self::$tableName);
         $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
         $query->execute();
         $returnList = array();

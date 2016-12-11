@@ -30,25 +30,6 @@ section{
 	top: 80px;
 }
 
-#leftContainer{
-    width: 80vw;
-}
-
-#diapo{
-    height: 80vh;
-    width: 100%;
-}
-
-#bandeImg{
-    height: 10vh;
-    width: 100%
-}
-
-#desc{
-    height: 90vh;
-    width: 20vw;
-}
-
 
 #menuButton{
 	height: 67.5px;

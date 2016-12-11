@@ -1,0 +1,64 @@
+:root {
+	--DiapoView-height: 90vh;
+	--DiapoView-width: 100vw;
+	--DiapoView-diapo-width: 80vw;
+	--DiapoView-diapo-height: 80vh;
+	--DiapoView-bande-height: calc(var(--DiapoView-height) - var(--DiapoView-diapo-height));;
+}
+
+#DiapoView{
+	display: flex;
+	flex-flow: row;
+	overflow: hidden;
+}
+
+#leftContainer{
+    width: var(--DiapoView-diapo-width);
+    overflow: hidden;
+}
+
+#diapo, #bandeImg{
+    width: 100%;
+	display: flex;
+	flex-flow: row;
+	overflow: hidden;
+}
+
+#diapo{
+    height: var(--DiapoView-height);
+}
+
+#bandeImg{
+    height: var(--DiapoView-bande-height);
+}
+
+#mainCarousel_ul, #bandeCarousel_ul {
+	display: flex;
+	flex-flow: row;
+	position:relative;
+	list-style-type: none;
+	margin: 0px;  
+	padding: 0px;  
+	width: 10000vw;
+	height: 100%;
+} 
+
+#mainCarousel_ul{
+	left: calc(0vw - var(--DiapoView-diapo-width));
+}
+
+#mainCarousel_ul li, #bandeCarousel_ul li{
+	display: inline-block;
+	height: 100%;
+	overflow: hidden;
+}
+
+#mainCarousel_ul li{
+	width: var(--DiapoView-diapo-width);
+}
+
+#desc{
+    height: 100%;
+    width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
+    overflow: hidden;
+}

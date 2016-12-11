@@ -3,7 +3,10 @@
 class DiapoController extends Controller {
 
 	public function view_diapo(){
-		$this->render("main");
+		$d = array();
+		$d["Components/main"] = array();
+		$d["Components/main"]["photoList"] = Photo::FindAll();
+		$this->render("main", $d);
 	}
 }
 ?>

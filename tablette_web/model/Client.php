@@ -28,9 +28,8 @@ class Client extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE client_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE client_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -49,8 +48,7 @@ class Client extends Model{
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT client_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+        $query = db()->prepare("SELECT client_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

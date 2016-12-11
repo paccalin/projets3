@@ -1,16 +1,26 @@
 <?php
-function showDiapo(){
-    $ReturnValue = "";
-    $ReturnValue += "<div class='carousel_container'>";
-    $ReturnValue += "<div class='carousel_inner'>";
-    $returnValue += "<ul class='carousel_ul'>";
-    $returnValue += "<li>lol</li>";
-    $returnValue += "<li>lol</li>";
-    $returnValue += "<li>lol</li>";
-    $returnValue += "<li>lol</li>";
-    $returnValue += "</ul>";
-    $returnValue += "</div>";
-    $returnValue += "</div>";
+function showDiapo($pPhotoList){
+    $returnValue = "";
+    $returnValue .= "<ul id='mainCarousel_ul'>";
+    foreach ($pPhotoList as $aPhoto) {
+        $returnValue .= "<li>";
+        $returnValue .= "<img src='".$aPhoto->path."'>";
+        $returnValue .= "</li>";
+    }
+    $returnValue .= "</ul>";
+
+    return $returnValue;
+}
+
+function showBandeImg($pPhotoList){
+    $returnValue = "";
+    $returnValue .= "<ul id='bandeCarousel_ul'>";
+    foreach ($pPhotoList as $aPhoto) {
+        $returnValue .= "<li>";
+        $returnValue .= "<p>Mdèr</p>";
+        $returnValue .= "</li>";
+    }
+    $returnValue .= "</ul>";
 
     return $returnValue;
 }

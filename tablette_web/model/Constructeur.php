@@ -15,9 +15,8 @@ class Constructeur extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE constructeur_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE constructeur_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -30,9 +29,8 @@ class Constructeur extends Model{
     }
 
 
-    public function FindAll() {
-        $query = db()->prepare("SELECT contructeur_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+    static public function FindAll() {
+        $query = db()->prepare("SELECT contructeur_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

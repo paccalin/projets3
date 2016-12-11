@@ -19,9 +19,8 @@ class Utilisateur extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE utilisateur_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE utilisateur_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $id = $row['utilisateur_id'];
@@ -34,10 +33,9 @@ class Utilisateur extends Model{
         return null;
     }
 
-    public function FindByPseudo($pUserName) {
-        $query = db()->prepare("SELECT utilisateur_id FROM ? WHERE utilisateur_pseudo = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, self::$pUserName, PDO::PARAM_STR);
+    static public function FindByPseudo($pUserName) {
+        $query = db()->prepare("SELECT utilisateur_id FROM ".self::$tableName." WHERE utilisateur_pseudo = ?");
+        $query->bindParam(1, self::$pUserName, PDO::PARAM_STR);
         $query->execute();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
@@ -48,9 +46,8 @@ class Utilisateur extends Model{
         return null;
     }
 
-    public function FindAll() {
-        $query = db()->prepare("SELECT utilisateur_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+    static public function FindAll() {
+        $query = db()->prepare("SELECT utilisateur_id FROM ".self::$tableName.);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

@@ -1,9 +1,9 @@
 <?php
 class Modele extends Model{
-    public function __construct($pLibelle, $pConstructeur, $pDateInsertion = null, $pModeleId = null){
-        $this->id = $row['modele_id'];
-        $this->libelle = $row['modele_libelle'];
-        $this->constructeur = new Constructeur($row['constructeur_id']);
+    public function __construct($pLibelle, $pConstructeur, $pDateInsertion = null, $pId = null){
+        $this->id = $pId;
+        $this->libelle = $pLibelle;
+        $this->constructeur = $pConstructeur;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -17,9 +17,8 @@ class Modele extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ? WHERE modele_id = ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
-        $query->bindParam(2, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE modele_id = ?");
+        $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -33,8 +32,7 @@ class Modele extends Model{
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT modele_id FROM ?");
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
+        $query = db()->prepare("SELECT modele_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
