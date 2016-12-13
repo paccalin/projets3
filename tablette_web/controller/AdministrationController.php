@@ -1,6 +1,7 @@
 <?php
 
 class AdministrationController extends Controller{
+
 	public function creerCompte(){
 		if($_SESSION['droits']>=1){
 			$this->render("formCreationCompte");
@@ -35,15 +36,17 @@ class AdministrationController extends Controller{
 	}
 
 	public function gererComptes(){
+		include_once("model/Utilisateur.php");
 		if($_SESSION['droits']>=2){
-			include_once("model/Utilisateur.php");
 			$users = Utilisateur::findAll();
 			$data = array();
 			$droits = ['Utilisateur','Administrateur','Super-administrateur'];
 			foreach($users as $user){
 				$usr = array();
 				$usr['pseudo']=$user->pseudo;
-				$usr['droits']=$droits[$user->droits-1];
+				$usr['droitsNom']=$droits[$user->droits-1];
+				$usr['droitsNb']=$user->droits;
+				$usr['id']=$user->id;
 				array_push($data,$usr);
 			}
 			if($_SESSION['droits']==2){
@@ -56,12 +59,27 @@ class AdministrationController extends Controller{
 		}
 	}
 	
-	public function augmenteDroit(){
-
+	public function confirmeAugmenteDroit(){
+		$this->render("formConfirmation");
 	}
 
-	public function reduitDroit(){
+	public function augmenteDroits(){
+		include_once("model/Utilisateur.php");
+		$user = Utilisateur::FindByID($_GET['id']);
+		if(isset($_POST['submit']) OR $user->droits!=2){
+			$user = Utilisateur::FindByID($_GET['id']);
+			$user->droits=$user->droits+1;
+			Utilisateur::Update($user);
+		}
+		header("Location: ./?r=administration/gererComptes");
+	}
 
+	public function reduitDroits(){
+		include_once("model/Utilisateur.php");
+		$user = Utilisateur::FindByID($_GET['id']);
+		$user->droits=$user->droits-1;
+		Utilisateur::Update($user);
+		header("Location: ./?r=administration/gererComptes");
 	}
 }
 ?>

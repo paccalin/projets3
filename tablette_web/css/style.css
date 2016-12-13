@@ -11,6 +11,10 @@ body{
 	width: 100vw;
 }
 
+a{
+	text-decoration: none;
+}
+
 header{
     height: 10vh;
     width: 100vw;
@@ -162,9 +166,10 @@ input[type="submit"]:focus{
 	height: 3vh;
 	width: 3vh;
 	background-color: #e6edf2;
+	color: #7a828f;
 }
 
-.boutonTableUser a{
-	color: #7a828f;
+.boutonTableUserDesactive {
+	color: white;
 	text-decoration: none;
 }

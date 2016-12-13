@@ -66,7 +66,12 @@ class Utilisateur extends Model{
 	static public function insert($user){
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$user->pseudo."','".$user->motDePasse."',".$user->droits.",DEFAULT)");
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
-        	$query->execute();
+		$query->execute();
+	}
+
+	static public function update($user){
+		$query = db()->prepare("UPDATE ".self::$tableName." SET utilisateur_pseudo='".$user->pseudo."', utilisateur_motDePasse='".$user->motDePasse."', utilisateur_droits=".$user->droits." WHERE utilisateur_id=".$user->id);
+		$query->execute();
 	}
 }
 ?>
