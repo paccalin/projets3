@@ -26,4 +26,3 @@
 		}
 	?>
 </table>
-<p><i>Les boutons de modification des droits ne sont pas encore fonctionnels</i></p>
