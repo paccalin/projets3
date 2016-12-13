@@ -60,7 +60,7 @@ class AdministrationController extends Controller{
 	}
 	
 	public function confirmeAugmenteDroit(){
-		$this->render("formConfirmation");
+		$this->render("formConfirmationAugmenteDroits");
 	}
 
 	public function augmenteDroits(){
@@ -79,6 +79,21 @@ class AdministrationController extends Controller{
 		$user = Utilisateur::FindByID($_GET['id']);
 		$user->droits=$user->droits-1;
 		Utilisateur::Update($user);
+		header("Location: ./?r=administration/gererComptes");
+	}
+
+	public function confirmeSupression(){
+		$this->render("formConfirmationSupprimeCompte");
+	}
+
+	public function supprimeCompte(){
+		include_once("model/Utilisateur.php");
+		$user = Utilisateur::FindByID($_GET['id']);
+		if(isset($_POST['submit'])){
+			$user = Utilisateur::FindByID($_GET['id']);
+			$user->droits=$user->droits+1;
+			Utilisateur::Delete($user);
+		}
 		header("Location: ./?r=administration/gererComptes");
 	}
 }

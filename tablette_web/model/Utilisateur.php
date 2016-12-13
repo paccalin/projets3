@@ -73,5 +73,10 @@ class Utilisateur extends Model{
 		$query = db()->prepare("UPDATE ".self::$tableName." SET utilisateur_pseudo='".$user->pseudo."', utilisateur_motDePasse='".$user->motDePasse."', utilisateur_droits=".$user->droits." WHERE utilisateur_id=".$user->id);
 		$query->execute();
 	}
+
+	static public function delete($user){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE utilisateur_id=".$user->id);
+		$query->execute();
+	}
 }
 ?>
