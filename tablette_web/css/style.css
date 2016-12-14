@@ -15,6 +15,10 @@ a{
 	text-decoration: none;
 }
 
+.lienAccueil{
+	color: #7a828f;
+}
+
 header{
     height: 10vh;
     width: 100vw;
