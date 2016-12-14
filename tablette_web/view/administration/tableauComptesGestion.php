@@ -19,9 +19,11 @@
 				echo "<div class='boutonTableUser boutonTableUserDesactive'>-</div></td>";
 			}
 			if($user['droitsNb']<3){
-				echo "<td><a href='./?r=administration/confirmeSupression&pseudo=".$user['pseudo']."&id=".$user['id']."'><div class='boutonTableUser'>X</div></a>";			
+				echo "<td><a href='./?r=administration/confirmeSupression&pseudo=".$user['pseudo']."&id=".$user['id']."'><div class='boutonTableUser'>X</div></a>";
+				echo "<td><a href='./?r=administration/changerMotPasse&pseudo=".$user['pseudo']."'><div class='boutonTableUser'>...</div></a>";
 			}else{
-				echo "<td><div class='boutonTableUser boutonTableUserDesactive'>X</div>";	
+				echo "<td><div class='boutonTableUser boutonTableUserDesactive'>X</div>";
+				echo "<td><div class='boutonTableUser boutonTableUserDesactive'>...</div>";	
 			}
 		}
 	?>

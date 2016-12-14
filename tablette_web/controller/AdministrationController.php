@@ -62,11 +62,22 @@ class AdministrationController extends Controller{
 	public function changerMotPasse(){
 		if(isset($_POST['submit'])){
 			if($_POST['motPasse']==$_POST['motPasse2']){
-				include_once("model/Utilisateur.php");
-				$user = Utilisateur::FindByPseudo($_SESSION['identifiant']);
-				$user->motDePasse=$_POST['motPasse'];
-				Utilisateur::Update($user);
-				$this->render("reussiteChangementMotPasse");
+				if($_POST['motPasse']!=""){
+					include_once("model/Utilisateur.php");
+					if(!isset($_GET['pseudo'])){
+						$user = Utilisateur::FindByPseudo($_SESSION['identifiant']);
+					}else{
+						$user = Utilisateur::FindByPseudo($_GET['pseudo']);
+						if($user->droits==3){
+							$this->render("erreurAutorisation");
+						}
+					}
+					$user->motDePasse=$_POST['motPasse'];
+					Utilisateur::Update($user);
+					$this->render("reussiteChangementMotPasse");
+				}else{
+					$this->render("formChangementMotDePasse","Erreur: le mot de passe est vide");	
+				}
 			}else{
 				$this->render("formChangementMotDePasse","Erreur: les mots de passe ne correspondent pas");
 			}
