@@ -98,6 +98,7 @@ function header(){
 							ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Gérer les Comptes</li></a>");
 							}
 						}
+						ul.append("<a href='"+'./?r=administration/changerMotPasse'+"' class='lien'><li class='menu'>Changer le mot de passe</li></a>");
 						ul.append("<a href='"+'./?r=connexion/deconnexion'+"' class='lien'><li class='menu'>Se déconnecter</li></a>");
 					}
 				},

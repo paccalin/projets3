@@ -59,6 +59,24 @@ class AdministrationController extends Controller{
 		}
 	}
 	
+	public function changerMotPasse(){
+		if(isset($_POST['submit'])){
+			if($_POST['motPasse']==$_POST['motPasse2']){
+				include_once("model/Utilisateur.php");
+				$user = Utilisateur::FindByPseudo($_SESSION['identifiant']);
+				$user->motDePasse=$_POST['motPasse'];
+				Utilisateur::Update($user);
+				$this->render("reussiteChangementMotPasse");
+			}else{
+				$this->render("formChangementMotDePasse","Erreur: les mots de passe ne correspondent pas");
+			}
+		}elseif(isset($_POST['cancel'])){
+		header("Location: ./?r=site/index");
+		}else{
+			$this->render("formChangementMotDePasse");
+		}
+	}
+	
 	public function confirmeAugmenteDroit(){
 		$this->render("formConfirmationAugmenteDroits");
 	}
