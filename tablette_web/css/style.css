@@ -15,6 +15,10 @@ a{
 	text-decoration: none;
 }
 
+.lienAccueil{
+	color: #7a828f;
+}
+
 header{
     height: 10vh;
     width: 100vw;
@@ -37,53 +41,6 @@ section{
 #contenu{
 	position: absolute;
 	top: 10vh;
-}
-
-
-#menuButton,#reglagesButton{
-	height: 8vh;
-	border: solid;
-	border-radius: 17.5%;
-	border-width: 5px;
-	position: absolute;
-}
-
-#menuDiv,#reglagesDiv{
-	display: none;
-	position: absolute;
-}
-
-#reglagesDiv{
-	right: 0px;
-}
-
-#reglagesButton{
-	right: 0px;
-}
-
-#menuUl{
-
-}
-.menu{
-	padding: 2.5px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	padding-left: 10px;
-	background-color: #e6edf2;
-	list-style-type: none;
-}
-
-.menu:hover{
-	background-color: #0fa2d5;
-}
-
-.lien {
-	color: #7a828f;
-	text-decoration: none;
-}
-
-.menu:hover{
-	color: #e6edf2;
 }
 
 form{
