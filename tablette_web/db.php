@@ -2,7 +2,7 @@
 $host = "localhost";
 $databaseName = "showRoom";
 $user = "root";
-$password = "123";
+$password = "root";
 
 $db = new PDO("mysql:host=".$host.";dbname=".$databaseName,
 				$user,

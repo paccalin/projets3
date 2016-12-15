@@ -1,6 +1,6 @@
 <?php
-if (isset($data["Components/main"]))
-	$windowData = $data["Components/main"];
+if (isset($data["Diapo/main"]))
+	$windowData = $data["Diapo/main"];
 else
 	$windowData = array();
 
