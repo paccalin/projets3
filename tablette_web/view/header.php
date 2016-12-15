@@ -9,6 +9,9 @@
 				<img src='./images/menu.png' alt='menu' id='menuButton'/ class="imageButton">
 			</ul>
 		</nav>
+		<?php
+			
+		?>
 	</header>
 
 

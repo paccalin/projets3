@@ -31,8 +31,8 @@ function header(){
 
 			var ul = $("<ul id='menuUl'/>");
 
-			ul.append("<a href='"+home+"' class='lien'><li class='menu'>Accueil</li></a>");
-			ul.append("<a href='"+diapo+"' class='lien'><li class='menu'>Diapo</li></a>");
+			ul.append("<a href='"+home+"' class='lien'><li class='menu'>Accueil</li></a><hr class='separateurPetit'>");
+			ul.append("<a href='"+diapo+"' class='lien'><li class='menu'>Diapo</li></a><hr class='separateurPetit'>");
 			//ul.append("<a href='"+devis+"' class='lien'><li class='menu'>Devis</li></a>");
 
 			$.ajax({
@@ -42,25 +42,25 @@ function header(){
 				async: false,
 				success : function(json){
 					if(json >= 1){
-						ul.append("<a href='"+maj+"' class='lien'><li class='menu'>Mise à jour</li></a>");
-						ul.append("<a href='"+rdv+"'' class='lien'><li class='menu'>Rendez-vous</li></a>");
-						ul.append("<a href='"+add+"' class='lien'><li class='menu'>Ajouter</li></a>");
-						ul.append("<a href='"+del+"' class='lien'><li class='menu'>Supprimer</li></a>");
-						ul.append("<a href='"+upd+"' class='lien'><li class='menu'>Modifier</li></a>");
+						ul.append("<a href='"+maj+"' class='lien'><li class='menu'>Mise à jour</li></a><hr class='separateurPetit'/>");
+						ul.append("<a href='"+rdv+"'' class='lien'><li class='menu'>Rendez-vous</li></a><hr class='separateurPetit'/>");
+						ul.append("<a href='"+add+"' class='lien'><li class='menu'>Ajouter</li></a><hr class='separateurPetit'>");
+						ul.append("<a href='"+del+"' class='lien'><li class='menu'>Supprimer</li></a><hr class='separateurPetit'>");
+						ul.append("<a href='"+upd+"' class='lien'><li class='menu'>Modifier</li></a><hr class='separateurGrand'>");
 					}
 					if(json == 0){
-						ul.append("<a href='"+'./?r=connexion/formConnexion'+"' class='lien'><li class='menu'>Se connecter</li></a>");
+						ul.append("<a href='"+'./?r=connexion/formConnexion'+"' class='lien'><li class='menu'>Se connecter</li></a><hr class='separateurPetit'>");
 					}else{
 						if(json >= 2){
-							ul.append("<a href='"+'./?r=administration/creerCompte'+"' class='lien'><li class='menu'>Créer un Compte</li></a>");
+							ul.append("<a href='"+'./?r=administration/creerCompte'+"' class='lien'><li class='menu'>Créer un Compte</li></a><hr class='separateurPetit'>");
 							if(json==2){
-								ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Afficher les Comptes</li></a>");
+								ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Afficher les Comptes</li></a><hr class='separateurPetit'>");
 							}else{
-							ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Gérer les Comptes</li></a>");
+							ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Gérer les Comptes</li></a><hr class='separateurPetit'>");
 							}
 						}
-						ul.append("<a href='"+'./?r=administration/changerMotPasse'+"' class='lien'><li class='menu'>Changer le mot de passe</li></a>");
-						ul.append("<a href='"+'./?r=connexion/deconnexion'+"' class='lien'><li class='menu'>Se déconnecter</li></a>");
+						ul.append("<a href='"+'./?r=administration/changerMotPasse'+"' class='lien'><li class='menu'>Changer le mot de passe</li></a><hr class='separateurPetit'>");
+						ul.append("<a href='"+'./?r=connexion/deconnexion'+"' class='lien'><li class='menu'>Se déconnecter</li></a><hr class='separateurPetit'>");
 					}
 				},
 				error : function(){
@@ -70,6 +70,9 @@ function header(){
 			div.append(ul);
 			$('nav').after(div);
 
+			$('#menuDiv').animate({width: "300px"}, 500).css('display', 'block');
+			$('#contenu').animate({top: (80+ul[0].childElementCount*26)+"px"}, 350);
+			/*
 			if ($(window).height() < $(window).width()){
 				$('#menuDiv').animate({width: "300px"}, 500).css('display', 'block');
 				$('#contenu').animate({top: (80+ul[0].childElementCount*26)+"px"}, 350);
@@ -82,9 +85,10 @@ function header(){
 								    })
 							.css('display', 'block');
 			}
+			*/
 		}else{
 			$('#menuDiv').remove();
-			$('#contenu').animate({top: "80px"}, 350);
+			$('#contenu').animate({top: "10vh"}, 350);
 		}
 	});
 	/*
