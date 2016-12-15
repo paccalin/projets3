@@ -43,35 +43,31 @@ section{
 	top: 10vh;
 }
 
-
-#menuButton,#reglagesButton{
+#menuButton{
 	height: 8vh;
 	border: solid;
 	border-radius: 17.5%;
 	border-width: 5px;
 	position: absolute;
+	right: 0px;
 }
 
-#menuDiv,#reglagesDiv{
+#menuDiv{
 	display: none;
 	position: absolute;
 }
 
-#reglagesDiv{
-	right: 0px;
-}
-
-#reglagesButton{
+#menuDiv{
 	right: 0px;
 }
 
 #menuUl{
-
+	margin: 0px;
 }
 .menu{
 	padding: 2.5px;
-	margin-top: 2px;
-	margin-bottom: 2px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 	padding-left: 10px;
 	background-color: #e6edf2;
 	list-style-type: none;

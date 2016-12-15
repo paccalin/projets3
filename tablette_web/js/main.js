@@ -48,6 +48,20 @@ function header(){
 						ul.append("<a href='"+del+"' class='lien'><li class='menu'>Supprimer</li></a>");
 						ul.append("<a href='"+upd+"' class='lien'><li class='menu'>Modifier</li></a>");
 					}
+					if(json == 0){
+						ul.append("<a href='"+'./?r=connexion/formConnexion'+"' class='lien'><li class='menu'>Se connecter</li></a>");
+					}else{
+						if(json >= 2){
+							ul.append("<a href='"+'./?r=administration/creerCompte'+"' class='lien'><li class='menu'>Créer un Compte</li></a>");
+							if(json==2){
+								ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Afficher les Comptes</li></a>");
+							}else{
+							ul.append("<a href='"+'./?r=administration/gererComptes'+"' class='lien'><li class='menu'>Gérer les Comptes</li></a>");
+							}
+						}
+						ul.append("<a href='"+'./?r=administration/changerMotPasse'+"' class='lien'><li class='menu'>Changer le mot de passe</li></a>");
+						ul.append("<a href='"+'./?r=connexion/deconnexion'+"' class='lien'><li class='menu'>Se déconnecter</li></a>");
+					}
 				},
 				error : function(){
 					console.log('erreur');
@@ -73,6 +87,7 @@ function header(){
 			$('#contenu').animate({top: "80px"}, 350);
 		}
 	});
+	/*
 	$('#reglagesButton').click(function(){
 		if($('#menuDiv').length>0){
 			$('#menuDiv').remove();
@@ -126,6 +141,7 @@ function header(){
 			$('#contenu').animate({top: "80px"}, 350);
 		}
 	});
+	*/
 }
 
 
