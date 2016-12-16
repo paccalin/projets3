@@ -33,7 +33,6 @@ class Constructeur extends Model{
         $query = db()->prepare("SELECT constructeur_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
-        echo $query->rowCount();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
