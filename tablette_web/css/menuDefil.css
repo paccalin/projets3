@@ -12,12 +12,13 @@
 	position: absolute;
 	max-width: 100vw;
 	background-color: #e6edf2;
-	right: -300px;
+	/*right: -300px;*/
+	right: 0px;
     z-index: 50;
 }
 
 .cache{
-	
+	display: none;
 }
 
 #menuUl{
