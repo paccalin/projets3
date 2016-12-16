@@ -21,6 +21,4 @@ class Controller {
 		include_once "view/header.php";
 		include_once "view/".strtolower($model)."/".$view.".php";
 	}
-
 }
-

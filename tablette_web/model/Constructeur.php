@@ -30,13 +30,13 @@ class Constructeur extends Model{
 
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT contructeur_id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT constructeur_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["contructeur_id"]));
+                array_push($returnList, self::FindById($row["constructeur_id"]));
             }
         }
         return $returnList;
