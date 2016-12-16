@@ -17,9 +17,9 @@ class Controller {
 		$model = substr($controller, 0, 
 			        strpos($controller, "Controller"));
 		$data = $d;
+		echo count(Constructeur::FindAll());
 		$globOption = $option;
 		include_once "view/header.php";
 		include_once "view/".strtolower($model)."/".$view.".php";
 	}
-
 }
