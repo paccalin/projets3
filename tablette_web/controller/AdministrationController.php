@@ -40,7 +40,7 @@ class AdministrationController extends Controller{
 		if($_SESSION['droits']>=2){
 			$users = Utilisateur::findAll();
 			$data = array();
-			$droits = ['Utilisateur','Administrateur','Super-administrateur'];
+			$droits = ['Commercial','Administrateur','Super-administrateur'];
 			foreach($users as $user){
 				$usr = array();
 				$usr['pseudo']=$user->pseudo;
