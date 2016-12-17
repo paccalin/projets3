@@ -17,15 +17,15 @@ class Option extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE option_id = ?");
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $id = $row['option_id'];
-            $libelle = $row['option_libelle'];
-            $desc = $row['option_desc'];
-            $dateInsertion = $row['option_date_insertion'];  
+            $id = $row['id'];
+            $libelle = $row['libelle'];
+            $desc = $row['desc'];
+            $dateInsertion = $row['date_insertion'];  
             return new Option($libelle, $desc, $dateInsertion, $id);
         }
         return null;
@@ -46,16 +46,21 @@ class Option extends Model{
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT option_id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["option_id"]));
+                array_push($returnList, self::FindById($row["id"]));
             }
         }
         return $returnList;
     }
+
+	static public function delete($option){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$option->id);
+		$query->execute();
+	}
 }
 ?>

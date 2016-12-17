@@ -1,17 +1,25 @@
 <?php
-class Constructeur extends Model{
-    public function __construct($pLibelle, $pDateInsertion = null, $pId=null){
+class Rdv extends Model{
+    public function __construct($pLibelle, $pClient, $pUtilisateur, $pDate, $pDuree, $pDateInstertion = null, $pId=null){
         $this->id = $pId;
         $this->libelle = $pLibelle;
+        $this->client = $pClient;
+        $this->utilisateur = $pUtilisateur;
+        $this->date = $pDate;
+        $this->duree = $pDuree;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
             $this->dateInsertion = $pDateInsertion;
     }
-    
-    static public $tableName = "constructeur";
+
+    static public $tableName = "rendezvous";
     protected $id;
     protected $libelle;
+    protected $utilisateur;
+    protected $client;
+    protected $date;
+    protected $duree;
     protected $dateInsertion;
 
     static public function FindByID($pId) {
@@ -22,12 +30,15 @@ class Constructeur extends Model{
             $row = $query->fetch(PDO::FETCH_ASSOC);
             $id = $row['id'];
             $libelle = $row['libelle'];
-            $dateInsertion = $row['date_insertion'];
-            return new Constructeur($libelle, $dateInsertion, $id);
+            $client = Client::FindById($row['client_id']);
+            $utilisateur = Utilisateur::FindById($row['utilisateur_id']);
+            $date = $row['date'];
+            $duree = $row['duree'];
+            $dateInsertion = $row['date_insertion']; 
+            return new Rdv($libelle, $client, $utilisateur, $date, $duree, $dateInsertion, $id);
         }
         return null;
     }
-
 
     static public function FindAll() {
         $query = db()->prepare("SELECT id FROM ".self::$tableName);
@@ -41,5 +52,10 @@ class Constructeur extends Model{
         }
         return $returnList;
     }
+
+	static public function delete($rendezvous){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$rendezvous->id);
+		$query->execute();
+	}
 }
 ?>
