@@ -33,13 +33,15 @@ class ClientController extends Controller{
 	}
 	
 	public function afficherParId(){
+		include_once("./model/Modele.php");
 		$clientObj=Client::findByID($_GET['id']);
 		$data=array();
 		$data['vehicules']=array();
 		$data['client']=["id"=>$clientObj->id,"nom"=>$clientObj->nom,"prenom"=>$clientObj->prenom,"adresse"=>$clientObj->rue,"ville"=>$clientObj->ville,"mail"=>$clientObj->mail,"tel"=>$clientObj->tel];
 		$vehicules=Vehicule::FindByProprietaireID($clientObj->id);
 		foreach($vehicules as $vehicule){
-			array_push($data['vehicules'],["id"=>$vehicule->id,"modele"=>$vehicule->modele,"immatriculation"=>$vehicule->immatriculation]);
+			/* Pourquoi $vehicule->modele marche alors que c'est un objet PHP et pas un simple champ texte $vehicule->modele->libelle matche pas*/
+			array_push($data['vehicules'],["marque"=>$vehicule->modele->constructeur->libelle,"modele"=>$vehicule->modele,"immatriculation"=>$vehicule->immatriculation]);
 		}
 		$this->render("affichageClientId",$data);
 	}

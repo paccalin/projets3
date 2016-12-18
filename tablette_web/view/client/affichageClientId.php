@@ -12,7 +12,7 @@ Véhicules:
 	<tr><th>Marque</th><th>Modèle</th><th>Immatriculation</th></tr>
 	<?php
 		foreach($data['vehicules'] as $vehicule){
-			echo "<tr><td>".$vehicule['id']."</td><td>".$vehicule['modele']->libelle."</td><td>".$vehicule['immatriculation']."</td></tr>";
+			echo "<tr><td>".$vehicule['marque']."</td><td>".$vehicule['modele']->libelle."</td><td>".$vehicule['immatriculation']."</td></tr>";
 		}
 	?>
 </table>
