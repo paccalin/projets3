@@ -48,6 +48,12 @@
 	text-decoration: none;
 }
 
+#menuDeroulantPseudo{
+	text-align: center;
+	color: #7a828f;
+	list-style-type: none;
+}
+
 .separateurPetit{
 	margin: auto;
 	width: 50%;

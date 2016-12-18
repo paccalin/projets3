@@ -54,7 +54,7 @@ CREATE TABLE options (
   id int NOT NULL AUTO_INCREMENT,
   libelle varchar(30) DEFAULT '',
   description varchar(255) DEFAULT '',
-  option_date_insertion DATETIME,
+  date_insertion DATETIME,
   CONSTRAINT pk_option_id PRIMARY KEY (id)
 );
 
@@ -90,7 +90,9 @@ CREATE TABLE utilisateur (
 CREATE TABLE vehicule (
   id int NOT NULL AUTO_INCREMENT,
   modele_id integer NOT NULL,
-  vehicule_date_insertion DATETIME,
+  client_id integer NOT NULL,
+  immatriculation varchar(7) NOT NULL,
+  date_insertion DATETIME,
   CONSTRAINT pk_vehicule_id PRIMARY KEY (id)
 );
 
@@ -127,7 +129,8 @@ ADD CONSTRAINT fk_rendezvous_client_id FOREIGN KEY (client_id) REFERENCES client
 ADD CONSTRAINT fk_rendezvous_utilisateur_id FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id);
 
 ALTER TABLE vehicule
-ADD CONSTRAINT fk_vehicule_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id);
+ADD CONSTRAINT fk_vehicule_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id),
+ADD CONSTRAINT fk_vehicule_client_id FOREIGN KEY (client_id) REFERENCES client(id);
 
 ALTER TABLE join_vehicule_option
 ADD CONSTRAINT fk_join_veh_opt_vehicule_id FOREIGN KEY (vehicule_id) REFERENCES vehicule(id),

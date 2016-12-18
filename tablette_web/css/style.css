@@ -12,6 +12,10 @@ body{
 	overflow: hiden;
 }
 
+.erreursSaisie{
+	color: red;
+}
+
 a{
 	text-decoration: none;
 }
@@ -96,23 +100,21 @@ input[type="submit"]:focus{
 	text-align: center;
 }
 
-#tableUsers{
+.tableAffichage{
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 1.25em;
 	width: 80%;
 }
 
-#tableUsers th{
+.tableAffichage th{
 	text-align: center;
 	background-color: #0fa2d5;
-	width: 40%;
 	color: white;
 }
 
-#tableUsers td{
+.tableAffichage td a{
 	text-align: center;
-	width: 40%;
 	color: #7a828f;
 }
 

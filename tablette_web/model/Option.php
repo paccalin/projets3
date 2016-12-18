@@ -24,7 +24,7 @@ class Option extends Model{
             $row = $query->fetch(PDO::FETCH_ASSOC);
             $id = $row['id'];
             $libelle = $row['libelle'];
-            $desc = $row['desc'];
+            $desc = $row['description'];
             $dateInsertion = $row['date_insertion'];  
             return new Option($libelle, $desc, $dateInsertion, $id);
         }

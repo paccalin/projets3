@@ -54,11 +54,27 @@ class Client extends Model{
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, new self::FindById($row["id"]));
+                array_push($returnList, self::FindById($row["id"]));
             }
         }
         return $returnList;
     }
+
+	static public function insert($client){
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)");
+		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
+		$query->execute();
+	}
+
+	static public function update($client){
+		$query = db()->prepare("UPDATE ".self::$tableName." SET nom='".$client->nom."', prenom='".$client->prenom."', rue='".$client->rue."', ville='".$client->ville."', cp='".$client->cp."', mail='".$client->mail."', tel='".$client->tel."' WHERE id=".$client->id);
+		$query->execute();
+	}
+
+	static public function delete($client){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$client->id);
+		$query->execute();
+	}
 }
 
 ?>
