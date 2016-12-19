@@ -47,17 +47,21 @@ class ClientController extends Controller{
 	}
 	
 	public function rechercher(){
-		$clientsObj=Client::FindByString($_POST['recherche']);
-		$clients=array();
-		$clients['resultat']=array();
-		foreach($clientsObj as $clientObj){
-			$client=["id"=>$clientObj->id,"nom"=>$clientObj->nom,"prenom"=>$clientObj->prenom,"adresse"=>$clientObj->rue,"ville"=>$clientObj->ville,"mail"=>$clientObj->mail,"tel"=>$clientObj->tel];
-			array_push($clients['resultat'], $client);
+		if(isset($_POST['recherche'])){
+			$clientsObj=Client::FindByString($_POST['recherche']);
+			$clients=array();
+			$clients['resultat']=array();
+			foreach($clientsObj as $clientObj){
+				$client=["id"=>$clientObj->id,"nom"=>$clientObj->nom,"prenom"=>$clientObj->prenom,"adresse"=>$clientObj->rue,"ville"=>$clientObj->ville,"mail"=>$clientObj->mail,"tel"=>$clientObj->tel];
+				array_push($clients['resultat'], $client);
+			}
+			if($clients['resultat']==[]){
+				$clients['message']="Aucun client trouvé";
+			}
+			$this->render("formRecherche",$clients);
+		}else{
+			$this->render("formRecherche");
 		}
-		if($clients['resultat']==[]){
-			$clients['message']="Aucun client trouvé";
-		}
-		$this->render("formRecherche",$clients);
 	}
 
 	public function modifier(){
