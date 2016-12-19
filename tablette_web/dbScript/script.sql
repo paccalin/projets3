@@ -19,14 +19,14 @@ CREATE TABLE client (
   cp varchar(6) DEFAULT '',
   mail varchar(100) DEFAULT '',
   tel varchar(12) DEFAULT '',
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_client_id PRIMARY KEY (id)
 );
 
 CREATE TABLE constructeur (
   id int NOT NULL AUTO_INCREMENT,
   libelle varchar(30) DEFAULT '',
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_constructeur_id PRIMARY KEY (id),
   CONSTRAINT uq_constructeur_libelle UNIQUE (libelle)
 );
@@ -38,7 +38,7 @@ CREATE TABLE devis (
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
   modele_id int NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE modele (
   id int NOT NULL AUTO_INCREMENT,
   libelle varchar(30) DEFAULT '',
   constructeur_id int NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_modele_id PRIMARY KEY (id)
 );
 
@@ -54,7 +54,7 @@ CREATE TABLE options (
   id int NOT NULL AUTO_INCREMENT,
   libelle varchar(30) DEFAULT '',
   description varchar(255) DEFAULT '',
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_option_id PRIMARY KEY (id)
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE photo (
   id int NOT NULL AUTO_INCREMENT,
   path varchar(30) DEFAULT '',
   vehicule_id integer NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_photo_id PRIMARY KEY (id)
 );
 
@@ -72,9 +72,9 @@ CREATE TABLE rendezvous (
   libelle varchar(30) DEFAULT '',
   utilisateur_id integer NOT NULL,
   client_id integer NOT NULL,
-  date timestamp NOT NULL,
+  date DATETIME NOT NULL,
   duree time NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_rendezvous_id PRIMARY KEY (id)
 );
 
@@ -83,7 +83,7 @@ CREATE TABLE utilisateur (
   pseudo varchar(255) DEFAULT '',
   motDePasse varchar(255) DEFAULT '',
   droits int NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_utilisateur_id PRIMARY KEY (id)
 );
 
@@ -92,7 +92,7 @@ CREATE TABLE vehicule (
   modele_id integer NOT NULL,
   client_id integer NOT NULL,
   immatriculation varchar(7) NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_vehicule_id PRIMARY KEY (id)
 );
 
@@ -100,7 +100,7 @@ CREATE TABLE join_vehicule_option (
   id int NOT NULL AUTO_INCREMENT,
   vehicule_id integer NOT NULL,
   option_id integer NOT NULL,
-  date_insertion DATETIME,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_join_veh_opt_id PRIMARY KEY (id)
 );
 
@@ -108,7 +108,7 @@ CREATE TABLE join_devis_option (
 	id int NOT NULL AUTO_INCREMENT,
 	option_id int NOT NULL,
 	devis_id int NOT NULL,
-  	date_insertion DATETIME,
+    date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
 );
 

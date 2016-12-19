@@ -83,6 +83,14 @@
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						echo "\n\t\t\t\t<a href='./?r=client/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
+
+						echo "\n\t\t\t\t<a href='./?r=rendezvous/afficherTous' class='lien'>\n\t\t\t\t\t<li class='menu'>Rendez-vous</li>\n\t\t\t\t</a>";
+						echo "\n\t\t\t\t<hr class='separateurPetit'>";
+						echo "\n\t\t\t\t<a href='./?r=rendezvous/rechercher' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher</li>\n\t\t\t\t</a>";
+						echo "\n\t\t\t\t<hr class='separateurPetit'>";
+						echo "\n\t\t\t\t<a href='./?r=rendezvous/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
+
+						echo "\n\t\t\t\t<hr class='separateurGrand'>";
 						echo "\n\t\t\t\t<a href='".$del."' class='lien'>\n\t\t\t\t\t<li class='menu'>Supprimer</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						echo "\n\t\t\t\t<a href='".$upd."' class='lien'>\n\t\t\t\t\t<li class='menu'>Modifier</li>\n\t\t\t\t</a>";

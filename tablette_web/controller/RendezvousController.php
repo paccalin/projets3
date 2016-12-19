@@ -1,6 +1,6 @@
 <?php
 
-class RendezVousController extends Controller{
+class RendezvousController extends Controller{
 	public function creer(){
 		if($_SESSION['droits']>=1){
 			$this->render("formCreationRendezvous");
@@ -8,15 +8,18 @@ class RendezVousController extends Controller{
 			$this->render("erreurAutorisation");
 		}
 	}
-	public function visualiser(){
-		$rdv=array();
-		$rdv1=['Démarchage','Jacques Ahdi','10/1/2017','10h30'];
-		$rdv2=['Accompagenemnt','Jean Sérien','20/04/2017','16h00'];
-		$rdv3=['Vente à domicile','Risitas issou','20/12/2016','11h00'];
-		array_push($rdv,$rdv1);
-		array_push($rdv,$rdv2);
-		array_push($rdv,$rdv3);
-		$this->render("visualisationRendezvous",$rdv);
+
+	public function afficherTous(){
+		$rdvsObjet=Rendezvous::FindByUtilisateurID(Utilisateur::FindByPseudo($_SESSION['identifiant'])->id);
+		$data=array();
+		foreach($rdvsObjet as $rdvObjet){
+			array_push($data,["libelle"=>$rdvObjet->libelle,"client"=>$rdvObjet->client->nom." ".$rdvObjet->client->prenom,"date"=>Rendezvous::DbDateToFrDate($rdvObjet->date),"durée"=>$rdvObjet->duree]);
+		}
+		$this->render("visualisationRendezvous",$data);
+	}
+
+	public function rechercher(){
+		$this->render("rechercherRendezvous");
 	}
 }
 ?>
