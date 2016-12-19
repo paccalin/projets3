@@ -60,6 +60,19 @@ class Client extends Model{
         return $returnList;
     }
 
+	static public function FindByString($st){
+		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE UCASE(nom) LIKE UCASE('%".$st."%') OR UCASE(prenom) LIKE UCASE('%".$st."%') OR UCASE(rue) LIKE UCASE('%".$st."%') OR UCASE(ville) LIKE UCASE('%".$st."%') OR UCASE(mail) LIKE UCASE('%".$st."%') OR UCASE(tel) LIKE UCASE('%".$st."%')  OR cp='".$st."'");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+	}
+
 	static public function insert($client){
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)");
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */

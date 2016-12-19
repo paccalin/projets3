@@ -46,6 +46,20 @@ class ClientController extends Controller{
 		$this->render("affichageClientId",$data);
 	}
 	
+	public function rechercher(){
+		$clientsObj=Client::FindByString($_POST['recherche']);
+		$clients=array();
+		$clients['resultat']=array();
+		foreach($clientsObj as $clientObj){
+			$client=["id"=>$clientObj->id,"nom"=>$clientObj->nom,"prenom"=>$clientObj->prenom,"adresse"=>$clientObj->rue,"ville"=>$clientObj->ville,"mail"=>$clientObj->mail,"tel"=>$clientObj->tel];
+			array_push($clients['resultat'], $client);
+		}
+		if($clients['resultat']==[]){
+			$clients['message']="Aucun client trouvé";
+		}
+		$this->render("formRecherche",$clients);
+	}
+
 	public function modifier(){
 		if($_SESSION['droits']>=1){
 			if(!isset($_POST['nom'])){

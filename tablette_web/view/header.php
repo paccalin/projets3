@@ -79,7 +79,7 @@
 					if($_SESSION['droits']>=1){
 						echo "\n\t\t\t\t<a href='./?r=client/afficherTous' class='lien'>\n\t\t\t\t\t<li class='menu'>Clients</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
-						echo "\n\t\t\t\t<a href='./?r=site/aFaire' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher</li>\n\t\t\t\t</a>";
+						echo "\n\t\t\t\t<a href='./?r=client/rechercher' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						echo "\n\t\t\t\t<a href='./?r=client/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
