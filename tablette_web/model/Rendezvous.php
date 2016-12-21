@@ -77,9 +77,17 @@ class Rendezvous extends Model{
 		$months=['January','February','March','April','May','June','July','August','September','October','November','December'];
 		$mois=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 		$jours=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
-		$LinuxTime=strtotime($date[2]." ".$months[$date[1]-1]." ".$date[0]);
-		$dateString = $jours[date('N',$LinuxTime)-1]." ".$date[2]." ".$mois[$date[1]-1]." ".$date[0];
+		$linuxTime=strtotime($date[2]." ".$months[$date[1]-1]." ".$date[0]);
+		$dateString = $jours[date('N',$linuxTime)-1]." ".$date[2]." ".$mois[$date[1]-1]." ".$date[0];
 		return $dateString;
+	}
+
+	static public function DbDateToLinuxTime($date){
+		$date=explode(' ',$date);
+		$date=explode('-',$date[0]);
+		$months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+		$linuxTime=strtotime($date[2]." ".$months[$date[1]-1]." ".$date[0]);
+		return $linuxTime;
 	}
 }
 ?>

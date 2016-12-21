@@ -13,20 +13,28 @@ class AdministrationController extends Controller{
 	public function verifieCreationCompte(){
 		include_once("model/Utilisateur.php");
 		$user = Utilisateur::findByPseudo($_POST['identifiant']);
+		$data=array();
+		$data['erreurSaisies']=array();
 		if($user!=null){
 			if($user->droits==1){
-				$this->render("erreurCreationCompte","Il y a déjà un compte utilisateur à ce nom.");
+				array_push($data['erreurSaisies'],"Il y a déjà un compte commercial à ce nom.");
 			}elseif($user->droits==2){
-				$this->render("erreurCreationCompte","Il y a déjà un compte administrateur à ce nom.");
+				array_push($data['erreurSaisies'],"Il y a déjà un compte administrateur à ce nom.");
 			}elseif($user->droits==3){
-				$this->render("erreurCreationCompte","Il y a déjà un compte superadministrateur à ce nom.");
+				array_push($data['erreurSaisies'],"Il y a déjà un compte super administrateur à ce nom.");
 			}
-		}elseif($_POST['motPasse']!=$_POST['motPasse2']){
-			$this->render("erreurCreationCompte","Les mots de passe saisis sont différents.");
-		}elseif($_POST['identifiant']==""){
-			$this->render("erreurCreationCompte","Veuillez saisir un identifiant.");
-		}elseif($_POST['motPasse']==""){
-			$this->render("erreurCreationCompte","Veuillez saisir un mot de passe.");
+		}
+		if($_POST['identifiant']==""){
+			array_push($data['erreurSaisies'],"Le champ identifiant est vide.");
+		}
+		if($_POST['motPasse']==""){
+			array_push($data['erreurSaisies'],"Le champ mot de passe est vide.");
+		}
+		if($_POST['motPasse']!=$_POST['motPasse2']){
+			array_push($data['erreurSaisies'],"Les mots de passe saisis sont différents.");
+		}
+		if($data['erreurSaisies']!=[]){
+			$this->render("formCreationCompte",$data);
 		}else{
 			/** Insertion BD **/
 			$newUser = new Utilisateur($_POST['identifiant'],$_POST['motPasse'],$_POST['droits']);

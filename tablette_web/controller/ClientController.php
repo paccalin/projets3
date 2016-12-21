@@ -6,15 +6,23 @@ class ClientController extends Controller{
 			if(!isset($_POST['nom'])){
 				$this->render("formCreationClient");
 			}else{
+				$data=array();
+				$data['erreursSaisie']=array();
 				if(false){/* Gestion des erreurs de saisie */
-					$this->render("formCreationClient","Il y a des erreurs de saisie");
+					array_push($data['erreurSaisies'],"Erreur de saisie 1");
+				}
+				if(false){
+					array_push($data['erreurSaisies'],"Erreur de saisie 2");
+				}
+				if(false){
+					array_push($data['erreurSaisies'],"Erreur de saisie 3");
+				}
+				if($data['erreursSaisie']!=[]){
+					$this->render("formCreationRendezvous",$data);
 				}else{
 					$newClient = new Client($_POST['nom'],$_POST['prenom'],$_POST['rue'],$_POST['ville'],$_POST['cp'],$_POST['mail'],$_POST['telephone']);
-					print_r($newClient);
 					Client::insert($newClient);
-					/* il faudrait le returning id
-					$this->render("reussiteCreationClient");
-					*/
+					/* il faudrait le returning id pour afficher son profil directement (ou retour pour ajouter un autre client?) */
 				}
 			}
 		}else{

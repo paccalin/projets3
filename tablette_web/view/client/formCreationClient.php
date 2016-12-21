@@ -1,4 +1,12 @@
-<?php if(isset($data['erreurSaisies'])){echo "<p class='erreursSaisie'>".$data['erreurSaisies']."</p>";} ?>
+<?php
+	if(isset($data['erreurSaisies'])){
+		echo "<p class='erreursSaisie'>Il y a des erreurs de saisie:<br/>";
+		foreach($data['erreurSaisies'] as $erreurSaisie){
+			echo "-".$erreurSaisie."<br/>";
+		}
+		echo "</p>";
+	}
+?>
 
 <form action='./?r=client/creer' method='post'>
 

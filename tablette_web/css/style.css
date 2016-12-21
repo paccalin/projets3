@@ -131,6 +131,7 @@ input[type="submit"]:focus{
 }
 
 .boutonTableUserDesactive {
+	text-align:center;
 	color: white;
 	text-decoration: none;
 }

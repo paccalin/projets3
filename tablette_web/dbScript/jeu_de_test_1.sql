@@ -67,10 +67,6 @@ insert into photo values (default, 'pictures/jumper_2.jpg', 8, CURRENT_TIMESTAMP
 insert into photo values (default, 'pictures/transit_1.jpg', 9, CURRENT_TIMESTAMP);
 insert into photo values (default, 'pictures/transit_2.jpg', 10, CURRENT_TIMESTAMP);
 
-/*=== Rendezvous ===*/
-
-
-
 /*=== Utilisateur ===*/
 
 insert into utilisateur values (default, 'root', 'root', 3, CURRENT_TIMESTAMP);
@@ -84,6 +80,12 @@ insert into utilisateur values (default, 'commercial2', '123', 1, CURRENT_TIMEST
 insert into utilisateur values (default, 'commercial3', '123', 1, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'commercial4', '123', 1, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'commercial5', '123', 1, CURRENT_TIMESTAMP);
+
+/*=== Rendezvous ===*/
+
+insert into rendezvous values(default,'contrôle qualité', (select id from utilisateur where pseudo='commercial'), 1, '2017-01-04', '01:00:00', CURRENT_TIMESTAMP);
+insert into rendezvous values(default,'vente à domicile', (select id from utilisateur where pseudo='commercial'), 2, '2017-01-06', '00:30:00', CURRENT_TIMESTAMP);
+insert into rendezvous values(default,'explication contrat', (select id from utilisateur where pseudo='commercial'), 3, '2017-01-07', '01:45:00', CURRENT_TIMESTAMP);
 
 /*=== JoinVehiculeOption ===*/
 
