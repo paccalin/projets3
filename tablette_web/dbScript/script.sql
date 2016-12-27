@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS join_modele_option;
 DROP TABLE IF EXISTS join_vehicule_option;
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS vehicule;
@@ -54,6 +55,7 @@ CREATE TABLE options (
   id int NOT NULL AUTO_INCREMENT,
   libelle varchar(30) DEFAULT '',
   description varchar(255) DEFAULT '',
+	prixDeBase int NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_option_id PRIMARY KEY (id)
 );
@@ -108,10 +110,18 @@ CREATE TABLE join_devis_option (
 	id int NOT NULL AUTO_INCREMENT,
 	option_id int NOT NULL,
 	devis_id int NOT NULL,
-    date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
 );
 
+CREATE TABLE join_modele_option (
+	id int NOT NULL AUTO_INCREMENT,
+	option_id int NOT NULL,
+	modele_id int NOT NULL,
+	prix int NOT NULL,
+	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
+);
 
 ALTER TABLE devis
 ADD CONSTRAINT fk_devis_client_id FOREIGN KEY (client_id) REFERENCES client(id),
@@ -134,8 +144,12 @@ ADD CONSTRAINT fk_vehicule_client_id FOREIGN KEY (client_id) REFERENCES client(i
 
 ALTER TABLE join_vehicule_option
 ADD CONSTRAINT fk_join_veh_opt_vehicule_id FOREIGN KEY (vehicule_id) REFERENCES vehicule(id),
-ADD CONSTRAINT fk_join_dev_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
+ADD CONSTRAINT fk_join_veh_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
 
 ALTER TABLE join_devis_option
 ADD CONSTRAINT fk_join_dev_opt_dev_id FOREIGN KEY (devis_id) REFERENCES devis(id),
 ADD CONSTRAINT fk_join_dev_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
+
+ALTER TABLE join_modele_option
+ADD CONSTRAINT fk_join_mod_opt_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id),
+ADD CONSTRAINT fk_join_mod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);

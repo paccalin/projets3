@@ -1,15 +1,15 @@
 /*=== Client ===*/
 
 insert into client values(default,'Martin', 'Jean', '1, rue du centre', 'Annecy', '74000','jean.martin@gmail.com','0450672184', CURRENT_TIMESTAMP);
-insert into client values(default,'Mac Kenell', 'Bob', 'Fort Mac Kenell', 'Kenelltown', '00466','bob.mackenell@mackenell.com','0102030405', CURRENT_TIMESTAMP);
+insert into client values(default,'Guy', 'Matis', '14, chemin des Roses', 'Lyon', '69004','matis.guy@gmail.com','0450642784', CURRENT_TIMESTAMP);
 insert into client values(default,'Dupont', 'Gérard', '205, rue de du centre', 'Annecy-le-vieux', '74940','dupont.gerard@gmail.com','0450672154', CURRENT_TIMESTAMP);
 insert into client values(default,'Dupuis', 'Marie', '4, avenue du stade', 'Bonneville', '74130','marie.dupuis@gmail.com','0450316428', CURRENT_TIMESTAMP);
 insert into client values(default,'Haim', 'Julie', '16, rue du lac', 'Anency', '74000','julie.haim@hotmail.fr','0654813725', CURRENT_TIMESTAMP);
-insert into client values(default,'Damas', 'Luc', '208, avenue de la gare', 'Annecy', '74000','luc.damas@univ-savoie.fr','0631572861', CURRENT_TIMESTAMP);
-insert into client values(default,'Ochom', 'Paul', '12, place Saint Jean-Michel', 'Paris', '75000','paul.ochom@hotmail.fr','0624585197', CURRENT_TIMESTAMP);
+insert into client values(default,'Temil', 'Clément', '208, avenue de la gare', 'Annecy', '74000','clement.temil@aol.fr','0631572861', CURRENT_TIMESTAMP);
+insert into client values(default,'Fernadez', 'Paul', '12, place Saint Jean-Michel', 'Paris', '75000','paul.fernandez@hotmail.fr','0624585197', CURRENT_TIMESTAMP);
 insert into client values(default,'Martin', 'Anne', '1, rue du centre', 'Annecy', '74000','anne.martin@gmail.com','0654813728', CURRENT_TIMESTAMP);
-insert into client values(default,'Aiphant', 'Michel', '17, place de l\'hotel de ville', 'Ayze', '74130','michel.aiphant@hotmail.fr','TEL', CURRENT_TIMESTAMP);
-insert into client values(default,'Labrausse', 'Adam', '7, place du centre', 'Annecy', '74000','adam.labrausse@gmail.com','0651876528', CURRENT_TIMESTAMP);
+insert into client values(default,'Geut', 'Michel', '17, place de l\'hotel de ville', 'Ayze', '74130','michel.geut@hotmail.fr','0450510468', CURRENT_TIMESTAMP);
+insert into client values(default,'Hidoy', 'Adam', '7, place du centre', 'Annecy', '74000','adam.hidoy@gmail.com','0651876528', CURRENT_TIMESTAMP);
 
 /*=== Constructeur ===*/
 
@@ -19,31 +19,34 @@ insert into constructeur values(default,'Nissan', CURRENT_TIMESTAMP);
 insert into constructeur values(default,'Citroën', CURRENT_TIMESTAMP);
 insert into constructeur values(default,'Ford', CURRENT_TIMESTAMP);
 
-/*=== Devis ===*/
-
-
-
 /*=== Modele ===*/
-
+insert into modele values(default,'Citan', (select id from constructeur where libelle='Mercedes'), CURRENT_TIMESTAMP);
 insert into modele values(default,'Sprinter', (select id from constructeur where libelle='Mercedes'), CURRENT_TIMESTAMP);
+insert into modele values(default,'Vito', (select id from constructeur where libelle='Mercedes'), CURRENT_TIMESTAMP);
+insert into modele values(default, 'Kangoo ', (select id from constructeur where libelle='Renault'), CURRENT_TIMESTAMP);
 insert into modele values(default, 'Master', (select id from constructeur where libelle='Renault'), CURRENT_TIMESTAMP);
+insert into modele values(default, 'Trafic', (select id from constructeur where libelle='Renault'), CURRENT_TIMESTAMP);
 insert into modele values(default, 'Movano', (select id from constructeur where libelle='Nissan'), CURRENT_TIMESTAMP);
+insert into modele values(default, 'Berlingo', (select id from constructeur where libelle='Citroën'), CURRENT_TIMESTAMP);
+insert into modele values(default, 'Jumpy', (select id from constructeur where libelle='Citroën'), CURRENT_TIMESTAMP);
 insert into modele values(default, 'Jumper', (select id from constructeur where libelle='Citroën'), CURRENT_TIMESTAMP);
 insert into modele values(default, 'Transit', (select id from constructeur where libelle='Ford'), CURRENT_TIMESTAMP);
+insert into modele values(default, 'Ranger', (select id from constructeur where libelle='Ford'), CURRENT_TIMESTAMP);
 
 /*=== Options ===*/
 
-insert into options values(default, 'couleur', 'changement de la couleur du camion', CURRENT_TIMESTAMP);
-insert into options values(default, 'passager', 'ajout de siege afin de transporter des passagers', CURRENT_TIMESTAMP);
-insert into options values(default, 'benne', 'trasformation de l arriëre du camion afin d y ajouter une benne', CURRENT_TIMESTAMP);
-insert into options values(default, 'luxe', 'modification afin d apporter du luxe au vehicule', CURRENT_TIMESTAMP);
-insert into options values(default, 'rally', 'modification afin de créer un véritable véhicule de rally', CURRENT_TIMESTAMP);
-insert into options values(default, 'sport', 'changement du moteur et ajout de bande sportive', CURRENT_TIMESTAMP);
+insert into options values(default, 'couleur', 'changement de la couleur du camion', 3500, CURRENT_TIMESTAMP);
+insert into options values(default, 'passager', 'ajout de siege afin de transporter des passagers', 1000,  CURRENT_TIMESTAMP);
+insert into options values(default, 'benne', 'transformation de l\'arrière du camion afin d\'y ajouter une benne', 2000, CURRENT_TIMESTAMP);
+insert into options values(default, 'luxe', 'modification afin d\'apporter du luxe au vehicule', 4000, CURRENT_TIMESTAMP);
+insert into options values(default, 'rally', 'modification afin de créer un véritable véhicule de rally', 2500, CURRENT_TIMESTAMP);
+insert into options values(default, 'sport', 'changement du moteur et ajout de bande sportive', 8000,  CURRENT_TIMESTAMP);
+insert into options values(default, 'climatisation', 'ajout de la climatisation', 750, CURRENT_TIMESTAMP);
 
 /*=== Vehicule ===*/
 
 insert into vehicule values (default, (select id from modele where libelle='Sprinter'), (select id from client where nom='Martin' and prenom='Jean'), 'AA001ZZ',CURRENT_TIMESTAMP);
-insert into vehicule values (default, (select id from modele where libelle='Sprinter'), (select id from client where nom='Mac Kenell' and prenom='Bob'), 'AA002ZZ',CURRENT_TIMESTAMP);
+insert into vehicule values (default, (select id from modele where libelle='Sprinter'), (select id from client where nom='Guy' and prenom='Matis'), 'AA002ZZ',CURRENT_TIMESTAMP);
 insert into vehicule values (default, (select id from modele where libelle='Sprinter'), (select id from client where nom='Dupont' and prenom='Gérard'), 'AA003ZZ',CURRENT_TIMESTAMP);
 insert into vehicule values (default, (select id from modele where libelle='Master'), (select id from client where nom='Martin' and prenom='Jean'), 'AA004ZZ',CURRENT_TIMESTAMP);
 insert into vehicule values (default, (select id from modele where libelle='Master'), (select id from client where nom='Dupuis' and prenom='Marie'), 'AA005ZZ',CURRENT_TIMESTAMP);
@@ -69,7 +72,6 @@ insert into photo values (default, 'pictures/transit_2.jpg', 10, CURRENT_TIMESTA
 
 /*=== Utilisateur ===*/
 
-insert into utilisateur values (default, 'root', 'root', 3, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'superadmin', '123', 3, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'admin', '123', 2, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'admin1', '123', 2, CURRENT_TIMESTAMP);
@@ -80,6 +82,11 @@ insert into utilisateur values (default, 'commercial2', '123', 1, CURRENT_TIMEST
 insert into utilisateur values (default, 'commercial3', '123', 1, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'commercial4', '123', 1, CURRENT_TIMESTAMP);
 insert into utilisateur values (default, 'commercial5', '123', 1, CURRENT_TIMESTAMP);
+
+/*=== Devis ===*/
+
+insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis1.xml', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
+insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.xml', 1, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
 
 /*=== Rendezvous ===*/
 
@@ -103,3 +110,98 @@ insert into join_vehicule_option values (default, 10, (select id from options wh
 
 /*=== JoinDevisOption ===*/
 
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 1, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 1, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 2, CURRENT_TIMESTAMP);
+
+/*=== JoinModeleOption ===*/
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Sprinter'), 3100, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Vito'), 3600, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Kangoo'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Master'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Trafic'), 2600, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Movano'), 2800, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Berlingo'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Jumpy'), 2700, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Jumper'), 2800, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Transit'), 2900, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Ranger'), 2700, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Citan'), 1000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Sprinter'), 1100, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Vito'), 900, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Kangoo'), 800, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Master'), 900, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Trafic'), 1000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Movano'), 1000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Berlingo'), 1200, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Jumpy'), 900, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Jumper'), 1100, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Transit'), 1200, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='passager'), (select id from modele where libelle='Ranger'), 900, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Citan'), 1900, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Sprinter'), 2100, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Vito'), 1800, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Kangoo'), 1900, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Master'), 2100, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Trafic'), 2200, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Movano'), 2100, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Berlingo'), 2200, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Jumpy'), 2300, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Jumper'), 1800, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Transit'), 1800, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Ranger'), 1700, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Citan'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Sprinter'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Vito'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Kangoo'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Master'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Trafic'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Movano'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Berlingo'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Jumpy'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Jumper'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Transit'), 4000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Ranger'), 4000, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Citan'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Sprinter'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Vito'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Kangoo'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Master'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Trafic'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Movano'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Berlingo'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Jumpy'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Jumper'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Transit'), 2500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rally'), (select id from modele where libelle='Ranger'), 2500, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Citan'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Sprinter'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Vito'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Kangoo'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Master'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Trafic'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Movano'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Berlingo'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Jumpy'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Jumper'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Transit'), 8000, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='sport'), (select id from modele where libelle='Ranger'), 8000, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Citan'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Sprinter'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Vito'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Kangoo'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Master'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Trafic'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Movano'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Berlingo'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Jumpy'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Jumper'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Transit'), 750, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='climatisation'), (select id from modele where libelle='Ranger'), 750, CURRENT_TIMESTAMP);
