@@ -3,7 +3,7 @@
 class AdministrationController extends Controller{
 
 	public function creerCompte(){
-		if($_SESSION['droits']>=1){
+		if($_SESSION['droits']>=2){
 			$this->render("formCreationCompte");
 		}else{
 			$this->render("erreurAutorisation");

@@ -50,6 +50,11 @@ class Devis extends Model{
         }
         return $returnList;
     }
+
+	static public function delete($devis){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$devis->id);
+		$query->execute();
+	}
 }
 
 ?>

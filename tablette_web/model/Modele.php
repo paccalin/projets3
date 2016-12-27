@@ -44,6 +44,38 @@ class Modele extends Model{
         return $returnList;
     }
 
+	static public function FindByConstructeurID($constructeur_id) {
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE constructeur_id=".$constructeur_id);
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+    }
+
+	static public function FindByLibelle($libelle) {
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE UCASE(libelle)=UCASE('".$libelle."')");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+    }
+
+	static public function insert($modele){
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$modele->libelle."',".$modele->constructeur->id.",CURRENT_TIMESTAMP)");
+		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
+		$query->execute();
+	}
+
 	static public function delete($modele){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$modele->id);
 		$query->execute();

@@ -4,7 +4,8 @@
     border: 0; 
     outline: 0;
     box-sizing: border-box;
-	font-size: 3.5vh
+	font-size: 3.5vh;
+	font-family: Arial,sans-serif;
 }
 
 body{
@@ -69,12 +70,14 @@ label{
 }
 
 input, .input{
-/*input[type="text"],input[type="date"],input[type="time"],input[type="email"]{*/
 	border : solid;
 	border-width: 1px;
 	border-radius: 3px;
 	border-color: #7a828f;
 	background-color: white;
+	min-height: 4vh;
+	-webkit-appearance:none;
+	/* Les 2 dernières lignes pour que ça marche sur IOS sinon ça ne marche pas (ça marche toujours pas parfaitement) */
 }
 
 input:focus{

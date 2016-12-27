@@ -13,17 +13,7 @@ class DevisController extends Controller{
 		$this->render("show", $data);
 	}
 	*/
-	public function afficherTous(){
-		$data=array();
-		$this->render("visualisationDevisTous",$data);
-	}
 	
-	public function rechercher(){
-		if(!isset($_POST['recherche'])){
-			$this->render("rechercheDevis");
-		}
-	}
-
 	public function creer(){	
 		if($_SESSION['droits']>=1){
 			if(!isset($_POST['...'])){//Mettre le premier champ du formulaire de création
@@ -48,6 +38,22 @@ class DevisController extends Controller{
 			}
 		}else{
 			$this->render("erreurAutorisation");
+		}
+	}
+
+	public function afficherTous(){
+		$data=array();
+		$this->render("visualisationDevisTous",$data);
+	}
+	
+	public function afficherParId(){
+		$data=array();
+		$this->render("visualisationDevisParId",$data);
+	}
+
+	public function rechercher(){
+		if(!isset($_POST['recherche'])){
+			$this->render("rechercheDevis");
 		}
 	}
 }
