@@ -25,6 +25,8 @@
 					echo "\n\t\t\t\t<hr class='separateurGrand'>";
 					echo "\n\t\t\t\t<a href='./?r=site/index' class='lien'>\n\t\t\t\t\t<li class='menu'>Accueil</li>\n\t\t\t\t</a>";
 					echo "\n\t\t\t\t<hr class='separateurPetit'>";
+					echo "\n\t\t\t\t<a href='./?r=Search/view_page' class='lien'>\n\t\t\t\t\t<li class='menu'>Recherche</li>\n\t\t\t\t</a>";
+					echo "\n\t\t\t\t<hr class='separateurPetit'>";
 					echo "\n\t\t\t\t<a href='./?r=Diapo/view_diapo' class='lien'>\n\t\t\t\t\t<li class='menu'>Diapo</li>\n\t\t\t\t</a>";
 					if($_SESSION['droits']>=1){
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
