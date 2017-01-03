@@ -13,6 +13,8 @@ if (isset($windowData["photoList"]))
 else
 	$photoList = array();
 
-echo showSearchBar();
-echo showTiles($photoList);
+echo "<div id='searchView'>";
+	echo showSearchBar();
+	echo showTiles($photoList);
+echo "</div>";
 ?>

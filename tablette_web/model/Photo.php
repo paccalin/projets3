@@ -30,10 +30,23 @@ class Photo extends Model{
         }
         return null;
     }
-        
 
     static public function FindAll() {
         $query = db()->prepare("SELECT photo_id FROM ".self::$tableName);
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["photo_id"]));
+            }
+        }
+        return $returnList;
+    }
+
+    static function FindByVehicule($pVehicleId){
+        $query = db()->prepare("SELECT photo_id FROM ".self::$tableName." WHERE vehicule_id = ?");
+        $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

@@ -31,9 +31,8 @@ class Option extends Model{
         return null;
     }
 
-    static function FindByVehicule($pVehicleId){
-        $query = db()->prepare("SELECT option_id FROM join_vehicule_option WHERE vehicule_id = ?");
-        $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
+    static public function FindAll() {
+        $query = db()->prepare("SELECT option_id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -45,8 +44,9 @@ class Option extends Model{
         return $returnList;
     }
 
-    static public function FindAll() {
-        $query = db()->prepare("SELECT option_id FROM ".self::$tableName);
+    static function FindByVehicule($pVehicleId){
+        $query = db()->prepare("SELECT option_id FROM join_vehicule_option WHERE vehicule_id = ?");
+        $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

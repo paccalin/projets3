@@ -1,10 +1,12 @@
 :root {
+	--diapoView-bande-numberOfElem: 7;
 	--DiapoView-height: 90vh;
 	--DiapoView-width: 100vw;
 	--DiapoView-diapo-width: 80vw;
 	--DiapoView-diapo-height: 80vh;
-	--DiapoView-bande-height: calc(var(--DiapoView-height) - var(--DiapoView-diapo-height));;
-	--DiapoView-bande-elemWidth: calc(var(--DiapoView-diapo-width) / 7);
+	--DiapoView-bande-height: calc(var(--DiapoView-height) - var(--DiapoView-diapo-height));
+	--DiapoView-bande-elemWidth: calc(var(--DiapoView-diapo-width) / var(--diapoView-bande-numberOfElem));
+	--DiapoView-desc-padding: calc(calc(var(--DiapoView-width) - var(--DiapoView-diapo-width)) / 10);
 }
 
 #DiapoView{
@@ -88,6 +90,8 @@
 .aDesc{
 	width: 100%;
 	height: 100%;
+	padding: var(--DiapoView-desc-padding);
+	overflow: auto;
 }
 
 .aDesc h3, .aDesc h4, .aDesc p{

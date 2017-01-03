@@ -1,6 +1,41 @@
 :root {
+	--SearchView-Mosaic-RowSize: 5;
 	--SearchView-height: 90vh;
 	--SearchView-width: 100vw;
-	--SearchView-bar-height: 20vh;
+	--SearchView-bar-height: 10vh;
+	--SearchView-Mosaic-height: calc(var(--SearchView-height) - var(--SearchView-bar-height));
+	--SearchView-Tile-width: calc(var(--SearchView-width) / var(--SearchView-Mosaic-RowSize));
+	--SearchView-Tile-height: calc(var(--SearchView-Tile-width) * 9 / 16);
+
 }
 
+#searchView{
+	height: var(--SearchView-height);
+	width: var(--SearchView-width);
+	overflow: auto;
+}
+
+.searchBar{
+	height: var(--SearchView-bar-height);
+	width: var(--SearchView-width);
+	background-color: black;
+}
+
+.mosaicContainer{
+	height: var(--SearchView-Mosaic-height);
+	width: var(--SearchView-width);
+
+	overflow: auto;
+}
+
+.aTile{
+	display: inline-block;
+	height: var(--SearchView-Tile-height);
+	width: var(--SearchView-Tile-width);
+	overflow: none;
+}
+.aTile a{
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}

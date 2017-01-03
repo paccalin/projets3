@@ -1,6 +1,9 @@
 <?php
 
 class SearchController extends Controller {
+	public function index(){
+		$this->view_page();
+	}
 
 	public function view_page(){
 		$d = array();
