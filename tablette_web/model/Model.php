@@ -2,7 +2,7 @@
 
 abstract class Model {
 	public function __construct(){
-    	}
+    }
 
 	public function __get($fieldName) {
 		$varName = $fieldName;
@@ -11,6 +11,7 @@ abstract class Model {
 		else
 			throw new Exception("Unknown attribute: ".$fieldName);
 	}
+
 	public function __set($fieldname,$value) {
 	        $this->$fieldname = $value;
 	}

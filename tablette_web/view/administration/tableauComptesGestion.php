@@ -1,4 +1,4 @@
-<table id="tableUsers">
+<table class="tableAffichage">
 	<tr><th>Pseudo</th><th>Droits</th><th>Modifier droits</th><th>Supprimer</th><th>Modifier mot de passe</th></tr>
 	<?php
 		foreach($data as $user){

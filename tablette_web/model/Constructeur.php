@@ -15,14 +15,14 @@ class Constructeur extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE constructeur_id = ?");
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $id = $row['constructeur_id'];
-            $libelle = $row['constructeur_libelle'];
-            $dateInsertion = $row['constructeur_date_insertion'];
+            $id = $row['id'];
+            $libelle = $row['libelle'];
+            $dateInsertion = $row['date_insertion'];
             return new Constructeur($libelle, $dateInsertion, $id);
         }
         return null;
@@ -30,16 +30,35 @@ class Constructeur extends Model{
 
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT constructeur_id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["constructeur_id"]));
+                array_push($returnList, self::FindById($row["id"]));
             }
         }
         return $returnList;
     }
+
+	static public function FindByLibelle($libelle) {
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE UCASE(libelle) = UCASE('".$libelle."')");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+    }
+
+	static public function insert($constructeur){
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$constructeur->libelle."',CURRENT_TIMESTAMP)");
+		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
+		$query->execute();
+	}
 }
 ?>

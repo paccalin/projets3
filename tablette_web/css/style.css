@@ -4,11 +4,18 @@
     border: 0; 
     outline: 0;
     box-sizing: border-box;
+	font-size: 3.5vh;
+	font-family: Arial,sans-serif;
 }
 
 body{
 	height: 100vh;
 	width: 100vw;
+	overflow: hiden;
+}
+
+.erreursSaisie{
+	color: red;
 }
 
 a{
@@ -22,6 +29,7 @@ a{
 header{
     height: 10vh;
     width: 100vw;
+	overflow: hidden;
 }
 
 header img{
@@ -39,6 +47,7 @@ section{
 }
 
 #contenu{
+	/* Pourquoi en absolute? le footer ne s'affiche pas correctement du coup */
 	position: absolute;
 	top: 10vh;
 }
@@ -53,7 +62,6 @@ label, input,.input{
 	margin-left: 1%;
 	margin-right: 1%;
 	margin-top: 0.25%;
-	font-size: 1.25em;
 }
 
 label{
@@ -62,12 +70,14 @@ label{
 }
 
 input, .input{
-/*input[type="text"],input[type="date"],input[type="time"],input[type="email"]{*/
 	border : solid;
 	border-width: 1px;
 	border-radius: 3px;
 	border-color: #7a828f;
 	background-color: white;
+	min-height: 4vh;
+	-webkit-appearance:none;
+	/* Les 2 dernières lignes pour que ça marche sur IOS sinon ça ne marche pas (ça marche toujours pas parfaitement) */
 }
 
 input:focus{
@@ -88,45 +98,45 @@ input[type="submit"]:focus{
 	background-color: #0fa2d5;
 	color: white;
 	font-weight: bold;
+	-webkit-appearance:none;
 }
 
 .form_boutons{
 	text-align: center;
 }
 
-#tableUsers{
+.tableAffichage{
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 1.25em;
 	width: 80%;
 }
 
-#tableUsers th{
+.tableAffichage th{
 	text-align: center;
 	background-color: #0fa2d5;
-	width: 40%;
 	color: white;
 }
 
-#tableUsers td{
+.tableAffichage td a{
 	text-align: center;
-	width: 40%;
 	color: #7a828f;
 }
 
 .boutonTableUser{
+	font-size: 4vh;
 	margin-left: auto;
 	margin-right: auto;
 	border: solid;
 	border-radius: 2px;
 	border-width: 1px;
-	height: 3vh;
-	width: 3vh;
+	height: 5vh;
+	width: 5vh;
 	background-color: #e6edf2;
 	color: #7a828f;
 }
 
 .boutonTableUserDesactive {
+	text-align:center;
 	color: white;
 	text-decoration: none;
 }

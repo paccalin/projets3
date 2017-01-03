@@ -19,17 +19,17 @@ class Utilisateur extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE utilisateur_id = ?");
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
 		if ($query->rowCount() > 0){
 			$results = $query->fetchAll();
 			foreach ($results as $row) {
-				$id = $row['utilisateur_id'];
-				$pseudo = $row['utilisateur_pseudo'];
-				$motDePasse = $row['utilisateur_motDePasse'];
-				$droits = $row['utilisateur_droits'];   
-				$dateInsertion = $row['utilisateur_date_insertion'];
+				$id = $row['id'];
+				$pseudo = $row['pseudo'];
+				$motDePasse = $row['motDePasse'];
+				$droits = $row['droits'];   
+				$dateInsertion = $row['date_insertion'];
 			}
             		return new Utilisateur($pseudo, $motDePasse, $droits, $dateInsertion, $id);
 		}
@@ -37,45 +37,45 @@ class Utilisateur extends Model{
     }
 
     static public function FindByPseudo($pUserName) {
-        $query = db()->prepare("SELECT utilisateur_id FROM ".self::$tableName." WHERE utilisateur_pseudo = ?");
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE pseudo = ?");
         /*$query->bindParam(1, self::$pUserName, PDO::PARAM_STR);*/
 	$query->bindParam(1, $pUserName, PDO::PARAM_STR);
         $query->execute();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                return self::FindById($row["utilisateur_id"]);
+                return self::FindById($row["id"]);
             }
         }
         return null;
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT utilisateur_id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["utilisateur_id"]));
+                array_push($returnList, self::FindById($row["id"]));
             }
         }
         return $returnList;
     }
 
 	static public function insert($user){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$user->pseudo."','".$user->motDePasse."',".$user->droits.",DEFAULT)");
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$user->pseudo."','".$user->motDePasse."',".$user->droits.",CURRENT_TIMESTAMP)");
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
 	}
 
 	static public function update($user){
-		$query = db()->prepare("UPDATE ".self::$tableName." SET utilisateur_pseudo='".$user->pseudo."', utilisateur_motDePasse='".$user->motDePasse."', utilisateur_droits=".$user->droits." WHERE utilisateur_id=".$user->id);
+		$query = db()->prepare("UPDATE ".self::$tableName." SET pseudo='".$user->pseudo."', motDePasse='".$user->motDePasse."', droits=".$user->droits." WHERE id=".$user->id);
 		$query->execute();
 	}
 
 	static public function delete($user){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE utilisateur_id=".$user->id);
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$user->id);
 		$query->execute();
 	}
 }

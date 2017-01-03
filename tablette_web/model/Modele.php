@@ -17,31 +17,68 @@ class Modele extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE modele_id = ?");
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $id = $row['modele_id'];
-            $libelle = $row['modele_libelle'];
+            $id = $row['id'];
+            $libelle = $row['libelle'];
             $constructeur = Constructeur::FindById($row['constructeur_id']);
-            $dateInsertion = $row['modele_date_insertion'];     
+            $dateInsertion = $row['date_insertion'];     
             return new Modele($libelle, $constructeur, $dateInsertion, $id);
         }
         return null;
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT modele_id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["modele_id"]));
+                array_push($returnList, self::FindById($row["id"]));
             }
         }
         return $returnList;
     }
+
+	static public function FindByConstructeurID($constructeur_id) {
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE constructeur_id=".$constructeur_id);
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+    }
+
+	static public function FindByLibelle($libelle) {
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE UCASE(libelle)=UCASE('".$libelle."')");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+    }
+
+	static public function insert($modele){
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$modele->libelle."',".$modele->constructeur->id.",CURRENT_TIMESTAMP)");
+		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
+		$query->execute();
+	}
+
+	static public function delete($modele){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$modele->id);
+		$query->execute();
+	}
 }
 ?>

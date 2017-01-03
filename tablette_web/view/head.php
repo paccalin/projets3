@@ -16,6 +16,10 @@
 		
 	</head>
 	<?php
+		if(!isset($_SESSION['droits'])){
+			$_SESSION['droits']=0;
+			$_SESSION['identifiant']="";
+		}
 		/*
 		print("  //code à enlever dans head.php//  ");
 		print_r($_SESSION);

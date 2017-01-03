@@ -9,15 +9,16 @@
 
 #menuDiv{
 	top: 10vh;
-	display: none;
 	position: absolute;
 	max-width: 100vw;
-	right: -300px;
+	background-color: #e6edf2;
+	/*right: -300px;*/
+	right: 0px;
+    z-index: 50;
 }
 
-#menuDiv{
-	right: 0px;
-	background-color: #e6edf2;
+.cache{
+	display: none;
 }
 
 #menuUl{
@@ -45,6 +46,12 @@
 	text-align: center;
 	color: #7a828f;
 	text-decoration: none;
+}
+
+#menuDeroulantPseudo{
+	text-align: center;
+	color: #7a828f;
+	list-style-type: none;
 }
 
 .separateurPetit{

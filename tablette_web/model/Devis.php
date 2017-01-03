@@ -21,17 +21,17 @@ class Devis extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId){
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE devis_id = ?");
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $id = $row['devis_id'];
+            $id = $row['id'];
             $client = Client::FindById($row['client_id']);
             $utilisateur = Utilisateur::FindById($row['utilisateur_id']);
-            $path = $row['devis_path'];
-            $actif = $row['devis_actif'];
-            $dateInsertion = $row['devis_date_insertion'];       
+            $path = $row['path'];
+            $actif = $row['actif'];
+            $dateInsertion = $row['date_insertion'];       
             return new Devis($client, $utilisateur, $path, $actif, $dateInsertion, $id);
         }
         return null;
@@ -39,17 +39,22 @@ class Devis extends Model{
 
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT devis_id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["devis_id"]));
+                array_push($returnList, self::FindById($row["id"]));
             }
         }
         return $returnList;
     }
+
+	static public function delete($devis){
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$devis->id);
+		$query->execute();
+	}
 }
 
 ?>
