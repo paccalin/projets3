@@ -42,7 +42,7 @@ class OptionController extends Controller{
 				}else{
 					$option = new Option($_POST['libelle'],$_POST['description'],$_POST['prixDeBase']);
 					Option::insert($option);
-					header('Location: ./?r=option/visualiserModifier&option=1');
+					//header('Location: ./?r=option/visualiserModifier&option=1');
 				}
 			}
 		}else{
@@ -54,50 +54,37 @@ class OptionController extends Controller{
 		if($_SESSION['droits']>=2){
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
-			//$data['option'] = ["libelle"=>$optionObj->libelle,"description"=>$optionObj->desc,"prixDeBase"=>$optionObj->prixDeBase,"prixMoyen"=> number_format(Option::moyenneTarifByID($_GET['option']), 0,'','')];
 			$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
 			if(!isset($_POST['submit'])){
 				$this->render("formModifierOption",$data);
+				if(isset($_POST['cancel'])){
+					//                                *** GERER L'ANNULATION
+				}
 			}else{
-				if(!isset($_POST['cancel'])){
-					$data['erreursSaisie']=[];
-					if(false){
-						array_push($data['erreursSaisie'],'erreur');
-					}
-					if($data['erreursSaisie']!=[]){
-						$this->render("formModifierOption",$data);
-					}else{
-						$joins=[];
-						foreach ($_POST as $post=>$postValue){
-							if($post!="submit"){
-								array_push($joins,["id"=>$post,"tarif"=>$postValue]);
-							}
-						}
-						Option::updateJoinModeleOption($data['option'],$joins);
-						$this->render("formModifierOption",$data);
-					}
+				$data['erreursSaisie']=[];
+				if(false){
+					array_push($data['erreursSaisie'],'erreur');
+				}
+				if($data['erreursSaisie']!=[]){
+					$this->render("formModifierOption",$data);
 				}else{
-					//Gérer le cas du cancel
+					$joins=[];
+					foreach ($_POST as $post=>$postValue){
+						if($post!="submit"){
+							array_push($joins,["id"=>$post,"tarif"=>$postValue]);
+						}
+					}
+					Option::updateJoinModeleOption($data['option'],$joins);
+					$data['option'] = Option::findByID($_GET['option']);
+					$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
+					$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
+					$this->render("formModifierOption",$data);
 				}
 			}
 		}else{
 			$this->render("erreurAutorisation");
 		}	
 	}
-	/*
-	Plus utilisé -> visualiserModifier avec gestion de droits
-	public function visualiser(){
-		if($_SESSION['droits']>=1){
-			$optionObj = Option::findByID($_GET['option']);
-			$data['option'] = ["libelle"=>$optionObj->libelle,"description"=>$optionObj->desc,"prixDeBase"=>$optionObj->prixDeBase,"prixMoyen"=>
-number_format(Option::moyenneTarifByID($_GET['option']), 0,'','')];
-			$data['joinVehiculeOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
-			$this->render("formVisualiserOption",$data);
-		}else{
-			$this->render("erreurAutorisation");
-		}	
-	}
-	*/
 }
 
 ?>

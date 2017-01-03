@@ -34,7 +34,7 @@ class Option extends Model{
         return null;
     }
 
-    static function FindByVehicule($pVehicleId){
+    static public function FindByVehicule($pVehicleId){
         $query = db()->prepare("SELECT id FROM join_vehicule_option WHERE vehicule_id = ?");
         $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
         $query->execute();
@@ -48,7 +48,7 @@ class Option extends Model{
         return $returnList;
     }
 
-	static function FindByLibelle($pLibelle){
+	static public function FindByLibelle($pLibelle){
         $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE libelle='".$pLibelle."'");
         $query->bindParam(1, $pLibelle, PDO::PARAM_INT);
         $query->execute();
@@ -83,7 +83,7 @@ class Option extends Model{
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList,['modele'=>$row['modele_id'],'prix'=>$row['prix']]);
+                array_push($returnList,['id'=>$row['id'],'modele'=>Option::FindByID($optionId),'modele'=>Modele::FindByID($row['modele_id']),'prix'=>$row['prix']]);
             }
         }
         return $returnList;
@@ -101,14 +101,38 @@ class Option extends Model{
     }
 
 	static public function insert($option){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP)");
-		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
-		/*
-			INSERER TOUS LES JOIN_MODELE_OPTION ICI
-		*/
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP); SELECT LAST_INSERT_ID();");
+		echo "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP); SELECT LAST_INSERT_ID();";
+		$id=$query->execute();
+		print_r($id);
+		$modeles = Modele::FindAll();
+		//print_r($modeles);	//***     Est vide alors que print_r(Modele::FindAll()) marche
+		$requete="";
+		foreach(Modele::FindAll() as $modele){
+			$requete.="INSERT INTO join_modele_option VALUES(DEFAULT,".$id.",".$modele->id.",123,CURRENT_TIMESTAMP);";
+		}
+		if(Modele::FindAll()!=[]){
+			echo $requete;
+			$query=db()->prepare($requete);
+			$query->execute();
+		}else{
+			echo 'array vide';
+		}
 		$query->execute();
 	}
 
+	static public function updateJoinModeleOption($option,$joins){
+		$requete="";
+		foreach($joins as $joinModeleOption){
+			$requete.="UPDATE join_modele_option SET prix=".$joinModeleOption['tarif']." WHERE id=".$joinModeleOption['id'].";";	
+		}
+		if($joins!=[]){
+			//echo $requete;
+			$query=db()->prepare($requete);
+			$query->execute();
+		}
+	}
+	
 	static public function delete($option){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$option->id);
 		$query->execute();
