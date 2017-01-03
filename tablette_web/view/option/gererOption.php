@@ -2,7 +2,7 @@
 	<tr><th>Libelle</th><th>Prix de base</th></tr>
 	<?php
 		foreach($data['options'] as $option){
-			echo"<tr><td><a href='./?r=option/visualiser&option=".$option['id']."'>".$option['libelle']."</a></td><td>".$option['prixDeBase']." €</td></tr>";
+			echo"<tr><td><a href='./?r=option/visualiserModifier&option=".$option['id']."'>".$option['libelle']."</a></td><td>".$option['prixDeBase']." €</td></tr>";
 		}
 	?>
 </table>
