@@ -15,6 +15,8 @@
 				echo "<script type='text/javascript' src='./js/searchView.js'></script>";
 			if(isset($data["Diapo/main"]))
 				echo "<script type='text/javascript' src='./js/diapo.js'></script>";
+			if(isset($data["Devis/creer"]))
+				echo "<script type='text/javascript' src='./js/searshCustomer.js'></script>";
 		?>
 	</body>
 </html>

@@ -16,8 +16,19 @@ class DevisController extends Controller{
 	
 	public function creer(){	
 		if($_SESSION['droits']>=1){
-			if(!isset($_POST['...'])){//Mettre le premier champ du formulaire de création
-				$this->render("formCreationDevis");
+			if(!isset($_POST['constructeur'])){//Mettre le premier champ du formulaire de création
+				
+					$constructeurs = Constructeur::FindAll();
+				
+					$modeles = Modele::FindAll();
+
+					$options = Option::FindAll();					
+
+					$data["Devis/creer"] = array();
+					
+					$data["Devis/creer"] = ['constructeurs'=>$constructeurs, 'modeles'=>$modeles, 'options'=>$options];
+					
+					$this->render("formCreationDevis",$data);
 			}else{
 				$data=array();
 				$data['erreursSaisie']=array();
@@ -27,10 +38,10 @@ class DevisController extends Controller{
 				if(false){
 					array_push($data['erreurSaisies'],"Erreur de saisie 2");
 				}
-				if(false){
+				if(true){
 					array_push($data['erreurSaisies'],"Erreur de saisie 3");
 				}
-				if($data['erreurSaisies']!=[]){
+				if($data['erreurSaisies']!=[]){	
 					$this->render("formCreationDevis",$data);
 				}else{
 					/* $devis = new Devis() + insertDb */
