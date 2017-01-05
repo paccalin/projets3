@@ -8,7 +8,7 @@
 		echo "</p>";
 	}
 ?>
-<table class='tableAffichage'>
+<table class='tableAffichage' action=''>
 	<tr><th>Libelle</th><th>Description</th><th>Prix de base</th><th>Prix moyen pratiqué</th></tr>
 	<?php
 		echo"<tr><td>".$data['option']->libelle."</td><td>".$data['option']->desc."</td><td>".$data['option']->prixDeBase." €</td><td>".$data['moyenneTarif']." €</td></tr>";

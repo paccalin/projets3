@@ -101,24 +101,27 @@ class Option extends Model{
     }
 
 	static public function insert($option){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP); SELECT LAST_INSERT_ID();");
-		echo "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP); SELECT LAST_INSERT_ID();";
-		$id=$query->execute();
-		print_r($id);
-		$modeles = Modele::FindAll();
-		//print_r($modeles);	//***     Est vide alors que print_r(Modele::FindAll()) marche
-		$requete="";
-		foreach(Modele::FindAll() as $modele){
-			$requete.="INSERT INTO join_modele_option VALUES(DEFAULT,".$id.",".$modele->id.",123,CURRENT_TIMESTAMP);";
-		}
-		if(Modele::FindAll()!=[]){
-			echo $requete;
-			$query=db()->prepare($requete);
-			$query->execute();
-		}else{
-			echo 'array vide';
-		}
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP)");
 		$query->execute();
+		$query = db()->prepare("SELECT LAST_INSERT_ID() as id");
+		$query->execute();
+		$int='ERREUR';
+		while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+			$int=$row['id'];
+			$modeles = Modele::FindAll();
+			$requete="";
+			foreach(Modele::FindAll() as $modele){
+				$requete.="INSERT INTO join_modele_option VALUES(DEFAULT,".$row['id'].",".$modele->id.",".$option->prixDeBase.",CURRENT_TIMESTAMP);";
+			}
+			if(Modele::FindAll()!=[]){
+				$query=db()->prepare($requete);
+				$query->execute();
+			}else{
+				echo 'array vide';
+			}
+			$query->execute();
+		}
+		return $int;
 	}
 
 	static public function updateJoinModeleOption($option,$joins){
@@ -127,7 +130,6 @@ class Option extends Model{
 			$requete.="UPDATE join_modele_option SET prix=".$joinModeleOption['tarif']." WHERE id=".$joinModeleOption['id'].";";	
 		}
 		if($joins!=[]){
-			//echo $requete;
 			$query=db()->prepare($requete);
 			$query->execute();
 		}
