@@ -1,8 +1,10 @@
+var nombreId = '';
+
 $('#ajouter').click(function(){
 	
-	var options = $("span").html();
+	var options = $("#option").html();
 	
-	$('#divOptions').prepend("<span class='spanOptions'>"+options+"</span>");
+	$('#divOptions').prepend("<span class='spanOptions'><select id='option"+nombreId+"' class='input'>"+options+"</select></span>");
 });
 
 $('#constructeurs').change(function(){
@@ -12,3 +14,9 @@ $('#constructeurs').change(function(){
 	
 	$('.'+constructeur).css('display', 'block');
 });
+
+/*
+$('#rechercher').click(function(){
+	
+});
+*/
