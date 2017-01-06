@@ -12,7 +12,7 @@
 <form action='?r=devis/creer' method='post'>
 
 	
-		<select name='constructeurs' id='constructeurs'>
+		<select name='constructeurs' id='constructeurs' class='input'>
 			<option value="null">-- defaut --</option>
 			<?php
 				foreach($data["Devis/creer"]['constructeurs'] as $constructeur){
@@ -20,7 +20,7 @@
 				}
 			?>
 		</select>
-		<select name='modeles' id='modeles'>
+		<select name='modeles' id='modeles' class='input'>
 			<option value="null">-- defaut --</option>
 			<?php
 				foreach($data["Devis/creer"]['modeles'] as $modele){
@@ -30,13 +30,15 @@
 		</select>
 
 		<label for='client'>client : </label>
-		<input type='text' name='client' id='client'/>
+		
+		<!-- sera sous la forme 'ID NOM PRENOM'-->
+		<input type='text' name='client' id='client' class='input'/>
 		<input type='button' id='rechercher' name='rechercher' value='rechercher'/>
 		
 		<label for='options'>Options : </label>
 		<div id='divOptions'>
 			<span id='uneOption' class='spanOptions'>
-				<select>
+				<select id='option' class='input'>
 					<option value='null'>-- defaut --</option>
 					<?php
 						foreach($data["Devis/creer"]['options'] as $option){
