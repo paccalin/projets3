@@ -7,7 +7,6 @@
 		echo "</p>";
 	}
 ?>
-
 <form action='./?r=constructeursModeles/ajouter&ajout=modele' method='post'>
 	<label for='identifiant'>Constructeur :</label><!--
 	--><select name='constructeur_id' class='input'>

@@ -26,7 +26,14 @@ class ConstructeursModelesController extends Controller{
 		$this->render("tableauAffichageConstructeursModeles",$data);
 	}
 
-	public function afficherModifierModele(){
+	public function afficherModele(){
+		$data['modele']=Modele::findByID($_GET['modele']);
+		$data['constructeur']=$data['modele']->constructeur;
+		$data['joinModeleOption']=Option::findJoinModeleOptionByModeleID($_GET['modele']);
+		$this->render("tableauAffichageModele",$data);
+	}
+
+	public function modifierModele(){
 		$data=array();
 		$data['modele']=Modele::findByID($_GET['modele']);
 		$data['constructeur']=$data['modele']->constructeur;

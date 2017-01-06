@@ -16,7 +16,7 @@
 </table>
 <br/>
 Prix des options pour ce mod&egrave;le:
-<form action='./?r=constructeursModeles/afficherModifierModele<?php echo '&modele='.$_GET['modele']; ?>' method='post'>
+<form action='./?r=constructeursModeles/modifierModele<?php echo '&modele='.$_GET['modele']; ?>' method='post'>
 	<?php
 		foreach($data['joinModeleOption'] as $joinModeleOption){
 			echo "\t<label for='".$joinModeleOption['id']."'>".$joinModeleOption['option']->libelle."</label><input type='text' name='".$joinModeleOption['id']."' id='".$joinModeleOption['option']->id."' value='".$joinModeleOption['prix']."'>€\n";
