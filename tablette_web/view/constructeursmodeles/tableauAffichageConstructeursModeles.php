@@ -2,7 +2,7 @@
 	<tr><th>Constructeurs</th><th>Modèles</th></tr>
 	<?php
 		foreach($data as $row){
-			echo "<tr><td>".$row['constructeur']."</td><td>".$row['modele']."</td></tr>";
+			echo "<tr><td><a href='./?r=constructeursModeles/afficherConstructeur&constructeur=".$row['constructeur']->id."'>".$row['constructeur']->libelle."</a></td><td><a href='./?r=constructeursModeles/afficherModele&modele=".$row['modele']->id."'>".$row['modele']->libelle."</a></td></tr>";
 		}
 	?>
 </table>
