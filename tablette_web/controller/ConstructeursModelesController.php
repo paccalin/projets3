@@ -110,7 +110,7 @@ class ConstructeursModelesController extends Controller{
 				$this->render("choixAjout");
 			}else{
 				if($_GET['ajout']=="constructeur"){
-					if(isset($_POST['libelle'])){
+					if(isset($_POST['submit'])){
 						$data['erreursSaisie']=array();
 						if(strlen(trim($_POST['libelle']))==0){
 							array_push($data['erreursSaisie'],'Le libelle ne soit pas être une chaîne vide');
@@ -126,11 +126,15 @@ class ConstructeursModelesController extends Controller{
 							$this->afficher();
 						}
 					}else{
-						$this->render("formAjoutConstructeur");
+						if(!isset($_POST['cancel'])){
+							$this->render("formAjoutConstructeur");
+						}else{
+							header('Location: ./?r=constructeursModeles/afficher');
+						}
 					}
 				}
 				elseif($_GET['ajout']=="modele"){
-					if(isset($_POST['libelle'])){
+					if(isset($_POST['submit'])){
 						$data['erreursSaisie']=array();
 						if(strlen(trim($_POST['libelle']))==0){
 							array_push($data['erreursSaisie'],'Le libelle ne soit pas être une chaîne vide');
@@ -156,7 +160,11 @@ class ConstructeursModelesController extends Controller{
 						foreach($constructeursObj as $constructeurObj){
 							array_push($data['constructeurs'],["id"=>$constructeurObj->id,"libelle"=>$constructeurObj->libelle]);
 						}
-						$this->render("formAjoutModele",$data);
+						if(!isset($_POST['cancel'])){
+							$this->render("formAjoutModele");
+						}else{
+							header('Location: ./?r=constructeursModeles/afficher');
+						}
 					}
 				}
 			}
