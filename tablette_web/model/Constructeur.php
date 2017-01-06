@@ -60,5 +60,11 @@ class Constructeur extends Model{
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
 	}
+	
+	static public function update($constructeur){
+		$query = db()->prepare("UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id=".$constructeur->id);
+		echo "UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id=".$constructeur->id;
+		$query->execute();
+	}
 }
 ?>

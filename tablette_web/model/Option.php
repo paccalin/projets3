@@ -88,6 +88,19 @@ class Option extends Model{
         }
         return $returnList;
     }
+	
+	static public function findJoinModeleOptionByModeleID($modeleId){
+        $query = db()->prepare("SELECT * FROM join_modele_option WHERE modele_id=".$modeleId);
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($row['option_id']),'modele'=>Modele::FindByID($modeleId),'prix'=>$row['prix']]);
+            }
+        }
+        return $returnList;
+    }
 
 	static public function moyenneTarifByID($optionId) {
         $query = db()->prepare("SELECT AVG(prix) as moyenne FROM join_modele_option WHERE option_id=".$optionId);
