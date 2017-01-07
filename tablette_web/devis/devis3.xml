@@ -9,31 +9,28 @@
     <ville>1075 Montagnat</ville>
   </societe>
   <reference>
-    <identifiant>1</identifiant>
+    <identifiant>3</identifiant>
     <date>2017-01-07 11:49:32</date>
-    <num_client>1</num_client>
+    <num_client>2</num_client>
   </reference>
   <client>
-    <nom>Martin</nom>
-    <prenom>Jean</prenom>
-    <telephone>0450672184</telephone>
+    <nom>Guy</nom>
+    <prenom>Matis</prenom>
+    <telephone>0450642784</telephone>
   </client>
   <options>
     <option_1>
       <libelle>couleur</libelle>
-      <prix>3200</prix>
+      <prix>3 200,00</prix>
     </option_1>
     <option_2>
-      <libelle>rally</libelle>
-      <prix>2500</prix>
+      <libelle>benne</libelle>
+      <prix>2 100,00</prix>
     </option_2>
     <option_3>
-      <libelle>sport</libelle>
-      <prix>8000</prix>
-    </option_3>
-    <option_4>
       <libelle>climatisation</libelle>
-      <prix>2000</prix>
-    </option_4>
+      <prix>2 000,00</prix>
+    </option_3>
   </options>
+  <total>7 300,00</total>
 </devis>

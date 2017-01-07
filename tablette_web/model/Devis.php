@@ -1,11 +1,12 @@
 <?php
 class Devis extends Model{
-    public function __construct($pClient, $pUtilisateur, $pPath, $pActif, $pDateInsertion,$pId=null){
+    public function __construct($pClient, $pUtilisateur, $pPath, $pActif, $pModele,$pDateInsertion,$pId=null){
         $this->id = $pId;
         $this->client = $pClient;
         $this->utilisateur = $pUtilisateur;
         $this->path = $pPath;
         $this->actif = $pActif;
+		$this->modele = $pModele;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -18,6 +19,7 @@ class Devis extends Model{
     protected $utilisateur;
     protected $path;
     protected $actif;
+	protected $modele;
     protected $dateInsertion;
 
     static public function FindByID($pId){
@@ -31,12 +33,12 @@ class Devis extends Model{
             $utilisateur = Utilisateur::FindById($row['utilisateur_id']);
             $path = $row['path'];
             $actif = $row['actif'];
+			$modele = Modele::FindByID($row['modele_id']);
             $dateInsertion = $row['date_insertion'];       
-            return new Devis($client, $utilisateur, $path, $actif, $dateInsertion, $id);
+            return new Devis($client, $utilisateur, $path, $actif, $modele, $dateInsertion, $id);
         }
         return null;
     }
-
 
     static public function FindAll() {
         $query = db()->prepare("SELECT id FROM ".self::$tableName);
@@ -50,6 +52,19 @@ class Devis extends Model{
         }
         return $returnList;
     }
+
+	static public function FindJoinOptionsByDevisID($devisID) {
+		$query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id IN ( SELECT option_id FROM join_devis_option WHERE devis_id=".$devisID.") AND modele_id=".Devis::FindByID($devisID)->modele->id);
+		$query->execute();
+		$returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList,['option'=>Option::FindByID($row['option_id']),'prix'=>$row['prix']]);
+            }
+        }
+        return $returnList;
+	}
 
 	static public function delete($devis){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$devis->id);

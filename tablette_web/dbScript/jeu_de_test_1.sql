@@ -86,7 +86,8 @@ insert into utilisateur values (default, 'commercial5', '123', 1, CURRENT_TIMEST
 /*=== Devis ===*/
 
 insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis1.xml', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
-insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.xml', 1, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
+insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.xml', 0, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
+insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.xml', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
 
 /*=== Rendezvous ===*/
 
@@ -112,7 +113,14 @@ insert into join_vehicule_option values (default, 10, (select id from options wh
 
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 1, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='sport'), 1, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rally'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 2, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='luxe'), 2, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='passager'), 2, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 3, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='benne'), 3, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 3, CURRENT_TIMESTAMP);
 
 /*=== JoinModeleOption ===*/
 insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);
