@@ -85,9 +85,9 @@ insert into utilisateur values (default, 'commercial5', '123', 1, CURRENT_TIMEST
 
 /*=== Devis ===*/
 
-insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis1.xml', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
-insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.xml', 0, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
-insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.xml', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
+insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis1.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
+insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.pdf', 0, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
+insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
 
 /*=== Rendezvous ===*/
 

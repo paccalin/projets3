@@ -5,8 +5,8 @@
     <nom>ID Aménagements utilitaires</nom>
     <telephone>0474451739</telephone>
     <mail>id.utilitaires@orange.fr</mail>
-    <adresse>2799, Route Départementale</adresse>
-    <ville>1075 Montagnat</ville>
+    <adresse>2799, Route Départementale 1075</adresse>
+    <ville> Montagnat</ville>
   </societe>
   <reference>
     <identifiant>1</identifiant>
@@ -21,19 +21,20 @@
   <options>
     <option_1>
       <libelle>couleur</libelle>
-      <prix>3200</prix>
+      <prix>3 500,00</prix>
     </option_1>
     <option_2>
       <libelle>rally</libelle>
-      <prix>2500</prix>
+      <prix>2 500,00</prix>
     </option_2>
     <option_3>
       <libelle>sport</libelle>
-      <prix>8000</prix>
+      <prix>8 000,00</prix>
     </option_3>
     <option_4>
       <libelle>climatisation</libelle>
-      <prix>2000</prix>
+      <prix>2 000,00</prix>
     </option_4>
   </options>
+  <total>16 000,00</total>
 </devis>

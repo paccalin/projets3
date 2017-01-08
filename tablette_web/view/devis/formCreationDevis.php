@@ -1,7 +1,8 @@
+<a href='./?r=devis/afficherTous' class='lien'>Retour aux devis</a>
 <?php
-	if(isset($data['erreurSaisies'])){
+	if(isset($data['erreursSaisie']) and $data['erreursSaisie']!=[]){
 		echo "<p class='erreursSaisie'>Le formulaire comporte des erreurs:<br/>";
-		foreach($data['erreurSaisies'] as $erreurSaisie){
+		foreach($data['erreursSaisie'] as $erreurSaisie){
 			echo "-".$erreurSaisie."<br/>";
 		}
 		echo "</p>";
@@ -10,44 +11,46 @@
 
 
 <form action='?r=devis/creer' method='post'>
-
-	
-		<select name='constructeurs' id='constructeurs' class='input'>
-			<option value="null">-- defaut --</option>
+		<label for='constructeur'>Constructeur :</label><!--
+		--><select name='constructeur' id='constructeur' class='input'>
+			<option value="null">-- Sélectionner --</option>
 			<?php
-				foreach($data["Devis/creer"]['constructeurs'] as $constructeur){
+				foreach($data['constructeurs'] as $constructeur){
 					echo '<option value="'.$constructeur->id.'" class="'.$constructeur->libelle.'">'.$constructeur->libelle.'</option>';
 				}
 			?>
-		</select>
-		<select name='modeles' id='modeles' class='input'>
-			<option value="null">-- defaut --</option>
+		</select><!--
+		--><label for='modele'>Modèle :</label><!--
+		--><select name='modele' id='modele' class='input'>
+			<option value="null">-- Sélectionner --</option>
 			<?php
-				foreach($data["Devis/creer"]['modeles'] as $modele){
+				foreach($data['modeles'] as $modele){
 					echo '<option value="'.$modele->id.'"  class="'.$modele->constructeur->libelle.'" display="none" style="display:none">'.$modele->libelle.'</option>';
 				}
 			?>
-		</select>
-
-		<label for='client'>client : </label>
-		
-		<!-- sera sous la forme 'ID NOM PRENOM'-->
-		<input type='text' name='client' id='client' class='input'/>
-		<input type='button' id='rechercher' name='rechercher' value='rechercher'/>
-		
-		<label for='options'>Options : </label>
-		<div id='divOptions'>
-			<span id='uneOption' class='spanOptions'>
-				<select id='option' class='input'>
-					<option value='null'>-- defaut --</option>
-					<?php
-						foreach($data["Devis/creer"]['options'] as $option){
-						echo '<option value="'.$option->id.'">'.$option->libelle.'</option>';
-					}
-					?>
-				</select>
-			</span>
-			<input type='button' value='ajouter' id='ajouter'/>
+		</select><!--
+		--><label for='client'>Client : </label><!--
+		--><select name='client' id='client' class='input'>
+			<option value='null'>-- Sélectionner --</option>
+			<?php
+				foreach($data['clients'] as $client){
+					echo '<option value="'.$client->id.'">'.$client->nom.' '.$client->prenom.'</option>';
+				}
+			?>
+		</select><!--
+		--><input type='text' id='clientFiltrer' class='input'/><!--
+		--><input type='button' id='filtrer' name='filtrer' value='Filtrer'/><!--
+		--><label for='option1' id='labelOption'>Options : </label><!--
+		--><select id='option1' name='option1' class='input'>
+			<option value='null'>-- Sélectionner --</option>
+			<?php
+				foreach($data['options'] as $option){
+				echo '<option value="'.$option->id.'">'.$option->libelle.'</option>';
+			}
+			?>
+		</select><!--
+		--><span class='inputSpacer'></span><!--
+		--><input type='button' value='ajouter' id='ajouter'/>
 		</div>
 
 	<div class="form_boutons">
@@ -56,5 +59,6 @@
 	</div>
 
 </form>
-
-
+<br/>
+<p><i>La création des devis fonctionne mais pas encore les joinOptionsDevis</i></p>
+<script type='text/javascript' src='./js/searchCustomer.js'></script>

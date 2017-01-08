@@ -56,7 +56,7 @@ form{
 	text-align: center;
 }
 
-label, input,.input{
+label, input,.input, .inputSpacer{
 	width: 40%;
 	display:inline-block;
 	margin-left: 1%;
@@ -77,7 +77,7 @@ input, .input{
 	background-color: white;
 	min-height: 4vh;
 	-webkit-appearance:none;
-	/* Les 2 dernières lignes pour que ça marche sur IOS sinon ça ne marche pas (ça marche toujours pas parfaitement) */
+	/* Les 2 dernières lignes pour que ça marche sur IOS et Internet Explorer Mk2 sinon ça ne marche pas*/
 }
 
 input:focus{

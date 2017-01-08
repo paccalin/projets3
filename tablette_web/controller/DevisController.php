@@ -3,36 +3,47 @@ class DevisController extends Controller{
 	
 	public function creer(){	
 		if($_SESSION['droits']>=1){
-			if(!isset($_POST['constructeur'])){//Mettre le premier champ du formulaire de création
-				
-					$constructeurs = Constructeur::FindAll();
-				
-					$modeles = Modele::FindAll();
-
-					$options = Option::FindAll();					
-
-					$data["Devis/creer"] = array();
-					
-					$data["Devis/creer"] = ['constructeurs'=>$constructeurs, 'modeles'=>$modeles, 'options'=>$options];
-					
+			$data['constructeurs']=Constructeur::FindAll();
+			$data['modeles']=Modele::FindAll();
+			$data['options']=Option::FindAll();				
+			$data['clients']=Client::FindAll();		
+			if(!isset($_POST['submit'])){
 					$this->render("formCreationDevis",$data);
 			}else{
-				$data=array();
-				$data['erreursSaisie']=array();
+				//print_r($_POST);
+				$data['erreursSaisie']=[];
 				if(false){
-					array_push($data['erreurSaisies'],"Erreur de saisie 1");
+					array_push($data['erreursSaisie'],"Erreur de saisie 1");
 				}
-				if(false){
-					array_push($data['erreurSaisies'],"Erreur de saisie 2");
+				foreach($_POST as $key=>$value){
+					if($key=='constructeur'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"Aucun constructeur n'est sélectionné");
+						}
+					}
+					if($key=='modele'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"Aucun modèle n'est sélectionné");
+						}
+					}
+					if($key=='client'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"Aucun client n'est sélectionné");
+						}
+					}
 				}
-				if(true){
-					array_push($data['erreurSaisies'],"Erreur de saisie 3");
-				}
-				if($data['erreurSaisies']!=[]){	
+				if($data['erreursSaisie']!=[]){	
 					$this->render("formCreationDevis",$data);
 				}else{
-					
-					echo("<script type='text/javascript'>alert('yop')</script>");
+					$client = Client::FindByID($_POST['client']);
+					$utilisateur = Utilisateur::FindByPseudo($_SESSION['identifiant']);
+					$newId = Devis::getNewID();
+					$modele = Modele::FindByID($_POST['modele']);
+					$devis = new Devis($client, $utilisateur, 'devis/devis'.$newId.'.pdf', 1, $modele,null);
+					Devis::insert($devis);
+				}
+				/*else{
+					echo("<script type='text/javascript'>alert('A quoi sert ce message?')</script>");
 					
 					$modele = null;
 					$client = null;
@@ -43,20 +54,20 @@ class DevisController extends Controller{
 							if($value!=null){
 								$modele = $value;
 							}else{
-								//definir si null
+								//definir si null -> Ca aurait fait une erreur de saisie à gérer donc ça aurait du se gérer plus haut au dessus du else
 							}
 						}elseif($key=='client'){
 							if($value!=null){
 								$idClient = substr($value, 0, 2);
 								$client = Client::FindById($idClient);
 							}else{
-								//definir si null
+								//definir si null -> Ca aurait fait une erreur de saisie à gérer donc ça aurait du se gérer plus haut au dessus du else
 							}
 						}elseif(strstr($key, 'option')){
 							if($value!=null){
 								array_push($options, $value);
 							}else{
-								//definir si null
+								//definir si null -> Ca aurait fait une erreur de saisie à gérer donc ça aurait du se gérer plus haut au dessus du else
 							}
 						}
 						
@@ -83,7 +94,7 @@ class DevisController extends Controller{
 							//definir si une des valeurs est null alors
 						}
 					}
-				}
+				}*/
 			}
 		}else{
 			$this->render("erreurAutorisation");
@@ -109,6 +120,7 @@ class DevisController extends Controller{
 	}
 
 	public function genererXML(){
+		/* C'est pas très beau mais ça affiche bien les données -> on pourra toujours en faire un truc */
 		$data['devis']=Devis::FindByID($_GET['devis']);
 		$data['client']=$data['devis']->client;
 		$data['joinOptions']=Devis::FindJoinOptionsByDevisID($_GET['devis']);

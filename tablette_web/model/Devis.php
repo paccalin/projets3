@@ -66,6 +66,20 @@ class Devis extends Model{
         return $returnList;
 	}
 
+	static public function getNewID(){
+		$query = db()->prepare("SELECT max(id)+1 as newId FROM ".self::$tableName);
+		$query->execute();
+        if($query->rowCount()>0){
+		 	$row = $query->fetch(PDO::FETCH_ASSOC);
+			return $row['newId'];
+        }
+	}
+	
+	static public function insert($devis){
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,".$devis->client->id.",".$devis->utilisateur->id.",'".$devis->path."',".$devis->actif.",".$devis->modele->id.",CURRENT_TIMESTAMP)");
+		$query->execute();
+	}
+
 	static public function delete($devis){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$devis->id);
 		$query->execute();
