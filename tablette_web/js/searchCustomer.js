@@ -3,7 +3,7 @@ var nombreId = 1;
 $('#ajouter').click(function(){
 	var options = $("#option1").html();
 	nombreId+=1;
-	$('#labelOption').after("<select id='option"+nombreId+"' class='input'>"+options+"</select><span class='inputSpacer'></span>");
+	$('#labelOption').after("<select id='option"+nombreId+"' name='option"+nombreId+"' class='input'>"+options+"</select><span class='inputSpacer'></span>");
 	//Ajouter une ligne display:none l'option déjà sélectionnée (on peut pas installer 2x la même option)
 	
 });

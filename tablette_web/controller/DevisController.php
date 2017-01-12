@@ -31,6 +31,9 @@ class DevisController extends Controller{
 							array_push($data['erreursSaisie'],"Aucun client n'est sélectionné");
 						}
 					}
+					if(substr($key,0,6)=='option' and $value=='null'){
+						array_push($data['erreursSaisie'],"L'option ".substr($key,-1)." n'est pas sélectionnée");
+					}
 				}
 				if($data['erreursSaisie']!=[]){	
 					$this->render("formCreationDevis",$data);
@@ -41,6 +44,14 @@ class DevisController extends Controller{
 					$modele = Modele::FindByID($_POST['modele']);
 					$devis = new Devis($client, $utilisateur, 'devis/devis'.$newId.'.pdf', 1, $modele,null);
 					Devis::insert($devis);
+					$devis = Devis::FindByID($newId);
+					$options = [];
+					foreach($_POST as $key=>$value){
+						if(substr($key,0,6)=='option'){
+							array_push($options, Option::FindByID($value));
+						}
+					}
+					Devis::createJoinOptions($devis,$options);
 				}
 				/*else{
 					echo("<script type='text/javascript'>alert('A quoi sert ce message?')</script>");
@@ -54,20 +65,20 @@ class DevisController extends Controller{
 							if($value!=null){
 								$modele = $value;
 							}else{
-								//definir si null -> Ca aurait fait une erreur de saisie à gérer donc ça aurait du se gérer plus haut au dessus du else
+								//definir si null
 							}
 						}elseif($key=='client'){
 							if($value!=null){
 								$idClient = substr($value, 0, 2);
 								$client = Client::FindById($idClient);
 							}else{
-								//definir si null -> Ca aurait fait une erreur de saisie à gérer donc ça aurait du se gérer plus haut au dessus du else
+								//definir si null
 							}
 						}elseif(strstr($key, 'option')){
 							if($value!=null){
 								array_push($options, $value);
 							}else{
-								//definir si null -> Ca aurait fait une erreur de saisie à gérer donc ça aurait du se gérer plus haut au dessus du else
+								//definir si null
 							}
 						}
 						

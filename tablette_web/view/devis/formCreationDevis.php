@@ -60,5 +60,5 @@
 
 </form>
 <br/>
-<p><i>La création des devis fonctionne mais pas encore les joinOptionsDevis</i></p>
+<p><i>-Il faudrait gérer le filtrer client</i></p>
 <script type='text/javascript' src='./js/searchCustomer.js'></script>

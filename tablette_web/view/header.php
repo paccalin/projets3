@@ -48,7 +48,7 @@
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						echo "\n\t\t\t\t<a href='./?r=devis/rechercher' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher (R)</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
-						echo "\n\t\t\t\t<a href='./?r=devis/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter (R)</li>\n\t\t\t\t</a>";
+						echo "\n\t\t\t\t<a href='./?r=devis/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
 						echo "\n\t\t\t\t<a href='".'./?r=option/afficherGerer'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>\n\t\t\t\t";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
