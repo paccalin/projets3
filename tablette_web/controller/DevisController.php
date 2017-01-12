@@ -52,6 +52,7 @@ class DevisController extends Controller{
 						}
 					}
 					Devis::createJoinOptions($devis,$options);
+					header('Location: ./?r=devis/afficherParID&devis='.$newId);
 				}
 				/*else{
 					echo("<script type='text/javascript'>alert('A quoi sert ce message?')</script>");

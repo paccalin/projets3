@@ -68,7 +68,6 @@ class Devis extends Model{
 
 	static public function createJoinOptions($devis,$options){
 		foreach($options as $option){
-			echo "INSERT INTO join_devis_options VALUES(DEFAULT,".$option->id.",".$devis->id.",CURRENT_TIMESTAMP);";
 			$query = db()->prepare("INSERT INTO join_devis_option VALUES(DEFAULT,".$option->id.",".$devis->id.",CURRENT_TIMESTAMP)");
 			$query->execute();
 		}
