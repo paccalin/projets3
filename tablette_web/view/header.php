@@ -52,7 +52,7 @@
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
 						echo "\n\t\t\t\t<a href='".'./?r=option/afficherGerer'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>\n\t\t\t\t";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
-						echo "\n\t\t\t\t<a href='".'./?r=option/creer'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter (F)</li>\n\t\t\t\t</a>\n\t\t\t\t";
+						echo "\n\t\t\t\t<a href='".'./?r=option/creer'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>\n\t\t\t\t";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
 						echo "\n\t\t\t\t<a href='".'./?r=constructeursModeles/afficher'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Constructeurs et modèles</li>\n\t\t\t\t</a>\n\t\t\t\t";
 			
