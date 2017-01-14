@@ -8,7 +8,7 @@ class ConstructeursModelesController extends Controller{
 		foreach($constructeurs as $constructeur){
 			$modeles=Modele::findByConstructeurID($constructeur->id);
 			if($modeles==[]){
-				array_push($data,["constructeur"=>$constructeur,"modele"=>"<i>Aucun modèle</i>"]);
+				array_push($data,["constructeur"=>$constructeur,"modele"=>null]);
 			}
 			foreach($modeles as $modele){
 				/* 2 affichages différents: en haut plus lisible en bas plus aéré*/

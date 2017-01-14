@@ -2,7 +2,12 @@
 	<tr><th>Constructeurs</th><th>Modèles</th></tr>
 	<?php
 		foreach($data as $row){
-			echo "<tr><td><a href='./?r=constructeursModeles/afficherConstructeur&constructeur=".$row['constructeur']->id."'>".$row['constructeur']->libelle."</a></td><td><a href='./?r=constructeursModeles/afficherModele&modele=".$row['modele']->id."'>".$row['modele']->libelle."</a></td></tr>";
+			echo "<tr><td><a href='./?r=constructeursModeles/afficherConstructeur&constructeur=".$row['constructeur']->id."'>".$row['constructeur']->libelle."</a></td>";
+			if($row['modele']==null){
+				echo "<td><span class='lien'><i>Aucun modèle</i></span></td></tr>";
+			}else{
+				echo "<td><a href='./?r=constructeursModeles/afficherModele&modele=".$row['modele']->id."'>".$row['modele']->libelle."</a></td></tr>";
+			}
 		}
 	?>
 </table>
