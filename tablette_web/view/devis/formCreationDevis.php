@@ -60,5 +60,4 @@
 
 </form>
 <br/>
-<p><i>-Il faudrait gérer le filtrer client</i></p>
 <script type='text/javascript' src='./js/searchCustomer.js'></script>
