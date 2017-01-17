@@ -44,7 +44,6 @@
 .searchBar{
 	height: var(--SearchView-bar-height);
 	width: var(--SearchView-width);
-	background-color: black;
 }
 
 .mosaicContainer{
