@@ -36,7 +36,13 @@ header img{
     max-height: 10vh;
     width: auto;
 }
-
+.imageButton{
+	height: 8vh;
+	border: solid;
+	border-radius: 17.5%;
+	border-width: 0.8vh;
+	border-color: black;
+}
 .imageButton:hover{
 	cursor: pointer;
 }

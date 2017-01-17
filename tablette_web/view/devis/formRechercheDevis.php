@@ -1,3 +1,4 @@
+<a href='./?r=devis/afficherTous' class='lien'><img src='./images/back.png' alt='Retour aux devis' class="imageButton"></a>
 <form action='./?r=devis/rechercher' method='post'>
 
 	<input type='text' name='recherche' id='recherche' <?php if(isset($_POST['recherche'])){echo "value='".$_POST['recherche']."'";} ?> /><div class="form_boutons">

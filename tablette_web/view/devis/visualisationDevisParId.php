@@ -1,4 +1,4 @@
-<a href='./?r=devis/afficherTous' class='lien'>Retour aux devis</a>
+<a href='./?r=devis/afficherTous' class='lien'><img src='./images/back.png' alt='Retour aux devis' class="imageButton"></a>
 <table class='tableAffichage'>
 	<tr><th>Client</th><th>Modèle</th></tr>
 	<?php

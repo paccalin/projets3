@@ -38,6 +38,7 @@ insert into modele values(default, 'Ranger', (select id from constructeur where 
 insert into options values(default, 'couleur', 'changement de la couleur du camion', 3500, CURRENT_TIMESTAMP);
 insert into options values(default, 'passager', 'ajout de siege afin de transporter des passagers', 1000,  CURRENT_TIMESTAMP);
 insert into options values(default, 'benne', 'transformation de l\'arrière du camion afin d\'y ajouter une benne', 2000, CURRENT_TIMESTAMP);
+insert into options values(default, 'rangements', 'transformation de l\'arrière du camion afin d\'y ajouter des rangements', 1500, CURRENT_TIMESTAMP);
 insert into options values(default, 'luxe', 'modification afin d\'apporter du luxe au vehicule', 4000, CURRENT_TIMESTAMP);
 insert into options values(default, 'rally', 'modification afin de créer un véritable véhicule de rally', 2500, CURRENT_TIMESTAMP);
 insert into options values(default, 'sport', 'changement du moteur et ajout de bande sportive', 8000,  CURRENT_TIMESTAMP);
@@ -86,8 +87,15 @@ insert into utilisateur values (default, 'commercial5', '123', 1, CURRENT_TIMEST
 /*=== Devis ===*/
 
 insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis1.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
-insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.pdf', 0, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
-insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
+insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.pdf', 1, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
+insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial1'), 'devis/devis3.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
+insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial1'), 'devis/devis4.pdf', 1, (select id from modele where libelle='Berlingo'), CURRENT_TIMESTAMP);
+insert into devis values(default, 3, (select id from utilisateur where pseudo='commercial2'), 'devis/devis5.pdf', 1, (select id from modele where libelle='Vito'), CURRENT_TIMESTAMP);
+insert into devis values(default, 4, (select id from utilisateur where pseudo='commercial2'), 'devis/devis6.pdf', 0, (select id from modele where libelle='Movano'), CURRENT_TIMESTAMP);
+insert into devis values(default, 5, (select id from utilisateur where pseudo='commercial3'), 'devis/devis7.pdf', 0, (select id from modele where libelle='Kangoo'), CURRENT_TIMESTAMP);
+insert into devis values(default, 6, (select id from utilisateur where pseudo='commercial4'), 'devis/devis8.pdf', 0, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
+insert into devis values(default, 7, (select id from utilisateur where pseudo='commercial5'), 'devis/devis9.pdf', 0, (select id from modele where libelle='Trafic'), CURRENT_TIMESTAMP);
+
 
 /*=== Rendezvous ===*/
 
@@ -113,14 +121,26 @@ insert into join_vehicule_option values (default, 10, (select id from options wh
 
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 1, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='benne'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='sport'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='rally'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 2, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='luxe'), 2, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='passager'), 2, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 3, CURRENT_TIMESTAMP);
-insert into join_devis_option values (default, (select id from options where libelle='benne'), 3, CURRENT_TIMESTAMP);
-insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 3, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 3, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 4, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 3, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 5, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 5, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 6, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 6, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 7, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 7, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 8, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 8, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='couleur'), 9, CURRENT_TIMESTAMP);
+insert into join_devis_option values (default, (select id from options where libelle='rangements'), 9, CURRENT_TIMESTAMP);
 
 /*=== JoinModeleOption ===*/
 insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);
@@ -161,6 +181,19 @@ insert into join_modele_option values (default, (select id from options where li
 insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Jumper'), 1800, CURRENT_TIMESTAMP);
 insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Transit'), 1800, CURRENT_TIMESTAMP);
 insert into join_modele_option values (default, (select id from options where libelle='benne'), (select id from modele where libelle='Ranger'), 1700, CURRENT_TIMESTAMP);
+
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Citan'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Sprinter'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Vito'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Kangoo'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Master'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Trafic'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Movano'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Berlingo'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Jumpy'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Jumper'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Transit'), 1500, CURRENT_TIMESTAMP);
+insert into join_modele_option values (default, (select id from options where libelle='rangements'), (select id from modele where libelle='Ranger'), 1500, CURRENT_TIMESTAMP);
 
 insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Citan'), 4000, CURRENT_TIMESTAMP);
 insert into join_modele_option values (default, (select id from options where libelle='luxe'), (select id from modele where libelle='Sprinter'), 4000, CURRENT_TIMESTAMP);

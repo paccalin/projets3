@@ -1,3 +1,4 @@
+<a href='./?r=rendezvous/afficherTous' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <?php
 	if(isset($data['erreurSaisies'])){
 		echo "<p class='erreursSaisie'>Le formulaire comporte des erreurs:<br/>";

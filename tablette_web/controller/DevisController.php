@@ -10,7 +10,6 @@ class DevisController extends Controller{
 			if(!isset($_POST['submit'])){
 					$this->render("formCreationDevis",$data);
 			}else{
-				//print_r($_POST);
 				$data['erreursSaisie']=[];
 				if(false){
 					array_push($data['erreursSaisie'],"Erreur de saisie 1");
@@ -283,6 +282,9 @@ class DevisController extends Controller{
 	public function rechercher(){
 		if(isset($_POST['recherche'])){
 			$data['resultat']=Devis::FindByString($_POST['recherche']);
+			if($data['resultat']==[]){
+				$data['message']='Aucun devis n\'a été trouvé à ce numéro, ni dont le nom/prénom du client correspond à cette expression.';
+			}
 			$this->render("formRechercheDevis",$data);
 		}else{
 			$this->render("formRechercheDevis");

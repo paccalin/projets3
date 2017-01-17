@@ -1,4 +1,4 @@
-<a href='./?r=constructeursModeles/afficher' class='lien'>Retour aux Constructeurs</a>
+<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <table class="tableAffichage">
 	<tr><th>Constructeur</th><th>Mod&egrave;le</th></tr>
 	<?php

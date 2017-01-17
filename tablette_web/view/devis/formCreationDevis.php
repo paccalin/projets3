@@ -1,4 +1,4 @@
-<a href='./?r=devis/afficherTous' class='lien'>Retour aux devis</a>
+<a href='./?r=devis/afficherTous' class='lien'><img src='./images/back.png' alt='Retour aux devis' class="imageButton"></a>
 <?php
 	if(isset($data['erreursSaisie']) and $data['erreursSaisie']!=[]){
 		echo "<p class='erreursSaisie'>Le formulaire comporte des erreurs:<br/>";
@@ -8,8 +8,6 @@
 		echo "</p>";
 	}
 ?>
-
-
 <form action='?r=devis/creer' method='post'>
 		<label for='constructeur'>Constructeur :</label><!--
 		--><select name='constructeur' id='constructeur' class='input'>
