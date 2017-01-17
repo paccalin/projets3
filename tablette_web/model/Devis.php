@@ -68,8 +68,8 @@ class Devis extends Model{
 	
 	static public function FindByString($string){
 		$returnList=[];
-		$req = "SELECT * FROM ".self::$tableName." WHERE client_id IN (SELECT id FROM client WHERE UPPER(nom) LIKE UPPER('%".$string."%') OR UPPER(prenom) LIKE UPPER('%".$string."%') OR tel LIKE '%".$string."%') OR modele_id IN (SELECT id FROM modele WHERE UPPER(libelle) LIKE '%".$string."%')";
-		echo $req;
+		$req = "SELECT * FROM ".self::$tableName." WHERE client_id IN (SELECT id FROM client WHERE UPPER(nom) LIKE UPPER('%".$string."%') OR UPPER(prenom) LIKE UPPER('%".$string."%')) OR modele_id IN (SELECT id FROM modele WHERE UPPER(libelle) LIKE UPPER('%".$string."%')) OR id='".$string."'";
+		//echo $req;
 		$query = db()->prepare($req);
 		$query->execute();
 		$returnList = [];
