@@ -11,4 +11,5 @@
 		}
 	?>
 </table>
-<a href='./?r=devis/creer' class='lien'>Ajouter</a>
+<a href='./?r=devis/creer' class='lien'>Ajouter</a><br/>
+<a href='./?r=devis/rechercher' class='lien'>Rechercher</a>

@@ -6,3 +6,6 @@
 		}
 	?>
 </table>
+<br/>
+<a href='./?r=client/creer' class='lien'>Ajouter</a><br/>
+<a href='./?r=client/rechercher' class='lien'>Rechercher</a>
