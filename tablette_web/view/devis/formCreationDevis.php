@@ -39,7 +39,11 @@
 			?>
 		</select><!--
 		--><input type='text' id='clientFiltrer' class='input'/><!--
-		--><input type='button' id='filtrer' name='filtrer' value='Filtrer'/><!--
+		--><input type='button' id='filtrer' name='filtrer' value='Filtrer'/>
+		
+		
+		
+		<!--
 		--><label for='option1' id='labelOption'>Options : </label><!--
 		--><select id='option1' name='option1' class='input'>
 			<option value='null'>-- Sélectionner --</option>
@@ -60,4 +64,4 @@
 
 </form>
 <br/>
-<script type='text/javascript' src='./js/searchCustomer.js'></script>
+<script type='text/javascript' src='./js/createDevis.js'></script>

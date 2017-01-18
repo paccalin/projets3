@@ -14,3 +14,27 @@ $('#constructeur').change(function(){
 	$('.'+constructeur).css('display', 'block');
 	//Ajouter une ligne qui déselectionne le modèle sélectionné
 });
+
+$('#filtrer').click(function(){
+	
+	$.ajax({
+		url : "./controller/ajaxSearchCustomers.php",
+		type : 'GET',
+		data : 'recherche=' + $('#clientFiltrer').val(),
+		success : showResultSearch,
+		dataType : 'json'
+	});
+});
+
+
+function showResultSearch(data){
+			
+	$('#client')
+		.empty()
+		.append("<option value='null'>-- Sélectionner --</option>");
+		
+	$.each(data, function(key, val){
+		
+		$('#client').append("<option value='"+key+"'>"+val+"</option>");
+	});
+};
