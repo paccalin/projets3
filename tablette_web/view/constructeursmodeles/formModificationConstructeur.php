@@ -7,6 +7,7 @@
 		echo "</p>";
 	}
 ?>
+<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <form action='./?r=constructeursModeles/modifierConstructeur&constructeur=<?php if(isset($_GET['constructeur'])){echo $_GET['constructeur'];}else{}?>' method='post'>
 	<label for='libelle'>Libelle :</label><!--
 	--><input type='text' name='libelle' id='libelle' <?php if(isset($_POST['libelle'])){echo "value='".$_POST['libelle']."'";}?>/>

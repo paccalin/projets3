@@ -43,7 +43,7 @@ class Devis extends Model{
     static public function FindAll() {
         $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
-        $returnList = array();
+        $returnList = [];
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
@@ -56,7 +56,7 @@ class Devis extends Model{
 	static public function FindJoinOptionsByDevisID($devisID) {
 		$query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id IN ( SELECT option_id FROM join_devis_option WHERE devis_id=".$devisID.") AND modele_id=".Devis::FindByID($devisID)->modele->id);
 		$query->execute();
-		$returnList = array();
+		$returnList = [];
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
@@ -64,6 +64,22 @@ class Devis extends Model{
             }
         }
         return $returnList;
+	}
+	
+	static public function FindByString($string){
+		$returnList=[];
+		$req = "SELECT * FROM ".self::$tableName." WHERE client_id IN (SELECT id FROM client WHERE UPPER(nom) LIKE UPPER('%".$string."%') OR UPPER(prenom) LIKE UPPER('%".$string."%')) OR modele_id IN (SELECT id FROM modele WHERE UPPER(libelle) LIKE UPPER('%".$string."%')) OR id='".$string."'";
+		//echo $req;
+		$query = db()->prepare($req);
+		$query->execute();
+		$returnList = [];
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList,Devis::FindByID($row['id']));
+            }
+        }
+		return $returnList;
 	}
 
 	static public function createJoinOptions($devis,$options){

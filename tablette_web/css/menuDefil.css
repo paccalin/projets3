@@ -1,8 +1,4 @@
 #menuButton{
-	height: 8vh;
-	border: solid;
-	border-radius: 17.5%;
-	border-width: 0.8vh;
 	position: absolute;
 	right: 0px;
 }

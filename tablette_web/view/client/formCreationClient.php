@@ -7,7 +7,7 @@
 		echo "</p>";
 	}
 ?>
-
+<a href='./?r=client/afficherTous' class='lien'><img src='./images/back.png' alt='Retour aux clients' class="imageButton"></a>
 <form action='./?r=client/creer' method='post'>
 
 	<label for='nom'>Nom :</label><!--

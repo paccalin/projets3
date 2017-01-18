@@ -7,7 +7,7 @@
 		echo "</p>";
 	}
 ?>
-
+<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <form action='./?r=constructeursModeles/ajouter&ajout=constructeur' method='post'>
 	
 	<label for='libelle'>Libelle :</label><!--

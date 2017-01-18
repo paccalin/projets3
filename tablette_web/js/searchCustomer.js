@@ -12,7 +12,7 @@ $('#constructeur').change(function(){
 	var constructeur = $("#constructeur option:selected").text();
 	$("#modele option").css('display', 'none');
 	$('.'+constructeur).css('display', 'block');
-	//Ajouter une ligne qui déselectionne le modèle sélectionné
+	$("#modele").val($('.'+constructeur).first().val());
 });
 
 /*

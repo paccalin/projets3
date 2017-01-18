@@ -1,3 +1,4 @@
+<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <table class='tableAffichage'>
 	<tr><th>Libelle</th><th>Prix de base</th></tr>
 	<?php

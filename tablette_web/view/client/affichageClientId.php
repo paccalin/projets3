@@ -1,3 +1,4 @@
+<a href='./?r=client/afficherTous' class='lien'><img src='./images/back.png' alt='Retour aux clients' class="imageButton"></a>
 <table class="tableAffichage">
 	<tr><th>Nom</th><th>Prénom</th><th>Adresse</th><th>Ville</th><th>Mail</th><th>Téléphone</th></tr>
 	<?php
