@@ -46,16 +46,15 @@
 
 						echo "\n\t\t\t\t<a href='./?r=devis/afficherTous' class='lien'>\n\t\t\t\t\t<li class='menu'>Devis</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
-						echo "\n\t\t\t\t<a href='./?r=devis/rechercher' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher (R)</li>\n\t\t\t\t</a>";
+						echo "\n\t\t\t\t<a href='./?r=devis/rechercher' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						echo "\n\t\t\t\t<a href='./?r=devis/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
-						echo "\n\t\t\t\t<a href='".'./?r=option/afficherGerer'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>\n\t\t\t\t";
+						echo "\n\t\t\t\t<a href='./?r=option/afficherGerer' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>\n\t\t\t\t";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
-						echo "\n\t\t\t\t<a href='".'./?r=option/creer'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>\n\t\t\t\t";
+						echo "\n\t\t\t\t<a href='./?r=option/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>\n\t\t\t\t";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
-						echo "\n\t\t\t\t<a href='".'./?r=constructeursModeles/afficher'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Constructeurs et modèles</li>\n\t\t\t\t</a>\n\t\t\t\t";
-			
+						echo "\n\t\t\t\t<a href='./?r=constructeursModeles/afficher' class='lien'>\n\t\t\t\t\t<li class='menu'>Constructeurs et modèles</li>\n\t\t\t\t</a>\n\t\t\t\t";
 					}
 					if($_SESSION['droits']==0){
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
@@ -63,13 +62,17 @@
 					}else{
 						if($_SESSION['droits']>= 2){
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
-							echo "\n\t\t\t\t<a href='".'./?r=constructeursModeles/ajouter&ajout=constructeur'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter constructeur</li>\n\t\t\t\t</a>\n\t\t\t\t";
+							echo "\n\t\t\t\t<a href='./?r=constructeursModeles/ajouter&ajout=constructeur' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter constructeur</li>\n\t\t\t\t</a>\n\t\t\t\t";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
-							echo "\n\t\t\t\t<a href='".'./?r=constructeursModeles/ajouter&ajout=modele'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter modèle</li>\n\t\t\t\t</a>\n\t\t\t\t";
+							echo "\n\t\t\t\t<a href='./?r=constructeursModeles/ajouter&ajout=modele' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter modèle</li>\n\t\t\t\t</a>\n\t\t\t\t";
 							echo "\n\t\t\t\t<hr class='separateurGrand'>";
-							echo "\n\t\t\t\t<a href='".'./?r=administration/gererComptes'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Comptes</li>\n\t\t\t\t</a>\n\t\t\t\t";
+							echo "\n\t\t\t\t<a href='./?r=administration/gererComptes' class='lien'>\n\t\t\t\t\t<li class='menu'>Comptes</li>\n\t\t\t\t</a>\n\t\t\t\t";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
-							echo "\n\t\t\t\t<a href='".'./?r=administration/creerCompte'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Créer un Compte</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<a href='./?r=administration/creerCompte' class='lien'>\n\t\t\t\t\t<li class='menu'>Créer un Compte</li>\n\t\t\t\t</a>";	
+						}
+						if($_SESSION['droits']>0){
+							echo "\n\t\t\t\t<hr class='separateurGrand'>";
+							echo "\n\t\t\t\t<a href='./?r=reglages/miseAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Mise à jour</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						}
 						echo "\n";

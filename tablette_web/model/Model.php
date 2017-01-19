@@ -19,6 +19,18 @@ abstract class Model {
 	public function getAttributs(){
 		return get_object_vars($this);
 	}
+	
+	public function toJson(){
+		$attributs=[];
+		foreach ($this->getAttributs() as $nomAttribut=>$valeurAttribut){
+			if(is_object($valeurAttribut)){
+				$attributs[$nomAttribut]=$valeurAttribut->id;
+			}else{
+				$attributs[$nomAttribut]=$valeurAttribut;
+			}
+		}		
+		return json_encode($attributs);
+	}
+	
 }
-
 ?>
