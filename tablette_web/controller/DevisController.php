@@ -50,7 +50,7 @@ class DevisController extends Controller{
 						}
 					}
 					Devis::createJoinOptions($devis,$options);
-					//header('Location: ./?r=devis/afficherParID&devis='.$devis->id);
+					header('Location: ./?r=devis/afficherParID&devis='.$devis->id);
 				}
 			}
 		}else{

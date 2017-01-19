@@ -82,6 +82,7 @@ class Modele extends Model{
 	static public function delete($modele){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$modele->id);
 		$query->execute();
+		Socket::store('delete',self::$tableName,$modele);
 	}
 }
 ?>

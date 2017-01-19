@@ -32,7 +32,7 @@ class Socket extends Model{
 	static public function insert($socket){
 		//Socket::read($socket);
 		$requete = "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
-		echo $requete;
+		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();
 	}

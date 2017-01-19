@@ -139,6 +139,7 @@ class Option extends Model{
 	static public function delete($option){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$option->id);
 		$query->execute();
+		Socket::store('delete',self::$tableName,$option);
 	}
 }
 ?>

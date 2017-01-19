@@ -76,6 +76,7 @@ class Rendezvous extends Model{
 	static public function delete($rendezvous){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$rendezvous->id);
 		$query->execute();
+		Socket::store('delete',self::$tableName,$rendezvous);
 	}
 
 	static public function DbDateToFrDate($date){

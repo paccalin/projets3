@@ -104,10 +104,11 @@ class Devis extends Model{
 		$devis->id = db()->lastInsertId();
 		Socket::store('insert',self::$tableName,$devis);
 	}
-
+	
 	static public function delete($devis){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$devis->id);
 		$query->execute();
+		Socket::store('delete',self::$tableName,$constructeur);
 	}
 }
 

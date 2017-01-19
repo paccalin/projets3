@@ -67,6 +67,7 @@ class Constructeur extends Model{
 		$query = db()->prepare("UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id=".$constructeur->id);
 		echo "UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id=".$constructeur->id;
 		$query->execute();
+		Socket::store('update',self::$tableName,$constructeur);
 	}
 }
 ?>
