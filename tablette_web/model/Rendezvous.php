@@ -1,6 +1,8 @@
 <?php
-class Rendezvous extends Model{
-    public function __construct($pLibelle, $pClient, $pUtilisateur, $pDate, $pDuree, $pDateInsertion = null, $pId=null){
+class Rendezvous extends Model{	
+	
+    public function __construct($pLibelle = null, $pClient = null, $pUtilisateur = null, $pDate = null, $pDuree = null, $pDateInsertion = null, $pId=null){
+		/* constructeur vide utilisé par les sockets */
         $this->id = $pId;
         $this->libelle = $pLibelle;
         $this->client = $pClient;

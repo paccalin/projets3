@@ -1,6 +1,11 @@
 <?php
-class Option extends Model{
-    public function __construct($pLibelle, $pDesc, $pPrixDeBase, $pDateInsertion = null, $pId=null){
+class Option extends Model{	
+	public function __construct($pId = null){ //Utilisé par les sockets
+        $this->id = $pId;
+    }
+	
+    public function __construct($pLibelle = null, $pDesc = null, $pPrixDeBase = null, $pDateInsertion = null, $pId=null){
+		/* constructeur vide utilisé par les sockets */
         $this->id = $pId;
         $this->libelle = $pLibelle;
         $this->desc = $pDesc;

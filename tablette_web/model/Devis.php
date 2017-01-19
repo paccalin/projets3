@@ -1,6 +1,8 @@
 <?php
 class Devis extends Model{
-    public function __construct($pClient, $pUtilisateur, $pPath, $pActif, $pModele,$pDateInsertion,$pId=null){
+	
+    public function __construct($pClient = null, $pUtilisateur = null, $pPath = null, $pActif = null, $pModele = null,$pDateInsertion = null,$pId = null){
+		/* constructeur vide utilisé par les sockets */
         $this->id = $pId;
         $this->client = $pClient;
         $this->utilisateur = $pUtilisateur;

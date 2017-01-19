@@ -1,6 +1,8 @@
 <?php
 class Vehicule  extends Model{
-    public function __construct($pModele, $pClient, $pImmatriculation, $pDateInsertion = null, $pId=null){
+	
+    public function __construct($pModele = null, $pClient = null, $pImmatriculation = null, $pDateInsertion = null, $pId=null){
+		/* constructeur vide utilisé par les sockets */
         $this->id = $pId;
         $this->modele = $pModele;
 		$this->client = $pClient;

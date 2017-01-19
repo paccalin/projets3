@@ -1,6 +1,7 @@
 <?php
 class Modele extends Model{
-    public function __construct($pLibelle, $pConstructeur, $pDateInsertion = null, $pId = null){
+	
+    public function __construct($pLibelle = null, $pConstructeur = null, $pDateInsertion = null, $pId = null){ //constructeur vide utilisé par les sockets
         $this->id = $pId;
         $this->libelle = $pLibelle;
         $this->constructeur = $pConstructeur;

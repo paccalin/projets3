@@ -1,7 +1,8 @@
 <?php
 
 class Client extends Model{
-	public function __construct($pNom, $pPrenom, $pRue, $pVille, $pCp, $pMail, $pTel, $pDateInsertion = null, $pId=null){
+	public function __construct($pNom = null, $pPrenom = null, $pRue = null, $pVille = null, $pCp = null, $pMail = null, $pTel = null, $pDateInsertion = null, $pId=null){
+		/* constructeur vide utilisé par les sockets */
         $this->id = $pId;
         $this->nom = $pNom;
         $this->prenom = $pPrenom;

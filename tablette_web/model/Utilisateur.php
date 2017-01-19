@@ -1,6 +1,8 @@
 <?php
 class Utilisateur extends Model{
-    public function __construct($pPseudo, $pMotDePasse, $pDroits, $pDateInsertion = null, $pId=null){
+	
+    public function __construct($pPseudo = null, $pMotDePasse = null, $pDroits = null, $pDateInsertion = null, $pId=null){
+		/* constructeur vide utilisé par les sockets */
         $this->id = $pId;
         $this->pseudo = $pPseudo;
         $this->motDePasse = $pMotDePasse;
