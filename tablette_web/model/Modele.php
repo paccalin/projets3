@@ -71,9 +71,12 @@ class Modele extends Model{
     }
 
 	static public function insert($modele){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$modele->libelle."',".$modele->constructeur->id.",CURRENT_TIMESTAMP)");
+		$requete="INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$modele->libelle."',".$modele->constructeur->id.",CURRENT_TIMESTAMP)";
+		$query = db()->prepare($requete);
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
+		$modele->id = db()->lastInsertId();
+		Socket::store('insert',self::$tableName,$modele);
 	}
 
 	static public function delete($modele){

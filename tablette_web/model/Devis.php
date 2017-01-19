@@ -88,19 +88,21 @@ class Devis extends Model{
 			$query->execute();
 		}
 	}
-
-	static public function getNewID(){
-		$query = db()->prepare("SELECT max(id)+1 as newId FROM ".self::$tableName);
-		$query->execute();
-        if($query->rowCount()>0){
-		 	$row = $query->fetch(PDO::FETCH_ASSOC);
-			return $row['newId'];
-        }
+	
+	static public function getNextID(){
+		$requete = "SELECT Max(id)+1 as id FROM ".self::$tableName;
+		$query = db()->prepare($requete);
+		if ($query->rowCount() > 0){
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+			return $row['id'];
+		}
 	}
 	
 	static public function insert($devis){
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,".$devis->client->id.",".$devis->utilisateur->id.",'".$devis->path."',".$devis->actif.",".$devis->modele->id.",CURRENT_TIMESTAMP)");
 		$query->execute();
+		$devis->id = db()->lastInsertId();
+		Socket::store('insert',self::$tableName,$devis);
 	}
 
 	static public function delete($devis){

@@ -13,7 +13,7 @@
 	--><select name='constructeur_id' class='input'>
 		<?php
 			foreach($data['constructeurs'] as $constructeur){
-				echo '<option value="'.$constructeur['id'].'">'.$constructeur['libelle'].'</option>';
+				echo '<option value="'.$constructeur->id.'">'.$constructeur->libelle.'</option>';
 			}
 		?>
 	</select>

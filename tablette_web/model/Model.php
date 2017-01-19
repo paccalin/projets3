@@ -15,7 +15,10 @@ abstract class Model {
 	public function __set($fieldname,$value) {
 	        $this->$fieldname = $value;
 	}
-
+	
+	public function getAttributs(){
+		return get_object_vars($this);
+	}
 }
 
 ?>

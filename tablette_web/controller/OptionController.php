@@ -41,8 +41,8 @@ class OptionController extends Controller{
 					$this->render("formCreationOption",$data);
 				}else{
 					$option = new Option($_POST['libelle'],$_POST['description'],$_POST['prixDeBase']);
-					$id=Option::insert($option);
-					header('Location: ./?r=option/visualiserModifier&option='.$id);
+					Option::insert($option);
+					//header('Location: ./?r=option/visualiserModifier&option='.$option->id);
 				}
 			}
 		}else{

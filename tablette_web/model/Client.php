@@ -74,19 +74,23 @@ class Client extends Model{
 	}
 
 	static public function insert($client){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)");
-		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
+		$requete = "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)";		
+		$query = db()->prepare($requete);
 		$query->execute();
+		$client->id = db()->lastInsertId();
+		Socket::store('insert',self::$tableName,$client);
 	}
 
 	static public function update($client){
 		$query = db()->prepare("UPDATE ".self::$tableName." SET nom='".$client->nom."', prenom='".$client->prenom."', rue='".$client->rue."', ville='".$client->ville."', cp='".$client->cp."', mail='".$client->mail."', tel='".$client->tel."' WHERE id=".$client->id);
 		$query->execute();
+		Socket::store('update',$client);
 	}
 
 	static public function delete($client){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$client->id);
 		$query->execute();
+		Socket::store('delete',$client);
 	}
 }
 

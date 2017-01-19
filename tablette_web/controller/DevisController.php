@@ -39,11 +39,10 @@ class DevisController extends Controller{
 				}else{
 					$client = Client::FindByID($_POST['client']);
 					$utilisateur = Utilisateur::FindByPseudo($_SESSION['identifiant']);
-					$newId = Devis::getNewID();
+					$nextId = Devis::getNextID();
 					$modele = Modele::FindByID($_POST['modele']);
-					$devis = new Devis($client, $utilisateur, 'devis/devis'.$newId.'.pdf', 1, $modele,null);
+					$devis = new Devis($client, $utilisateur, 'devis/devis'.$nextId.'.pdf', 1, $modele,null);
 					Devis::insert($devis);
-					$devis = Devis::FindByID($newId);
 					$options = [];
 					foreach($_POST as $key=>$value){
 						if(substr($key,0,6)=='option'){
@@ -51,7 +50,7 @@ class DevisController extends Controller{
 						}
 					}
 					Devis::createJoinOptions($devis,$options);
-					header('Location: ./?r=devis/afficherParID&devis='.$newId);
+					header('Location: ./?r=devis/afficherParID&devis='.$devis->id);
 				}
 			}
 		}else{
@@ -283,7 +282,7 @@ class DevisController extends Controller{
 		if(isset($_POST['recherche'])){
 			$data['resultat']=Devis::FindByString($_POST['recherche']);
 			if($data['resultat']==[]){
-				$data['message']='Aucun devis n\'a été trouvé à ce numéro, ni dont le nom/prénom du client correspond à cette expression.';
+				$data['message']='Aucun devis n\'a été trouvé à ce numéro, ni dont le nom/prénom du client ou le nom du véhicule correspond à cette expression.';
 			}
 			$this->render("formRechercheDevis",$data);
 		}else{

@@ -67,6 +67,8 @@ class Utilisateur extends Model{
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$user->pseudo."','".$user->motDePasse."',".$user->droits.",CURRENT_TIMESTAMP)");
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
+		$user->id = db()->lastInsertId();
+		Socket::store('insert',self::$tableName,$user);
 	}
 
 	static public function update($user){

@@ -10,6 +10,16 @@ DROP TABLE IF EXISTS utilisateur;
 DROP TABLE IF EXISTS constructeur;
 DROP TABLE IF EXISTS options;
 DROP TABLE IF EXISTS client;
+DROP TABLE IF EXISTS socket;
+
+CREATE TABLE socket (
+	id int NOT NULL AUTO_INCREMENT,
+	action varchar(10) DEFAULT '',
+	tableDb varchar(30) DEFAULT '',
+	json varchar(150) DEFAULT '',
+	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT pk_socket_id PRIMARY KEY (id)
+);
 
 CREATE TABLE client (
   id int NOT NULL AUTO_INCREMENT,

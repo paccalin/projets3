@@ -11,5 +11,4 @@ if(!isset($_SESSION['droits'])){
 	$_SESSION['identifiant'] = "";
 }
 echo json_encode($_SESSION['droits']);
-
 ?>

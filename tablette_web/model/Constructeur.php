@@ -59,6 +59,8 @@ class Constructeur extends Model{
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$constructeur->libelle."',CURRENT_TIMESTAMP)");
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
+		$constructeur->id = db()->lastInsertId();
+		Socket::store('insert',self::$tableName,$constructeur);
 	}
 	
 	static public function update($constructeur){

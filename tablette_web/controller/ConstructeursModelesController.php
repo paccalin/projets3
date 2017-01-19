@@ -143,11 +143,7 @@ class ConstructeursModelesController extends Controller{
 							array_push($data['erreursSaisie'],'Il y a déjà un modèle à ce nom');
 						}
 						if($data['erreursSaisie']!=[]){
-							$data['constructeurs']=array();
-							$constructeursObj=Constructeur::findAll();
-							foreach($constructeursObj as $constructeurObj){
-								array_push($data['constructeurs'],["id"=>$constructeurObj->id,"libelle"=>$constructeurObj->libelle]);
-							}
+							$data['constructeurs']=Constructeur::findAll();
 							$this->render("formAjoutModele",$data);
 						}else{
 							$modele = new Modele($_POST['libelle'],Constructeur::FindByID($_POST['constructeur_id']));
@@ -155,13 +151,9 @@ class ConstructeursModelesController extends Controller{
 							$this->afficher();
 						}
 					}else{
-						$data['constructeurs']=array();
-						$constructeursObj=Constructeur::findAll();
-						foreach($constructeursObj as $constructeurObj){
-							array_push($data['constructeurs'],["id"=>$constructeurObj->id,"libelle"=>$constructeurObj->libelle]);
-						}
+						$data['constructeurs']=Constructeur::findAll();
 						if(!isset($_POST['cancel'])){
-							$this->render("formAjoutModele");
+							$this->render("formAjoutModele",$data);
 						}else{
 							header('Location: ./?r=constructeursModeles/afficher');
 						}
