@@ -16,7 +16,6 @@ $('#constructeur').change(function(){
 });
 
 $('#filtrer').click(function(){
-	console.log("./controller/ajaxSearchCustomers.php/?recherche="+ $('#clientFiltrer').val());
 	$.ajax({
 		url : "./controller/ajaxSearchCustomers.php/?recherche="+ $('#clientFiltrer').val(),
 		type : 'GET',
