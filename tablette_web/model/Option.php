@@ -1,8 +1,5 @@
 <?php
-class Option extends Model{	
-	public function __construct($pId = null){ //Utilisé par les sockets
-        $this->id = $pId;
-    }
+class Option extends Model{
 	
     public function __construct($pLibelle = null, $pDesc = null, $pPrixDeBase = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
@@ -122,7 +119,6 @@ class Option extends Model{
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP)");
 		$query->execute();
 		$option->id = db()->lastInsertId();
-		Socket::store('insert',self::$tableName,$option);
 		foreach(Modele::FindAll() as $modele){
 			$requete="INSERT INTO join_modele_option VALUES(DEFAULT,".$option->id.",".$modele->id.",".$option->prixDeBase.",CURRENT_TIMESTAMP)";
 			$query=db()->prepare($requete);
@@ -144,7 +140,6 @@ class Option extends Model{
 	static public function delete($option){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$option->id);
 		$query->execute();
-		Socket::store('delete',self::$tableName,$option);
 	}
 }
 ?>

@@ -72,13 +72,11 @@ class Rendezvous extends Model{
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$rendezvous->libelle."',".$rendezvous->utilisateur_id.",".$rendezvous->date.",CURRENT_TIMESTAMP)");
 		$query->execute();
 		$rendezvous->id = db()->lastInsertId();
-		Socket::store('insert',self::$tableName,$rendezvous);
 	}
 
 	static public function delete($rendezvous){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$rendezvous->id);
 		$query->execute();
-		Socket::store('delete',self::$tableName,$rendezvous);
 	}
 
 	static public function DbDateToFrDate($date){

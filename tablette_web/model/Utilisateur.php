@@ -70,19 +70,16 @@ class Utilisateur extends Model{
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
 		$user->id = db()->lastInsertId();
-		Socket::store('insert',self::$tableName,$user);
 	}
 
 	static public function update($user){
 		$query = db()->prepare("UPDATE ".self::$tableName." SET pseudo='".$user->pseudo."', motDePasse='".$user->motDePasse."', droits=".$user->droits." WHERE id=".$user->id);
 		$query->execute();
-		Socket::store('update',self::$tableName,$user);
 	}
 
 	static public function delete($user){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$user->id);
 		$query->execute();
-		Socket::store('delete',self::$tableName,$user);
 	}
 }
 ?>

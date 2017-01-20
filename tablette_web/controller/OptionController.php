@@ -42,7 +42,8 @@ class OptionController extends Controller{
 				}else{
 					$option = new Option($_POST['libelle'],$_POST['description'],$_POST['prixDeBase']);
 					Option::insert($option);
-					//header('Location: ./?r=option/visualiserModifier&option='.$option->id);
+					Socket::store('centrale','insert',self::$tableName,$option);
+					header('Location: ./?r=option/visualiserModifier&option='.$option->id);
 				}
 			}
 		}else{

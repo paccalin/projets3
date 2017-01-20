@@ -1,7 +1,8 @@
 <?php
 class Socket extends Model{
-    public function __construct($pAction, $pTable, $pObjet, $pDateInsertion = null, $pId=null){
+    public function __construct($pDestinataire, $pAction, $pTable, $pObjet, $pDateInsertion = null, $pId=null){
         $this->id = $pId;
+		$this->destinataire = $pDestinataire;
 		$this->action = $pAction;
 		$this->table = $pTable;
         $this->objet = $pObjet;
@@ -13,6 +14,7 @@ class Socket extends Model{
 
     static public $tableName = "socket";
     protected $id;
+	protected $destinataire;
 	protected $action;
 	protected $table;
     protected $objet;
@@ -26,13 +28,13 @@ class Socket extends Model{
             $row = $query->fetch(PDO::FETCH_ASSOC);
 			$objetJson = json_decode($row['json']);
             $id = $row['id'];
+			$destinataire = $row['destinataire'];
             $action = $row['action'];
             $table = ucfirst($row['tableDb']);
             $objet = new $table();
 			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
 				$nomAttrMaj=ucfirst($nomAttr);
 				/*
-				
 				But: instancier un atribut quand c'est une classe (ex Client de la classe Devis)
 				
 				Problème: PHP dit que aucun n'est une classe et en faisant la liste de toutes les classes on voit quand même nos
@@ -49,28 +51,20 @@ class Socket extends Model{
 				}else{
 					$objet->$nomAttr=$valeurAttr;
 				}
-				/*
-				if(class_exists($nomAttrMaj,false)){
-					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
-					echo"<script>console.log('".$nomAttrMaj." est une classe');</script>";
-				}else{
-					echo"<script>console.log('".$nomAttrMaj." n\'est pas une classe');</script>";
-					$objet->$nomAttr=$valeurAttr;	
-				}
-				*/
-				/*foreach(get_declared_classes() as $class){
-					echo"<script>console.log('".$class."');</script>";
-				}*/
 			}
             $dateInsertion = $row['date_insertion'];
-            return new Socket($action, $table, $objet, $dateInsertion, $id);
+            return new Socket($destinataire, $action, $table, $objet, $dateInsertion, $id);
         }
         return null;
     }
 
 
-    static public function FindAll() {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName);
+    static public function FindAllFor($pDest = null) {
+		if($pDest=='centrale' or $pDest=='tablette'){
+       		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE destinataire='".$pDest."'");
+		}else{
+			$query = db()->prepare("SELECT id FROM ".self::$tableName);
+		}
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -82,24 +76,38 @@ class Socket extends Model{
         return $returnList;
     }
 	
-	static public function store($action,$table,$objet){
-		$socket = new Socket($action,$table,$objet);
+	static public function store($dest,$action,$table,$objet){
+		$socket = new Socket($dest,$action,$table,$objet);
 		Socket::insert($socket);
 	}
 	
 	static public function read($socket){
-		/* Effectuer le tratement */
-		
-		//Socket::delete($socket);
+		//print_r($socket->objet);
+		$table=$socket->table;
+		$action=$socket->action;
+		$table::$action($socket->objet);
+
+		Socket::delete($socket);
 	}
-	
-	static public function toRequete($socket){
-		
+
+	static public function compteMajEnAttente($pDest = null){
+		if($pDest=='centrale' or $pDest=='tablette'){
+       		$query = db()->prepare("SELECT count(id) as nb FROM ".self::$tableName." WHERE destinataire='".$pDest."'");
+		}else{
+			$query = db()->prepare("SELECT count(id) as nb FROM ".self::$tableName);
+		}
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+			$row = $query->fetch(PDO::FETCH_ASSOC);
+			return $row['nb'];
+		}else{
+			return 'ERREUR';
+		}
 	}
 	
 	static public function insert($socket){
-		//Socket::read($socket);
-		$requete = "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
+		$requete = "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
 		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();
@@ -108,7 +116,6 @@ class Socket extends Model{
 	static public function delete($socket){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$socket->id);
 		$query->execute();
-		echo $requete;
 	}
 }
 ?>

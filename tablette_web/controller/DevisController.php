@@ -43,6 +43,7 @@ class DevisController extends Controller{
 					$modele = Modele::FindByID($_POST['modele']);
 					$devis = new Devis($client, $utilisateur, 'devis/devis'.$nextId.'.pdf', 1, $modele,null);
 					Devis::insert($devis);
+					Socket::store('centrale','insert','devis',$devis);
 					$options = [];
 					foreach($_POST as $key=>$value){
 						if(substr($key,0,6)=='option'){

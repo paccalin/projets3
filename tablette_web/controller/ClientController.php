@@ -22,7 +22,8 @@ class ClientController extends Controller{
 				}else{
 					$newClient = new Client($_POST['nom'],$_POST['prenom'],$_POST['rue'],$_POST['ville'],$_POST['cp'],$_POST['mail'],$_POST['telephone']);
 					Client::insert($newClient);
-					/* il faudrait le returning id pour afficher son profil directement (ou retour pour ajouter un autre client?) */
+					Socket::store('centrale','insert','client',$newClient);
+					header('Location: ./?r=client/afficherParId&id='.$newClient->id);
 				}
 			}
 		}else{
@@ -85,6 +86,7 @@ class ClientController extends Controller{
 				}else{
 					$updateClient= new Client($_POST['nom'], $_POST['prenom'], $_POST['rue'], $_POST['ville'], $_POST['cp'], $_POST['mail'], $_POST['tel'], null, $_GET['id']);
 					Client::update($updateClient);
+					Socket::store('centrale','update','client',$updateClient);
 					$_POST = array();
 					$this->afficherParId();
 				}

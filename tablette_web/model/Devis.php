@@ -104,13 +104,11 @@ class Devis extends Model{
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,".$devis->client->id.",".$devis->utilisateur->id.",'".$devis->path."',".$devis->actif.",".$devis->modele->id.",CURRENT_TIMESTAMP)");
 		$query->execute();
 		$devis->id = db()->lastInsertId();
-		Socket::store('insert',self::$tableName,$devis);
 	}
 	
 	static public function delete($devis){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$devis->id);
 		$query->execute();
-		Socket::store('delete',self::$tableName,$constructeur);
 	}
 }
 

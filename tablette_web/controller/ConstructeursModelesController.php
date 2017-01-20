@@ -96,6 +96,7 @@ class ConstructeursModelesController extends Controller{
 				}else{
 					$constructeur = new Constructeur($_POST['libelle'], null, $_GET['constructeur']);
 					Constructeur::update($constructeur);
+					Socket::store('centrale','update','constructeur',$constructeur);
 					header('Location: ./?r=constructeursModeles/afficherConstructeur&constructeur='.$_GET['constructeur']);
 				}
 			}
@@ -123,6 +124,7 @@ class ConstructeursModelesController extends Controller{
 						}else{
 							$constructeur= new Constructeur($_POST['libelle']);
 							Constructeur::insert($constructeur);
+							Socket::store('centrale','insert','constructeur',$constructeur);
 							$this->afficher();
 						}
 					}else{
@@ -148,6 +150,7 @@ class ConstructeursModelesController extends Controller{
 						}else{
 							$modele = new Modele($_POST['libelle'],Constructeur::FindByID($_POST['constructeur_id']));
 							Modele::insert($modele);
+							Socket::store('centrale','insert','modele',$modele);
 							$this->afficher();
 						}
 					}else{

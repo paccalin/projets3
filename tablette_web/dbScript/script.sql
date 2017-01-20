@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS socket;
 
 CREATE TABLE socket (
 	id int NOT NULL AUTO_INCREMENT,
+	destinataire varchar(10) DEFAULT '',
 	action varchar(10) DEFAULT '',
 	tableDb varchar(30) DEFAULT '',
 	json varchar(150) DEFAULT '',
