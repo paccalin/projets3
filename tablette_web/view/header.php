@@ -72,7 +72,7 @@
 						}
 						if($_SESSION['droits']>0){
 							echo "\n\t\t\t\t<hr class='separateurGrand'>";
-							echo "\n\t\t\t\t<a href='./?r=reglages/AfficheMiseAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Réglages</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<a href='./?r=reglages/AfficherMiseAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Réglages</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							echo "\n\t\t\t\t<a href='./?r=reglages/MettreAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Mise à jour des données</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
