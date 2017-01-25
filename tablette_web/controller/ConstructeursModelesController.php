@@ -144,6 +144,9 @@ class ConstructeursModelesController extends Controller{
 						if(Modele::FindByLibelle($_POST['libelle'])!=[]){
 							array_push($data['erreursSaisie'],'Il y a déjà un modèle à ce nom');
 						}
+						if($_POST['constructeur_id']== 'null'){
+							array_push($data['erreursSaisie'],'Veuillez choisir un constructeur valide');
+						}
 						if($data['erreursSaisie']!=[]){
 							$data['constructeurs']=Constructeur::findAll();
 							$this->render("formAjoutModele",$data);

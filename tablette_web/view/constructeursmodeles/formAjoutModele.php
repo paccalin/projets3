@@ -11,6 +11,7 @@
 <form action='./?r=constructeursModeles/ajouter&ajout=modele' method='post'>
 	<label for='identifiant'>Constructeur :</label><!--
 	--><select name='constructeur_id' class='input'>
+			<option value="null">-- défaut --</option>
 		<?php
 			foreach($data['constructeurs'] as $constructeur){
 				echo '<option value="'.$constructeur->id.'">'.$constructeur->libelle.'</option>';
