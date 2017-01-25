@@ -6,7 +6,7 @@ Les lettres correspondent à la difficulté A -> le plus facile E -> le plus dif
 2) <8h B : remplacer les liens textes par des boutons images, améliorer le CSS
 
 3) 2h, C : Ajouter les regex sur la création des clients en gérant les erreurs au bon endroit (regarder les autres controllers comme OptionController par exemple, ou DevisController)
-		(alexis par contre faut pas déconner ! 2h c'est pas assez !!!!! tu as cru les regex c'était facile ou quoi ?)
+	(alexis) ==> problème d'include sur le controller (je peux pas tester)
 4) 2h, C : créer une fonction qui prend une chaine en entrée et remplace tous les " ' " par des " \' " pour les insertions dans la base de données. Appeller cette fonction dans les fonctions insert et update des classes pour chaque champ de type varchar.
 
 == FINIR AU MOINS UNE MISSION AU DESSUS AVANT DE COMMENCER CELLES D'EN DESSOUS, voir avec Axel si on peur les faire ==

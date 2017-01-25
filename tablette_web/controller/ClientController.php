@@ -11,11 +11,70 @@ class ClientController extends Controller{
 				if(false){/* Gestion des erreurs de saisie */
 					array_push($data['erreurSaisies'],"Erreur de saisie 1");
 				}
-				if(false){
-					array_push($data['erreurSaisies'],"Erreur de saisie 2");
-				}
-				if(false){
-					array_push($data['erreurSaisies'],"Erreur de saisie 3");
+				foreach($_POST as $key=>$value){
+					if($key=='nom'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"Nom\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#[a-zA-Z -]#", $value)){
+								array_push($data['erreursSaisie'],"\"Nom\" est un champ de type littéral");
+							}
+						}
+					}	
+					if($key=='prenom'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"Prénom\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#[a-zA-Z -]#", $value)){
+									array_push($data['erreursSaisie'],"\"Prénom\" est un champ de type littéral");
+							}
+						}
+					}
+					if($key=='rue'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"Rue\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#\s#", $value)){
+								array_push($data['erreursSaisie'],"\"Rue\" est un champ de type littéral acceptant les numéros");								
+							}
+						}
+					}
+					if($key=='ville'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"Ville\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#[a-zA-Z -]#", $value)){
+								array_push($data['erreursSaisie'],"\"Ville\" est un champ de type littéral");	
+							}
+						}
+					}
+					if($key=='cp'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"CP\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#[0-9]{10}#", $value)){
+								array_push($data['erreursSaisie'],"\"CP\" est un champ de type numérique (5 chiffres en France)");	
+							}
+						}
+					}
+					if($key=='mail'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"Mail\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$#", $value)){
+								array_push($data['erreursSaisie'],"\"Mail\" est un champ de type mail ({nom}@{domaine}.{extention})");	
+							}
+						}
+					}
+					if($key=='telephone'){
+						if($value=='null'){
+							array_push($data['erreursSaisie'],"\"Telephone\" est un champ obligatoire");
+						}else{
+							if(!preg_match("#([+0-9]{1,4})[1-9]([0-9]{2}){4}#", $value)){
+									array_push($data['erreursSaisie'],"\"Telephone\" est un champ de type telephone (+{code} ou 0 ainsi qu'une suite de 9 chiffres)");
+							}
+						}
+					}				
 				}
 				if($data['erreursSaisie']!=[]){
 					$this->render("formCreationRendezvous",$data);
