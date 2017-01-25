@@ -5,4 +5,4 @@
 		echo "<tr><td>".$data['constructeur']->libelle."</td></tr>";
 	?>
 </table>
-<a href='./?r=constructeursModeles/modifierConstructeur&constructeur=<?php if(isset($_GET['constructeur'])){echo $_GET['constructeur'];}?>' class='lien'>Modifier</a>
+<a href='./?r=constructeursModeles/modifierConstructeur&constructeur=<?php if(isset($_GET['constructeur'])){echo $_GET['constructeur'];}?>' class='lien'><input type="button" value="modifier le constructeur" class="otherButton"/></a>

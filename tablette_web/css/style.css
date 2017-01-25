@@ -146,3 +146,17 @@ input[type="submit"]:focus{
 	color: white;
 	text-decoration: none;
 }
+
+
+.otherButton{
+	border-width: 0px;
+	border-radius: 0px;
+	padding: 2.5px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-left: 10px;
+	background-color: #0fa2d5;
+	color: white;
+	font-weight: bold;
+	-webkit-appearance:none;
+}
