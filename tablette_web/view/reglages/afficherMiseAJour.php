@@ -13,3 +13,5 @@
 <p>Dernière mise à jour : <?php echo $data['derniereMaj'];?></p>
 <p><a href='./?r=reglages/MettreAJour' class='lien'>Effectuer une mise à jour</a></p>
 <p><a href='./?r=reglages/AfficherIP' class='lien'>Afficher l'adresse IP</a></p>
+<br/>
+<p><i>Cette partie est en cours de développement, les fonctionnalités ne sont pas encore déployées sur cette version</i></p>

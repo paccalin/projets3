@@ -18,7 +18,12 @@
 <form action='./?r=option/visualiserModifier<?php echo '&option='.$_GET['option']; ?>' method='post'>
 	<?php
 		foreach($data['joinModeleOption'] as $joinModeleOption){
-			echo "\t<label for='".$joinModeleOption['id']."'>".$joinModeleOption['modele']->libelle."</label><input type='text' name='".$joinModeleOption['id']."' id='".$data['option']->id."' value='".$joinModeleOption['prix']."'>€\n";
+			echo "\t<label for='".$joinModeleOption['id']."'>".$joinModeleOption['modele']->libelle."</label><input type='text' name='".$joinModeleOption['id']."' id='".$data['option']->id."'";
+			if(!isset($_POST[$joinModeleOption['id']])){
+				echo "value='".$joinModeleOption['prix']."'>€\n";
+			}else{
+				echo "value='".$_POST[$joinModeleOption['id']]."'>€\n";
+			}
 		}
 	?>
 	<div class="form_boutons">

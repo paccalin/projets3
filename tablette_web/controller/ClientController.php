@@ -14,64 +14,64 @@ class ClientController extends Controller{
 				foreach($_POST as $key=>$value){
 					if($key=='nom'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"Nom\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"Nom\" est obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
-								array_push($data['erreursSaisie'],"\"Nom\" est un champ de type littéral");
+								array_push($data['erreursSaisie'],"Le champ \"Nom\" doit être de type littéral");
 							}
 						}
 					}	
 					if($key=='prenom'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"Prénom\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"Prénom\" est obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
-									array_push($data['erreursSaisie'],"\"Prénom\" est un champ de type littéral");
+									array_push($data['erreursSaisie'],"Le champ \"Prénom\" doit être un de type littéral");
 							}
 						}
 					}
 					if($key=='rue'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"Rue\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"Rue\" est obligatoire");
 						}else{
 							if(!preg_match("#\s#", $value)){
-								array_push($data['erreursSaisie'],"\"Rue\" est un champ de type littéral acceptant les numéros");								
+								array_push($data['erreursSaisie'],"Le champ \"Rue\" doit être de type littéral acceptant les numéros");								
 							}
 						}
 					}
 					if($key=='ville'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"Ville\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"Ville\" est obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
-								array_push($data['erreursSaisie'],"\"Ville\" est un champ de type littéral");	
+								array_push($data['erreursSaisie'],"Le champ \"Ville\" doit être de type littéral");	
 							}
 						}
 					}
 					if($key=='cp'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"CP\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"CP\" est obligatoire");
 						}else{
-							if(!preg_match("#[0-9]{10}#", $value)){
-								array_push($data['erreursSaisie'],"\"CP\" est un champ de type numérique (5 chiffres en France)");	
+							if(!preg_match("#^[0-9]{5}$#", $value)){
+								array_push($data['erreursSaisie'],"Le champ \"CP\" doit être de type numérique (5 chiffres en France)");	
 							}
 						}
 					}
 					if($key=='mail'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"Mail\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"Mail\" est obligatoire");
 						}else{
 							if(!preg_match("#^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$#", $value)){
-								array_push($data['erreursSaisie'],"\"Mail\" est un champ de type mail ({nom}@{domaine}.{extention})");	
+								array_push($data['erreursSaisie'],"Le champ \"Mail\" doit être de type nom@domaine.extention");	
 							}
 						}
 					}
 					if($key=='telephone'){
 						if($value==''){
-							array_push($data['erreursSaisie'],"\"Telephone\" est un champ obligatoire");
+							array_push($data['erreursSaisie'],"Le champ \"Telephone\" est obligatoire");
 						}else{
 							if(!preg_match("#([+0-9]{1,4})[1-9]([0-9]{2}){4}#", $value)){
-									array_push($data['erreursSaisie'],"\"Telephone\" est un champ de type telephone (+{code} ou 0 ainsi qu'une suite de 9 chiffres)");
+									array_push($data['erreursSaisie'],"Le champ \"Téléphone\" doit être de type +code ou 0 ainsi qu'une suite de 9 chiffres");
 							}
 						}
 					}				
@@ -139,15 +139,80 @@ class ClientController extends Controller{
 				$data=["id"=>$clientObj->id,"nom"=>$clientObj->nom,"prenom"=>$clientObj->prenom,"rue"=>$clientObj->rue,"ville"=>$clientObj->ville,"cp"=>$clientObj->cp,"mail"=>$clientObj->mail,"tel"=>$clientObj->tel];
 				$this->render("formModificationClient",$data);
 			}else{
-				if(false){/* Gérer le erreur de saisie */
-					$data=["erreurSaisies"=>"Il y a des erreurs de saisie"];
+				$data['erreursSaisie']=[];
+				foreach($_POST as $key=>$value){
+					if($key=='nom'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"Nom\" est obligatoire");
+						}else{
+							if(!preg_match("#[a-zA-Z -]#", $value)){
+								array_push($data['erreursSaisie'],"Le champ \"Nom\" doit être de type littéral");
+							}
+						}
+					}	
+					if($key=='prenom'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"Prénom\" est obligatoire");
+						}else{
+							if(!preg_match("#[a-zA-Z -]#", $value)){
+									array_push($data['erreursSaisie'],"Le champ \"Prénom\" doit être un de type littéral");
+							}
+						}
+					}
+					if($key=='rue'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"Rue\" est obligatoire");
+						}else{
+							if(!preg_match("#\s#", $value)){
+								array_push($data['erreursSaisie'],"Le champ \"Rue\" doit être de type littéral acceptant les numéros");								
+							}
+						}
+					}
+					if($key=='ville'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"Ville\" est obligatoire");
+						}else{
+							if(!preg_match("#[a-zA-Z -]#", $value)){
+								array_push($data['erreursSaisie'],"Le champ \"Ville\" doit être de type littéral");	
+							}
+						}
+					}
+					if($key=='cp'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"CP\" est obligatoire");
+						}else{
+							if(!preg_match("#^[0-9]{5}$#", $value)){
+								array_push($data['erreursSaisie'],"Le champ \"CP\" doit être de type numérique (5 chiffres en France)");	
+							}
+						}
+					}
+					if($key=='mail'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"Mail\" est obligatoire");
+						}else{
+							if(!preg_match("#^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$#", $value)){
+								array_push($data['erreursSaisie'],"Le champ \"Mail\" doit être de type nom@domaine.extention");	
+							}
+						}
+					}
+					if($key=='telephone'){
+						if($value==''){
+							array_push($data['erreursSaisie'],"Le champ \"Telephone\" est obligatoire");
+						}else{
+							if(!preg_match("#([+0-9]{1,4})[1-9]([0-9]{2}){4}#", $value)){
+									array_push($data['erreursSaisie'],"Le champ \"Téléphone\" doit être de type +code ou 0 ainsi qu'une suite de 9 chiffres");
+							}
+						}
+					}				
+				}
+				if($data['erreursSaisie']!=[]){/* Gérer le erreur de saisie */
 					$this->render("formModificationClient",$data);
 				}else{
 					$updateClient= new Client($_POST['nom'], $_POST['prenom'], $_POST['rue'], $_POST['ville'], $_POST['cp'], $_POST['mail'], $_POST['tel'], null, $_GET['id']);
 					Client::update($updateClient);
 					Socket::store('centrale','update','client',$updateClient);
 					$_POST = array();
-					$this->afficherParId();
+					$this->afficherParId($_GET['id']);
 				}
 			}
 		}

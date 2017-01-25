@@ -3,8 +3,8 @@ class ReglagesController extends Controller{
 	public function AfficherMiseAJour(){
 		$data['statut']='non connecte';/* non connecte - connecte */
 		$data['nbMaj']=Socket::compteMajEnAttente('tablette');
-		$data['derniereConnexion']='X';
-		$data['derniereMaj']='X';
+		$data['derniereConnexion']='-';
+		$data['derniereMaj']='-';
 		$this->render('afficherMiseAJour',$data);
 	}
 

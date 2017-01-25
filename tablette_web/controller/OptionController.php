@@ -63,9 +63,19 @@ class OptionController extends Controller{
 				}
 			}else{
 				$data['erreursSaisie']=[];
-				if(false){
-					array_push($data['erreursSaisie'],'erreur');
+				foreach($_POST as $key=>$value){
+					if($key!='submit'){
+						if(!is_numeric($value)){
+							$modele=Modele::FindByJoinOptionId($key)[0];
+							array_push($data['erreursSaisie'],'Le coût de l\'option pour le modèle '.$modele->libelle.' doit être un nombre');
+						}elseif($value<=0){
+							$modele=Modele::FindByJoinOptionId($key)[0];
+							array_push($data['erreursSaisie'],'Le coût de l\'option pour le modèle '.$modele->libelle.' doit être un nombre positif');
+						}
+					}
 				}
+				//print_r($_POST);
+				//print_r($data['erreursSaisie']);
 				if($data['erreursSaisie']!=[]){
 					$this->render("formModifierOption",$data);
 				}else{

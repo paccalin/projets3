@@ -1,5 +1,5 @@
 /*=== Socket ===*/
-
+/*
 insert into socket values(default,'centrale','insert','client','{"id":"14","nom":"Test","prenom":"Jean","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','client','{"id":"14","nom":"Test","prenom":"Jean-Socket","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','option','{"id":"10","libelle":"Option socket","desc":"Option générée par socket","prixDeBase":"150000","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
@@ -7,7 +7,7 @@ insert into socket values(default,'tablette','insert','constructeur','{"id":"6",
 insert into socket values(default,'tablette','insert','modele','{"id":"13","libelle":"Modelesocket","constructeur":"6","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','utilisateur','{"id":"12","pseudo":"jeansocket","motDePasse":"123","droits":"1","dateInsertion":"20/01/2017 11:19:26 pm"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','devis','{"id":"10","client":"1","utilisateur":"1","path":"devis/devis10.pdf","actif":1,"modele":"13","dateInsertion":"20/01/2017 11:15:17 pm"}',CURRENT_TIMESTAMP);
-
+*/
 /*=== Client ===*/
 
 insert into client values(default,'Martin', 'Jean', '1, rue du centre', 'Annecy', '74000','jean.martin@gmail.com','0450672184', CURRENT_TIMESTAMP);
