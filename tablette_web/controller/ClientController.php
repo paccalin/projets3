@@ -13,7 +13,7 @@ class ClientController extends Controller{
 				}
 				foreach($_POST as $key=>$value){
 					if($key=='nom'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"Nom\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
@@ -22,7 +22,7 @@ class ClientController extends Controller{
 						}
 					}	
 					if($key=='prenom'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"Prénom\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
@@ -31,7 +31,7 @@ class ClientController extends Controller{
 						}
 					}
 					if($key=='rue'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"Rue\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#\s#", $value)){
@@ -40,7 +40,7 @@ class ClientController extends Controller{
 						}
 					}
 					if($key=='ville'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"Ville\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
@@ -49,7 +49,7 @@ class ClientController extends Controller{
 						}
 					}
 					if($key=='cp'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"CP\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#[0-9]{10}#", $value)){
@@ -58,7 +58,7 @@ class ClientController extends Controller{
 						}
 					}
 					if($key=='mail'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"Mail\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$#", $value)){
@@ -67,7 +67,7 @@ class ClientController extends Controller{
 						}
 					}
 					if($key=='telephone'){
-						if($value=='null'){
+						if($value==''){
 							array_push($data['erreursSaisie'],"\"Telephone\" est un champ obligatoire");
 						}else{
 							if(!preg_match("#([+0-9]{1,4})[1-9]([0-9]{2}){4}#", $value)){
@@ -77,7 +77,7 @@ class ClientController extends Controller{
 					}				
 				}
 				if($data['erreursSaisie']!=[]){
-					$this->render("formCreationRendezvous",$data);
+					$this->render("formCreationClient",$data);
 				}else{
 					$newClient = new Client($_POST['nom'],$_POST['prenom'],$_POST['rue'],$_POST['ville'],$_POST['cp'],$_POST['mail'],$_POST['telephone']);
 					Client::insert($newClient);

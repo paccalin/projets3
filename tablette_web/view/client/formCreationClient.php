@@ -1,7 +1,7 @@
 <?php
-	if(isset($data['erreurSaisies'])){
+	if(isset($data['erreursSaisie'])){
 		echo "<p class='erreursSaisie'>Il y a des erreurs de saisie:<br/>";
-		foreach($data['erreurSaisies'] as $erreurSaisie){
+		foreach($data['erreursSaisie'] as $erreurSaisie){
 			echo "-".$erreurSaisie."<br/>";
 		}
 		echo "</p>";

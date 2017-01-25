@@ -3,7 +3,7 @@ Les lettres correspondent à la difficulté A -> le plus facile E -> le plus dif
 
 1) 4h, A : Controller tous les formulaires de création puis de modification et noter leurs erreurs dans un fichier txt dans le dossie compterendu (mauvais traitemenent d'erreur,mauvais affichage,problème de droits,...) 
 	(alexis)
-2) <8h B : remplacer les liens textes par des boutons images, améliorer le CSS
+2) <8h B : remplacer les liens textes par des images, améliorer le CSS
 	(alexis)
 3) 2h, C : Ajouter les regex sur la création des clients en gérant les erreurs au bon endroit (regarder les autres controllers comme OptionController par exemple, ou DevisController)
 	(alexis)
