@@ -1,11 +1,11 @@
 <?php
 class ReglagesController extends Controller{
-	public function AfficheMiseAJour(){
+	public function AfficherMiseAJour(){
 		$data['statut']='non connecte';/* non connecte - connecte */
 		$data['nbMaj']=Socket::compteMajEnAttente('tablette');
 		$data['derniereConnexion']='X';
 		$data['derniereMaj']='X';
-		$this->render('afficheMiseAJour',$data);
+		$this->render('afficherMiseAJour',$data);
 	}
 
 	public function MettreAJour(){
@@ -13,7 +13,18 @@ class ReglagesController extends Controller{
 		foreach($sockets as $socket){
 			Socket::read($socket);
 		}
-		header('Location: ./?r=reglages/AfficheMiseAjour');
+		header('Location: ./?r=reglages/AfficherMiseAjour'); /* Commenter pour le debug */
+	}
+	
+	public function AfficherIP(){
+		if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+			$data['ip'] = $_SERVER['HTTP_CLIENT_IP'];
+		}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+			$data['ip'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}else{
+			$data['ip'] = $_SERVER['REMOTE_ADDR'];
+		}
+		$this->render('afficherIP',$data);
 	}
 }
 ?>

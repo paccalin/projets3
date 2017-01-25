@@ -34,18 +34,8 @@ class Socket extends Model{
             $objet = new $table();
 			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
 				$nomAttrMaj=ucfirst($nomAttr);
-				/*
-				But: instancier un atribut quand c'est une classe (ex Client de la classe Devis)
-				
-				Problème: PHP dit que aucun n'est une classe et en faisant la liste de toutes les classes on voit quand même nos
-				nouvelles classe
-				
-				Edit: class_exists($classe,false); -> Tout le temps faux
-				      class_exists($classe,true); -> vrai quand la classe existe casse le code sinon (avec l'autoload qui trouve pas la classe)
-				
-				"Solution": lister les classes dans un array
-				*/
 				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule'];
+				//echo $nomAttr." ".$valeurAttr."<br/>";	/* DEBUG */
 				if(in_array($nomAttrMaj,$classes)){
 					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
 				}else{
@@ -82,7 +72,8 @@ class Socket extends Model{
 	}
 	
 	static public function read($socket){
-		//print_r($socket->objet);
+		//print_r($socket->objet); 	/* DEBUG */
+		//echo '<br/>';				/* DEBUG */
 		$table=$socket->table;
 		$action=$socket->action;
 		$table::$action($socket->objet);
