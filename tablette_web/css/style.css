@@ -40,7 +40,8 @@ header img{
 	border: solid;
 	border-radius: 50%;
 	border-width: 0.2vh;
-	border-color: black;
+	border-color: #24748f;
+	background-color: #0fa2d5;
 }
 
 .imageButton:hover{
@@ -49,6 +50,7 @@ header img{
 
 .imageButton.ajout{
 	background-color: #32c870;
+	border-color: #33995d;
 }
 
 section{

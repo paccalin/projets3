@@ -1,6 +1,6 @@
 <?php
 	if($_SESSION['droits']>=2){
-		echo "<a href='.?r=option/creer' class='lien'><img src='./images/plus.jpg' class='imageButton ajout' alt='Ajouter option'></a>";
+		echo "<a href='.?r=option/creer' class='lien'><img src='./images/plus.png' class='imageButton ajout' alt='Ajouter option'></a>";
 	}
 ?>
 <table class='tableAffichage'>

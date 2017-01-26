@@ -1,4 +1,4 @@
-<a href='.?r=devis/creer' class='lien'><img src="./images/plus.jpg" class="imageButton" class="ajout" alt="Ajouter devis"></a>
+<a href='.?r=devis/creer' class='lien'><img src="./images/plus.png" class="imageButton" class="ajout" alt="Ajouter devis"></a>
 <a href='.?r=devis/rechercher' class='lien'><img src="./images/loupe.png" class="imageButton" class="recherche" alt="Rechercher devis"></a>
 <table class='tableAffichage'>
 	<tr><th>Client</th><th>Modèle</th><th>Actif</th></tr>

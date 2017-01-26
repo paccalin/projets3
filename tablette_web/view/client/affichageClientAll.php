@@ -1,4 +1,4 @@
-<a href='./?r=client/creer' class='lien'><img src="./images/plus.jpg" class="imageButton" class="ajout" alt="Ajouter client"></a>
+<a href='./?r=client/creer' class='lien'><img src="./images/plus.png" class="imageButton ajout" alt="Ajouter client"></a>
 <a href='./?r=client/rechercher' class='lien'><img src="./images/loupe.png" class="imageButton" class="recherche" alt="Rechercher client"></a>
 <table class="tableAffichage">
 	<tr><th>Nom</th><th>Prénom</th><th>Adresse</th><th>Ville</th><th>Mail</th><th>Téléphone</th></tr>
