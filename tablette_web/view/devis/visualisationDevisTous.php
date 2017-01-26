@@ -11,5 +11,5 @@
 		}
 	?>
 </table>
-<a href='./?r=devis/creer' class='lien'><input type="button" value="Ajouter" class="otherButton"/></a>
-<a href='./?r=devis/rechercher' class='lien'><input type="button" value="Rechercher" class="otherButton"/></a>
+<a href='.?r=devis/creer' class='lien'><img src="./images/plus.jpg" class="imageButton" class="ajout" alt="Ajouter devis"></a>
+<a href='.?r=devis/rechercher' class='lien'><img src="./images/loupe.png" class="imageButton" class="recherche" alt="Rechercher devis"></a>

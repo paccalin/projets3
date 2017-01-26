@@ -1,4 +1,4 @@
-<a href='./?r=client/afficherTous' class='lien'><img src='./images/back.png' alt='Retour aux clients' class="imageButton"></a><?php
+<a href='./?r=client/afficherParId&id=<?php echo $_GET['id'];?>' class='lien'><img src='./images/back.png' alt='Retour aux clients' class="imageButton"></a><?php
 	if(isset($data['erreursSaisie'])){
 		echo "<p class='erreursSaisie'>Il y a des erreurs de saisie:<br/>";
 		foreach($data['erreursSaisie'] as $erreurSaisie){

@@ -1,3 +1,4 @@
+<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <?php
 	if(isset($data['erreursSaisie'])){
 		echo "<p class='erreursSaisie'>Le formulaire comporte des erreurs:<br/>";
@@ -7,7 +8,6 @@
 		echo "</p>";
 	}
 ?>
-<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <form action='./?r=constructeursModeles/ajouter&ajout=modele' method='post'>
 	<label for='identifiant'>Constructeur :</label><!--
 	--><select name='constructeur_id' class='input'>

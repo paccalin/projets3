@@ -8,6 +8,6 @@
 </table>
 <?php
 	if($_SESSION['droits']>=2){
-		echo "<a href='./?r=option/creer'>Ajouter une option</a>";
+		echo "<a href='.?r=option/creer' class='lien'><img src='./images/plus.jpg' class='imageButton ajout' alt='Ajouter option'></a>";
 	}
 ?>

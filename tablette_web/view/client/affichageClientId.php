@@ -6,7 +6,7 @@
 	?>
 </table>
 <?php
-	echo "<a href='./?r=client/modifier&id=".$data['client']['id']."'>Modifier les données</a><br/>"
+	echo "<a href='./?r=client/modifier&id=".$data['client']['id']."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>"
 ?>
 Véhicules:
 <table class="tableAffichage">

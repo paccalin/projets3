@@ -39,12 +39,17 @@ header img{
 .imageButton{
 	height: 8vh;
 	border: solid;
-	border-radius: 17.5%;
-	border-width: 0.8vh;
+	border-radius: 50%;
+	border-width: 0.2vh;
 	border-color: black;
 }
+
 .imageButton:hover{
 	cursor: pointer;
+}
+
+.imageButton.ajout{
+	background-color: #32c870;
 }
 
 section{
@@ -81,7 +86,7 @@ input, .input{
 	border-radius: 3px;
 	border-color: #7a828f;
 	background-color: white;
-	min-height: 4vh;
+	min-height: 6.5vh;
 	-webkit-appearance:none;
 	/* Les 2 dernières lignes pour que ça marche sur IOS et Internet Explorer Mk2 sinon ça ne marche pas*/
 }
@@ -96,18 +101,23 @@ input[type="submit"]:focus{
 
 .form_boutons input{
 	border-width: 0px;	
-	border-radius: 3px;
+	border-radius: 1px;
+	height: 6.5vh;
 	padding: 2.5px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding-left: 10px;
-	background-image: linear-gradient(
-	45deg, #28bef0, #0c80a7);
+	background-color: #0fa2d5;
 	color: white;
 	font-weight: bold;
 	-webkit-appearance:none;
 }
-
+.form_boutons input[name=submit] { 
+    background-color: #32c870;
+}
+.form_boutons input[name=cancel] { 
+    background-color: #e74c3c;
+}
 .form_boutons{
 	text-align: center;
 }
@@ -148,15 +158,6 @@ input[type="submit"]:focus{
 	text-decoration: none;
 }
 
-.otherButton{
-	border-width: 0px;
-	border-radius: 0px;
-	padding: 2.5px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	padding-left: 10px;
-	background-color: #0fa2d5;
-	color: white;
-	font-weight: bold;
-	-webkit-appearance:none;
+a:hover{
+	color: red;
 }

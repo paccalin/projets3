@@ -11,36 +11,43 @@ class AdministrationController extends Controller{
 	}
 
 	public function verifieCreationCompte(){
-		include_once("model/Utilisateur.php");
-		$user = Utilisateur::findByPseudo($_POST['identifiant']);
-		$data=array();
-		$data['erreurSaisies']=array();
-		if($user!=null){
-			if($user->droits==1){
-				array_push($data['erreurSaisies'],"Il y a déjà un compte commercial à ce nom.");
-			}elseif($user->droits==2){
-				array_push($data['erreurSaisies'],"Il y a déjà un compte administrateur à ce nom.");
-			}elseif($user->droits==3){
-				array_push($data['erreurSaisies'],"Il y a déjà un compte super administrateur à ce nom.");
+		if(!isset($_POST['submit'])){
+			if(!isset($_POST['cancel'])){
+				$this->render("formCreationCompte");
+			}else{
+				header('Location: ./?r=administration/gererComptes');
 			}
-		}
-		if($_POST['identifiant']==""){
-			array_push($data['erreurSaisies'],"Le champ identifiant est vide.");
-		}
-		if($_POST['motPasse']==""){
-			array_push($data['erreurSaisies'],"Le champ mot de passe est vide.");
-		}
-		if($_POST['motPasse']!=$_POST['motPasse2']){
-			array_push($data['erreurSaisies'],"Les mots de passe saisis sont différents.");
-		}
-		if($data['erreurSaisies']!=[]){
-			$this->render("formCreationCompte",$data);
 		}else{
-			/** Insertion BD **/
-			$newUser = new Utilisateur($_POST['identifiant'],$_POST['motPasse'],$_POST['droits']);
-			Utilisateur::insert($newUser);
-			Socket::store('centrale','insert','utilisateur',$newUser);
-			$this->render("reussiteCreationCompte");
+			$user = Utilisateur::findByPseudo($_POST['identifiant']);
+			$data=array();
+			$data['erreurSaisies']=array();
+			if($user!=null){
+				if($user->droits==1){
+					array_push($data['erreurSaisies'],"Il y a déjà un compte commercial à ce nom.");
+				}elseif($user->droits==2){
+					array_push($data['erreurSaisies'],"Il y a déjà un compte administrateur à ce nom.");
+				}elseif($user->droits==3){
+					array_push($data['erreurSaisies'],"Il y a déjà un compte super administrateur à ce nom.");
+				}
+			}
+			if($_POST['identifiant']==""){
+				array_push($data['erreurSaisies'],"Le champ identifiant est vide.");
+			}
+			if($_POST['motPasse']==""){
+				array_push($data['erreurSaisies'],"Le champ mot de passe est vide.");
+			}
+			if($_POST['motPasse']!=$_POST['motPasse2']){
+				array_push($data['erreurSaisies'],"Les mots de passe saisis sont différents.");
+			}
+			if($data['erreurSaisies']!=[]){
+				$this->render("formCreationCompte",$data);
+			}else{
+				/** Insertion BD **/
+				$newUser = new Utilisateur($_POST['identifiant'],$_POST['motPasse'],$_POST['droits']);
+				Utilisateur::insert($newUser);
+				Socket::store('centrale','insert','utilisateur',$newUser);
+				header('Location: ./?r=administration/gererComptes');
+			}
 		}
 	}
 

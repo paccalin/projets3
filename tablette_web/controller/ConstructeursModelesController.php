@@ -86,7 +86,7 @@ class ConstructeursModelesController extends Controller{
 			}else{
 				$data['erreursSaisie']=[];
 				if(strlen(trim($_POST['libelle']))==0){
-					array_push($data['erreursSaisie'],'Le libelle ne soit pas être une chaîne vide');
+					array_push($data['erreursSaisie'],'Le libelle ne doit pas être une chaîne vide');
 				}
 				if(Constructeur::findByLibelle($_POST['libelle'])){
 					array_push($data['erreursSaisie'],'Il y a déjà un constructeur à nom');
@@ -114,7 +114,7 @@ class ConstructeursModelesController extends Controller{
 					if(isset($_POST['submit'])){
 						$data['erreursSaisie']=array();
 						if(strlen(trim($_POST['libelle']))==0){
-							array_push($data['erreursSaisie'],'Le libelle ne soit pas être une chaîne vide');
+							array_push($data['erreursSaisie'],'Le libelle ne doit pas être une chaîne vide');
 						}
 						if(Constructeur::FindByLibelle($_POST['libelle'])!=[]){
 							array_push($data['erreursSaisie'],'Il y a déjà un constructeur à ce nom');

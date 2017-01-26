@@ -1,3 +1,4 @@
+<a href='./?r=administration/gererComptes' class='lien'><img src='./images/back.png' alt='Retour aux clients' class="imageButton"></a>
 <?php
 	if(isset($data['erreurSaisies'])){
 		echo "<p class='erreursSaisie'>Le formulaire comporte des erreurs:<br/>";

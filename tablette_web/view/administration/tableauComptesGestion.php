@@ -28,3 +28,4 @@
 		}
 	?>
 </table>
+<a href='./?r=administration/creerCompte' class=''><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter compte"></a>

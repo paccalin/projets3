@@ -19,8 +19,12 @@ class OptionController extends Controller{
 		$data=array();
 		/* Mettre les modeles dans $data pour créer les join_modele_option */
 		if($_SESSION['droits']>=2){
-			if(!isset($_POST['libelle'])){
-				$this->render("formCreationOption");
+			if(!isset($_POST['submit'])){
+				if(!isset($_POST['cancel'])){
+					$this->render("formCreationOption");
+				}else{
+					header('Location: ./?r=option/afficherGerer');
+				}
 			}else{
 				$data['erreursSaisie']=[];
 				if(Option::FindByLibelle($_POST['libelle'])!=[]){

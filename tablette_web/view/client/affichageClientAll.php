@@ -7,5 +7,5 @@
 	?>
 </table>
 <br/>
-<a href='./?r=client/creer' class='lien'><input type="button" value="Ajouter" class="otherButton"></a>
-<a href='./?r=client/rechercher' class='lien'><input type="button" value="Rechercher" class="otherButton"></a>
+<a href='./?r=client/creer' class='lien'><img src="./images/plus.jpg" class="imageButton" class="ajout" alt="Ajouter client"></a>
+<a href='./?r=client/rechercher' class='lien'><img src="./images/loupe.png" class="imageButton" class="recherche" alt="Rechercher client"></a>

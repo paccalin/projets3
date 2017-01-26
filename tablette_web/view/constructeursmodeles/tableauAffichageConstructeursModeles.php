@@ -13,7 +13,7 @@
 </table>
 <?php
 	if($_SESSION['droits']>=2){
-		echo '<a href="./?r=constructeursModeles/ajouter&ajout=constructeur"><input type="button" value="ajouter un constructeur" class="otherButton"/></a>';
-		echo '<a href="./?r=constructeursModeles/ajouter&ajout=modele"><input type="button" value="ajouter un modèle" class="otherButton"/></a>';
+		echo '<a href="./?r=constructeursModeles/ajouter&ajout=constructeur"><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter constructeur"></a>';
+		echo '<a href="./?r=constructeursModeles/ajouter&ajout=modele"><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter constructeur"></a>';
 	}
 ?>

@@ -17,6 +17,6 @@ Prix des options pour ce mod&egrave;le:
 </table>
 <?php
 	if($_SESSION['droits']>=2){
-		echo "<a href='./?r=constructeursModeles/modifierModele&modele=".$_GET['modele']."' class='lien'><input type='button' value='modifier le modèle' class='otherButton'/></a>";
+		echo "<a href='./?r=constructeursModeles/modifierModele&modele=".$_GET['modele']."' class='lien'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a>";
 	}
 ?>
