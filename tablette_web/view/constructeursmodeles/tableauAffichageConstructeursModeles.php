@@ -1,3 +1,9 @@
+<?php
+	if($_SESSION['droits']>=2){
+		echo '<a href="./?r=constructeursModeles/ajouter&ajout=constructeur"><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter constructeur"></a>';
+		echo '<a href="./?r=constructeursModeles/ajouter&ajout=modele"><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter constructeur"></a>';
+	}
+?>
 <table class="tableAffichage">
 	<tr><th>Constructeurs</th><th>Modèles</th></tr>
 	<?php
@@ -11,9 +17,3 @@
 		}
 	?>
 </table>
-<?php
-	if($_SESSION['droits']>=2){
-		echo '<a href="./?r=constructeursModeles/ajouter&ajout=constructeur"><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter constructeur"></a>';
-		echo '<a href="./?r=constructeursModeles/ajouter&ajout=modele"><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter constructeur"></a>';
-	}
-?>

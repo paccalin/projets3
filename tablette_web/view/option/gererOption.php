@@ -1,3 +1,8 @@
+<?php
+	if($_SESSION['droits']>=2){
+		echo "<a href='.?r=option/creer' class='lien'><img src='./images/plus.jpg' class='imageButton ajout' alt='Ajouter option'></a>";
+	}
+?>
 <table class='tableAffichage'>
 	<tr><th>Libelle</th><th>Prix de base</th></tr>
 	<?php
@@ -6,8 +11,3 @@
 		}
 	?>
 </table>
-<?php
-	if($_SESSION['droits']>=2){
-		echo "<a href='.?r=option/creer' class='lien'><img src='./images/plus.jpg' class='imageButton ajout' alt='Ajouter option'></a>";
-	}
-?>

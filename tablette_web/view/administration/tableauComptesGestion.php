@@ -1,3 +1,4 @@
+<a href='./?r=administration/creerCompte' class=''><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter compte"></a>
 <table class="tableAffichage">
 	<tr><th>Pseudo</th><th>Droits</th><th>Modifier droits</th><th>Supprimer</th><th>Modifier mot de passe</th></tr>
 	<?php
@@ -28,4 +29,3 @@
 		}
 	?>
 </table>
-<a href='./?r=administration/creerCompte' class=''><img src="./images/plus.jpg" class="imageButton ajout" alt="Ajouter compte"></a>

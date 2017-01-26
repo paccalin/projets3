@@ -5,6 +5,11 @@
 		echo '<tr><td>'.$data['constructeur']->libelle.'</td><td>'.$data['modele']->libelle.'</td></tr>';
 	?>
 </table>
+<?php
+	if($_SESSION['droits']>=2){
+		echo "<a href='./?r=constructeursModeles/modifierModele&modele=".$_GET['modele']."' class='lien'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a>";
+	}
+?>
 <br/>
 Prix des options pour ce mod&egrave;le:
 <table class="tableAffichage">
@@ -15,8 +20,4 @@ Prix des options pour ce mod&egrave;le:
 		}
 	?>
 </table>
-<?php
-	if($_SESSION['droits']>=2){
-		echo "<a href='./?r=constructeursModeles/modifierModele&modele=".$_GET['modele']."' class='lien'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a>";
-	}
-?>
+

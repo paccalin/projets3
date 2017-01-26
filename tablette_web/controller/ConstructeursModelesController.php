@@ -47,7 +47,7 @@ class ConstructeursModelesController extends Controller{
 		}else{
 			$data['erreursSaisie']=[];
 			if(true){
-				array_push($data['erreursSaisie'],'Traitement à faire -> voir constructeurModeleController/afficherMofifierModele()');
+				array_push($data['erreursSaisie'],'Traitement à faire -> voir constructeurModeleController/modifierModele()');
 			}
 			if($data['erreursSaisie']!=[]){
 				$this->render("affichageModele",$data);
