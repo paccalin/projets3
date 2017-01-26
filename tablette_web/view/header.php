@@ -34,7 +34,7 @@
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
 						echo "\n\t\t\t\t<a href='./?r=client/rechercher' class='lien'>\n\t\t\t\t\t<li class='menu'>Rechercher</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurPetit'>";
-						echo "\n\t\t\t\t<a href='./?r=client/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter (F)</li>\n\t\t\t\t</a>";
+						echo "\n\t\t\t\t<a href='./?r=client/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
 
 						echo "\n\t\t\t\t<a href='./?r=rendezvous/afficherTous' class='lien'>\n\t\t\t\t\t<li class='menu'>Rendez-vous</li>\n\t\t\t\t</a>";
@@ -72,7 +72,7 @@
 						}
 						if($_SESSION['droits']>0){
 							echo "\n\t\t\t\t<hr class='separateurGrand'>";
-							echo "\n\t\t\t\t<a href='./?r=reglages/AfficherMiseAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Réglages</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<a href='./?r=reglages/AfficherMiseAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Réglages (F)</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							echo "\n\t\t\t\t<a href='./?r=reglages/MettreAJour' class='lien'>\n\t\t\t\t\t<li class='menu'>Mise à jour des données</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
