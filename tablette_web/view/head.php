@@ -23,8 +23,8 @@
 			$_SESSION['client']=-1;
 			$_SESSION['mode']='utilisateur';
 		}
-		/**/
+		/*
 		print("  --code à enlever dans head.php--  ");
 		print_r($_SESSION);
-		/**/
+		*/
 	?>
