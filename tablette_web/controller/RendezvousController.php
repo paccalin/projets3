@@ -34,7 +34,7 @@ class RendezvousController extends Controller{
 	}
 
 	public function afficherTous(){
-		$rdvsObjet=Rendezvous::FindByUtilisateurID(Utilisateur::FindByPseudo($_SESSION['identifiant'])->id);
+		$rdvsObjet=Rendezvous::FindByUtilisateurID($_SESSION['utilisateur']);
 		$data=array();
 		foreach($rdvsObjet as $rdvObjet){
 			array_push($data,["libelle"=>$rdvObjet->libelle,"client"=>$rdvObjet->client->nom." ".$rdvObjet->client->prenom,"date"=>Rendezvous::DbDateToFrDate($rdvObjet->date),"durée"=>$rdvObjet->duree]);

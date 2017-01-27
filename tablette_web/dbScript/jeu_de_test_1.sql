@@ -128,7 +128,7 @@ insert into join_vehicule_option values (default, 9, (select id from options whe
 insert into join_vehicule_option values (default, 10, (select id from options where libelle='sport'), CURRENT_TIMESTAMP);
 
 /*=== JoinDevisOption ===*/
-
+/*
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 1, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='benne'), 1, CURRENT_TIMESTAMP);
@@ -151,6 +151,7 @@ insert into join_devis_option values (default, (select id from options where lib
 insert into join_devis_option values (default, (select id from options where libelle='climatisation'), 8, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 9, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='rangements'), 9, CURRENT_TIMESTAMP);
+*/
 
 /*=== JoinModeleOption ===*/
 insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);

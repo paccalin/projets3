@@ -11,7 +11,7 @@ class ConnexionController extends Controller{
 			$user = Utilisateur::findByPseudo($_POST['identifiant']);
 			if($user!=null){
 				if ($user->motDePasse==$_POST['motPasse']){
-					$_SESSION['identifiant']=$user->pseudo;
+					$_SESSION['utilisateur']=$user->id;
 					$_SESSION['droits']=$user->droits;
 					$this->render('displayConnexionReussite');
 				}else{
@@ -26,15 +26,25 @@ class ConnexionController extends Controller{
 
 	public function deconnexion(){
 		$_SESSION['droits'] = 0;
-		$_SESSION['identifiant'] = "";
+		$_SESSION['utilisateur'] = -1;
 		header('Location: ./?r=site/index');
 	}
 	public function displayConnexionReussite(){
-		$this->render("displayConnexionReussite");
+		$data['utilisateur']=Utilisateur::FindById($_SESSION['utilisateur']);
+		$this->render("displayConnexionReussite",$data);
 	}
 
 	public function displayConnexionEchec(){
 		$this->render("displayConnexionEchec");
+	}
+	
+	public function swichUtilisateurClient(){
+		if($_SESSION['mode']=='utilisateur'){
+			$_SESSION['mode']='client';
+		}else{
+			$_SESSION['mode']='utilisateur';
+		}
+		header('Location: ./?r=site/index');
 	}
 }
 ?>

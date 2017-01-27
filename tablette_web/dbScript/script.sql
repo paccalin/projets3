@@ -3,7 +3,9 @@ DROP TABLE IF EXISTS join_vehicule_option;
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS vehicule;
 DROP TABLE IF EXISTS join_devis_option;
+DROP TABLE IF EXISTS join_panier_option;
 DROP TABLE IF EXISTS devis;
+DROP TABLE IF EXISTS panier;
 DROP TABLE IF EXISTS rendezvous;
 DROP TABLE IF EXISTS modele;
 DROP TABLE IF EXISTS utilisateur;
@@ -47,6 +49,16 @@ CREATE TABLE devis (
   id int NOT NULL AUTO_INCREMENT,
   client_id int NOT NULL,
   utilisateur_id integer NOT NULL,
+  path varchar(30) DEFAULT '',
+  actif boolean NOT NULL,
+  modele_id int NOT NULL,
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT pk_devis_id PRIMARY KEY (id)
+);
+
+CREATE TABLE panier (
+  id int NOT NULL AUTO_INCREMENT,
+  client_id int NOT NULL,
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
   modele_id int NOT NULL,

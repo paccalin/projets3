@@ -16,12 +16,15 @@
 		
 	</head>
 	<?php
-		if(!isset($_SESSION['droits'])){
+		//$_SESSION=[];
+		if(empty($_SESSION)){
 			$_SESSION['droits']=0;
-			$_SESSION['identifiant']="";
+			$_SESSION['utilisateur']=-1;
+			$_SESSION['client']=-1;
+			$_SESSION['mode']='utilisateur';
 		}
-		/*
-		print("  //code à enlever dans head.php//  ");
+		/**/
+		print("  --code à enlever dans head.php--  ");
 		print_r($_SESSION);
-		*/
+		/**/
 	?>
