@@ -29,15 +29,15 @@
 								echo "<li id='menuDeroulantPseudo'>Client: ".$client->nom." ".$client->prenom."</li>";
 								echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							}else{
-								echo "\n\t\t\t\t<a href='./?r=administration/changerMotPasse' class='lien'>\n\t\t\t\t\t<li class='menu'>Changer le mot de passe</li>\n\t\t\t\t</a>";
-								echo "\n\t\t\t\t<hr class='separateurPetit'>";
 								echo "\n\t\t\t\t<a href='./?r=connexion/ajouterClient' class='lien'><li class='menu'>Lier un client</li>\n\t\t\t\t</a>";
 								echo "\n\t\t\t\t<hr class='separateurPetit'>";
-								echo "\n\t\t\t\t<a href='".'./?r=connexion/swichUtilisateurClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Passer en mode client</li>\n\t\t\t\t</a>";
-								echo "\n\t\t\t\t<hr class='separateurPetit'>";
-								echo "\n\t\t\t\t<a href='".'./?r=connexion/deconnexion'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Se déconnecter</li>\n\t\t\t\t</a>";
-								echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							}
+							echo "\n\t\t\t\t<a href='".'./?r=connexion/swichUtilisateurClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Passer en mode client</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							echo "\n\t\t\t\t<a href='".'./?r=connexion/deconnexion'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Se déconnecter</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							echo "\n\t\t\t\t<a href='./?r=administration/changerMotPasse' class='lien'>\n\t\t\t\t\t<li class='menu'>Changer le mot de passe</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							echo "\n\t\t\t\t<hr class='separateurGrand'>";
 							echo "\n\t\t\t\t<a href='./?r=site/index' class='lien'>\n\t\t\t\t\t<li class='menu'>Accueil</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";

@@ -38,13 +38,35 @@ class ConnexionController extends Controller{
 		$this->render("displayConnexionEchec");
 	}
 	
+	public function ajouterClient(){
+		if(!isset($_POST['submit'])){
+			$this->render('formLiaisonClient');
+		}elseif(isset($_POST['cancel'])){
+			
+		}else{
+			$_SESSION['client']=$_POST['client'];
+		}
+	}
+	
 	public function swichUtilisateurClient(){
 		if($_SESSION['mode']=='utilisateur'){
 			$_SESSION['mode']='client';
+			header('Location: ./?r=site/index');
 		}else{
-			$_SESSION['mode']='utilisateur';
+			if(!isset($_POST['submit'])){
+				$this->render('formEntrerMotDePasse');
+			}else{
+				$user=Utilisateur::FindById($_SESSION['utilisateur']);
+				if($_POST['motPasse']==$user->motDePasse){
+					$_SESSION['mode']='utilisateur';
+					header('Location: ./?r=site/index');
+				}else{
+					$data['erreursSaisie']=[];
+					array_push($data['erreursSaisie'],'Le mot de passe est faux');
+					$this->render('formEntrerMotDePasse',$data);
+				}
+			}
 		}
-		header('Location: ./?r=site/index');
 	}
 }
 ?>
