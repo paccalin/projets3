@@ -59,9 +59,8 @@ CREATE TABLE devis (
 CREATE TABLE panier (
   id int NOT NULL AUTO_INCREMENT,
   client_id int NOT NULL,
+  utilisateur_id integer NOT NULL,
   path varchar(30) DEFAULT '',
-  actif boolean NOT NULL,
-  modele_id int NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
@@ -137,6 +136,14 @@ CREATE TABLE join_devis_option (
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
 );
 
+CREATE TABLE join_panier_option (
+	id int NOT NULL AUTO_INCREMENT,
+	option_id int NOT NULL,
+	panier_id int NOT NULL,
+	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT pk_join_pan_opt_id PRIMARY KEY (id)
+);
+
 CREATE TABLE join_modele_option (
 	id int NOT NULL AUTO_INCREMENT,
 	option_id int NOT NULL,
@@ -172,6 +179,10 @@ ADD CONSTRAINT fk_join_veh_opt_option_id FOREIGN KEY  (option_id) REFERENCES opt
 ALTER TABLE join_devis_option
 ADD CONSTRAINT fk_join_dev_opt_dev_id FOREIGN KEY (devis_id) REFERENCES devis(id),
 ADD CONSTRAINT fk_join_dev_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
+
+ALTER TABLE join_panier_option
+ADD CONSTRAINT fk_join_pan_opt_pan_id FOREIGN KEY (panier_id) REFERENCES panier(id),
+ADD CONSTRAINT fk_join_pan_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
 
 ALTER TABLE join_modele_option
 ADD CONSTRAINT fk_join_mod_opt_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id),

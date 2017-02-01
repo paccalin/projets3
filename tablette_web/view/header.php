@@ -15,29 +15,38 @@
 					if($_SESSION['utilisateur']!=-1){
 						$user=Utilisateur::FindById($_SESSION['utilisateur']);
 						if($_SESSION['mode']=='client'){
+							$client=Client::FindById($_SESSION['client']);
 							echo "<li id='menuDeroulantPseudo'>Mode Client</li>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							echo "<li id='menuDeroulantPseudo'>Client : ".$client->nom." ".$client->prenom."</li>";
+							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							echo "\n\t\t\t\t<a href='".'./?r=connexion/swichUtilisateurClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Passer en mode utilisateur</li>\n\t\t\t\t</a>";
-							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							echo "\n\t\t\t\t<hr class='separateurGrand'>";
 							echo "\n\t\t\t\t<a href='".'./?r=panier/showPanierClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Panier</li>\n\t\t\t\t</a>";
-							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							echo "\n\t\t\t\t<hr class='separateurGrand'>";
+							echo "\n\t\t\t\t<a href='".'./?r=option/afficherTous'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>";
+							//echo "\n\t\t\t\t<hr class='separateurGrand'>";
 						}else{
 							echo "<li id='menuDeroulantPseudo'>Connecté: ".$user->pseudo."</li>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							
+							echo "\n\t\t\t\t<a href='".'./?r=connexion/deconnexion'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Se déconnecter</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<hr class='separateurPetit'>";
+							echo "\n\t\t\t\t<a href='./?r=administration/changerMotPasse' class='lien'>\n\t\t\t\t\t<li class='menu'>Changer le mot de passe</li>\n\t\t\t\t</a>";
+							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							if($_SESSION['client']!=-1){
+								echo "\n\t\t\t\t<hr class='separateurGrand'>";
 								$client=Client::FindById($_SESSION['client']);
 								echo "<li id='menuDeroulantPseudo'>Client: ".$client->nom." ".$client->prenom."</li>";
+								echo "\n\t\t\t\t<hr class='separateurPetit'>";
+								echo "\n\t\t\t\t<a href='".'./?r=connexion/swichUtilisateurClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Passer en mode client</li>\n\t\t\t\t</a>";
+								echo "\n\t\t\t\t<hr class='separateurPetit'>";
+								echo "\n\t\t\t\t<a href='".'./?r=connexion/changeClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Changer de profil client</li>\n\t\t\t\t</a>";
 								echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							}else{
 								echo "\n\t\t\t\t<a href='./?r=connexion/ajouterClient' class='lien'><li class='menu'>Lier un client</li>\n\t\t\t\t</a>";
 								echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							}
-							echo "\n\t\t\t\t<a href='".'./?r=connexion/swichUtilisateurClient'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Passer en mode client</li>\n\t\t\t\t</a>";
-							echo "\n\t\t\t\t<hr class='separateurPetit'>";
-							echo "\n\t\t\t\t<a href='".'./?r=connexion/deconnexion'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Se déconnecter</li>\n\t\t\t\t</a>";
-							echo "\n\t\t\t\t<hr class='separateurPetit'>";
-							echo "\n\t\t\t\t<a href='./?r=administration/changerMotPasse' class='lien'>\n\t\t\t\t\t<li class='menu'>Changer le mot de passe</li>\n\t\t\t\t</a>";
-							echo "\n\t\t\t\t<hr class='separateurPetit'>";
 							echo "\n\t\t\t\t<hr class='separateurGrand'>";
 							echo "\n\t\t\t\t<a href='./?r=site/index' class='lien'>\n\t\t\t\t\t<li class='menu'>Accueil</li>\n\t\t\t\t</a>";
 							echo "\n\t\t\t\t<hr class='separateurPetit'>";
@@ -65,9 +74,11 @@
 								echo "\n\t\t\t\t<hr class='separateurPetit'>";
 								echo "\n\t\t\t\t<a href='./?r=panier/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>";
 								echo "\n\t\t\t\t<hr class='separateurGrand'>";
-								echo "\n\t\t\t\t<a href='./?r=option/afficherGerer' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>\n\t\t\t\t";
-								echo "\n\t\t\t\t<hr class='separateurPetit'>";
-								echo "\n\t\t\t\t<a href='./?r=option/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>\n\t\t\t\t";
+								echo "\n\t\t\t\t<a href='./?r=option/afficherTous' class='lien'>\n\t\t\t\t\t<li class='menu'>Options</li>\n\t\t\t\t</a>\n\t\t\t\t";	
+								if($_SESSION['droits']>= 2){
+									echo "\n\t\t\t\t<hr class='separateurPetit'>";
+									echo "\n\t\t\t\t<a href='./?r=option/creer' class='lien'>\n\t\t\t\t\t<li class='menu'>Ajouter</li>\n\t\t\t\t</a>\n\t\t\t\t";
+								}
 								echo "\n\t\t\t\t<hr class='separateurGrand'>";
 								echo "\n\t\t\t\t<a href='./?r=constructeursModeles/afficher' class='lien'>\n\t\t\t\t\t<li class='menu'>Constructeurs et modèles</li>\n\t\t\t\t</a>\n\t\t\t\t";
 							}

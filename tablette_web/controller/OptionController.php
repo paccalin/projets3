@@ -2,14 +2,14 @@
 
 class OptionController extends Controller{
 
-	public function afficherGerer(){
+	public function afficherTous(){
 		if($_SESSION['droits']>=1){
 			$optionsObj = Option::findAll();
 			$data['options'] = array();
 			foreach($optionsObj as $optionObj){
 				array_push($data['options'],["id"=>$optionObj->id,"libelle"=>$optionObj->libelle,"prixDeBase"=>$optionObj->prixDeBase]);
 			}
-			$this->render("gererOption",$data);
+			$this->render("afficherTous",$data);
 		}else{
 			$this->render("erreurAutorisation");
 		}
@@ -55,13 +55,24 @@ class OptionController extends Controller{
 		}
 	}
 	
-	public function visualiserModifier(){
+	public function visualiser(){
+		if($_SESSION['droits']>=1){
+			$data['option'] = Option::findByID($_GET['option']);
+			$data['moyenneTarif'] = Option::moyenneTarifByID($_GET['option']);
+			$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
+			$this->render("visualiserOption",$data);
+		}else{
+			$this->render("erreurAutorisation");
+		}	
+	}
+	
+	public function modifier(){
 		if($_SESSION['droits']>=2){
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
 			$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
 			if(!isset($_POST['submit'])){
-				$this->render("formModifierOption",$data);
+				$this->render("modifierOption",$data);
 				if(isset($_POST['cancel'])){
 					//                                *** GERER L'ANNULATION
 				}
@@ -78,10 +89,8 @@ class OptionController extends Controller{
 						}
 					}
 				}
-				//print_r($_POST);
-				//print_r($data['erreursSaisie']);
 				if($data['erreursSaisie']!=[]){
-					$this->render("formModifierOption",$data);
+					$this->render("modifierOption",$data);
 				}else{
 					$joins=[];
 					foreach ($_POST as $post=>$postValue){
@@ -93,7 +102,7 @@ class OptionController extends Controller{
 					$data['option'] = Option::findByID($_GET['option']);
 					$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
 					$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
-					$this->render("formModifierOption",$data);
+					$this->render("visualiserOption",$data);
 				}
 			}
 		}else{

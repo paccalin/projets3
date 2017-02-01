@@ -1,13 +1,12 @@
 <?php
 	class Panier extends Model{
 		
-		public function __construct($pClient = null, $pUtilisateur, $pPath = null, $pActif = null,$pDateInsertion = null,$pId = null){
+		public function __construct($pClient = null, $pUtilisateur, $pPath = null,$pDateInsertion = null,$pId = null){
 			/* constructeur vide utilisé par les sockets */
 			$this->id = $pId;
 			$this->client = $pClient;
 			$this->utilisateur = $pUtilisateur;
 			$this->path = $pPath;
-			$this->actif = $pActif;
 			if($pDateInsertion == null){
 				$this->dateInsertion = date('d/m/Y h:i:s a', time());
 			}else{
@@ -19,7 +18,6 @@
 		protected $client;
 		protected $utilisateur;
 		protected $path;
-		protected $actif;
 		protected $dateInsertion;
 		
 		static public function FindByID($pId){
@@ -32,9 +30,8 @@
             $client = Client::FindById($row['client_id']);
             $utilisateur = Utilisateur::FindById($row['utilisateur_id']);
             $path = $row['path'];
-            $actif = $row['actif'];
             $dateInsertion = $row['date_insertion'];       
-            return new Panier($client, $utilisateur, $path, $actif, $dateInsertion, $id);
+            return new Panier($client, $utilisateur, $path, $dateInsertion, $id);
         }
         return null;
     }

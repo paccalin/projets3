@@ -95,7 +95,7 @@ insert into utilisateur values (default, 'commercial4', '123', 1, CURRENT_TIMEST
 insert into utilisateur values (default, 'commercial5', '123', 1, CURRENT_TIMESTAMP);
 
 /*=== Devis ===*/
-
+/*
 insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis1.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
 insert into devis values(default, 1, (select id from utilisateur where pseudo='commercial'), 'devis/devis2.pdf', 1, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
 insert into devis values(default, 2, (select id from utilisateur where pseudo='commercial1'), 'devis/devis3.pdf', 1, (select id from modele where libelle='Sprinter'), CURRENT_TIMESTAMP);
@@ -105,7 +105,15 @@ insert into devis values(default, 4, (select id from utilisateur where pseudo='c
 insert into devis values(default, 5, (select id from utilisateur where pseudo='commercial3'), 'devis/devis7.pdf', 0, (select id from modele where libelle='Kangoo'), CURRENT_TIMESTAMP);
 insert into devis values(default, 6, (select id from utilisateur where pseudo='commercial4'), 'devis/devis8.pdf', 0, (select id from modele where libelle='Master'), CURRENT_TIMESTAMP);
 insert into devis values(default, 7, (select id from utilisateur where pseudo='commercial5'), 'devis/devis9.pdf', 0, (select id from modele where libelle='Trafic'), CURRENT_TIMESTAMP);
+*/
 
+/*=== Panier ===*/
+
+insert into panier values(default, 1, (select id from utilisateur where pseudo='superadmin'), 'panier/panier1.pdf', CURRENT_TIMESTAMP);
+insert into panier values(default, 2, (select id from utilisateur where pseudo='commercial'), 'panier/panier2.pdf', CURRENT_TIMESTAMP);
+insert into panier values(default, 3, (select id from utilisateur where pseudo='commercial'), 'panier/panier3.pdf', CURRENT_TIMESTAMP);
+insert into panier values(default, 4, (select id from utilisateur where pseudo='commercial'), 'panier/panier4.pdf', CURRENT_TIMESTAMP);
+insert into panier values(default, 5, (select id from utilisateur where pseudo='commercial'), 'panier/panier5.pdf', CURRENT_TIMESTAMP);
 
 /*=== Rendezvous ===*/
 
@@ -152,6 +160,20 @@ insert into join_devis_option values (default, (select id from options where lib
 insert into join_devis_option values (default, (select id from options where libelle='couleur'), 9, CURRENT_TIMESTAMP);
 insert into join_devis_option values (default, (select id from options where libelle='rangements'), 9, CURRENT_TIMESTAMP);
 */
+
+/*=== JoinPanierOption ===*/
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='rangements'), 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 2, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 2, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='rangements'), 2, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 3, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 3, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 4, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 4, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 5, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 5, CURRENT_TIMESTAMP);
 
 /*=== JoinModeleOption ===*/
 insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);

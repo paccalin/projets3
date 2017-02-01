@@ -13,7 +13,8 @@ class ConnexionController extends Controller{
 				if ($user->motDePasse==$_POST['motPasse']){
 					$_SESSION['utilisateur']=$user->id;
 					$_SESSION['droits']=$user->droits;
-					$this->render('displayConnexionReussite');
+					$data['utilisateur']=$user;
+					$this->render('displayConnexionReussite',$data);
 				}else{
 					$this->render('displayConnexionEchec',"Le mot de passe est incorrect: |".$user->motDePasse."|");
 				}
@@ -45,6 +46,18 @@ class ConnexionController extends Controller{
 			
 		}else{
 			$_SESSION['client']=$_POST['client'];
+			header('Location: ./?r=site/index');
+		}
+	}
+	
+	public function changeClient(){
+		if(!isset($_POST['submit'])){
+			$this->render('formLiaisonClient');
+		}elseif(isset($_POST['cancel'])){
+			
+		}else{
+			$_SESSION['client']=$_POST['client'];
+			header('Location: ./?r=site/index');
 		}
 	}
 	
