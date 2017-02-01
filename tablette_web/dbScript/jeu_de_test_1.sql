@@ -1,6 +1,6 @@
-/*=== Socket ===*/
+/*=== insert ===*/
 /*
-insert into socket values(default,'centrale','insert','client','{"id":"14","nom":"Test","prenom":"Jean","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
+Socket into socket values(default,'centrale','insert','client','{"id":"14","nom":"Test","prenom":"Jean","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','client','{"id":"14","nom":"Test","prenom":"Jean-Socket","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','option','{"id":"10","libelle":"Option socket","desc":"Option générée par socket","prixDeBase":"150000","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
 insert into socket values(default,'tablette','insert','constructeur','{"id":"6","libelle":"Constructsocket","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);

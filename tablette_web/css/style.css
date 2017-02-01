@@ -38,8 +38,8 @@ header img{
 .imageButton{
 	height: 8vh;
 	border: solid;
-	border-radius: 50%;
-	border-width: 0.2vh;
+	border-radius: 40%;
+	border-width: 0vh;
 	border-color: #24748f;
 	background-color: #0fa2d5;
 }
