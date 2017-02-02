@@ -15,7 +15,11 @@
 		
 		public function ajouterOption(){
 			Panier::ajouterOption($_GET['option']);
-			header('Location: ./?r='.$_GET['retour']);
+			if(isset($_GET['retour'])){
+				header('Location: ./?r='.$_GET['retour']);
+			}else{
+				header('Location: ./?r=panier/showPanierClient');
+			}
 		}
 	}
 ?>

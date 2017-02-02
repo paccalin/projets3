@@ -108,10 +108,25 @@
 		}
 		
 		static public function ajouterOption($optionId){
-			$panier=Self::FindByClientId($_SESSION['client'])[0];
-			$requete = "INSERT INTO join_panier_option VALUES (DEFAULT,'".$optionId."','".$panier->id."',CURRENT_TIMESTAMP)";		
+			$panier = Self::FindByClientId($_SESSION['client']);
+			$requete = "select count(*) as count,id from join_panier_option where panier_id=".$panier->id." and option_id=".$optionId;
+			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
+			if ($query->rowCount() > 0){
+				$row = $query->fetch(PDO::FETCH_ASSOC);
+				if($row['count']==0){
+					$requete = "INSERT INTO join_panier_option VALUES (DEFAULT,'".$optionId."','".$panier->id."', 1, CURRENT_TIMESTAMP)";
+					$query = db()->prepare($requete);
+					$query->execute();
+				}else{
+					$requete = "UPDATE join_panier_option SET nombre=nombre+1 where id=".$row['id'];
+					$query = db()->prepare($requete);
+					$query->execute();
+				}
+			}else{
+				return null;
+			}
 		}
 	}
 ?>
