@@ -162,18 +162,18 @@ insert into join_devis_option values (default, (select id from options where lib
 */
 
 /*=== JoinPanierOption ===*/
-insert into join_panier_option values (default, (select id from options where libelle='couleur'), 1, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 1, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='rangements'), 1, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='couleur'), 2, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 2, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='rangements'), 2, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='couleur'), 3, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 3, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='couleur'), 4, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 4, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='couleur'), 5, CURRENT_TIMESTAMP);
-insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 5, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 1, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 1, 2, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='rangements'), 1, 1,CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 2, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 2, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='rangements'), 2, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 3, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 3, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 4, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 4, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='couleur'), 5, 1, CURRENT_TIMESTAMP);
+insert into join_panier_option values (default, (select id from options where libelle='climatisation'), 5, 1, CURRENT_TIMESTAMP);
 
 /*=== JoinModeleOption ===*/
 insert into join_modele_option values (default, (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);

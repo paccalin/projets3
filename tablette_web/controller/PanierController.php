@@ -7,7 +7,9 @@
 		}
 		
 		public function showPanierClient(){
-			$data['joinOptionsPanier']=Panier::FindJoinOptionsByClientId($_SESSION['client']);
+			$panier = Panier::FindByClientId($_SESSION['client']);
+			$data['joinOptionsPanier']=Panier::FindJoinOptionsById($panier->id);
+			$data['total']=$panier->getCoutTotal();
 			$this->render("visualisationPanierClient",$data);
 		}
 		

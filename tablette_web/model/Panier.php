@@ -20,6 +20,35 @@
 		protected $path;
 		protected $dateInsertion;
 		
+		public function getNbOptions(){
+			$requete="select count(*) as nb from join_panier_option where panier_id=".$this->id;
+			//echo $requete;
+			$query = db()->prepare($requete);
+			$query->execute();
+			$returnList=[];
+			if ($query->rowCount() > 0){
+				$row = $query->fetch(PDO::FETCH_ASSOC);
+				return $row['nb'];
+			}else{
+				return -1;
+			}
+		}
+		
+		public function getCoutTotal(){
+			//trouver un moyen pour que ça fasse la somme avec nombre un attribut de join_panier_option
+			$requete="select sum(prixDeBase*nombre) as somme from options where id in (select option_id from join_panier_option where panier_id=".$this->id.")";
+			//echo $requete;
+			$query = db()->prepare($requete);
+			$query->execute();
+			$returnList=[];
+			if ($query->rowCount() > 0){
+				$row = $query->fetch(PDO::FETCH_ASSOC);
+				return $row['somme'];
+			}else{
+				return -1;
+			}
+		}
+		
 		static public function FindByID($pId){
 			$query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
 			$query->bindParam(1, $pId, PDO::PARAM_INT);
@@ -56,16 +85,15 @@
 			$query->execute();
 			$returnList = [];
 			if ($query->rowCount() > 0){
-				$results = $query->fetchAll();
-				foreach ($results as $row) {
-					array_push($returnList, self::FindById($row["id"]));
-				}
+				$row = $query->fetch(PDO::FETCH_ASSOC);
+				return self::FindById($row['id']);
+			}else{
+				return null;
 			}
-			return $returnList;
 		}
 		
-		static public function FindJoinOptionsByClientId($clientId){
-			$requete="select * from join_panier_option where panier_id=(select id from panier where client_id=".$clientId.")";
+		static public function FindJoinOptionsById($id){
+			$requete="select * from join_panier_option where panier_id=".$id;
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
@@ -73,7 +101,7 @@
 			if ($query->rowCount() > 0){
 				$results = $query->fetchAll();
 				foreach ($results as $row) {
-					array_push($returnList, ["option"=>Option::FindById($row["option_id"])]);
+					array_push($returnList, ["option"=>Option::FindById($row["option_id"]),"nombre"=>$row['nombre']]);
 				}
 			}
 			return $returnList;

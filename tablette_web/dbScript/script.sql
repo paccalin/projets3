@@ -140,6 +140,7 @@ CREATE TABLE join_panier_option (
 	id int NOT NULL AUTO_INCREMENT,
 	option_id int NOT NULL,
 	panier_id int NOT NULL,
+	nombre integer NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_pan_opt_id PRIMARY KEY (id)
 );
