@@ -20,6 +20,13 @@
 		protected $path;
 		protected $dateInsertion;
 		
+		static public function create($clientId){
+			$requete="insert into ".self::$tableName." values(default,".$clientId.",".$_SESSION['utilisateur'].",'path',CURRENT_TIMESTAMP)";
+			echo $requete;
+			$query = db()->prepare($requete);
+			$query->execute();
+		}
+		
 		public function getNbOptions(){
 			$requete="select count(*) as nb from join_panier_option where panier_id=".$this->id;
 			//echo $requete;
@@ -61,6 +68,8 @@
 				$path = $row['path'];
 				$dateInsertion = $row['date_insertion'];       
 				return new Panier($client, $utilisateur, $path, $dateInsertion, $id);
+			}else{
+				self::create($_SESSION['client']);
 			}
 			return null;
 		}
@@ -88,7 +97,8 @@
 				$row = $query->fetch(PDO::FETCH_ASSOC);
 				return self::FindById($row['id']);
 			}else{
-				return null;
+				self::create($clientId);
+				header('Location: .?r=panier/showPanierClient');
 			}
 		}
 		

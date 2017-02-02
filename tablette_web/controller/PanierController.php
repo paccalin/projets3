@@ -1,6 +1,14 @@
 <?php
 	class PanierController extends Controller{
 		
+		public function creer(){
+			
+		}
+		
+		public function rechercher(){
+			
+		}
+		
 		public function afficherTous(){
 			$data['paniers']=Panier::FindAll();
 			$this->render("visualisationPanierTous",$data);
