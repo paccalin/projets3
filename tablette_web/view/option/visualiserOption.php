@@ -1,9 +1,15 @@
-<a href='./?r=option/afficherTous' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
+<a href='<?php if(isset($_GET['retour'])){echo './?r='.$_GET['retour'];}else{echo './?r=option/afficherTous';}?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <?php
 	if($_SESSION['droits']>=2 AND $_SESSION['mode']=='utilisateur'){
 		echo "<a href='./?r=option/modifier&option=".$_GET['option']."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>";
 	}elseif($_SESSION['mode']=='client'){
-		echo "<a href='./?r=panier/ajouterOption&option=".$_GET['option']."'><img src='./images/panier.png' class='imageButton' alt='Ajouter au panier'></a><br/>";
+		echo "<a href='";
+		if(isset($_GET['retour'])){
+			echo "./?r=panier/ajouterOption&option=".$_GET['option']."&retour=".$_GET['retour'];
+		}else{
+			echo "./?r=panier/ajouterOption&option=".$_GET['option'];
+		}
+		echo "'><img src='./images/panier.png' class='imageButton' alt='Ajouter au panier'></a><br/>";
 	}
 	?>
 <table class='tableAffichage'>

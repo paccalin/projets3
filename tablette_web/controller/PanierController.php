@@ -7,12 +7,13 @@
 		}
 		
 		public function showPanierClient(){
-			$data['paniers']=Panier::FindByClientId($_SESSION['client']);
-			$this->render("visualisationPanierParId",$data);
+			$data['joinOptionsPanier']=Panier::FindJoinOptionsByClientId($_SESSION['client']);
+			$this->render("visualisationPanierClient",$data);
 		}
 		
 		public function ajouterOption(){
-			
+			Panier::ajouterOption($_GET['option']);
+			header('Location: ./?r='.$_GET['retour']);
 		}
 	}
 ?>

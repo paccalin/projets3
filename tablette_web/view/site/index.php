@@ -8,3 +8,12 @@
 <p>&nbsp;Faites un pull juste avant d'écrire dans le fichier et un push juste après pour que le fichier soit continuellement à jour.</p>
 <br/>
 -->
+<!--
+<p>
+<b><u>/!\</u> A faire peut importe qui:</b><br/>
+<br/>
+-Remplacer tous les input type="cancel" des formulaires par des <u>button</u><br/>
+-Leur mettre le même CSS que les boutons d'avant (juste ajouter leur classe au bon endroit, et pas faire un nouveau bloc CSS)<br/>
+-Ajouter un onclick header location machin truc pour rediriger au bon endroit
+</p>
+-->
