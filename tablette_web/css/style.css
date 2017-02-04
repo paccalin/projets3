@@ -39,7 +39,7 @@ header img{
 .imageButton{
 	height: 10vh;
 	border: solid;
-	border-radius: 50%;
+	border-radius: 25%;
 	border-width: 0vh;
 	border-color: #24748f;
 	background-color: #0fa2d5;
@@ -174,13 +174,13 @@ input[type="submit"]:focus{
 	background-color: #e6edf2;
 	color: #7a828f;
 }
-
 .boutonTableUserDesactive {
 	text-align:center;
 	color: white;
 	text-decoration: none;
 }
-
-a:hover{
-	color: red;
+#ip{
+	font-weight: bold;
+	text-align: center;
+	padding: 1vh;
 }

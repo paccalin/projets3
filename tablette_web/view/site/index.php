@@ -7,17 +7,42 @@
 				['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher']
 			];
 		}else{
-			$rubriques=[
-				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
-				['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
-				['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
-				['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
-				['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
-				['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
-				['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
-				['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null],
-				['nom'=>'Connexion','controller'=>'reglages','visualiser'=>null,'ajout'=>null,'recherche'=>null]
-			];
+			if($_SESSION['droits']==1){
+				$rubriques=[
+					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
+					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
+					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null],
+					['nom'=>'Connexion','controller'=>'connexion','visualiser'=>null,'ajout'=>null,'recherche'=>null]
+				];
+			}elseif($_SESSION['droits']==2){
+				$rubriques=[
+					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
+					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
+					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null],
+					['nom'=>'Connexion','controller'=>'connexion','visualiser'=>null,'ajout'=>null,'recherche'=>null]
+				];
+			}else{
+				$rubriques=[
+					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
+					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
+					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>null],
+					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
+					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null],
+					['nom'=>'Connexion','controller'=>'connexion','visualiser'=>null,'ajout'=>null,'recherche'=>null]
+				];
+			}			
 		}
 	}else{
 		$rubriques=[
@@ -25,19 +50,26 @@
 			];
 	}
 	foreach($rubriques as $rubrique){
-		echo "<div class='rubrique'>";
+		echo "\n<div class='rubriqueExt'>";
+		echo "\n\t<div class='rubriqueInt'>";
 		if($rubrique['visualiser']!=null){
-			echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'>".$rubrique['nom']."</div></a>";
+			//echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'>".$rubrique['nom']."</div></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."' class='imageIndex'></div></a>";
 		}else{
-			echo "<div class='rubriqueTexte'>".$rubrique['nom']."</div>";
+			echo "\n\t\t<div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."'></div>";
 		}
 		if($rubrique['ajout']!=null){
-			echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['ajout']."&retour=site/index'><img src='./images/plus.png' class='boutonIndex boutonVert boutonHD' alt='Ajout'></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['ajout']."&retour=site/index'><img src='./images/plus.png' class='boutonIndex boutonVert boutonHD' alt='Ajout'></a>";
+		}
+		if(isset($rubrique['ajout2']) AND $rubrique['ajout2']!=null){
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['ajout2']."&retour=site/index'><img src='./images/plus.png' class='boutonIndex boutonVert boutonMD' alt='Ajout'></a>";
 		}
 		if($rubrique['recherche']!=null){
-			echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['recherche']."&retour=site/index'><img src='./images/loupe.png' class='boutonIndex boutonGris boutonBD' alt='Recherche'></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['recherche']."&retour=site/index'><img src='./images/loupe.png' class='boutonIndex boutonGris boutonBD' alt='Recherche'></a>";
 		}
-		echo "</div>";
+		echo "\n\t</div>";
+		echo "\n\t<div class='texteLegendeIndex'>".$rubrique['nom']."</div>";
+		echo "\n</div>";
 	}
 ?>
 
