@@ -32,7 +32,8 @@ header{
 }
 
 header img{
-    max-height: 12vh;
+    /*--max-height: 12vh;--*/
+	height: 10vh;
     width: auto;
 }
 .imageButton{

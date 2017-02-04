@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/diapo.css" />
 		<link rel="stylesheet" type="text/css" href="css/mosaic.css" />
 		<link rel="stylesheet" type="text/css" href="css/menuDefil.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate.css" />
 		<link rel="icon" type="image/png" href="images/favicon.png" />
 

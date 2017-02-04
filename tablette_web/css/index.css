@@ -1,0 +1,42 @@
+.rubrique{
+	height: 32vw;
+	width: 32vw;
+	display: inline-block;
+	position: relative;
+	border: 0px solid #0fa2d5;
+}
+
+.rubriqueTexte{
+	position: absolute;
+	text-align:center;
+	font-size: 3vw;
+	right: 15%;
+	top: 15%;
+	height: 70%;
+	width: 70%;
+	padding: 22% 20% 20% 12%;
+	border: 0px solid black;
+	border-radius: 2%;
+	background-color: #0fa2d5;
+	color: white;
+}
+
+.boutonAjout{
+	position: absolute;
+	right: 7%;
+	top: 12%;
+	height: 27%;
+	border: 0px solid black;
+	border-radius: 2%;
+	background-color: #32c870;
+}
+
+.boutonRecherche{
+	position: absolute;
+	right: 7%;
+	bottom: 12%;
+	height: 27%;
+	border: 0px solid black;
+	border-radius: 2%;
+	background-color: #7a828f;
+}

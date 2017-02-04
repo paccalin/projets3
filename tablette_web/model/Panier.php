@@ -98,7 +98,8 @@
 				return self::FindById($row['id']);
 			}else{
 				self::create($clientId);
-				header('Location: .?r=panier/showPanierClient');
+				$id=db()->lastInsertId();
+				return self::FindById($id);
 			}
 		}
 		
