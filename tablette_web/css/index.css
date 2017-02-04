@@ -21,22 +21,29 @@
 	color: white;
 }
 
-.boutonAjout{
+.boutonIndex{
 	position: absolute;
-	right: 7%;
-	top: 12%;
 	height: 27%;
 	border: 0px solid black;
 	border-radius: 2%;
+}
+.boutonVert{
 	background-color: #32c870;
 }
+.boutonDefaut{
 
-.boutonRecherche{
-	position: absolute;
+}
+.boutonGris{
+	background-color: #7a828f;
+}
+.boutonRouge{
+
+}
+.boutonHD{
+	right: 7%;
+	top: 12%;
+}
+.boutonBD{
 	right: 7%;
 	bottom: 12%;
-	height: 27%;
-	border: 0px solid black;
-	border-radius: 2%;
-	background-color: #7a828f;
 }

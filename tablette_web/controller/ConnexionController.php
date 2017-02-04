@@ -1,8 +1,9 @@
 <?php
 class ConnexionController extends Controller{
-	public function formConnexion(){
+	public function connexion(){
 		$this->render("formConnexion");
 	}
+
 	public function verifieConnexion(){
 		if(isset($_POST['cancel'])){
 			header('Location: ./?r=site/index');

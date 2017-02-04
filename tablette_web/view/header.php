@@ -102,7 +102,7 @@
 					}else{
 						echo "\n\t\t\t\t<li id='menuDeroulantPseudo'>Déconnecté</li>\n\t\t\t\t</a>";
 						echo "\n\t\t\t\t<hr class='separateurGrand'>";
-						echo "\n\t\t\t\t<a href='".'./?r=connexion/formConnexion'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Se connecter</li></a>\n\t\t\t\t";
+						echo "\n\t\t\t\t<a href='".'./?r=connexion/connexion'."' class='lien'>\n\t\t\t\t\t<li class='menu'>Se connecter</li></a>\n\t\t\t\t";
 					}
 				?>
 			</ul>
