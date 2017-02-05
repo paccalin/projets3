@@ -1,8 +1,8 @@
 <?php
 	if($data['statut']=='non connecte'){
-		echo '<p>L\'application Python n\'est pas connectée</p>';
+		echo '<p>L\'application centrale n\'est pas connectée</p>';
 	}elseif($data['statut']=='connecte'){
-		echo '<p>L\'application Python est connectée</p>';
+		echo '<p>L\'application centrale est connectée</p>';
 	}
 ?>
 <p>Données en attentes de mise à jour : <?php echo $data['nbMaj'];?></p>

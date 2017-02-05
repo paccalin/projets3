@@ -72,10 +72,10 @@
 			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['recherche']."&retour=site/index'><img src='./images/loupe.png' class='boutonIndex boutonGris boutonBD' alt='Recherche'></a>";
 		}
 		if(isset($rubrique['croix']) AND $rubrique['croix']!=null){
-			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['croix']."&retour=site/index'><img src='./images/croix.png' class='boutonIndex boutonRouge boutonBD' alt='X'></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['croix']."&retour=site/index'><img src='./images/croix.png' class='boutonIndex boutonRouge boutonMG' alt='X'></a>";
 		}
 		if(isset($rubrique['ajoutClient']) AND $rubrique['ajoutClient']!=null){
-			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['ajoutClient']."&retour=site/index'><img src='./images/ajoutClient.png' class='boutonIndex boutonVert boutonHD' alt='+'></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['ajoutClient']."&retour=site/index'><img src='./images/ajouteClient.png' class='boutonIndex boutonVert boutonHD' alt='+'></a>";
 		}
 		if(isset($rubrique['changeClient']) AND $rubrique['changeClient']!=null){
 			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['changeClient']."&retour=site/index'><img src='./images/changeClient.png' class='boutonIndex boutonVert boutonHD' alt='<=>'></a>";

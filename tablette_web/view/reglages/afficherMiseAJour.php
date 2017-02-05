@@ -1,10 +1,10 @@
 <?php
 	if($data['statut']=='non connecte'){
-		echo "<p>L'application Python n'est pas connectée</p>";
-		echo "<p>Pour créer une connexion avec l'application Python, rentrer l'adresse IP de la tablette dans les réglages de l'application Python</p>";
+		echo "<p>L'application centrale n'est pas connectée</p>";
+		echo "<p>Pour créer une connexion avec l'application centrale, rentrer l'adresse IP de la tablette dans les réglages de l'application centrale</p>";
 		echo "<p>L'adresse est visible dans les options en dessous</p>";
 	}elseif($data['statut']=='connecte'){
-		echo "<p>L\'application Python est connectée</p>";
+		echo "<p>L\'application centrale est connectée</p>";
 	}
 ?>
 <br/>
