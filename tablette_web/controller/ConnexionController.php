@@ -15,7 +15,7 @@ class ConnexionController extends Controller{
 					$_SESSION['utilisateur']=$user->id;
 					$_SESSION['droits']=$user->droits;
 					$data['utilisateur']=$user;
-					$this->render('displayConnexionReussite',$data);
+					header('Location: ./?r=site/index');
 				}else{
 					$this->render('displayConnexionEchec',"Le mot de passe est incorrect: |".$user->motDePasse."|");
 				}

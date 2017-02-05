@@ -109,14 +109,6 @@ input, .input{
 	/* Les 2 dernières lignes pour que ça marche sur IOS et Internet Explorer Mk2 sinon ça ne marche pas*/
 }
 
-input:focus{
-	box-shadow: 0px 0px 10px #0fa2d5;
-}
-
-input[type="submit"]:focus{
-	box-shadow: 0px 0px 0px;
-}
-
 .form_boutons input{
 	border-width: 0px;	
 	border-radius: 1px;

@@ -54,7 +54,10 @@
 	background-color: #7a828f;
 }
 .boutonRouge{
-
+	background-color: #e74c3c;
+}
+.boutonJaune{
+	background-color: #dfdf20;
 }
 .boutonHD{
 	right: 4%;
@@ -66,5 +69,21 @@
 }
 .boutonBD{
 	right: 4%;
+	bottom: 8%;
+}
+.boutonHM{
+	left: 37%;
+	top: 8%;
+}
+.boutonHG{
+	left: 4%;
+	top: 8%;
+}
+.boutonMG{
+	left: 4%;
+	top: 37%;
+}
+.boutonBG{
+	left: 4%;
 	bottom: 8%;
 }
