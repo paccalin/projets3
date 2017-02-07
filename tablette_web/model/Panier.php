@@ -42,8 +42,9 @@
 		}
 		
 		public function getCoutTotal(){
+			/* marche pas -> faire une requête imbriquée ou un truc dans le genre */
 			//trouver un moyen pour que ça fasse la somme avec nombre un attribut de join_panier_option
-			$requete="select sum(prixDeBase*nombre) as somme from options where id in (select option_id from join_panier_option where panier_id=".$this->id.")";
+			$requete=" [...] where panier_id=".$this->id.")";
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
