@@ -17,8 +17,7 @@ class Constructeur extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -59,14 +58,14 @@ class Constructeur extends Model{
 
 	static public function insert($constructeur){
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$constructeur->libelle."',CURRENT_TIMESTAMP)");
-		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
 		$constructeur->id = db()->lastInsertId();
 	}
 	
 	static public function update($constructeur){
-		$query = db()->prepare("UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id=".$constructeur->id);
-		echo "UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id=".$constructeur->id;
+		$requete="UPDATE ".self::$tableName." SET libelle='".$constructeur->libelle."' WHERE id='".$constructeur->id."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
 		$query->execute();
 	}
 }

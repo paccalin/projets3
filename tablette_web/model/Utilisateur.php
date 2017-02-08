@@ -38,7 +38,7 @@ class Utilisateur extends Model{
     }
 
     static public function FindByPseudo($pUserName) {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE pseudo = '".$pId."'");
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE pseudo = '".$pUserName."'");
         $query->execute();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();

@@ -17,7 +17,7 @@ class ConnexionController extends Controller{
 					$data['utilisateur']=$user;
 					header('Location: ./?r=site/index');
 				}else{
-					$this->render('displayConnexionEchec',"Le mot de passe est incorrect: |".$user->motDePasse."|");
+					$this->render('displayConnexionEchec',"Le mot de passe est incorrect.");
 				}
 			}else{
 				$this->render('displayConnexionEchec',"Ce compte n'existe pas.");

@@ -170,6 +170,10 @@ ALTER TABLE rendezvous
 ADD CONSTRAINT fk_rendezvous_client_id FOREIGN KEY (client_id) REFERENCES client(id),
 ADD CONSTRAINT fk_rendezvous_utilisateur_id FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id);
 
+ALTER TABLE panier
+ADD CONSTRAINT fk_panier_client_id FOREIGN KEY (client_id) REFERENCES client(id),
+ADD CONSTRAINT fk_panier_utilisateur_id FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id);
+
 ALTER TABLE vehicule
 ADD CONSTRAINT fk_vehicule_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id),
 ADD CONSTRAINT fk_vehicule_client_id FOREIGN KEY (client_id) REFERENCES client(id);
