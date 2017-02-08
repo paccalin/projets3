@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS client;
 DROP TABLE IF EXISTS socket;
 
 CREATE TABLE socket (
-	id int NOT NULL AUTO_INCREMENT,
+	id varchar(20),
 	destinataire varchar(10) DEFAULT '',
 	action varchar(10) DEFAULT '',
 	tableDb varchar(30) DEFAULT '',
@@ -25,7 +25,7 @@ CREATE TABLE socket (
 );
 
 CREATE TABLE client (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   nom varchar(50) DEFAULT '',
   prenom varchar(30) DEFAULT '',
   rue varchar(100) DEFAULT '',
@@ -38,7 +38,7 @@ CREATE TABLE client (
 );
 
 CREATE TABLE constructeur (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   libelle varchar(30) DEFAULT '',
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_constructeur_id PRIMARY KEY (id),
@@ -46,56 +46,64 @@ CREATE TABLE constructeur (
 );
 
 CREATE TABLE devis (
-  id int NOT NULL AUTO_INCREMENT,
-  client_id int NOT NULL,
-  utilisateur_id integer NOT NULL,
+  id varchar(20),
+  client_id varchar(20),
+  utilisateur_id varchar(20),
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
-  modele_id int NOT NULL,
+  modele_id varchar(20),
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
 
 CREATE TABLE panier (
+<<<<<<< HEAD
+  id varchar(20),
+  client_id varchar(20),
+  path varchar(30) DEFAULT '',
+  actif boolean NOT NULL,
+  modele_id varchar(20),
+=======
   id int NOT NULL AUTO_INCREMENT,
   client_id int NOT NULL,
   utilisateur_id integer NOT NULL,
   path varchar(30) DEFAULT '',
+>>>>>>> b4794ba8422f433cb5f6b59cc143efdd9f41702a
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
 
 CREATE TABLE modele (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   libelle varchar(30) DEFAULT '',
-  constructeur_id int NOT NULL,
+  constructeur_id varchar(20),
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_modele_id PRIMARY KEY (id)
 );
 
 CREATE TABLE options (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   libelle varchar(30) DEFAULT '',
   description varchar(255) DEFAULT '',
-	prixDeBase int NOT NULL,
+  prixDeBase int NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_option_id PRIMARY KEY (id)
 );
 
 CREATE TABLE photo (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   path varchar(30) DEFAULT '',
-  vehicule_id integer NOT NULL,
+  vehicule_id varchar(20),
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_photo_id PRIMARY KEY (id)
 );
 
 
 CREATE TABLE rendezvous (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   libelle varchar(30) DEFAULT '',
-  utilisateur_id integer NOT NULL,
-  client_id integer NOT NULL,
+  utilisateur_id varchar(20),
+  client_id varchar(20),
   date DATETIME NOT NULL,
   duree time NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -103,7 +111,7 @@ CREATE TABLE rendezvous (
 );
 
 CREATE TABLE utilisateur (
-  id int NOT NULL AUTO_INCREMENT,
+  id varchar(20),
   pseudo varchar(255) DEFAULT '',
   motDePasse varchar(255) DEFAULT '',
   droits int NOT NULL,
@@ -112,26 +120,26 @@ CREATE TABLE utilisateur (
 );
 
 CREATE TABLE vehicule (
-  id int NOT NULL AUTO_INCREMENT,
-  modele_id integer NOT NULL,
-  client_id integer NOT NULL,
+  id varchar(20),
+  modele_id varchar(20),
+  client_id varchar(20),
   immatriculation varchar(7) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_vehicule_id PRIMARY KEY (id)
 );
 
 CREATE TABLE join_vehicule_option (
-  id int NOT NULL AUTO_INCREMENT,
-  vehicule_id integer NOT NULL,
-  option_id integer NOT NULL,
+  id varchar(20),
+  vehicule_id varchar(20),
+  option_id varchar(20),
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_join_veh_opt_id PRIMARY KEY (id)
 );
 
 CREATE TABLE join_devis_option (
-	id int NOT NULL AUTO_INCREMENT,
-	option_id int NOT NULL,
-	devis_id int NOT NULL,
+	id varchar(20),
+	option_id varchar(20),
+	devis_id varchar(20),
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
 );
@@ -146,9 +154,9 @@ CREATE TABLE join_panier_option (
 );
 
 CREATE TABLE join_modele_option (
-	id int NOT NULL AUTO_INCREMENT,
-	option_id int NOT NULL,
-	modele_id int NOT NULL,
+	id varchar(20),
+	option_id varchar(20),
+	modele_id varchar(20),
 	prix int NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
