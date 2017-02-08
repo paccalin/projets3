@@ -3,7 +3,11 @@ class Utilisateur extends Model{
 	
     public function __construct($pPseudo = null, $pMotDePasse = null, $pDroits = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = uniqid();
+        if($pId==null){
+			$this->id = Model::randomId();
+        }else{
+			$this->id = $pId;
+		}
         $this->pseudo = $pPseudo;
         $this->motDePasse = $pMotDePasse;
         $this->droits = $pDroits;
@@ -63,9 +67,8 @@ class Utilisateur extends Model{
     }
 
 	static public function insert($user){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$user->pseudo."','".$user->motDePasse."',".$user->droits.",CURRENT_TIMESTAMP)");
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES ('".$user->id."','".$user->pseudo."','".$user->motDePasse."',".$user->droits.",CURRENT_TIMESTAMP)");
 		$query->execute();
-		$user->id = db()->lastInsertId();
 	}
 
 	static public function update($user){

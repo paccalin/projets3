@@ -26,6 +26,10 @@ class ConstructeursModelesController extends Controller{
 		$this->render("tableauAffichageConstructeursModeles",$data);
 	}
 
+	public function rechercher(){
+		$this->render("formRecherche");
+	}
+
 	public function afficherModele(){
 		$data['modele']=Modele::findByID($_GET['modele']);
 		$data['constructeur']=$data['modele']->constructeur;

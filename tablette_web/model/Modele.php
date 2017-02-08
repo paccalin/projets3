@@ -22,7 +22,7 @@ class Modele extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
@@ -87,9 +87,9 @@ class Modele extends Model{
 	}
 
 	static public function insert($modele){
-		$requete="INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$modele->libelle."',".$modele->constructeur->id.",CURRENT_TIMESTAMP)";
+		$requete="INSERT INTO ".self::$tableName." VALUES ('".$modele->id."','".$modele->libelle."','".$modele->constructeur->id."',CURRENT_TIMESTAMP)";
+		//echo $requete;
 		$query = db()->prepare($requete);
-		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
 	}
 

@@ -61,7 +61,7 @@ class Constructeur extends Model{
     }
 
 	static public function insert($constructeur){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$constructeur->libelle."',CURRENT_TIMESTAMP)");
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES ('".$constructeur->id."','".$constructeur->libelle."',CURRENT_TIMESTAMP)");
 		$query->execute();
 	}
 	

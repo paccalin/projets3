@@ -1,4 +1,13 @@
 <a href='./?r=option/visualiser<?php echo '&option='.$_GET['option'];?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
+<?php
+	if(isset($data['erreursSaisie'])){
+		echo "<p class='erreursSaisie'>Il y a des erreurs de saisie:<br/>";
+		foreach($data['erreursSaisie'] as $erreurSaisie){
+			echo "-".$erreurSaisie."<br/>";
+		}
+		echo "</p>";
+	}
+?>
 <table class='tableAffichage' action=''>
 	<tr><th>Libelle</th><th>Description</th><th>Prix de base</th><th>Prix moyen pratiqué</th></tr>
 	<?php

@@ -41,9 +41,9 @@ class Socket extends Model{
 				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule'];
 				echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
 				if(in_array($nomAttrMaj,$classes)){
-					//$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
+					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
 				}else{
-					//$objet->$nomAttr=$valeurAttr;
+					$objet->$nomAttr=$valeurAttr;
 				}
 			}
             $dateInsertion = $row['date_insertion'];
@@ -102,14 +102,14 @@ class Socket extends Model{
 	}
 	
 	static public function insert($socket){
-		$requete = "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
+		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$socket->id."','".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
 		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();
 	}
 	
 	static public function delete($socket){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$socket->id);
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$socket->id."'");
 		$query->execute();
 	}
 }

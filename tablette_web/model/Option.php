@@ -25,8 +25,7 @@ class Option extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -40,9 +39,8 @@ class Option extends Model{
         return null;
     }
 
-    static public function FindByVehicule($pVehicleId){
-        $query = db()->prepare("SELECT id FROM join_vehicule_option WHERE vehicule_id = ?");
-        $query->bindParam(1, $pVehicleId, PDO::PARAM_INT);
+    static public function FindByVehicule($pVehiculeId){
+        $query = db()->prepare("SELECT id FROM join_vehicule_option WHERE vehicule_id = '".$pVehiculeId."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -83,7 +81,7 @@ class Option extends Model{
     }
 
 	static public function findJoinModeleOptionByOptionID($optionId){
-        $query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id=".$optionId);
+        $query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id='".$optionId."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -109,7 +107,7 @@ class Option extends Model{
     }
 
 	static public function moyenneTarifByID($optionId) {
-        $query = db()->prepare("SELECT AVG(prix) as moyenne FROM join_modele_option WHERE option_id=".$optionId);
+        $query = db()->prepare("SELECT AVG(prix) as moyenne FROM join_modele_option WHERE option_id='".$optionId."'");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
