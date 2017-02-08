@@ -59,9 +59,9 @@ CREATE TABLE devis (
 CREATE TABLE panier (
   id varchar(20),
   client_id varchar(20),
+  utilisateur_id varchar(20),
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
-  modele_id varchar(20),
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
