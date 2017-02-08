@@ -2,7 +2,11 @@
 class Modele extends Model{
 	
     public function __construct($pLibelle = null, $pConstructeur = null, $pDateInsertion = null, $pId = null){ //constructeur vide utilisé par les sockets
-        $this->id = $pId;
+        if($pId==null){
+			$this->id = Model::randomId();
+        }else{
+			$this->id = $pId;
+		}
         $this->libelle = $pLibelle;
         $this->constructeur = $pConstructeur;
         if($pDateInsertion == null)
@@ -87,7 +91,6 @@ class Modele extends Model{
 		$query = db()->prepare($requete);
 		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
-		$modele->id = db()->lastInsertId();
 	}
 
 	static public function delete($modele){

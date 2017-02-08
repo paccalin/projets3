@@ -32,5 +32,14 @@ abstract class Model {
 		return json_encode($attributs);
 	}
 	
+	static public function randomId(){
+		$st='';
+		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$max = strlen($characters) - 1;
+		for ($i = 0; $i < 20; $i++) {
+			$st .= $characters[mt_rand(0, $max)];
+		}
+		return $st;
+	}
 }
 ?>

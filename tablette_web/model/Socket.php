@@ -1,7 +1,11 @@
 <?php
 class Socket extends Model{
     public function __construct($pDestinataire, $pAction, $pTable, $pObjet, $pDateInsertion = null, $pId=null){
-        $this->id = $pId;
+        if($pId==null){
+			$this->id = Model::randomId();
+        }else{
+			$this->id = $pId;
+		}
 		$this->destinataire = $pDestinataire;
 		$this->action = $pAction;
 		$this->table = $pTable;
@@ -21,12 +25,12 @@ class Socket extends Model{
     protected $dateInsertion;
 	
 	static public function FindById($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
 			$objetJson = json_decode($row['json']);
+			//print_r($objetJson);
             $id = $row['id'];
 			$destinataire = $row['destinataire'];
             $action = $row['action'];
@@ -35,11 +39,11 @@ class Socket extends Model{
 			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
 				$nomAttrMaj=ucfirst($nomAttr);
 				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule'];
-				//echo $nomAttr." ".$valeurAttr."<br/>";	/* DEBUG */
+				echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
 				if(in_array($nomAttrMaj,$classes)){
-					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
+					//$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
 				}else{
-					$objet->$nomAttr=$valeurAttr;
+					//$objet->$nomAttr=$valeurAttr;
 				}
 			}
             $dateInsertion = $row['date_insertion'];

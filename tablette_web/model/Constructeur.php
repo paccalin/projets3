@@ -3,7 +3,11 @@ class Constructeur extends Model{
 	
     public function __construct($pLibelle = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = $pId;
+        if($pId==null){
+			$this->id = Model::randomId();
+        }else{
+			$this->id = $pId;
+		}
         $this->libelle = $pLibelle;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
@@ -59,7 +63,6 @@ class Constructeur extends Model{
 	static public function insert($constructeur){
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$constructeur->libelle."',CURRENT_TIMESTAMP)");
 		$query->execute();
-		$constructeur->id = db()->lastInsertId();
 	}
 	
 	static public function update($constructeur){

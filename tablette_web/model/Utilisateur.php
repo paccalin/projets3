@@ -3,7 +3,7 @@ class Utilisateur extends Model{
 	
     public function __construct($pPseudo = null, $pMotDePasse = null, $pDroits = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = $pId;
+        $this->id = uniqid();
         $this->pseudo = $pPseudo;
         $this->motDePasse = $pMotDePasse;
         $this->droits = $pDroits;

@@ -3,7 +3,7 @@ class Photo extends Model{
 	
     public function __construct($pPath = null, $pVehicule = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = $pId;
+        $this->id = uniqid();
         $this->path = $pPath;
         $this->vehicule = $pVehicule;
         if($pDateInsertion == null)

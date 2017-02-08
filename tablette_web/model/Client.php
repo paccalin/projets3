@@ -1,10 +1,14 @@
 <?php
 
 class Client extends Model{
-	public function __construct($pNom = null, $pPrenom = null, $pRue = null, $pVille = null, $pCp = null, $pMail = null, $pTel = null, $pDateInsertion = null, $pId=null){
+	public function __construct($pNom = null, $pPrenom = null, $pRue = null, $pVille = null, $pCp = null, $pMail = null, $pTel = null, $pDateInsertion = null, $pId = null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = $pId;
-        $this->nom = $pNom;
+        if($pId==null){
+			$this->id = Model::randomId();
+        }else{
+			$this->id = $pId;
+		}
+		$this->nom = $pNom;
         $this->prenom = $pPrenom;
         $this->rue = $pRue;
         $this->ville = $pVille;
@@ -75,10 +79,10 @@ class Client extends Model{
 	}
 
 	static public function insert($client){
-		$requete = "INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)";		
+		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$client->id."','".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)";		
+		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();
-		$client->id = db()->lastInsertId();
 	}
 
 	static public function update($client){

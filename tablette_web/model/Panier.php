@@ -3,7 +3,7 @@
 		
 		public function __construct($pClient = null, $pUtilisateur, $pPath = null,$pDateInsertion = null,$pId = null){
 			/* constructeur vide utilisé par les sockets */
-			$this->id = $pId;
+			$this->id = uniqid();
 			$this->client = $pClient;
 			$this->utilisateur = $pUtilisateur;
 			$this->path = $pPath;

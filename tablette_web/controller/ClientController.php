@@ -35,7 +35,7 @@ class ClientController extends Controller{
 							array_push($data['erreursSaisie'],"Le champ \"Rue\" est obligatoire");
 						}else{
 							if(!preg_match("#\s#", $value)){
-								array_push($data['erreursSaisie'],"Le champ \"Rue\" doit être de type littéral acceptant les numéros");								
+								array_push($data['erreursSaisie'],"Le champ \"Rue\" doit être de type littéral avec des numéros");								
 							}
 						}
 					}
@@ -82,6 +82,7 @@ class ClientController extends Controller{
 					$newClient = new Client($_POST['nom'],$_POST['prenom'],$_POST['rue'],$_POST['ville'],$_POST['cp'],$_POST['mail'],$_POST['telephone']);
 					Client::insert($newClient);
 					Socket::store('centrale','insert','client',$newClient);
+					print_r($newClient);
 					header('Location: ./?r=client/afficherParId&id='.$newClient->id);
 				}
 			}
@@ -163,7 +164,7 @@ class ClientController extends Controller{
 							array_push($data['erreursSaisie'],"Le champ \"Rue\" est obligatoire");
 						}else{
 							if(!preg_match("#\s#", $value)){
-								array_push($data['erreursSaisie'],"Le champ \"Rue\" doit être de type littéral acceptant les numéros");								
+								array_push($data['erreursSaisie'],"Le champ \"Rue\" doit être de type littéral avec des numéros");								
 							}
 						}
 					}
