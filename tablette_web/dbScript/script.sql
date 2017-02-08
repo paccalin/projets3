@@ -57,18 +57,11 @@ CREATE TABLE devis (
 );
 
 CREATE TABLE panier (
-<<<<<<< HEAD
   id varchar(20),
   client_id varchar(20),
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
   modele_id varchar(20),
-=======
-  id int NOT NULL AUTO_INCREMENT,
-  client_id int NOT NULL,
-  utilisateur_id integer NOT NULL,
-  path varchar(30) DEFAULT '',
->>>>>>> b4794ba8422f433cb5f6b59cc143efdd9f41702a
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
@@ -85,7 +78,7 @@ CREATE TABLE options (
   id varchar(20),
   libelle varchar(30) DEFAULT '',
   description varchar(255) DEFAULT '',
-  prixDeBase int NOT NULL,
+  prixDeBase float NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_option_id PRIMARY KEY (id)
 );
@@ -145,9 +138,9 @@ CREATE TABLE join_devis_option (
 );
 
 CREATE TABLE join_panier_option (
-	id int NOT NULL AUTO_INCREMENT,
-	option_id int NOT NULL,
-	panier_id int NOT NULL,
+	id varchar(20),
+	option_id varchar(20) NOT NULL,
+	panier_id varchar(20) NOT NULL,
 	nombre integer NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_pan_opt_id PRIMARY KEY (id)
@@ -157,7 +150,7 @@ CREATE TABLE join_modele_option (
 	id varchar(20),
 	option_id varchar(20),
 	modele_id varchar(20),
-	prix int NOT NULL,
+	prix float NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
 );
