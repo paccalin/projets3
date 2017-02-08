@@ -25,8 +25,7 @@ class Rendezvous extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -56,7 +55,7 @@ class Rendezvous extends Model{
     }
 	
 	static public function FindByUtilisateurID($utilisateurID){
-		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE utilisateur_id=".$utilisateurID);
+		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE utilisateur_id='".$utilisateurID."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

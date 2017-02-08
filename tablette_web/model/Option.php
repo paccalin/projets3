@@ -92,7 +92,7 @@ class Option extends Model{
     }
 	
 	static public function findJoinModeleOptionByModeleID($modeleId){
-        $query = db()->prepare("SELECT * FROM join_modele_option WHERE modele_id=".$modeleId);
+        $query = db()->prepare("SELECT * FROM join_modele_option WHERE modele_id='".$modeleId."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -112,7 +112,7 @@ class Option extends Model{
             $row = $query->fetch(PDO::FETCH_ASSOC);
             return $row['moyenne'];
         }
-        return "ERREUR";
+        return -1;
     }
 
 	static public function insert($option){
@@ -129,7 +129,7 @@ class Option extends Model{
 	static public function updateJoinModeleOption($option,$joins){
 		$requete="";
 		foreach($joins as $joinModeleOption){
-			$requete.="UPDATE join_modele_option SET prix=".$joinModeleOption['tarif']." WHERE id=".$joinModeleOption['id'].";";	
+			$requete.="UPDATE join_modele_option SET prix=".$joinModeleOption['tarif']." WHERE id='".$joinModeleOption['id']."';";	
 		}
 		if($joins!=[]){
 			$query=db()->prepare($requete);
@@ -138,7 +138,7 @@ class Option extends Model{
 	}
 	
 	static public function delete($option){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$option->id);
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$option->id."'");
 		$query->execute();
 	}
 }

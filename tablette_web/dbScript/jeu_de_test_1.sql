@@ -109,9 +109,9 @@ insert into devis values('QYwqz1EyTqKZTTlLrrsC', 7, (select id from utilisateur 
 
 /*=== Rendezvous ===*/
 
-insert into rendezvous values('t0VFXWrlHtmwDeZen5Tl','contrôle qualité', (select id from utilisateur where pseudo='commercial'), (select id from client where nom='Martin' and prenom='Jean'), '2017-01-04', '01:00:00', CURRENT_TIMESTAMP);
-insert into rendezvous values('OWUZNhgtLpO1iuYUif9u','vente à domicile', (select id from utilisateur where pseudo='commercial'), (select id from client where nom='Guy' and prenom='Matis'), '2017-01-06', '00:30:00', CURRENT_TIMESTAMP);
-insert into rendezvous values('Q3jPQLoIn2NoWTwAM4s0','explication contrat', (select id from utilisateur where pseudo='commercial'), (select id from client where nom='Dupont' and prenom='Gérard'), '2017-01-07', '01:45:00', CURRENT_TIMESTAMP);
+insert into rendezvous values('t0VFXWrlHtmwDeZen5Tl','contrôle qualité', (select id from utilisateur where pseudo='superadmin'), (select id from client where nom='Martin' and prenom='Jean'), '2017-01-04', '01:00:00', CURRENT_TIMESTAMP);
+insert into rendezvous values('OWUZNhgtLpO1iuYUif9u','vente à domicile', (select id from utilisateur where pseudo='superadmin'), (select id from client where nom='Guy' and prenom='Matis'), '2017-01-06', '00:30:00', CURRENT_TIMESTAMP);
+insert into rendezvous values('Q3jPQLoIn2NoWTwAM4s0','explication contrat', (select id from utilisateur where pseudo='superadmin'), (select id from client where nom='Dupont' and prenom='Gérard'), '2017-01-07', '01:45:00', CURRENT_TIMESTAMP);
 
 /*=== JoinVehiculeOption ===*/
 

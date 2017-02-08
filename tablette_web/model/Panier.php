@@ -58,8 +58,7 @@
 		}
 		
 		static public function FindByID($pId){
-			$query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
-			$query->bindParam(1, $pId, PDO::PARAM_INT);
+			$query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id ='".$pId."'");
 			$query->execute();
 			if ($query->rowCount() > 0){
 				$row = $query->fetch(PDO::FETCH_ASSOC);
@@ -89,7 +88,7 @@
 		}
 		
 		static public function FindByClientId($clientId){
-			$requete="SELECT id FROM ".self::$tableName." WHERE client_id=".$clientId;
+			$requete="SELECT id FROM ".self::$tableName." WHERE client_id='".$clientId."'";
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
@@ -105,7 +104,7 @@
 		}
 		
 		static public function FindJoinOptionsById($id){
-			$requete="select * from join_panier_option where panier_id=".$id;
+			$requete="select * from join_panier_option where panier_id='".$id."'";
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
@@ -121,7 +120,7 @@
 		
 		static public function ajouterOption($optionId){
 			$panier = Self::FindByClientId($_SESSION['client']);
-			$requete = "select count(*) as count,id from join_panier_option where panier_id=".$panier->id." and option_id=".$optionId;
+			$requete = "select count(*) as count,id from join_panier_option where panier_id='".$panier->id."' and option_id='".$optionId."'";
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();

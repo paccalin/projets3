@@ -108,7 +108,6 @@ class ClientController extends Controller{
 		$data['client']=["id"=>$clientObj->id,"nom"=>$clientObj->nom,"prenom"=>$clientObj->prenom,"adresse"=>$clientObj->rue,"ville"=>$clientObj->ville,"mail"=>$clientObj->mail,"tel"=>$clientObj->tel];
 		$vehicules=Vehicule::FindByProprietaireID($clientObj->id);
 		foreach($vehicules as $vehicule){
-			/* Pourquoi $vehicule->modele marche alors que c'est un objet PHP et pas un simple champ texte $vehicule->modele->libelle matche pas*/
 			array_push($data['vehicules'],["marque"=>$vehicule->modele->constructeur->libelle,"modele"=>$vehicule->modele,"immatriculation"=>$vehicule->immatriculation]);
 		}
 		$this->render("affichageClientId",$data);
@@ -205,7 +204,7 @@ class ClientController extends Controller{
 						}
 					}				
 				}
-				if($data['erreursSaisie']!=[]){/* Gérer le erreur de saisie */
+				if($data['erreursSaisie']!=[]){/* Gérer les erreurs de saisie */
 					$this->render("formModificationClient",$data);
 				}else{
 					$updateClient= new Client($_POST['nom'], $_POST['prenom'], $_POST['rue'], $_POST['ville'], $_POST['cp'], $_POST['mail'], $_POST['tel'], null, $_GET['id']);

@@ -46,7 +46,7 @@ class Modele extends Model{
     }
 
 	static public function FindByConstructeurID($constructeur_id) {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE constructeur_id=".$constructeur_id);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE constructeur_id='".$constructeur_id."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -72,7 +72,7 @@ class Modele extends Model{
     }
 
 	static public function FindByJoinOptionId($joinOptionId){
-		$query = db()->prepare("SELECT modele_id FROM join_modele_option WHERE id=".$joinOptionId);
+		$query = db()->prepare("SELECT modele_id FROM join_modele_option WHERE id='".$joinOptionId."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -91,7 +91,7 @@ class Modele extends Model{
 	}
 
 	static public function delete($modele){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$modele->id);
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$modele->id."'");
 		$query->execute();
 	}
 }

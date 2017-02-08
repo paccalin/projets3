@@ -21,8 +21,7 @@ class Utilisateur extends Model{
     protected $dateInsertion;
 
     static public function FindByID($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = ?");
-        $query->bindParam(1, $pId, PDO::PARAM_INT);
+        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->execute();
 		if ($query->rowCount() > 0){
 			$results = $query->fetchAll();
@@ -39,9 +38,7 @@ class Utilisateur extends Model{
     }
 
     static public function FindByPseudo($pUserName) {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE pseudo = ?");
-        /*$query->bindParam(1, self::$pUserName, PDO::PARAM_STR);*/
-	$query->bindParam(1, $pUserName, PDO::PARAM_STR);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE pseudo = '".$pId."'");
         $query->execute();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
@@ -53,7 +50,7 @@ class Utilisateur extends Model{
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." ORDER BY droits DESC");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -67,18 +64,17 @@ class Utilisateur extends Model{
 
 	static public function insert($user){
 		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES (DEFAULT,'".$user->pseudo."','".$user->motDePasse."',".$user->droits.",CURRENT_TIMESTAMP)");
-		/* pour une certaine raison l'insertion ne fonctionne plus si je met un returning utilisateur_id */
 		$query->execute();
 		$user->id = db()->lastInsertId();
 	}
 
 	static public function update($user){
-		$query = db()->prepare("UPDATE ".self::$tableName." SET pseudo='".$user->pseudo."', motDePasse='".$user->motDePasse."', droits=".$user->droits." WHERE id=".$user->id);
+		$query = db()->prepare("UPDATE ".self::$tableName." SET pseudo='".$user->pseudo."', motDePasse='".$user->motDePasse."', droits=".$user->droits." WHERE id='".$user->id."'");
 		$query->execute();
 	}
 
 	static public function delete($user){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$user->id);
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$user->id."'");
 		$query->execute();
 	}
 }
