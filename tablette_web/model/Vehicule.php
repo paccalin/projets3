@@ -3,7 +3,12 @@ class Vehicule  extends Model{
 	
     public function __construct($pModele = null, $pClient = null, $pImmatriculation = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = uniqid();
+        if($pId == null){
+				$this->id = uniqid();
+		}
+		else{
+				$this->id = $pId;
+		}
         $this->modele = $pModele;
 		$this->client = $pClient;
 		$this->immatriculation = $pImmatriculation;

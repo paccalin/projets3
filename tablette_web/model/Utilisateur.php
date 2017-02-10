@@ -4,7 +4,7 @@ class Utilisateur extends Model{
     public function __construct($pPseudo = null, $pMotDePasse = null, $pDroits = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
         if($pId==null){
-			$this->id = Model::randomId();
+			$this->id = uniqid();
         }else{
 			$this->id = $pId;
 		}

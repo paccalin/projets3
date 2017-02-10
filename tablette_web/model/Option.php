@@ -4,7 +4,7 @@ class Option extends Model{
     public function __construct($pLibelle = null, $pDesc = null, $pPrixDeBase = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
         if($pId==null){
-			$this->id = Model::randomId();
+			$this->id = uniqid();
         }else{
 			$this->id = $pId;
 		}
@@ -26,7 +26,7 @@ class Option extends Model{
 
     static public function FindByID($pId) {
         $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
-        $query->execute();
+        $query->execute();		
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
             $id = $row['id'];
@@ -40,13 +40,13 @@ class Option extends Model{
     }
 
     static public function FindByVehicule($pVehiculeId){
-        $query = db()->prepare("SELECT id FROM join_vehicule_option WHERE vehicule_id = '".$pVehiculeId."'");
+        $query = db()->prepare("SELECT option_id FROM join_vehicule_option WHERE vehicule_id = '".$pVehiculeId."'");
         $query->execute();
-        $returnList = array();
+        $returnList = array();		
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["id"]));
+                array_push($returnList, self::FindById($row["option_id"]));
             }
         }
         return $returnList;

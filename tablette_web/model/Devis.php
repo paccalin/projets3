@@ -3,7 +3,12 @@ class Devis extends Model{
 	
     public function __construct($pClient = null, $pUtilisateur = null, $pPath = null, $pActif = null, $pModele = null,$pDateInsertion = null,$pId = null){
 		/* constructeur vide utilisé par les sockets */
-        $this->id = uniqid();
+        if($pId == null){
+				$this->id = uniqid();
+		}
+		else{
+				$this->id = $pId;
+		}
         $this->client = $pClient;
         $this->utilisateur = $pUtilisateur;
         $this->path = $pPath;
@@ -55,6 +60,8 @@ class Devis extends Model{
         return $returnList;
     }
 
+	//bientot obsolete : 
+	
 	static public function FindJoinOptionsByDevisID($devisID) {
 		$query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id IN ( SELECT option_id FROM join_devis_option WHERE devis_id=".$devisID.") AND modele_id=".Devis::FindByID($devisID)->modele->id);
 		$query->execute();
