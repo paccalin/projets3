@@ -179,17 +179,17 @@ insert into join_panier_option values ('gCyqzbk0VwKF6lXIq1za', (select id from o
 insert into join_panier_option values ('wmXR1elDFXI4RTSYWac3', (select id from options where libelle='climatisation'), 'lNu6bQ6nP9MxHVghcwup', 1, CURRENT_TIMESTAMP);
 
 /*=== JoinTypeModeleOption ===*/
-insert into join_typemodele_option values ('mxiR3rRJxrkWNcrOyiEQ', (select id from options where libelle='couleur'), (select id from typeModele where libelle='A'), 3200, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('mxiR3rRJxrkWNcrOyiEQ', (select id from options where libelle='couleur'), (select id from typeModele where libelle='A'), 300, CURRENT_TIMESTAMP);
 insert into join_typemodele_option values ('MKs0PbsGETh8BRdLLfSK', (select id from options where libelle='couleur'), (select id from typeModele where libelle='B'), 3100, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('Gozkr31VwqNMx0KXlMOB', (select id from options where libelle='couleur'), (select id from typeModele where libelle='C'), 3600, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('Gozkr31VwqNMx0KXlMOB', (select id from options where libelle='couleur'), (select id from typeModele where libelle='C'), 3300, CURRENT_TIMESTAMP);
 
-insert into join_typemodele_option values ('F0F6K4IGi0YkdWBJ5JOD', (select id from options where libelle='passager'), (select id from typeModele where libelle='A'), 1000, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('J5MKOlyfX4Zw04GtrtvB', (select id from options where libelle='passager'), (select id from typeModele where libelle='B'), 1100, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('Hg3jpU8CoforEy1TYfpQ', (select id from options where libelle='passager'), (select id from typeModele where libelle='C'), 900, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('F0F6K4IGi0YkdWBJ5JOD', (select id from options where libelle='passager'), (select id from typeModele where libelle='A'), 900, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('J5MKOlyfX4Zw04GtrtvB', (select id from options where libelle='passager'), (select id from typeModele where libelle='B'), 1000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('Hg3jpU8CoforEy1TYfpQ', (select id from options where libelle='passager'), (select id from typeModele where libelle='C'), 1100, CURRENT_TIMESTAMP);
 
-insert into join_typemodele_option values ('bSZyFhTZBuYR9345EDK1', (select id from options where libelle='benne'), (select id from typeModele where libelle='A'), 1900, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('SGpO17R7YAlW7nu3TwJ6', (select id from options where libelle='benne'), (select id from typeModele where libelle='B'), 2100, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('Nlj3Qr3UtksDst4EKNvH', (select id from options where libelle='benne'), (select id from typeModele where libelle='C'), 1800, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('bSZyFhTZBuYR9345EDK1', (select id from options where libelle='benne'), (select id from typeModele where libelle='A'), 1800, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('SGpO17R7YAlW7nu3TwJ6', (select id from options where libelle='benne'), (select id from typeModele where libelle='B'), 1900, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('Nlj3Qr3UtksDst4EKNvH', (select id from options where libelle='benne'), (select id from typeModele where libelle='C'), 2100, CURRENT_TIMESTAMP);
 
 insert into join_typemodele_option values ('aFr2QL6mESwig9SfGHJH', (select id from options where libelle='rangements'), (select id from typeModele where libelle='A'), 1500, CURRENT_TIMESTAMP);
 insert into join_typemodele_option values ('wyWsVVx8jpzZnTOB81kP', (select id from options where libelle='rangements'), (select id from typeModele where libelle='B'), 1500, CURRENT_TIMESTAMP);

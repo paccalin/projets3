@@ -18,12 +18,12 @@
 		echo"<tr><td>".$data['option']->libelle."</td><td>".$data['option']->desc."</td><td>".number_format($data['option']->prixDeBase, 0,'',' ')." €</td><td>".number_format($data['moyenneTarif'], 0,'',' ')." €</td></tr>";
 	?>
 </table>
-<br/>
+Tarifs par catégorie de véhicules: <br/>
 <table class='tableAffichage'>
-	<tr><th>Modèle</th><th>Prix</th></tr>
+	<tr><th>Catégorie</th><th>Prix</th></tr>
 	<?php
-		foreach($data['joinModeleOption'] as $joinModeleOption){
-			echo "<tr><td>".$joinModeleOption['modele']->libelle."</td><td>".number_format($joinModeleOption['prix'], 0,'',' ')." €</td></tr>";
+		foreach($data['joinTypeModeleOption'] as $joinTypeModeleOption){
+			echo "<tr><td>".$joinTypeModeleOption['typeModele']->libelle."</td><td>".number_format($joinTypeModeleOption['prix'], 0,'',' ')." €</td></tr>";
 		}
 	?>
 </table>

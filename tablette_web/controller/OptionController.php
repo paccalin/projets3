@@ -59,7 +59,7 @@ class OptionController extends Controller{
 		if($_SESSION['droits']>=1){
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = Option::moyenneTarifByID($_GET['option']);
-			$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
+			$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByOptionID($_GET['option']);
 			$this->render("visualiserOption",$data);
 		}else{
 			$this->render("erreurAutorisation");
@@ -70,7 +70,7 @@ class OptionController extends Controller{
 		if($_SESSION['droits']>=2){
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
-			$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
+			$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByOptionID($_GET['option']);
 			if(!isset($_POST['submit'])){
 				$this->render("modifierOption",$data);
 				if(isset($_POST['cancel'])){
@@ -81,11 +81,11 @@ class OptionController extends Controller{
 				foreach($_POST as $key=>$value){
 					if($key!='submit'){
 						if(!is_numeric($value)){
-							$modele=Modele::FindByJoinOptionId($key)[0];
-							array_push($data['erreursSaisie'],'Le coût de l\'option pour le modèle '.$modele->libelle.' doit être un nombre');
+							$typeModele=TypeModele::FindByJoinOptionId($key)[0];
+							array_push($data['erreursSaisie'],'Le coût de l\'option pour la catégorie '.$typeModele->libelle.' doit être un nombre');
 						}elseif($value<=0){
-							$modele=Modele::FindByJoinOptionId($key)[0];
-							array_push($data['erreursSaisie'],'Le coût de l\'option pour le modèle '.$modele->libelle.' doit être un nombre positif');
+							$typeModele=TypeModele::FindByJoinOptionId($key)[0];
+							array_push($data['erreursSaisie'],'Le coût de l\'option pour la catégorie '.$typeModele->libelle.' doit être un nombre positif');
 						}
 					}
 				}
@@ -98,10 +98,10 @@ class OptionController extends Controller{
 							array_push($joins,["id"=>$post,"tarif"=>$postValue]);
 						}
 					}
-					Option::updateJoinModeleOption($data['option'],$joins);
+					Option::updateJoinTypeModeleOption($data['option'],$joins);
 					$data['option'] = Option::findByID($_GET['option']);
 					$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
-					$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
+					$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByOptionID($_GET['option']);
 					$this->render("visualiserOption",$data);
 				}
 			}

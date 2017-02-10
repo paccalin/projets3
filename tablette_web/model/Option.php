@@ -81,14 +81,14 @@ class Option extends Model{
     }
 
 
-	static public function findJoinModeleOptionByOptionID($optionId){
-        $query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id='".$optionId."'");
+	static public function findJoinTypeModeleOptionByOptionId($optionId){
+        $query = db()->prepare("SELECT * FROM join_typemodele_option WHERE option_id='".$optionId."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($optionId),'modele'=>Modele::FindByID($row['modele_id']),'prix'=>$row['prix']]);
+                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($optionId),'typeModele'=>TypeModele::FindByID($row['typeModele_id']),'prix'=>$row['prix']]);
             }
         }
         return $returnList;
@@ -129,10 +129,10 @@ class Option extends Model{
 		}
 	}
 
-	static public function updateJoinModeleOption($option,$joins){
+	static public function updateJoinTypeModeleOption($option,$joins){
 		$requete="";
-		foreach($joins as $joinModeleOption){
-			$requete.="UPDATE join_modele_option SET prix=".$joinModeleOption['tarif']." WHERE id='".$joinModeleOption['id']."';";	
+		foreach($joins as $updateJoinTypeModeleOption){
+			$requete.="UPDATE join_typemodele_option SET prix=".$updateJoinTypeModeleOption['tarif']." WHERE id='".$updateJoinTypeModeleOption['id']."';";	
 		}
 		if($joins!=[]){
 			$query=db()->prepare($requete);

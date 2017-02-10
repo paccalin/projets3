@@ -77,17 +77,6 @@ class Modele extends Model{
         }
         return $returnList;
     }
-
-	static public function FindByJoinOptionId($joinOptionId){
-		$query = db()->prepare("SELECT modele_id FROM join_modele_option WHERE id='".$joinOptionId."'");
-        $query->execute();
-        $returnList = array();
-        if ($query->rowCount() > 0){
-        	$row = $query->fetch(PDO::FETCH_ASSOC);
-            array_push($returnList, self::FindByID($row["modele_id"]));
-        }
-        return $returnList;
-	}
 	
 	static public function FindByTypeModeleId($pTypeModeleId){
 		throw new Exception('Code à réliser');
