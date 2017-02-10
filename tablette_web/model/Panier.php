@@ -1,16 +1,23 @@
 <?php
 	class Panier extends Model{
 		
-		public function __construct($pClient = null, $pUtilisateur, $pPath = null,$pDateInsertion = null,$pId = null){
-			/* constructeur vide utilisé par les sockets */
-			$this->id = uniqid();
+		public function __construct($pClient, $pUtilisateur, $pPath = null,$pDateInsertion = null,$pId = null){
+			/* constructeur vide utilisé par les sockets */			
+			if($pId == null){
+				$this->id = uniqid();
+			}
+			else{
+				$this->id = $pId;
+			}
 			$this->client = $pClient;
 			$this->utilisateur = $pUtilisateur;
 			$this->path = $pPath;
 			if($pDateInsertion == null){
 				$this->dateInsertion = date('d/m/Y h:i:s a', time());
+				$this->options = null;
 			}else{
 				$this->dateInsertion = $pDateInsertion;
+				$this->options = Option::FindByPanierID($this);
 			}
 		}
 		static public $tableName = "panier";
@@ -19,6 +26,7 @@
 		protected $utilisateur;
 		protected $path;
 		protected $dateInsertion;
+		protected $options;
 		
 		static public function create($clientId){
 			$requete="insert into ".self::$tableName." values(default,".$clientId.",".$_SESSION['utilisateur'].",'path',CURRENT_TIMESTAMP)";
@@ -41,8 +49,10 @@
 			}
 		}
 		
+		
+		/*
 		public function getCoutTotal(){
-			/* marche pas -> faire une requête imbriquée ou un truc dans le genre */
+			/* marche pas -> faire une requête imbriquée ou un truc dans le genre
 			//trouver un moyen pour que ça fasse la somme avec nombre un attribut de join_panier_option
 			$requete=" [...] where panier_id=".$this->id.")";
 			//echo $requete;
@@ -56,6 +66,7 @@
 				return -1;
 			}
 		}
+		*/
 		
 		static public function FindByID($pId){
 			$query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id ='".$pId."'");
@@ -138,6 +149,17 @@
 			}else{
 				return null;
 			}
+		}
+	
+	
+		public function getCoutTotalPanier(){
+			if($this->options != null){
+				$prix = 0;
+				foreach($this->options as $key=>$value)	{
+					$prix += Option::moyenneTarifByID($value->id);
+				}	
+			}
+			return $prix;
 		}
 	}
 ?>

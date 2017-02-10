@@ -80,6 +80,7 @@ class Option extends Model{
         return $returnList;
     }
 
+
 	static public function findJoinModeleOptionByOptionID($optionId){
         $query = db()->prepare("SELECT * FROM join_modele_option WHERE option_id='".$optionId."'");
         $query->execute();
@@ -142,6 +143,19 @@ class Option extends Model{
 	static public function delete($option){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$option->id."'");
 		$query->execute();
+	}
+	
+	static public function FindByPanierID($panier){
+		$query = db()->prepare("SELECT * FROM options WHERE id IN ( SELECT option_id FROM join_panier_option WHERE panier_id='".$panier->id."')");
+		$query->execute();
+		$returnList = [];
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList,Option::FindByID($row['id']));
+            }
+        }		
+        return $returnList;
 	}
 }
 ?>
