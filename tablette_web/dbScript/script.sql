@@ -19,7 +19,7 @@ CREATE TABLE socket (
 	destinataire varchar(10) DEFAULT '',
 	action varchar(10) DEFAULT '',
 	tableDb varchar(30) DEFAULT '',
-	json varchar(150) DEFAULT '',
+	json JSON,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_socket_id PRIMARY KEY (id)
 );
