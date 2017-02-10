@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS join_modele_option;
+DROP TABLE IF EXISTS join_typemodele_option;
 DROP TABLE IF EXISTS join_vehicule_option;
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS vehicule;
@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS devis;
 DROP TABLE IF EXISTS panier;
 DROP TABLE IF EXISTS rendezvous;
 DROP TABLE IF EXISTS modele;
+DROP TABLE IF EXISTS typemodele;
 DROP TABLE IF EXISTS utilisateur;
 DROP TABLE IF EXISTS constructeur;
 DROP TABLE IF EXISTS options;
@@ -47,29 +48,37 @@ CREATE TABLE constructeur (
 
 CREATE TABLE devis (
   id varchar(20),
-  client_id varchar(20),
-  utilisateur_id varchar(20),
+  client_id varchar(20) NOT NULL,
+  utilisateur_id varchar(20) NOT NULL,
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
-  modele_id varchar(20),
+  modele_id varchar(20) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
 
 CREATE TABLE panier (
   id varchar(20),
-  client_id varchar(20),
-  utilisateur_id varchar(20),
+  client_id varchar(20) NOT NULL,
+  utilisateur_id varchar(20) NOT NULL,
   path varchar(30) DEFAULT '',
   actif boolean NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
 
+CREATE TABLE typeModele (
+  id varchar(20),
+  libelle varchar(30) DEFAULT '',
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT pk_modele_id PRIMARY KEY (id)
+);
+
 CREATE TABLE modele (
   id varchar(20),
   libelle varchar(30) DEFAULT '',
-  constructeur_id varchar(20),
+  constructeur_id varchar(20) NOT NULL,
+  typeModele_id varchar(20) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_modele_id PRIMARY KEY (id)
 );
@@ -86,7 +95,7 @@ CREATE TABLE options (
 CREATE TABLE photo (
   id varchar(20),
   path varchar(30) DEFAULT '',
-  vehicule_id varchar(20),
+  vehicule_id varchar(20) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_photo_id PRIMARY KEY (id)
 );
@@ -95,8 +104,8 @@ CREATE TABLE photo (
 CREATE TABLE rendezvous (
   id varchar(20),
   libelle varchar(30) DEFAULT '',
-  utilisateur_id varchar(20),
-  client_id varchar(20),
+  utilisateur_id varchar(20) NOT NULL,
+  client_id varchar(20) NOT NULL,
   date DATETIME NOT NULL,
   duree time NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -114,8 +123,8 @@ CREATE TABLE utilisateur (
 
 CREATE TABLE vehicule (
   id varchar(20),
-  modele_id varchar(20),
-  client_id varchar(20),
+  modele_id varchar(20) NOT NULL,
+  client_id varchar(20) NOT NULL,
   immatriculation varchar(7) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_vehicule_id PRIMARY KEY (id)
@@ -123,16 +132,16 @@ CREATE TABLE vehicule (
 
 CREATE TABLE join_vehicule_option (
   id varchar(20),
-  vehicule_id varchar(20),
-  option_id varchar(20),
+  vehicule_id varchar(20) NOT NULL,
+  option_id varchar(20) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_join_veh_opt_id PRIMARY KEY (id)
 );
 
 CREATE TABLE join_devis_option (
 	id varchar(20),
-	option_id varchar(20),
-	devis_id varchar(20),
+	option_id varchar(20) NOT NULL,
+	devis_id varchar(20) NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
 );
@@ -146,10 +155,10 @@ CREATE TABLE join_panier_option (
 	CONSTRAINT pk_join_pan_opt_id PRIMARY KEY (id)
 );
 
-CREATE TABLE join_modele_option (
+CREATE TABLE join_typeModele_option (
 	id varchar(20),
-	option_id varchar(20),
-	modele_id varchar(20),
+	option_id varchar(20) NOT NULL,
+	typeModele_id varchar(20) NOT NULL,
 	prix float NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
@@ -161,7 +170,8 @@ ADD CONSTRAINT fk_devis_utilisateur_id FOREIGN KEY (utilisateur_id) REFERENCES u
 ADD CONSTRAINT fk_devis_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id);
 
 ALTER TABLE modele
-ADD CONSTRAINT fk_modele_constructeur_id FOREIGN KEY (constructeur_id) REFERENCES constructeur(id);
+ADD CONSTRAINT fk_modele_constructeur_id FOREIGN KEY (constructeur_id) REFERENCES constructeur(id),
+ADD CONSTRAINT fk_modele_typemodele_id FOREIGN KEY (typemodele_id) REFERENCES typemodele(id);
 
 ALTER TABLE photo
 ADD CONSTRAINT fk_photo_vehicule_id FOREIGN KEY (vehicule_id) REFERENCES vehicule(id);
@@ -190,6 +200,6 @@ ALTER TABLE join_panier_option
 ADD CONSTRAINT fk_join_pan_opt_pan_id FOREIGN KEY (panier_id) REFERENCES panier(id),
 ADD CONSTRAINT fk_join_pan_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
 
-ALTER TABLE join_modele_option
-ADD CONSTRAINT fk_join_mod_opt_modele_id FOREIGN KEY (modele_id) REFERENCES modele(id),
-ADD CONSTRAINT fk_join_mod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
+ALTER TABLE join_typeModele_option
+ADD CONSTRAINT fk_join_typMod_opt_modele_id FOREIGN KEY (typeModele_id) REFERENCES typeModele(id),
+ADD CONSTRAINT fk_join_typMod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);

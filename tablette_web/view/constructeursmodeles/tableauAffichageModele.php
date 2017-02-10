@@ -1,8 +1,8 @@
 <a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <table class="tableAffichage">
-	<tr><th>Constructeur</th><th>Mod&egrave;le</th></tr>
+	<tr><th>Constructeur</th><th>Mod&egrave;le</th><th>Catégorie</th></tr>
 	<?php
-		echo '<tr><td>'.$data['constructeur']->libelle.'</td><td>'.$data['modele']->libelle.'</td></tr>';
+		echo '<tr><td>'.$data['modele']->constructeur->libelle.'</td><td>'.$data['modele']->libelle.'</td><td>'.$data['modele']->typeModele->libelle.'</td></tr>';
 	?>
 </table>
 <?php
@@ -15,8 +15,8 @@ Prix des options pour ce mod&egrave;le:
 <table class="tableAffichage">
 	<tr><th>Libelle</th><th>Prix</th></tr>
 	<?php
-		foreach($data['joinModeleOption'] as $joinModeleOption){
-			echo "<tr><td>".$joinModeleOption['option']->libelle."</td><td>".$joinModeleOption['prix']."</td></tr>";
+		foreach($data['joinTypeModeleOption'] as $joinTypeModeleOption){
+			echo "<tr><td>".$joinTypeModeleOption['option']->libelle."</td><td>".number_format($joinTypeModeleOption['prix'], 0,'',' ')." €</td></tr>";
 		}
 	?>
 </table>

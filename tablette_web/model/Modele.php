@@ -1,7 +1,7 @@
 <?php
 class Modele extends Model{
 	
-    public function __construct($pLibelle = null, $pConstructeur = null, $pDateInsertion = null, $pId = null){ //constructeur vide utilisé par les sockets
+    public function __construct($pLibelle = null, $pConstructeur = null, $pTypeModele, $pDateInsertion = null, $pId = null){ //constructeur vide utilisé par les sockets
         if($pId==null){
 			$this->id = Model::randomId();
         }else{
@@ -9,6 +9,7 @@ class Modele extends Model{
 		}
         $this->libelle = $pLibelle;
         $this->constructeur = $pConstructeur;
+		$this->typeModele = $pTypeModele;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -19,6 +20,7 @@ class Modele extends Model{
     protected $id;
     protected $libelle;
     protected $constructeur;
+	protected $typeModele;
     protected $dateInsertion;
 
     static public function FindByID($pId) {
@@ -30,8 +32,9 @@ class Modele extends Model{
             $id = $row['id'];
             $libelle = $row['libelle'];
             $constructeur = Constructeur::FindById($row['constructeur_id']);
-            $dateInsertion = $row['date_insertion'];     
-            return new Modele($libelle, $constructeur, $dateInsertion, $id);
+			$typeModele = TypeModele::FindById($row['typeModele_id']);
+            $dateInsertion = $row['date_insertion'];
+            return new Modele($libelle, $constructeur, $typeModele, $dateInsertion, $id);
         }
         return null;
     }
@@ -85,9 +88,13 @@ class Modele extends Model{
         }
         return $returnList;
 	}
-
+	
+	static public function FindByTypeModeleId($pTypeModeleId){
+		throw new Exception('Code à réliser');
+	}
+	
 	static public function insert($modele){
-		$requete="INSERT INTO ".self::$tableName." VALUES ('".$modele->id."','".$modele->libelle."','".$modele->constructeur->id."',CURRENT_TIMESTAMP)";
+		$requete="INSERT INTO ".self::$tableName." VALUES ('".$modele->id."','".$modele->libelle."','".$modele->constructeur->id."','".$modele->typeModele->id."',CURRENT_TIMESTAMP)";
 		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();

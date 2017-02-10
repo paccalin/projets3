@@ -26,19 +26,24 @@ insert into constructeur values('kAPKsUnbuggQr20I3SXz','Nissan', CURRENT_TIMESTA
 insert into constructeur values('vDkGtdWUatwjBKG8AsHl','Citroën', CURRENT_TIMESTAMP);
 insert into constructeur values('mGxJWusEbbtcvQSSHNKg','Ford', CURRENT_TIMESTAMP);
 
+/*=== TypeModele ===*/
+insert into typeModele values('IEgNSVQVNfGrDhpV1BNp','A',CURRENT_TIMESTAMP);
+insert into typeModele values('4203h1sl7kN2ODbj9bE3','B',CURRENT_TIMESTAMP);
+insert into typeModele values('mDGqxTxGBMsgVt3d4gLl','C',CURRENT_TIMESTAMP);
+
 /*=== Modele ===*/
-insert into modele values('FLxZAs51Ao0Yn0LUZKrq','Citan', (select id from constructeur where libelle='Mercedes'), CURRENT_TIMESTAMP);
-insert into modele values('N1VxLxYlVJwyNDRQUT5Q','Sprinter', (select id from constructeur where libelle='Mercedes'), CURRENT_TIMESTAMP);
-insert into modele values('vD8OR79ro2450ZfUo57F','Vito', (select id from constructeur where libelle='Mercedes'), CURRENT_TIMESTAMP);
-insert into modele values('89hFxeztDVCuEVtbQMLm', 'Kangoo ', (select id from constructeur where libelle='Renault'), CURRENT_TIMESTAMP);
-insert into modele values('EqpgGsdEr7dxlebgMqms', 'Master', (select id from constructeur where libelle='Renault'), CURRENT_TIMESTAMP);
-insert into modele values('RpAgqKaPlGjsRSh0Qml2', 'Trafic', (select id from constructeur where libelle='Renault'), CURRENT_TIMESTAMP);
-insert into modele values('uyuejJ2PowY6oIAcridK', 'Movano', (select id from constructeur where libelle='Nissan'), CURRENT_TIMESTAMP);
-insert into modele values('hgRa1p9MJ83P2wn5qENl', 'Berlingo', (select id from constructeur where libelle='Citroën'), CURRENT_TIMESTAMP);
-insert into modele values('Hzr10kReQETEcfjRIwkA', 'Jumpy', (select id from constructeur where libelle='Citroën'), CURRENT_TIMESTAMP);
-insert into modele values('FXqZgfCMWzAk2FYMlAW6', 'Jumper', (select id from constructeur where libelle='Citroën'), CURRENT_TIMESTAMP);
-insert into modele values('A2dyt47t3UreNFkU4emF', 'Transit', (select id from constructeur where libelle='Ford'), CURRENT_TIMESTAMP);
-insert into modele values('1Nskr4WTIf4s7TV6Fk1m', 'Ranger', (select id from constructeur where libelle='Ford'), CURRENT_TIMESTAMP);
+insert into modele values('FLxZAs51Ao0Yn0LUZKrq','Citan', (select id from constructeur where libelle='Mercedes'), (select id from typemodele where libelle='A'), CURRENT_TIMESTAMP);
+insert into modele values('N1VxLxYlVJwyNDRQUT5Q','Sprinter', (select id from constructeur where libelle='Mercedes'), (select id from typemodele where libelle='B'),CURRENT_TIMESTAMP);
+insert into modele values('vD8OR79ro2450ZfUo57F','Vito', (select id from constructeur where libelle='Mercedes'), (select id from typemodele where libelle='C'),CURRENT_TIMESTAMP);
+insert into modele values('89hFxeztDVCuEVtbQMLm', 'Kangoo ', (select id from constructeur where libelle='Renault'), (select id from typemodele where libelle='A'),CURRENT_TIMESTAMP);
+insert into modele values('EqpgGsdEr7dxlebgMqms', 'Master', (select id from constructeur where libelle='Renault'), (select id from typemodele where libelle='B'),CURRENT_TIMESTAMP);
+insert into modele values('RpAgqKaPlGjsRSh0Qml2', 'Trafic', (select id from constructeur where libelle='Renault'), (select id from typemodele where libelle='C'),CURRENT_TIMESTAMP);
+insert into modele values('uyuejJ2PowY6oIAcridK', 'Movano', (select id from constructeur where libelle='Nissan'), (select id from typemodele where libelle='A'),CURRENT_TIMESTAMP);
+insert into modele values('hgRa1p9MJ83P2wn5qENl', 'Berlingo', (select id from constructeur where libelle='Citroën'), (select id from typemodele where libelle='B'),CURRENT_TIMESTAMP);
+insert into modele values('Hzr10kReQETEcfjRIwkA', 'Jumpy', (select id from constructeur where libelle='Citroën'), (select id from typemodele where libelle='C'),CURRENT_TIMESTAMP);
+insert into modele values('FXqZgfCMWzAk2FYMlAW6', 'Jumper', (select id from constructeur where libelle='Citroën'), (select id from typemodele where libelle='A'),CURRENT_TIMESTAMP);
+insert into modele values('A2dyt47t3UreNFkU4emF', 'Transit', (select id from constructeur where libelle='Ford'), (select id from typemodele where libelle='B'),CURRENT_TIMESTAMP);
+insert into modele values('1Nskr4WTIf4s7TV6Fk1m', 'Ranger', (select id from constructeur where libelle='Ford'), (select id from typemodele where libelle='C'),CURRENT_TIMESTAMP);
 
 /*=== Options ===*/
 
@@ -173,107 +178,35 @@ insert into join_panier_option values ('uuB7FDL7yPvaKkuOe12K', (select id from o
 insert into join_panier_option values ('gCyqzbk0VwKF6lXIq1za', (select id from options where libelle='couleur'), 'lNu6bQ6nP9MxHVghcwup', 1, CURRENT_TIMESTAMP);
 insert into join_panier_option values ('wmXR1elDFXI4RTSYWac3', (select id from options where libelle='climatisation'), 'lNu6bQ6nP9MxHVghcwup', 1, CURRENT_TIMESTAMP);
 
-/*=== JoinModeleOption ===*/
-insert into join_modele_option values ('mxiR3rRJxrkWNcrOyiEQ', (select id from options where libelle='couleur'), (select id from modele where libelle='Citan'), 3200, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('MKs0PbsGETh8BRdLLfSK', (select id from options where libelle='couleur'), (select id from modele where libelle='Sprinter'), 3100, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('Gozkr31VwqNMx0KXlMOB', (select id from options where libelle='couleur'), (select id from modele where libelle='Vito'), 3600, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('b3gjYjvX49eE8Zm6cuIy', (select id from options where libelle='couleur'), (select id from modele where libelle='Kangoo'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('8fT2GCGDodgME52iP92O', (select id from options where libelle='couleur'), (select id from modele where libelle='Master'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('lMMceShk73UpGK8j2OM3', (select id from options where libelle='couleur'), (select id from modele where libelle='Trafic'), 2600, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('JhfYu2uGe3KnBdErFfhz', (select id from options where libelle='couleur'), (select id from modele where libelle='Movano'), 2800, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('AIOwE5El0opyYG2H3FBh', (select id from options where libelle='couleur'), (select id from modele where libelle='Berlingo'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('9iO7OFMNieZBnHmXFXaI', (select id from options where libelle='couleur'), (select id from modele where libelle='Jumpy'), 2700, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('3taRxdL0Rzyn6FygCZNP', (select id from options where libelle='couleur'), (select id from modele where libelle='Jumper'), 2800, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('OIDtahYH4alfrlvnr4gf', (select id from options where libelle='couleur'), (select id from modele where libelle='Transit'), 2900, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('VLnTIWuXnRhW0hfwECGg', (select id from options where libelle='couleur'), (select id from modele where libelle='Ranger'), 2700, CURRENT_TIMESTAMP);
+/*=== JoinTypeModeleOption ===*/
+insert into join_typemodele_option values ('mxiR3rRJxrkWNcrOyiEQ', (select id from options where libelle='couleur'), (select id from typeModele where libelle='A'), 3200, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('MKs0PbsGETh8BRdLLfSK', (select id from options where libelle='couleur'), (select id from typeModele where libelle='B'), 3100, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('Gozkr31VwqNMx0KXlMOB', (select id from options where libelle='couleur'), (select id from typeModele where libelle='C'), 3600, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('F0F6K4IGi0YkdWBJ5JOD', (select id from options where libelle='passager'), (select id from modele where libelle='Citan'), 1000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('J5MKOlyfX4Zw04GtrtvB', (select id from options where libelle='passager'), (select id from modele where libelle='Sprinter'), 1100, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('Hg3jpU8CoforEy1TYfpQ', (select id from options where libelle='passager'), (select id from modele where libelle='Vito'), 900, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('25nuJjdnyL6PTwUOhmH6', (select id from options where libelle='passager'), (select id from modele where libelle='Kangoo'), 800, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('IlkfzgSEYhq4q9rFGx5B', (select id from options where libelle='passager'), (select id from modele where libelle='Master'), 900, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('CD3Kp56XmYj0rcKI7i9O', (select id from options where libelle='passager'), (select id from modele where libelle='Trafic'), 1000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('9dWOVDtByUzr1V2xE40M', (select id from options where libelle='passager'), (select id from modele where libelle='Movano'), 1000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('rUbUwqU41cN7KPNgyNsk', (select id from options where libelle='passager'), (select id from modele where libelle='Berlingo'), 1200, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('yNg2JubRHjWplwFuiYsI', (select id from options where libelle='passager'), (select id from modele where libelle='Jumpy'), 900, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('ST3XmDKGvIHUX8zw3Mjl', (select id from options where libelle='passager'), (select id from modele where libelle='Jumper'), 1100, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('pfyiRQH12ncB3iJMhYuC', (select id from options where libelle='passager'), (select id from modele where libelle='Transit'), 1200, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('AOAea4h3QPNXZYvPMKK9', (select id from options where libelle='passager'), (select id from modele where libelle='Ranger'), 900, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('F0F6K4IGi0YkdWBJ5JOD', (select id from options where libelle='passager'), (select id from typeModele where libelle='A'), 1000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('J5MKOlyfX4Zw04GtrtvB', (select id from options where libelle='passager'), (select id from typeModele where libelle='B'), 1100, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('Hg3jpU8CoforEy1TYfpQ', (select id from options where libelle='passager'), (select id from typeModele where libelle='C'), 900, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('bSZyFhTZBuYR9345EDK1', (select id from options where libelle='benne'), (select id from modele where libelle='Citan'), 1900, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('SGpO17R7YAlW7nu3TwJ6', (select id from options where libelle='benne'), (select id from modele where libelle='Sprinter'), 2100, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('Nlj3Qr3UtksDst4EKNvH', (select id from options where libelle='benne'), (select id from modele where libelle='Vito'), 1800, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('UyafOggVhylakkZUAFjO', (select id from options where libelle='benne'), (select id from modele where libelle='Kangoo'), 1900, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('F3nktEZWJXC6QitlNvbD', (select id from options where libelle='benne'), (select id from modele where libelle='Master'), 2100, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('sjjAgJdLfR8KhJz9ObFn', (select id from options where libelle='benne'), (select id from modele where libelle='Trafic'), 2200, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('WHfBQinhtvRIa5HT2JFy', (select id from options where libelle='benne'), (select id from modele where libelle='Movano'), 2100, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('2UuODpgCmEtznsegHlfk', (select id from options where libelle='benne'), (select id from modele where libelle='Berlingo'), 2200, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('BGVSf9NOdFTVVn4j41et', (select id from options where libelle='benne'), (select id from modele where libelle='Jumpy'), 2300, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('n4qM2irSlUdYJTQHmIeQ', (select id from options where libelle='benne'), (select id from modele where libelle='Jumper'), 1800, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('w9kt3sg7dKNfXsNVwj7p', (select id from options where libelle='benne'), (select id from modele where libelle='Transit'), 1800, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('8gCJX38V0Ms2onAcMurM', (select id from options where libelle='benne'), (select id from modele where libelle='Ranger'), 1700, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('bSZyFhTZBuYR9345EDK1', (select id from options where libelle='benne'), (select id from typeModele where libelle='A'), 1900, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('SGpO17R7YAlW7nu3TwJ6', (select id from options where libelle='benne'), (select id from typeModele where libelle='B'), 2100, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('Nlj3Qr3UtksDst4EKNvH', (select id from options where libelle='benne'), (select id from typeModele where libelle='C'), 1800, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('aFr2QL6mESwig9SfGHJH', (select id from options where libelle='rangements'), (select id from modele where libelle='Citan'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('wyWsVVx8jpzZnTOB81kP', (select id from options where libelle='rangements'), (select id from modele where libelle='Sprinter'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('ahYUapvLJrk0AUkxwmw9', (select id from options where libelle='rangements'), (select id from modele where libelle='Vito'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('siXfMx5ibf0L04VL7jUy', (select id from options where libelle='rangements'), (select id from modele where libelle='Kangoo'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('NyYk9qJsFcQaiWOxCHZP', (select id from options where libelle='rangements'), (select id from modele where libelle='Master'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('j38yczHe6dJTMfP8CESQ', (select id from options where libelle='rangements'), (select id from modele where libelle='Trafic'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('AaTjkBc8cqi42D44WcPF', (select id from options where libelle='rangements'), (select id from modele where libelle='Movano'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('YG38lC6NTSUMQFZWyohu', (select id from options where libelle='rangements'), (select id from modele where libelle='Berlingo'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('Cnc4gxOWCDN0vaNYq2dM', (select id from options where libelle='rangements'), (select id from modele where libelle='Jumpy'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('MHM8QcjvPfwosR1LUZra', (select id from options where libelle='rangements'), (select id from modele where libelle='Jumper'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('wHa4tHnpGzzJm6RgMQnX', (select id from options where libelle='rangements'), (select id from modele where libelle='Transit'), 1500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('v4XfKmNV218FZoQTPK90', (select id from options where libelle='rangements'), (select id from modele where libelle='Ranger'), 1500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('aFr2QL6mESwig9SfGHJH', (select id from options where libelle='rangements'), (select id from typeModele where libelle='A'), 1500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('wyWsVVx8jpzZnTOB81kP', (select id from options where libelle='rangements'), (select id from typeModele where libelle='B'), 1500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('ahYUapvLJrk0AUkxwmw9', (select id from options where libelle='rangements'), (select id from typeModele where libelle='C'), 1500, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('SkUwOnoKIzhp5x9MagmC', (select id from options where libelle='luxe'), (select id from modele where libelle='Citan'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('jHtX0QVZ5vrL9vLCHYY6', (select id from options where libelle='luxe'), (select id from modele where libelle='Sprinter'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('SjoCzgUKBY43mk6ZK41w', (select id from options where libelle='luxe'), (select id from modele where libelle='Vito'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('iql17ejg4yfCApcSHyqh', (select id from options where libelle='luxe'), (select id from modele where libelle='Kangoo'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('Zkg4mGNxmo3bCP0Fme2s', (select id from options where libelle='luxe'), (select id from modele where libelle='Master'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('cB5d64ZrEZX0gnzVx3pb', (select id from options where libelle='luxe'), (select id from modele where libelle='Trafic'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('5JBC1JMrxk8y7hjYMuke', (select id from options where libelle='luxe'), (select id from modele where libelle='Movano'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('QPrXMeKyNSIylrJDl4fF', (select id from options where libelle='luxe'), (select id from modele where libelle='Berlingo'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('t02RMeV9OP3wa4DhJ5WA', (select id from options where libelle='luxe'), (select id from modele where libelle='Jumpy'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('TFdfd6WRW7yw0oJJQiSA', (select id from options where libelle='luxe'), (select id from modele where libelle='Jumper'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('iyQxY9pyJgoHnsyIIP83', (select id from options where libelle='luxe'), (select id from modele where libelle='Transit'), 4000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('hQuTtXkHiENOpEZGrZbY', (select id from options where libelle='luxe'), (select id from modele where libelle='Ranger'), 4000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('SkUwOnoKIzhp5x9MagmC', (select id from options where libelle='luxe'), (select id from typeModele where libelle='A'), 4000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('jHtX0QVZ5vrL9vLCHYY6', (select id from options where libelle='luxe'), (select id from typeModele where libelle='B'), 4000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('SjoCzgUKBY43mk6ZK41w', (select id from options where libelle='luxe'), (select id from typeModele where libelle='C'), 4000, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('NUmXMO8xKr6pquIOq0Bg', (select id from options where libelle='rally'), (select id from modele where libelle='Citan'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('yjpeAoGUIKDxOMlKdR07', (select id from options where libelle='rally'), (select id from modele where libelle='Sprinter'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('kFr6w9vhQXRwBDFIQEhv', (select id from options where libelle='rally'), (select id from modele where libelle='Vito'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('MuygBnTmzkhaFRvWyvYj', (select id from options where libelle='rally'), (select id from modele where libelle='Kangoo'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('IM7uBKmQMcTV0X1Q8QZi', (select id from options where libelle='rally'), (select id from modele where libelle='Master'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('VCQ6hQyPrZIxGFkFLUxv', (select id from options where libelle='rally'), (select id from modele where libelle='Trafic'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('x1I6PnA72FEbEXaWqajq', (select id from options where libelle='rally'), (select id from modele where libelle='Movano'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('DwE9Jx5CQGU8cqRdX812', (select id from options where libelle='rally'), (select id from modele where libelle='Berlingo'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('d9C2tcnfAOGJcTZ8iTN5', (select id from options where libelle='rally'), (select id from modele where libelle='Jumpy'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('U0KUVDYnq1CbzqH5g4fV', (select id from options where libelle='rally'), (select id from modele where libelle='Jumper'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('mHuvy52nDTgVRPwA2ZcW', (select id from options where libelle='rally'), (select id from modele where libelle='Transit'), 2500, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('b8WfyosP1p26wEq80ifA', (select id from options where libelle='rally'), (select id from modele where libelle='Ranger'), 2500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('NUmXMO8xKr6pquIOq0Bg', (select id from options where libelle='rally'), (select id from typeModele where libelle='A'), 2500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('yjpeAoGUIKDxOMlKdR07', (select id from options where libelle='rally'), (select id from typeModele where libelle='B'), 2500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('kFr6w9vhQXRwBDFIQEhv', (select id from options where libelle='rally'), (select id from typeModele where libelle='C'), 2500, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('1xFtkf5HX3ZlcbNyKtVy', (select id from options where libelle='sport'), (select id from modele where libelle='Citan'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('97xzw3DMTHV0YP0H7rK5', (select id from options where libelle='sport'), (select id from modele where libelle='Sprinter'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('zElhhnoWpUanbqSSUr9t', (select id from options where libelle='sport'), (select id from modele where libelle='Vito'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('LpmNdnTG9YVGI9YFluTm', (select id from options where libelle='sport'), (select id from modele where libelle='Kangoo'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('DNYjjQiE4FKZianvdjbu', (select id from options where libelle='sport'), (select id from modele where libelle='Master'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('SCy2HYO9GK7nNNk8ZbEf', (select id from options where libelle='sport'), (select id from modele where libelle='Trafic'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('vtV1FF9J5PdWwTqHPlWl', (select id from options where libelle='sport'), (select id from modele where libelle='Movano'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('axgBkCwLPAjkq48afiJr', (select id from options where libelle='sport'), (select id from modele where libelle='Berlingo'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('6IC4l3krwenRETSpqkR4', (select id from options where libelle='sport'), (select id from modele where libelle='Jumpy'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('oJQToULAwumnBKohF4hB', (select id from options where libelle='sport'), (select id from modele where libelle='Jumper'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('MTTrkjKne41PnpLuhiV1', (select id from options where libelle='sport'), (select id from modele where libelle='Transit'), 8000, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('AoCKkmxnedQht9P89FSf', (select id from options where libelle='sport'), (select id from modele where libelle='Ranger'), 8000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('1xFtkf5HX3ZlcbNyKtVy', (select id from options where libelle='sport'), (select id from typeModele where libelle='A'), 8000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('97xzw3DMTHV0YP0H7rK5', (select id from options where libelle='sport'), (select id from typeModele where libelle='B'), 8000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('zElhhnoWpUanbqSSUr9t', (select id from options where libelle='sport'), (select id from typeModele where libelle='C'), 8000, CURRENT_TIMESTAMP);
 
-insert into join_modele_option values ('6biAqXkaBqLq2hTW3oef', (select id from options where libelle='climatisation'), (select id from modele where libelle='Citan'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('q7BdXkW9RZsc1WatXAmV', (select id from options where libelle='climatisation'), (select id from modele where libelle='Sprinter'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('8pRYv4RiZ5YIXQcR51k5', (select id from options where libelle='climatisation'), (select id from modele where libelle='Vito'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('bxzFhtF8BRIhXK3zVCVj', (select id from options where libelle='climatisation'), (select id from modele where libelle='Kangoo'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('2rKUqUSNqVENQFPQYLcE', (select id from options where libelle='climatisation'), (select id from modele where libelle='Master'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('uUC9Uf7VYZubAVmKxnTs', (select id from options where libelle='climatisation'), (select id from modele where libelle='Trafic'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('rrMnAbeTbRnIHxIR9XLZ', (select id from options where libelle='climatisation'), (select id from modele where libelle='Movano'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('60krU5OUj07qqwDgWuL0', (select id from options where libelle='climatisation'), (select id from modele where libelle='Berlingo'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('f0YWjSAmmgy6Tr5wpB9B', (select id from options where libelle='climatisation'), (select id from modele where libelle='Jumpy'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('qbl7AQ0ZAQuEjsvahMkH', (select id from options where libelle='climatisation'), (select id from modele where libelle='Jumper'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('xXZGRT0zEQxd8QL12o19', (select id from options where libelle='climatisation'), (select id from modele where libelle='Transit'), 750, CURRENT_TIMESTAMP);
-insert into join_modele_option values ('gEG3a5VuG4cYIBOxe2Hu', (select id from options where libelle='climatisation'), (select id from modele where libelle='Ranger'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('6biAqXkaBqLq2hTW3oef', (select id from options where libelle='climatisation'), (select id from typeModele where libelle='A'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('q7BdXkW9RZsc1WatXAmV', (select id from options where libelle='climatisation'), (select id from typeModele where libelle='B'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('8pRYv4RiZ5YIXQcR51k5', (select id from options where libelle='climatisation'), (select id from typeModele where libelle='C'), 750, CURRENT_TIMESTAMP);

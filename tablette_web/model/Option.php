@@ -88,20 +88,20 @@ class Option extends Model{
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList,['id'=>$row['id'],'modele'=>Option::FindByID($optionId),'modele'=>Modele::FindByID($row['modele_id']),'prix'=>$row['prix']]);
+                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($optionId),'modele'=>Modele::FindByID($row['modele_id']),'prix'=>$row['prix']]);
             }
         }
         return $returnList;
     }
 	
-	static public function findJoinModeleOptionByModeleID($modeleId){
-        $query = db()->prepare("SELECT * FROM join_modele_option WHERE modele_id='".$modeleId."'");
+	static public function findJoinTypeModeleOptionByType($typeId){
+        $query = db()->prepare("SELECT * FROM join_typemodele_option WHERE typeModele_id='".$typeId."'");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($row['option_id']),'modele'=>Modele::FindByID($modeleId),'prix'=>$row['prix']]);
+                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($row['option_id']),'typeModele'=>TypeModele::FindByID($typeId),'prix'=>$row['prix']]);
             }
         }
         return $returnList;

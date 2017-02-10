@@ -32,19 +32,17 @@ class ConstructeursModelesController extends Controller{
 
 	public function afficherModele(){
 		$data['modele']=Modele::findByID($_GET['modele']);
-		$data['constructeur']=$data['modele']->constructeur;
-		$data['joinModeleOption']=Option::findJoinModeleOptionByModeleID($_GET['modele']);
+		$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByType($data['modele']->typeModele->id);
 		$this->render("tableauAffichageModele",$data);
 	}
 
 	public function modifierModele(){
 		$data=array();
 		$data['modele']=Modele::findByID($_GET['modele']);
-		$data['constructeur']=$data['modele']->constructeur;
 		//Afichage des join options
-		$data['joinModeleOption']=Option::findJoinModeleOptionByModeleID($_GET['modele']);
+		$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByType($data['modele']->typeModele->id);
 		if(!isset($_POST['submit'])){
-			$this->render("affichageModele",$data);
+			$this->render("formModificationModele",$data);
 			if(isset($_POST['cancel'])){
 				//                                *** GERER L'ANNULATION
 			}
@@ -54,7 +52,7 @@ class ConstructeursModelesController extends Controller{
 				array_push($data['erreursSaisie'],'Traitement à faire -> voir constructeurModeleController/modifierModele()');
 			}
 			if($data['erreursSaisie']!=[]){
-				$this->render("affichageModele",$data);
+				$this->render("formModificationModele",$data);
 			}else{
 				/*
 					Faire le traitement: boucler sur les options avec juste une seule des propriétés modifiées
@@ -68,7 +66,7 @@ class ConstructeursModelesController extends Controller{
 				Option::updateJoinModeleOption($data['option'],$joins);
 				$data['option'] = Option::findByID($_GET['option']);
 				$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
-				$this->render("affichageModele",$data);
+				$this->render("formModificationModele",$data);
 			}
 		}
 	}
@@ -153,15 +151,17 @@ class ConstructeursModelesController extends Controller{
 						}
 						if($data['erreursSaisie']!=[]){
 							$data['constructeurs']=Constructeur::findAll();
+							$data['typeModele']=TypeModele::findAll();
 							$this->render("formAjoutModele",$data);
 						}else{
-							$modele = new Modele($_POST['libelle'],Constructeur::FindByID($_POST['constructeur_id']));
+							$modele = new Modele($_POST['libelle'],Constructeur::FindByID($_POST['constructeur_id']),TypeModele::FindById($_POST['typeModele_id']));
 							Modele::insert($modele);
 							Socket::store('centrale','insert','modele',$modele);
 							$this->afficher();
 						}
 					}else{
 						$data['constructeurs']=Constructeur::findAll();
+						$data['typeModele']=TypeModele::findAll();
 						if(!isset($_POST['cancel'])){
 							$this->render("formAjoutModele",$data);
 						}else{
