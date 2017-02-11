@@ -28,11 +28,13 @@ insert into constructeur values('vDkGtdWUatwjBKG8AsHl','Citroën', CURRENT_TIMES
 insert into constructeur values('mGxJWusEbbtcvQSSHNKg','Ford', CURRENT_TIMESTAMP);
 
 /*=== Typemodele ===*/
+
 insert into typemodele values('IEgNSVQVNfGrDhpV1BNp','A',CURRENT_TIMESTAMP);
 insert into typemodele values('4203h1sl7kN2ODbj9bE3','B',CURRENT_TIMESTAMP);
 insert into typemodele values('mDGqxTxGBMsgVt3d4gLl','C',CURRENT_TIMESTAMP);
 
 /*=== Modele ===*/
+
 insert into modele values('FLxZAs51Ao0Yn0LUZKrq','Citan', (select id from constructeur where libelle='Mercedes'), (select id from typemodele where libelle='A'), CURRENT_TIMESTAMP);
 insert into modele values('N1VxLxYlVJwyNDRQUT5Q','Sprinter', (select id from constructeur where libelle='Mercedes'), (select id from typemodele where libelle='B'),CURRENT_TIMESTAMP);
 insert into modele values('vD8OR79ro2450ZfUo57F','Vito', (select id from constructeur where libelle='Mercedes'), (select id from typemodele where libelle='C'),CURRENT_TIMESTAMP);
@@ -87,6 +89,7 @@ insert into photo values ('CSNtUdZJ9DLGa4KqM3HE', 'pictures/transit_2.jpg', 'Ljg
 /*=== Utilisateur ===*/
 
 insert into utilisateur values ('BE4LvihlGE2Ecm9gIPvx', 'superadmin', '123', 3, CURRENT_TIMESTAMP);
+insert into utilisateur values ('a1Csj0BWEIzzmKAwgHsk', 'root', 'root', 3, CURRENT_TIMESTAMP);
 insert into utilisateur values ('PJaM5xjmYmvDhVEd54Qn', 'admin', '123', 2, CURRENT_TIMESTAMP);
 insert into utilisateur values ('TH2YTfynXPBjvgxROkyS', 'admin1', '123', 2, CURRENT_TIMESTAMP);
 insert into utilisateur values ('IknHu3azlIkBE06NrA4T', 'admin2', '123', 2, CURRENT_TIMESTAMP);

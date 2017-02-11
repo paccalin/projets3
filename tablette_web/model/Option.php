@@ -88,7 +88,7 @@ class Option extends Model{
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($optionId),'typeModele'=>TypeModele::FindByID($row['typeModele_id']),'prix'=>$row['prix']]);
+                array_push($returnList,['id'=>$row['id'],'option'=>Option::FindByID($optionId),'typeModele'=>TypeModele::FindByID($row['typemodele_id']),'prix'=>$row['prix']]);
             }
         }
         return $returnList;

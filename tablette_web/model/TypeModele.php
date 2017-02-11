@@ -14,7 +14,7 @@ class TypeModele extends Model{
             $this->dateInsertion = $pDateInsertion;
     }
     
-    static public $tableName = "typeModele";
+    static public $tableName = "typemodele";
     protected $id;
     protected $libelle;
     protected $dateInsertion;

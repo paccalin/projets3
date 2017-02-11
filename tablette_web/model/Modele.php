@@ -32,7 +32,7 @@ class Modele extends Model{
             $id = $row['id'];
             $libelle = $row['libelle'];
             $constructeur = Constructeur::FindById($row['constructeur_id']);
-			$typeModele = TypeModele::FindById($row['typeModele_id']);
+			$typeModele = TypeModele::FindById($row['typemodele_id']);
             $dateInsertion = $row['date_insertion'];
             return new Modele($libelle, $constructeur, $typeModele, $dateInsertion, $id);
         }
