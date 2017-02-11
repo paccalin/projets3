@@ -67,7 +67,7 @@ CREATE TABLE panier (
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );
 
-CREATE TABLE typeModele (
+CREATE TABLE typemodele (
   id varchar(20),
   libelle varchar(30) DEFAULT '',
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -78,7 +78,7 @@ CREATE TABLE modele (
   id varchar(20),
   libelle varchar(30) DEFAULT '',
   constructeur_id varchar(20) NOT NULL,
-  typeModele_id varchar(20) NOT NULL,
+  typemodele_id varchar(20) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_modele_id PRIMARY KEY (id)
 );
@@ -155,10 +155,10 @@ CREATE TABLE join_panier_option (
 	CONSTRAINT pk_join_pan_opt_id PRIMARY KEY (id)
 );
 
-CREATE TABLE join_typeModele_option (
+CREATE TABLE join_typemodele_option (
 	id varchar(20),
 	option_id varchar(20) NOT NULL,
-	typeModele_id varchar(20) NOT NULL,
+	typemodele_id varchar(20) NOT NULL,
 	prix float NOT NULL,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_join_dev_opt_id PRIMARY KEY (id)
@@ -200,6 +200,6 @@ ALTER TABLE join_panier_option
 ADD CONSTRAINT fk_join_pan_opt_pan_id FOREIGN KEY (panier_id) REFERENCES panier(id),
 ADD CONSTRAINT fk_join_pan_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
 
-ALTER TABLE join_typeModele_option
-ADD CONSTRAINT fk_join_typMod_opt_modele_id FOREIGN KEY (typeModele_id) REFERENCES typeModele(id),
-ADD CONSTRAINT fk_join_typMod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
+ALTER TABLE join_typemodele_option
+ADD CONSTRAINT fk_join_typmod_opt_modele_id FOREIGN KEY (typemodele_id) REFERENCES typemodele(id),
+ADD CONSTRAINT fk_join_typmod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
