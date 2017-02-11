@@ -157,7 +157,8 @@ class ConstructeursModelesController extends Controller{
 							$modele = new Modele($_POST['libelle'],Constructeur::FindByID($_POST['constructeur_id']),TypeModele::FindById($_POST['typeModele_id']));
 							Modele::insert($modele);
 							Socket::store('centrale','insert','modele',$modele);
-							$this->afficher();
+							header('Location: ./?r=constructeursModeles/afficherModele&modele='.$modele->id);
+							//$this->afficher();
 						}
 					}else{
 						$data['constructeurs']=Constructeur::findAll();
