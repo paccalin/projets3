@@ -36,7 +36,7 @@
 		}
 		
 		public function getNbOptions(){
-			$requete="select count(*) as nb from join_panier_option where panier_id=".$this->id;
+			$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."'";
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
@@ -152,14 +152,28 @@
 		}
 	
 	
-		public function getCoutTotalPanier(){
+		public function getCoutTotal(){
 			if($this->options != null){
 				$prix = 0;
 				foreach($this->options as $key=>$value)	{
-					$prix += Option::moyenneTarifByID($value->id);
+					$prix += Option::moyenneTarifByID($value->id)*$this->getNbOptionsByOptionID($value->id);
 				}	
 			}
 			return $prix;
 		}
+	
+	
+	protected function getNbOptionsByOptionID($optionID){
+		$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."' and option_id ='".$optionID."'";
+		$query = db()->prepare($requete);
+		$query->execute();
+		print_r($query);
+		if ($query->rowCount() > 0){
+			$row = $query->fetch(PDO::FETCH_ASSOC);
+			return $row['nb'];
+		}else{
+			return -1;
+		}
 	}
+}
 ?>
