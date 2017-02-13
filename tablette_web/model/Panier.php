@@ -167,7 +167,6 @@
 		$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."' and option_id ='".$optionID."'";
 		$query = db()->prepare($requete);
 		$query->execute();
-		print_r($query);
 		if ($query->rowCount() > 0){
 			$row = $query->fetch(PDO::FETCH_ASSOC);
 			return $row['nb'];
