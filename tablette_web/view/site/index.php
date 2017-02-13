@@ -5,7 +5,7 @@
 				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
 				['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'showPanierClient', 'ajout'=>null, 'recherche'=>null],
 				['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
-				['nom'=>'Mode client', 'controller'=>'connexion', 'switchUC'=>'swichUtilisateurClient']
+				['nom'=>'Mode client', 'controller'=>'connexion', 'visualiser'=>'visualiser', 'switchUC'=>'swichUtilisateurClient']
 			];
 		}else{
 			if($_SESSION['droits']==1){
@@ -42,9 +42,9 @@
 				];
 			}
 			if($_SESSION['client']!=-1){
-				array_push($rubriques,['nom'=>'Connecté', 'controller'=>'connexion', 'visualiser'=>null, 'ajout'=>null, 'recherche'=>null, 'croix'=>'deconnexion','changeClient'=>'changeClient','switchUC'=>'swichUtilisateurClient']);
+				array_push($rubriques,['nom'=>'Connecté', 'controller'=>'connexion', 'visualiser'=>'visualiser', 'ajout'=>null, 'recherche'=>null, 'croix'=>'deconnexion','changeClient'=>'changeClient','switchUC'=>'swichUtilisateurClient']);
 			}else{
-				array_push($rubriques,['nom'=>'Connecté', 'controller'=>'connexion', 'visualiser'=>null, 'ajout'=>null, 'recherche'=>null, 'croix'=>'deconnexion','ajoutClient'=>'ajouterClient']);
+				array_push($rubriques,['nom'=>'Connecté', 'controller'=>'connexion', 'visualiser'=>'visualiser', 'ajout'=>null, 'recherche'=>null, 'croix'=>'deconnexion','ajoutClient'=>'ajouterClient']);
 			}
 			
 		}

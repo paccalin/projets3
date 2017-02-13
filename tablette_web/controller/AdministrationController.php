@@ -79,7 +79,6 @@ class AdministrationController extends Controller{
 		if(isset($_POST['submit'])){
 			if($_POST['motPasse']==$_POST['motPasse2']){
 				if($_POST['motPasse']!=""){
-					include_once("model/Utilisateur.php");
 					if(!isset($_GET['pseudo'])){
 						$user = Utilisateur::FindByPseudo($_SESSION['identifiant']);
 					}else{
@@ -99,7 +98,7 @@ class AdministrationController extends Controller{
 				$this->render("formChangementMotDePasse","Erreur: les mots de passe ne correspondent pas");
 			}
 		}elseif(isset($_POST['cancel'])){
-		header("Location: ./?r=site/index");
+			header("Location: ./?r=site/index");
 		}else{
 			$this->render("formChangementMotDePasse");
 		}

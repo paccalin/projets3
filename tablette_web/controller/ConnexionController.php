@@ -26,6 +26,13 @@ class ConnexionController extends Controller{
 		
 	}
 
+	public function visualiser(){
+		//print_r($_SESSION);
+		$data['utilisateur']=Utilisateur::FindById($_SESSION['utilisateur']);
+		$data['client']=Client::FindById($_SESSION['client']);
+		$this->render('visualiserConnexion',$data);
+	}
+	
 	public function deconnexion(){
 		$_SESSION['droits'] = 0;
 		$_SESSION['utilisateur'] = -1;
@@ -41,24 +48,38 @@ class ConnexionController extends Controller{
 	}
 	
 	public function ajouterClient(){
-		if(!isset($_POST['submit'])){
-			$this->render('formLiaisonClient');
-		}elseif(isset($_POST['cancel'])){
-			
+		if($_SESSION['mode']=='utilisateur'){
+			if(!isset($_POST['submit'])){
+				$this->render('formLiaisonClient');
+			}elseif(isset($_POST['cancel'])){
+				
+			}else{
+				$_SESSION['client']=$_POST['client'];
+				if(isset($_GET['retour'])){
+					header('Location: ./?r='.$_GET['retour']);
+				}else{
+					header('Location: ./?r=site/index');
+				}
+			}
 		}else{
-			$_SESSION['client']=$_POST['client'];
-			header('Location: ./?r=site/index');
+			$this->render('403');
 		}
 	}
 	
 	public function changeClient(){
-		if(!isset($_POST['submit'])){
-			$this->render('formLiaisonClient');
-		}elseif(isset($_POST['cancel'])){
-			
+		$this->ajouterClient();
+	}
+	
+	public function delierClient(){
+		if($_SESSION['mode']=='utilisateur'){
+			$_SESSION['client']=-1;
+			if(isset($_GET['retour'])){
+				header('Location: ./?r='.$_GET['retour']);
+			}else{
+				header('Location: ./?r=site/index');
+			}
 		}else{
-			$_SESSION['client']=$_POST['client'];
-			header('Location: ./?r=site/index');
+			$this->render('403');
 		}
 	}
 	
@@ -80,6 +101,34 @@ class ConnexionController extends Controller{
 					$this->render('formEntrerMotDePasse',$data);
 				}
 			}
+		}
+	}
+	
+	public function changerMotPasse(){
+		if(isset($_POST['submit'])){
+			$data['erreurSaisie']=[];
+			$user = Utilisateur::FindById($_SESSION['utilisateur']);
+			if($_POST['motPasseAct']!=$user->motDePasse){
+				array_push($data['erreurSaisie'],'Le mot de passe actuel est incorrect');
+			}
+			if($_POST['motPasse1']!=$_POST['motPasse2']){
+				array_push($data['erreurSaisie'],'Les mots de passe ne corresponent pas');
+			}
+			if($_POST['motPasse1']==""){
+				array_push($data['erreurSaisie'],'Le nouveau mot de pase est vide');
+			}
+			if($data['erreurSaisie']!=[]){
+				$this->render("formChangementMotDePasse",$data);
+			}else{
+				$user->motDePasse=$_POST['motPasse1'];
+				Utilisateur::Update($user);
+				Socket::store('centrale','update','utilisateur',$user);
+				header('Location: .?r=connexion/visualiser');
+			}
+		}elseif(isset($_POST['cancel'])){
+			header("Location: ./?r=site/index");
+		}else{
+			$this->render("formChangementMotDePasse");
 		}
 	}
 }

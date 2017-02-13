@@ -1,5 +1,5 @@
-<form action='./?r=connexion/ajouterClient' method='post'>
-
+<a href='./?r=<?php if(isset($_GET['retour'])){echo $_GET['retour'];}else{echo 'site/index';}?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
+<form action='./?r=connexion/ajouterClient<?php if(isset($_GET['retour'])){echo '&retour='.$_GET['retour'];}?>' method='post'>
 	<label for='client'>Client : </label><!--
 	--><select name='client' id='client' class='input'>
 		<option value='null'>-- Sélectionner --</option>
