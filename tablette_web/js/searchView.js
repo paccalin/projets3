@@ -12,3 +12,7 @@ $('#constructeur').change(function(){
 	$('.'+constructeur).css('display', 'block');
 	$("#modele").val($('.'+constructeur).first().val());
 });
+
+function showVehicles(){
+	
+}

@@ -28,7 +28,7 @@ function parameters() {
 	return $parameters;
 }
 
-// Gestion des la route : paramètre r = controller/action
+// Gestion des la route : paramètre r = ajax/methode
 if (isset(parameters()["r"])) {
 	
 		$route = parameters()["r"];
@@ -41,9 +41,7 @@ if (isset(parameters()["r"])) {
 	$c = new $controller();
 	$c->$action();
 } else {
-
 	throw new Exception('Trying to access ajaxHandler without specifying any Ajax script');
-	
 }
 
 ?>
