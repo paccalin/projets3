@@ -43,14 +43,16 @@
 			}
 			if($_SESSION['client']!=-1){
 				array_push($rubriques,['nom'=>'Connecté', 'controller'=>'connexion', 'visualiser'=>'visualiser', 'ajout'=>null, 'recherche'=>null, 'croix'=>'deconnexion','changeClient'=>'changeClient','switchUC'=>'swichUtilisateurClient']);
+				
 			}else{
 				array_push($rubriques,['nom'=>'Connecté', 'controller'=>'connexion', 'visualiser'=>'visualiser', 'ajout'=>null, 'recherche'=>null, 'croix'=>'deconnexion','ajoutClient'=>'ajouterClient']);
 			}
-			
 		}
 	}else{
 		$rubriques=[
-				['nom'=>'Connexion', 'controller'=>'connexion', 'visualiser'=>'connexion', 'ajout'=>null, 'recherche'=>null]
+				['nom'=>'Connexion', 'controller'=>'connexion', 'visualiser'=>'connexion', 'ajout'=>null, 'recherche'=>null],
+				['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
+				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo']
 			];
 	}
 	foreach($rubriques as $rubrique){
