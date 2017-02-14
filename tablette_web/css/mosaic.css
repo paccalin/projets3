@@ -2,7 +2,7 @@
 	--SearchView-Mosaic-RowSize: 5;
 	--SearchView-height: 90vh;
 	--SearchView-width: 100vw;
-	--SearchView-bar-height: 10vh;
+	--SearchView-bar-height: 100vh;
 	--ScrollBar-Margin: 2vw;
 	--unitwv: 1vw;
 	--SearchView-Mosaic-height: calc(var(--SearchView-height) - var(--SearchView-bar-height));
@@ -42,16 +42,16 @@
 }
 
 .searchBar{
-	height: var(--SearchView-bar-height);
-	width: var(--SearchView-width);
+	height: 90vh;
+	width: 35vw;
+	float: right;
 }
 
 .mosaicContainer{
-	height: var(--SearchView-Mosaic-height);
-	width: var(--SearchView-width);
-	padding-right: var(--ScrollBar-Margin);
-	padding-top: var(--ScrollBar-Margin);
+	height: 90vh;
+	width: 65vw;
 	overflow: auto;
+	padding: auto;
 }
 
 .aTile{
