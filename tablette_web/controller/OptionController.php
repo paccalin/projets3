@@ -4,24 +4,26 @@ class OptionController extends Controller{
 
 	public function afficherTous(){
 		if($_SESSION['droits']>=1){
-			$optionsObj = Option::findAll();
-			$data['options'] = array();
-			foreach($optionsObj as $optionObj){
-				array_push($data['options'],["id"=>$optionObj->id,"libelle"=>$optionObj->libelle,"prixDeBase"=>$optionObj->prixDeBase]);
-			}
+			$data['options'] = Option::findAll();
 			$this->render("afficherTous",$data);
 		}else{
 			$this->render("erreurAutorisation");
 		}
 	}	
+	
+	public function visualiserParType(){
+		$data=[];
+		$this->render("visualiserParType",$data);
+	}
 
 	public function creer(){
 		$data=array();
 		/* Mettre les modeles dans $data pour créer les join_modele_option */
 		if($_SESSION['droits']>=2){
+			$data['typeOption']=TypeOption::FindAll();
 			if(!isset($_POST['submit'])){
 				if(!isset($_POST['cancel'])){
-					$this->render("formCreationOption");
+					$this->render("formCreationOption",$data);
 				}else{
 					header('Location: ./?r=option/afficherGerer');
 				}
@@ -44,7 +46,7 @@ class OptionController extends Controller{
 				if($data['erreursSaisie']!=[]){
 					$this->render("formCreationOption",$data);
 				}else{
-					$option = new Option($_POST['libelle'],$_POST['description'],$_POST['prixDeBase']);
+					$option = new Option($_POST['libelle'],TypeOption::FindById($_POST['typeOption_id']),$_POST['description'],$_POST['prixDeBase']);
 					Option::insert($option);
 					Socket::store('centrale','insert','option',$option);
 					header('Location: ./?r=option/visualiser&option='.$option->id);
