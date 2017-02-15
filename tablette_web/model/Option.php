@@ -69,6 +69,19 @@ class Option extends Model{
         return $returnList;
     }
 
+	static public function FindByTypeOptionId($pId){
+		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE typeoption_id='".$pId."'");
+        $query->bindParam(1, $pLibelle, PDO::PARAM_INT);
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+	}	
 
     static public function FindAll() {
         $query = db()->prepare("SELECT id FROM ".self::$tableName);
@@ -111,7 +124,7 @@ class Option extends Model{
     }
 
 	static public function moyenneTarifByID($optionId) {
-        $query = db()->prepare("SELECT AVG(prix) as moyenne FROM join_modele_option WHERE option_id='".$optionId."'");
+        $query = db()->prepare("SELECT AVG(prix) as moyenne FROM join_typemodele_option WHERE option_id='".$optionId."'");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
         $query->execute();
         if ($query->rowCount() > 0){
@@ -132,6 +145,13 @@ class Option extends Model{
 		}
 	}
 
+	static public function update($option){
+		$requete = "UPDATE ".self::$tableName." SET libelle='".$option->libelle."',typeoption_id='".$option->typeOption->id."',description='".$option->desc."',prixDeBase=".$option->prixDeBase.",date_insertion='".$option->dateInsertion."' where id='".$option->id."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+	}
+	
 	static public function updateJoinTypeModeleOption($option,$joins){
 		$requete="";
 		foreach($joins as $updateJoinTypeModeleOption){

@@ -1,4 +1,4 @@
-<a href='<?php if(isset($_GET['retour'])){echo './?r='.$_GET['retour'].'&option='.$_GET['option'];}else{echo './?r=option/afficherTous';}?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
+<a href='./?r=<?php echo $data['retour'];?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <?php
 	if($_SESSION['droits']>=2 AND $_SESSION['mode']=='utilisateur'){
 		echo "<a href='./?r=option/modifier&option=".$_GET['option']."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>";

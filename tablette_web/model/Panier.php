@@ -14,19 +14,17 @@
 			$this->path = $pPath;
 			if($pDateInsertion == null){
 				$this->dateInsertion = date('d/m/Y h:i:s a', time());
-				$this->options = null;
 			}else{
 				$this->dateInsertion = $pDateInsertion;
-				$this->options = Option::FindByPanierID($this);
 			}
 		}
+		
 		static public $tableName = "panier";
 		protected $id;
 		protected $client;
 		protected $utilisateur;
 		protected $path;
 		protected $dateInsertion;
-		protected $options;
 		
 		static public function create($clientId){
 			$requete="insert into ".self::$tableName." values(default,".$clientId.",".$_SESSION['utilisateur'].",'path',CURRENT_TIMESTAMP)";
@@ -35,7 +33,23 @@
 			$query->execute();
 		}
 		
+		public function getCoutTotal(){
+			$joinsPO = Panier::FindJoinOptionsById($this->id);
+			$total=0;
+			foreach($joinsPO as $joinPO){
+				$total+=$joinPO['option']->prixDeBase*$joinPO['nombre'];
+			}
+			return $total;
+		}
+		
 		public function getNbOptions(){
+			$joinsPO = Panier::FindJoinOptionsById($this->id);
+			$total=0;
+			foreach($joinsPO as $joinPO){
+				$total+=$joinPO['nombre'];
+			}
+			return $total;
+			
 			$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."'";
 			//echo $requete;
 			$query = db()->prepare($requete);
@@ -48,25 +62,6 @@
 				return -1;
 			}
 		}
-		
-		
-		/*
-		public function getCoutTotal(){
-			/* marche pas -> faire une requête imbriquée ou un truc dans le genre
-			//trouver un moyen pour que ça fasse la somme avec nombre un attribut de join_panier_option
-			$requete=" [...] where panier_id=".$this->id.")";
-			//echo $requete;
-			$query = db()->prepare($requete);
-			$query->execute();
-			$returnList=[];
-			if ($query->rowCount() > 0){
-				$row = $query->fetch(PDO::FETCH_ASSOC);
-				return $row['somme'];
-			}else{
-				return -1;
-			}
-		}
-		*/
 		
 		static public function FindByID($pId){
 			$query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id ='".$pId."'");
@@ -129,20 +124,21 @@
 			return $returnList;
 		}
 		
-		static public function ajouterOption($optionId){
-			$panier = Self::FindByClientId($_SESSION['client']);
-			$requete = "select count(*) as count,id from join_panier_option where panier_id='".$panier->id."' and option_id='".$optionId."'";
+		public function ajouterOption($optionId){
+			$requete = "select count(*) as count,id from join_panier_option where panier_id='".$this->id."' and option_id='".$optionId."'";
 			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
 			if ($query->rowCount() > 0){
 				$row = $query->fetch(PDO::FETCH_ASSOC);
 				if($row['count']==0){
-					$requete = "INSERT INTO join_panier_option VALUES (DEFAULT,'".$optionId."','".$panier->id."', 1, CURRENT_TIMESTAMP)";
+					$requete = "INSERT INTO join_panier_option VALUES ('".Model::RandomId()."','".$optionId."','".$this->id."', 1, CURRENT_TIMESTAMP)";
+					//echo $requete;
 					$query = db()->prepare($requete);
 					$query->execute();
 				}else{
-					$requete = "UPDATE join_panier_option SET nombre=nombre+1 where id=".$row['id'];
+					$requete = "UPDATE join_panier_option SET nombre=nombre+1 where id='".$row['id']."'";
+					//echo $requete;
 					$query = db()->prepare($requete);
 					$query->execute();
 				}
@@ -150,29 +146,17 @@
 				return null;
 			}
 		}
-	
-	
-		public function getCoutTotal(){
-			if($this->options != null){
-				$prix = 0;
-				foreach($this->options as $key=>$value)	{
-					$prix += Option::moyenneTarifByID($value->id)*$this->getNbOptionsByOptionID($value->id);
-				}	
+		
+		protected function getNbOptionsByOptionID($optionID){
+			$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."' and option_id ='".$optionID."'";
+			$query = db()->prepare($requete);
+			$query->execute();
+			if ($query->rowCount() > 0){
+				$row = $query->fetch(PDO::FETCH_ASSOC);
+				return $row['nb'];
+			}else{
+				return -1;
 			}
-			return $prix;
-		}
-	
-	
-	protected function getNbOptionsByOptionID($optionID){
-		$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."' and option_id ='".$optionID."'";
-		$query = db()->prepare($requete);
-		$query->execute();
-		if ($query->rowCount() > 0){
-			$row = $query->fetch(PDO::FETCH_ASSOC);
-			return $row['nb'];
-		}else{
-			return -1;
 		}
 	}
-}
 ?>
