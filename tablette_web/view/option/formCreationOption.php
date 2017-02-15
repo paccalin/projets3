@@ -11,7 +11,21 @@
 
 <form action='./?r=option/creer' method='post'>
 	<label for='libelle'>Libelle :</label><!--
-	--><input type='text' name='libelle' id='libelle' <?php if(isset($_POST['libelle'])){echo "value='".$_POST['libelle']."'";}?>/>
+	--><input type='text' name='libelle' id='libelle' <?php if(isset($_POST['libelle'])){echo "value='".$_POST['libelle']."'";}?>/><!--
+	--><label for='typeOption_id'>Type: </label><!--
+	--><select name='typeOption_id' class='input'>
+			<option value="null">-- défaut --</option>
+		<?php
+			foreach($data['typeOption'] as $typeOption){
+				echo '<option value="'.$typeOption->id.'"';
+				if(isset($_POST['typeOption_id']) and $_POST['typeOption_id']==$typeOption->id){
+					echo ' selected';
+				}
+				echo '>'.$typeOption->libelle.'</option>';
+				
+			}
+		?>
+	</select>
 	<label for='description'>Description :</label><!--
 	--><input type='text' name='description' id='description' <?php if(isset($_POST['description'])){echo "value='".$_POST['description']."'";}?>/>
 	<label for='prixDeBase'>Prix de base :</label><!--

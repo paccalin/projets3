@@ -48,16 +48,27 @@ insert into modele values('FXqZgfCMWzAk2FYMlAW6', 'Jumper', (select id from cons
 insert into modele values('A2dyt47t3UreNFkU4emF', 'Transit', (select id from constructeur where libelle='Ford'), (select id from typemodele where libelle='B'),CURRENT_TIMESTAMP);
 insert into modele values('1Nskr4WTIf4s7TV6Fk1m', 'Ranger', (select id from constructeur where libelle='Ford'), (select id from typemodele where libelle='C'),CURRENT_TIMESTAMP);
 
+/*=== Typeoption ===*/
+
+insert into typeoption values('3xWWcjX1DvUQI5BpII20','Protéger',CURRENT_TIMESTAMP);
+insert into typeoption values('HPgVVoTgFXHxzEoEOOak','Aménager',CURRENT_TIMESTAMP);
+insert into typeoption values('MLWM9UZX3qN6KcKo1XzH','Sécuriser',CURRENT_TIMESTAMP);
+insert into typeoption values('2OFL55AxEcbUjjBA8yUC','Transporter',CURRENT_TIMESTAMP);
+insert into typeoption values('CXVbWnrhNb9gN2aX41Xj','Charger',CURRENT_TIMESTAMP);
+insert into typeoption values('XlZtC4GgmC8bzKwPv56I','Signaler',CURRENT_TIMESTAMP);
+
 /*=== Options ===*/
 
-insert into options values('kMwG85Hao84G05ys7XAE', 'couleur', 'changement de la couleur du camion', 3500.0, CURRENT_TIMESTAMP);
-insert into options values('BW9rYK9OINMR0zHzP53A', 'passager', 'ajout de siege afin de transporter des passagers', 1000.0,  CURRENT_TIMESTAMP);
-insert into options values('iHwhkPwn7GVgxGWIRDh7', 'benne', 'transformation de l\'arrière du camion afin d\'y ajouter une benne', 2000.0, CURRENT_TIMESTAMP);
-insert into options values('Q9WcxWmYGxxZwM4lLoNe', 'rangements', 'transformation de l\'arrière du camion afin d\'y ajouter des rangements', 1500.0, CURRENT_TIMESTAMP);
-insert into options values('e30G6K10Rmr9rWexMoO2', 'luxe', 'modification afin d\'apporter du luxe au vehicule', 4000.0, CURRENT_TIMESTAMP);
-insert into options values('PasYOtVWny0TflRP3oPb', 'rally', 'modification afin de créer un véritable véhicule de rally', 2500.0, CURRENT_TIMESTAMP);
-insert into options values('3lYVG6Q4qdVlyHeihkJY', 'sport', 'changement du moteur et ajout de bande sportive', 8000.0,  CURRENT_TIMESTAMP);
-insert into options values('O03WwjQkWlO8RpJJf0Q6', 'climatisation', 'ajout de la climatisation', 750.0, CURRENT_TIMESTAMP);
+insert into options values('kMwG85Hao84G05ys7XAE', 'couleur', (select id from typeoption where libelle='Aménager'), 'changement de la couleur du camion', 3500.0, CURRENT_TIMESTAMP);
+insert into options values('BW9rYK9OINMR0zHzP53A', 'passager', (select id from typeoption where libelle='Transporter'), 'ajout de siege afin de transporter des passagers', 1000.0,  CURRENT_TIMESTAMP);
+insert into options values('iHwhkPwn7GVgxGWIRDh7', 'benne', (select id from typeoption where libelle='Transporter'), 'transformation de l\'arrière du camion afin d\'y ajouter une benne', 2000.0, CURRENT_TIMESTAMP);
+insert into options values('Q9WcxWmYGxxZwM4lLoNe', 'rangements', (select id from typeoption where libelle='Transporter'), 'transformation de l\'arrière du camion afin d\'y ajouter des rangements', 1500.0, CURRENT_TIMESTAMP);
+insert into options values('e30G6K10Rmr9rWexMoO2', 'luxe', (select id from typeoption where libelle='Aménager'), 'modification afin d\'apporter du luxe au vehicule', 4000.0, CURRENT_TIMESTAMP);
+insert into options values('PasYOtVWny0TflRP3oPb', 'gyrophare', (select id from typeoption where libelle='Signaler'), 'ajout d\'un gyrophare', 2500.0, CURRENT_TIMESTAMP);
+insert into options values('3lYVG6Q4qdVlyHeihkJY', 'blindage', (select id from typeoption where libelle='Protéger'), 'augmentation de l\'épaisseur des vitres et parois', 8000.0,  CURRENT_TIMESTAMP);
+insert into options values('XGyTH761jP1PtWqXUemG', 'alarme', (select id from typeoption where libelle='Sécuriser'), 'alarme améliorée de qualité professionelle', 8000.0,  CURRENT_TIMESTAMP);
+insert into options values('O03WwjQkWlO8RpJJf0Q6', 'climatisation', (select id from typeoption where libelle='Aménager'), 'ajout de la climatisation', 750.0, CURRENT_TIMESTAMP);
+insert into options values('zJV3TWCQXqPXWq6Nuo7n', 'rampe', (select id from typeoption where libelle='Charger'), 'ajout d\'une rampe à l\'arrière du véhicule', 750.0, CURRENT_TIMESTAMP);
 
 /*=== Vehicule ===*/
 
@@ -123,7 +134,7 @@ insert into rendezvous values('Q3jPQLoIn2NoWTwAM4s0','explication contrat', (sel
 /*=== JoinVehiculeOption ===*/
 
 insert into join_vehicule_option values ('eqkKqM1UsnQmKjHCREGk', '9HWMJP3zAl330Sn8fCiw', (select id from options where libelle='luxe'), CURRENT_TIMESTAMP);
-insert into join_vehicule_option values ('Tzd6DtONI905dJYG9O1L', 'SuC8WIoYCAucjasH5lLK', (select id from options where libelle='rally'), CURRENT_TIMESTAMP);
+insert into join_vehicule_option values ('Tzd6DtONI905dJYG9O1L', 'SuC8WIoYCAucjasH5lLK', (select id from options where libelle='gyrophare'), CURRENT_TIMESTAMP);
 insert into join_vehicule_option values ('67gZ1LOVp9bwjQLnTOWK', 'PhHc6k4ypsBWPKe0wmsD', (select id from options where libelle='couleur'), CURRENT_TIMESTAMP);
 insert into join_vehicule_option values ('l9MxHpQWrndFPZHSKbTu', 'Imr9AhCAbiPE1AkOT1Uy', (select id from options where libelle='couleur'), CURRENT_TIMESTAMP);
 insert into join_vehicule_option values ('PqNvfaQPth2HSFcCzCAk', 'Imr9AhCAbiPE1AkOT1Uy', (select id from options where libelle='passager'), CURRENT_TIMESTAMP);
@@ -132,7 +143,7 @@ insert into join_vehicule_option values ('e6ZWs4vfyG4On1uppk8K', 'Cgds0JCvdglxci
 insert into join_vehicule_option values ('Ds8U1bfOReT7RJXv0PMV', 'dQIz8aR8TANcNCvJkSBE', (select id from options where libelle='couleur'), CURRENT_TIMESTAMP);
 insert into join_vehicule_option values ('Tw4Cr3ieRvWeLG7oNl9M', 'HYhMlJDZtrUb1LScfjAM', (select id from options where libelle='passager'), CURRENT_TIMESTAMP);
 insert into join_vehicule_option values ('SKF4upbfFOE5zn9VId5w', '0H61BX125pGLTDlu6gas', (select id from options where libelle='luxe'), CURRENT_TIMESTAMP);
-insert into join_vehicule_option values ('RrCPF8cuxZKl5Vgnbc0k', 'Ljg6gd594EsdDoRxf6mw', (select id from options where libelle='sport'), CURRENT_TIMESTAMP);
+insert into join_vehicule_option values ('RrCPF8cuxZKl5Vgnbc0k', 'Ljg6gd594EsdDoRxf6mw', (select id from options where libelle='climatisation'), CURRENT_TIMESTAMP);
 
 /*=== JoinDevisOption ===*/
 /*
@@ -203,14 +214,22 @@ insert into join_typemodele_option values ('SkUwOnoKIzhp5x9MagmC', (select id fr
 insert into join_typemodele_option values ('jHtX0QVZ5vrL9vLCHYY6', (select id from options where libelle='luxe'), (select id from typemodele where libelle='B'), 4000, CURRENT_TIMESTAMP);
 insert into join_typemodele_option values ('SjoCzgUKBY43mk6ZK41w', (select id from options where libelle='luxe'), (select id from typemodele where libelle='C'), 4000, CURRENT_TIMESTAMP);
 
-insert into join_typemodele_option values ('NUmXMO8xKr6pquIOq0Bg', (select id from options where libelle='rally'), (select id from typemodele where libelle='A'), 2500, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('yjpeAoGUIKDxOMlKdR07', (select id from options where libelle='rally'), (select id from typemodele where libelle='B'), 2500, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('kFr6w9vhQXRwBDFIQEhv', (select id from options where libelle='rally'), (select id from typemodele where libelle='C'), 2500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('NUmXMO8xKr6pquIOq0Bg', (select id from options where libelle='gyrophare'), (select id from typemodele where libelle='A'), 2500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('yjpeAoGUIKDxOMlKdR07', (select id from options where libelle='gyrophare'), (select id from typemodele where libelle='B'), 2500, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('kFr6w9vhQXRwBDFIQEhv', (select id from options where libelle='gyrophare'), (select id from typemodele where libelle='C'), 2500, CURRENT_TIMESTAMP);
 
-insert into join_typemodele_option values ('1xFtkf5HX3ZlcbNyKtVy', (select id from options where libelle='sport'), (select id from typemodele where libelle='A'), 8000, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('97xzw3DMTHV0YP0H7rK5', (select id from options where libelle='sport'), (select id from typemodele where libelle='B'), 8000, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('zElhhnoWpUanbqSSUr9t', (select id from options where libelle='sport'), (select id from typemodele where libelle='C'), 8000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('1xFtkf5HX3ZlcbNyKtVy', (select id from options where libelle='blindage'), (select id from typemodele where libelle='A'), 8000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('97xzw3DMTHV0YP0H7rK5', (select id from options where libelle='blindage'), (select id from typemodele where libelle='B'), 8000, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('zElhhnoWpUanbqSSUr9t', (select id from options where libelle='blindage'), (select id from typemodele where libelle='C'), 8000, CURRENT_TIMESTAMP);
 
-insert into join_typemodele_option values ('6biAqXkaBqLq2hTW3oef', (select id from options where libelle='climatisation'), (select id from typemodele where libelle='A'), 750, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('q7BdXkW9RZsc1WatXAmV', (select id from options where libelle='climatisation'), (select id from typemodele where libelle='B'), 750, CURRENT_TIMESTAMP);
-insert into join_typemodele_option values ('8pRYv4RiZ5YIXQcR51k5', (select id from options where libelle='climatisation'), (select id from typemodele where libelle='C'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('6biAqXkaBqLq2hTW3oef', (select id from options where libelle='alarme'), (select id from typemodele where libelle='A'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('q7BdXkW9RZsc1WatXAmV', (select id from options where libelle='alarme'), (select id from typemodele where libelle='B'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('8pRYv4RiZ5YIXQcR51k5', (select id from options where libelle='alarme'), (select id from typemodele where libelle='C'), 750, CURRENT_TIMESTAMP);
+
+insert into join_typemodele_option values ('ockHXmL0V5lY1vkumfKg', (select id from options where libelle='climatisation'), (select id from typemodele where libelle='A'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('la4lLozifTkkrnpsMEU3', (select id from options where libelle='climatisation'), (select id from typemodele where libelle='B'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('ZTmSoiu8PQuOgY5ChCWv', (select id from options where libelle='climatisation'), (select id from typemodele where libelle='C'), 750, CURRENT_TIMESTAMP);
+
+insert into join_typemodele_option values ('dcmX13sP0XkOAKjZhX9H', (select id from options where libelle='rampe'), (select id from typemodele where libelle='A'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('zQ5dvmmORPiDU3CtJojn', (select id from options where libelle='rampe'), (select id from typemodele where libelle='B'), 750, CURRENT_TIMESTAMP);
+insert into join_typemodele_option values ('BwpefLGe0eItCv5uJ0ui', (select id from options where libelle='rampe'), (select id from typemodele where libelle='C'), 750, CURRENT_TIMESTAMP);

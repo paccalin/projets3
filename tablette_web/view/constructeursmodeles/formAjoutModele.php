@@ -22,8 +22,8 @@
 				
 			}
 		?>
-	</select>
-	<label for='libelle'>Libelle :</label><!--
+	</select><!--
+	--><label for='libelle'>Libelle :</label><!--
 	--><input type='text' name='libelle' id='libelle' <?php if(isset($_POST['libelle'])){echo "value='".$_POST['libelle']."'";}?>/>
 	<label for='typeModele_id'>Catégorie :</label><!--
 	--><select name='typeModele_id' class='input'>

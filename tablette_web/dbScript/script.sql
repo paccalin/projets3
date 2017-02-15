@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS typemodele;
 DROP TABLE IF EXISTS utilisateur;
 DROP TABLE IF EXISTS constructeur;
 DROP TABLE IF EXISTS options;
+DROP TABLE IF EXISTS typeoption;
 DROP TABLE IF EXISTS client;
 DROP TABLE IF EXISTS socket;
 
@@ -20,7 +21,7 @@ CREATE TABLE socket (
 	destinataire varchar(10) DEFAULT '',
 	action varchar(10) DEFAULT '',
 	tableDb varchar(30) DEFAULT '',
-	json JSON,
+	json text,
 	date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_socket_id PRIMARY KEY (id)
 );
@@ -83,9 +84,17 @@ CREATE TABLE modele (
   CONSTRAINT pk_modele_id PRIMARY KEY (id)
 );
 
+CREATE TABLE typeoption (
+  id varchar(20),
+  libelle varchar(30) DEFAULT '',
+  date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT pk_typeoption_id PRIMARY KEY (id)
+);
+
 CREATE TABLE options (
   id varchar(20),
   libelle varchar(30) DEFAULT '',
+  typeoption_id varchar(20),
   description varchar(255) DEFAULT '',
   prixDeBase float NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -203,3 +212,6 @@ ADD CONSTRAINT fk_join_pan_opt_opt_id FOREIGN KEY (option_id) REFERENCES options
 ALTER TABLE join_typemodele_option
 ADD CONSTRAINT fk_join_typmod_opt_modele_id FOREIGN KEY (typemodele_id) REFERENCES typemodele(id),
 ADD CONSTRAINT fk_join_typmod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
+
+ALTER TABLE options
+ADD CONSTRAINT fk_join_typopt_option_id FOREIGN KEY (typeoption_id) REFERENCES typeoption(id);

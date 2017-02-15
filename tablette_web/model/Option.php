@@ -1,14 +1,15 @@
 <?php
 class Option extends Model{
 	
-    public function __construct($pLibelle = null, $pDesc = null, $pPrixDeBase = null, $pDateInsertion = null, $pId=null){
+    public function __construct($pLibelle = null, $pTypeOption = null, $pDesc = null, $pPrixDeBase = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
         if($pId==null){
-			$this->id = uniqid();
+			$this->id = Model::RandomId();
         }else{
 			$this->id = $pId;
 		}
         $this->libelle = $pLibelle;
+		$this->typeOption = $pTypeOption;
         $this->desc = $pDesc;
 		$this->prixDeBase = $pPrixDeBase;
         if($pDateInsertion == null)
@@ -20,6 +21,7 @@ class Option extends Model{
     static public $tableName = "options";
     protected $id;
     protected $libelle;
+	protected $typeOption;
     protected $desc;
 	protected $prixDeBase;
     protected $dateInsertion;
@@ -31,10 +33,11 @@ class Option extends Model{
             $row = $query->fetch(PDO::FETCH_ASSOC);
             $id = $row['id'];
             $libelle = $row['libelle'];
+			$typeOption = TypeOption::FindById($row['typeoption_id']);
             $desc = $row['description'];
 			$prixDeBase = $row['prixDeBase'];
             $dateInsertion = $row['date_insertion'];  
-            return new Option($libelle, $desc, $prixDeBase, $dateInsertion, $id);
+            return new Option($libelle, $typeOption,$desc, $prixDeBase, $dateInsertion, $id);
         }
         return null;
     }
@@ -119,10 +122,10 @@ class Option extends Model{
     }
 
 	static public function insert($option){
-		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES ('".$option->id."','".$option->libelle."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP)");
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES ('".$option->id."','".$option->libelle."','".$option->typeOption->id."','".$option->desc."',".$option->prixDeBase.",CURRENT_TIMESTAMP)");
 		$query->execute();
-		foreach(Modele::FindAll() as $modele){
-			$requete="INSERT INTO join_modele_option VALUES('".Model::randomId()."','".$option->id."','".$modele->id."',".$option->prixDeBase.",CURRENT_TIMESTAMP)";
+		foreach(TypeModele::FindAll() as $typeModele){
+			$requete="INSERT INTO join_typemodele_option VALUES('".Model::randomId()."','".$option->id."','".$typeModele->id."',".$option->prixDeBase.",CURRENT_TIMESTAMP)";
 			//echo $requete;
 			$query=db()->prepare($requete);
 			$query->execute();
