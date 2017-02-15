@@ -64,11 +64,6 @@ class OptionController extends Controller{
 	}
 	
 	public function visualiser(){
-		if(isset($_GET['retour'])){
-			$data['retour']=str_replace('-','&',$_GET['retour']);
-		}else{
-			$data['retour']='option/afficherTous';
-		}
 		if($_SESSION['droits']>=1){
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = Option::moyenneTarifByID($_GET['option']);
