@@ -27,9 +27,9 @@
 
 
             $returnValue .= "<h3>Types de produits: </h3>";
-            $returnValue .= "<input type='checkbox' id='cbox1' value='first_checkbox'><label for='cbox1'> This is the first checkbox</label>";
+            $returnValue .= "<input type='checkbox' id='cbox1' value='first_checkbox' checked><label for='cbox1'> This is the first checkbox</label>";
 
-            $returnValue .= "<input type='checkbox' id='cbox2' value='second_checkbox'> <label for='cbox2'>This is the second checkbox</label>";
+            $returnValue .= "<input type='checkbox' id='cbox2' value='second_checkbox' checked> <label for='cbox2'>This is the second checkbox</label>";
 
 
 
