@@ -2,11 +2,9 @@
 
 	function showTiles($pPhotoList){
 		$returnValue = "";
-		$returnValue .= "<div class='mosaicContainer'>";
 		foreach ($pPhotoList as $aPhoto) {
 			$returnValue .= showTile($aPhoto);
 		}
-		$returnValue .= "</div>";
 		return $returnValue;		
 	}
 
