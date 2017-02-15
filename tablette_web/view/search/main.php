@@ -15,6 +15,10 @@ else
 
 echo "<div id='searchView'>";
 	echo showSearchBar($windowData["constructeurs"], $windowData["modeles"]);
+
+	echo("<div class='mosaicContainer'>");
 	echo showTiles($photoList);
+	echo("</div>");
+
 echo "</div>";
 ?>
