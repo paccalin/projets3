@@ -2,4 +2,6 @@
 .~lock.* 				(ignorer les fichiers temporaires libreoffice)
 .buildpath 				(pour Eclipse)
 .project 
-.settings 
+.settings
+ 
+**/db.php
