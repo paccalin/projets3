@@ -27,7 +27,7 @@ function flattenArray($pNonFlatArray){
         }
     }
     return $flat;
-
+}
 
 function gereRetour($defaut){
 		if(isset(param()['retour'])){
@@ -40,3 +40,4 @@ function gereRetour($defaut){
 function removeQuote($st){
 	return str_replace("'", "\'",$st);
 }
+?>
