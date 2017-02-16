@@ -7,20 +7,31 @@ $(document).ready(function() {
 });
 
 $('#constructeur').change(function(){
-	var constructeur = $("#constructeur option:selected").text();
-	$("#modele option").css('display', 'none');
-	$('.'+constructeur).css('display', 'block');
-	$("#modele").val($('.'+constructeur).first().val());
-	refresh();
+	$.when(adaptModel()).then(refresh());
 });
 
+function adaptModel(){
+	var constructeur = $("#constructeur option:selected").text();
+	if($("#constructeur option:selected").attr('class') != -1){
+		$("#modele option").css('display', 'none');
+		$('.'+constructeur).css('display', 'block');
+		$('.-1').css('display', 'block');
+		$("#modele").get(0).selectedIndex = 0;
+	}
+	else{
+		var curIndex = $("select[name='CCards'] option:selected").index();
+	}
+}
+
 function refresh(){
+	var url = "ajaxHandler.php?r=searchVehicle";
 	$.ajax({
-		url : "ajaxHandler.php?r=searchVehicle",
-		type : 'GET',
-		success : showVehicles,
-		dataType : 'html'
-	});
+		type: "POST",
+		url: url,
+		data: $("#globalSearch").serialize(), // serializes the form's elements.
+		success: showVehicles,
+		dataType: 'html'
+    });
 }
 
 function showVehicles(data){

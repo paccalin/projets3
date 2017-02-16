@@ -2,33 +2,60 @@
 
 class SearchVehicleAjax extends Controller {
 	public function index(){
-		if(isset(parameters()['searchtxt']) && parameters()['searchtxt'] != "")
-		{
-			echo(parameters()['searchtxt']);
-		}
-		if(isset(parameters()['constructeur']) && parameters()['constructeur'] != "")
-		{
-			echo(parameters()['constructeur']);
-		}
-		if(isset(parameters()['modele']) && parameters()['modele'] != "")
-		{
-			echo(parameters()['modele']);
-		}
-		if(isset(parameters()['cbox1']) && parameters()['cbox1'] != "")
-		{
-			echo(parameters()['cbox1']);
-		}
-		if(isset(parameters()['cbox2']) && parameters()['cbox2'] != "")
-		{
-			echo(parameters()['cbox2']);
+
+		$constructeur = null;
+		if(parameters()['constructeur'] != -1)
+			$constructeur = Constructeur::FindById(parameters()['constructeur']);
+
+		$modele = null;
+		if(parameters()['modele'] != -1 && parameters()['modele'] != -1)
+			$modele = Modele::FindById(parameters()['modele']);
+
+		$optionTypeList = array();
+		if(isset(parameters()['optionTypes']))
+			foreach (parameters()['optionTypes'] as $aTypeId) {
+				$optionTypeList[] = TypeOption::FindById($aTypeId);
+			}
+
+		$correspondingVecicles = Vehicule::AdvancedSearch(
+			parameters()['searchtxt'],
+			$constructeur,
+			$modele,
+			$optionTypeList);
+		
+		$photoToshow = array();
+		foreach ($correspondingVecicles as $aVehicule) {
+			$photoToshow[] = Photo::FindByVehicule($aVehicule->id);
 		}
 
-		$this->showVehicles(Photo::FindAll());
+		$this->showVehicles($photoToshow);
 	}
 
-	private function showVehicles($pPhotoList){
+	private function showVehicles($pNonFlatPhotoList){
+
+		$photoToshow = flattenArray($pNonFlatPhotoList);
+		$photoToshow = $this->deletePhotoArrayDuplicate($photoToshow);
+
 		include_once("view/search/Components/Tiles.php");
-		echo showTiles($pPhotoList);
+		echo showTiles($photoToshow);
+	}
+
+	private function deletePhotoArrayDuplicate($pPhotoArray){
+		$tmp = array();
+		foreach($pPhotoArray as $i => $aPhoto)
+		    $tmp[$i] = $aPhoto->id;
+
+		// Find duplicates in temporary array
+		$tmp = array_unique($tmp);
+
+		// Remove the duplicates from original array
+		foreach($pPhotoArray as $i => $aPhoto)
+		{
+		    if (!array_key_exists($i, $tmp))
+		        unset($pPhotoArray[$i]);
+		}
+
+		return $pPhotoArray;
 	}
 }
 

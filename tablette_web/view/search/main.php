@@ -14,7 +14,7 @@ else
 	$photoList = array();
 
 echo "<div id='searchView'>";
-	echo showSearchBar($windowData["constructeurs"], $windowData["modeles"]);
+	echo showSearchBar($windowData["constructeurs"], $windowData["modeles"], $windowData["optionTypes"]);
 
 	echo("<div class='mosaicContainer'>");
 	echo showTiles($photoList);

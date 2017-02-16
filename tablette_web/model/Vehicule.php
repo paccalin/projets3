@@ -45,7 +45,6 @@ class Vehicule  extends Model{
 
     static public function FindAll() {
         $query = db()->prepare("SELECT id FROM ".self::$tableName);
-        $query->bindParam(1, self::$tableName, PDO::PARAM_STR);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -76,5 +75,72 @@ class Vehicule  extends Model{
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$vehicule->id);
 		$query->execute();
 	}
+
+    static public function AdvancedSearch($pGlobalTxt, $pConstructeur, $pModele, $pOptionTypes){
+        $preQuery = "";
+        $preWhere = "";
+        $whereIterator = 0;
+
+        $preQuery .= "SELECT DISTINCT vehi.id FROM ".self::$tableName . " vehi ";
+
+        if($pModele != null){
+            if($whereIterator == 0)
+                $preWhere .= "WHERE ";
+            else
+                $preWhere .= "AND ";
+
+            $preWhere .= '(vehi.modele_id =\''.$pModele->id.'\') ';
+            $whereIterator++;
+        }
+        else
+            if($pConstructeur != null){
+                $preQuery .= 'JOIN '.Modele::$tableName.' mo ON (vehi.modele_id=mo.id) ';
+
+                if($whereIterator == 0)
+                    $preWhere .= "WHERE ";
+                else
+                    $preWhere .= "AND ";
+
+                $preWhere .= '(mo.constructeur_id =\''.$pConstructeur->id.'\') ';
+                $whereIterator++;
+            }
+
+        if(count($pOptionTypes) != 0){
+
+            if($whereIterator == 0)
+                    $preWhere .= "WHERE ";
+                else
+                    $preWhere .= "AND ";
+
+            $preWhere .= '(';
+
+            $preQuery .= 'JOIN join_vehicule_option jvo ON (jvo.vehicule_id = vehi.id) ';
+            $preQuery .= 'JOIN '.Option::$tableName.' opt ON (opt.id = jvo.option_id) ';
+
+            $iterator = 0;
+            foreach ($pOptionTypes as $aType) {
+                if($iterator != 0)
+                    $preWhere .= 'OR ';
+
+                $preWhere .= 'opt.typeoption_id=\''.$aType->id.'\' ';
+                $iterator++;
+            }
+            $preWhere .= ') ';
+            $whereIterator++;
+        }
+
+        $preQuery .= $preWhere . ';';
+
+        $query = db()->prepare($preQuery);
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+    }
 }
 ?>

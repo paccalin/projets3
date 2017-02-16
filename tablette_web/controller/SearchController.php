@@ -10,6 +10,7 @@ class SearchController extends Controller {
 		$d["Search/main"] = array();
 		$d["Search/main"]["constructeurs"] = Constructeur::FindAll();
 		$d["Search/main"]["modeles"] = Modele::FindAll();
+		$d["Search/main"]["optionTypes"] = TypeOption::FindAll();
 
 		if(isset(parameters()["picId"]))
 			throw new Exception("not implemented conditionned method: SearchController->viewPage() ");
