@@ -1,6 +1,4 @@
 <body>
-
-
 	<header>
 		<!-- header ici  -->
 		<nav>

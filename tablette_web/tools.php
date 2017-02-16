@@ -10,6 +10,7 @@ function __autoload($name) {
 	include_once $dir."/".$name.".php";
 }
 
+
 function flattenArray($pNonFlatArray){
 	$flat = array(); // initialize return array
     $stack = array_values($pNonFlatArray); // initialize stack
@@ -27,4 +28,15 @@ function flattenArray($pNonFlatArray){
     }
     return $flat;
 
+
+function gereRetour($defaut){
+		if(isset(param()['retour'])){
+			$data['retour']=str_replace('-','&',$_GET['retour']);
+		}else{
+			$data['retour']='option/afficherTous';
+		}
+}
+
+function removeQuote($st){
+	return str_replace("'", "\'",$st);
 }

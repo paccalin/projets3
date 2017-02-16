@@ -1,7 +1,7 @@
 <?php
 
 class OptionController extends Controller{
-
+	
 	public function afficherTous(){
 		if($_SESSION['droits']>=1){
 			$data['options'] = Option::findAll();
@@ -12,7 +12,13 @@ class OptionController extends Controller{
 	}	
 	
 	public function visualiserParType(){
-		$data=[];
+		if(isset($_GET['retour'])){
+			$data['retour']=$_GET['retour'];
+		}else{
+			$data['retour']='option/afficherTous';
+		}
+		$data['typeOption']=TypeOption::FindById($_GET['type']);
+		$data['options']=Option::FindByTypeOptionId($_GET['type']);
 		$this->render("visualiserParType",$data);
 	}
 
@@ -72,6 +78,7 @@ class OptionController extends Controller{
 		if($_SESSION['droits']>=2){
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
+			$data['typeOption'] = TypeOption::FindAll();
 			$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByOptionID($_GET['option']);
 			if(!isset($_POST['submit'])){
 				$this->render("modifierOption",$data);
@@ -82,13 +89,16 @@ class OptionController extends Controller{
 				$data['erreursSaisie']=[];
 				foreach($_POST as $key=>$value){
 					if($key!='submit'){
-						if(!is_numeric($value)){
-							$typeModele=TypeModele::FindByJoinOptionId($key)[0];
-							array_push($data['erreursSaisie'],'Le coût de l\'option pour la catégorie '.$typeModele->libelle.' doit être un nombre');
-						}elseif($value<=0){
-							$typeModele=TypeModele::FindByJoinOptionId($key)[0];
-							array_push($data['erreursSaisie'],'Le coût de l\'option pour la catégorie '.$typeModele->libelle.' doit être un nombre positif');
+						if(substr($key, 0, 3)=='opt'){
+							if(!is_numeric($value)){
+								$typeModele=TypeModele::FindByJoinOptionId(substr($key, 3))[0];
+								array_push($data['erreursSaisie'],'Le coût de l\'option pour la catégorie '.$typeModele->libelle.' doit être un nombre');
+							}elseif($value<=0){
+								$typeModele=TypeModele::FindByJoinOptionId(substr($key, 3))[0];
+								array_push($data['erreursSaisie'],'Le coût de l\'option pour la catégorie '.$typeModele->libelle.' doit être un nombre positif');
+							}
 						}
+						
 					}
 				}
 				if($data['erreursSaisie']!=[]){
@@ -97,9 +107,14 @@ class OptionController extends Controller{
 					$joins=[];
 					foreach ($_POST as $post=>$postValue){
 						if($post!="submit"){
-							array_push($joins,["id"=>$post,"tarif"=>$postValue]);
+							if(substr($post, 0, 3)=='opt'){
+								array_push($joins,["id"=>substr($post, 3),"tarif"=>$postValue]);
+							}
 						}
 					}
+					//print_r($_POST);
+					$optionU = new Option($_POST['libelle'],TypeOption::FindById($_POST['typeOption_id']),$_POST['description'],$_POST['prixDeBase'],null,$data['option']->id);
+					Option::update($optionU);
 					Option::updateJoinTypeModeleOption($data['option'],$joins);
 					$data['option'] = Option::findByID($_GET['option']);
 					$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
