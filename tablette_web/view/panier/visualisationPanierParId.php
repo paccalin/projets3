@@ -4,7 +4,7 @@
 <?php
 	//var_dump($data['joinOptionsPanier']);
 	foreach($data['joinOptionsPanier'] as $joinOptionsPanier){
-		echo "<tr><td><a href='./?r=option/visualiser&option=".$joinOptionsPanier['option']->id."&retour=panier/showPanierClient'><img src='./images/plus.png' class='petitBoutonAjouter'>".$joinOptionsPanier['option']->libelle."</a></td><td>".number_format($joinOptionsPanier['option']->prixDeBase, 0,'',' ')." €</td><td>".$joinOptionsPanier['nombre']."</td></tr>";
+		echo "<tr><td><a href='./?r=option/visualiser&option=".$joinOptionsPanier['option']->id."&retour=panier/showPanierClient'><img src='./images/loupe.png' class='petitBouton'>".$joinOptionsPanier['option']->libelle."</a></td><td>".number_format($joinOptionsPanier['option']->prixDeBase, 0,'',' ')." €</td><td><a href='.?r=panier/changerNombreOptionPanier&changement=moins&panier=".$data['panierId']."&option=".$joinOptionsPanier['option']->id."&retour=".$data['retour']."'><img src='./images/moins.png' class='petitBouton rouge'></a>".$joinOptionsPanier['nombre']."<a href='.?r=panier/changerNombreOptionPanier&changement=plus&panier=".$data['panierId']."&option=".$joinOptionsPanier['option']->id."&retour=".$data['retour']."'><img src='./images/plus.png' class='petitBouton vert'></a></td></tr>";
 	}
 ?>
 </table>

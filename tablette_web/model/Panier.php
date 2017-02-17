@@ -147,6 +147,28 @@
 			}
 		}
 		
+		public function changeNombreOption($option,$changement){
+			$requete="select id from join_panier_option WHERE panier_id='".$this->id."' and option_id='".$option->id."'";
+			//echo $requete;
+			$query = db()->prepare($requete);
+			$query->execute();
+			if ($query->rowCount() > 0){
+				$row = $query->fetch(PDO::FETCH_ASSOC);
+				if($changement=='plus'){
+					$requete="UPDATE join_panier_option SET nombre=nombre+1 where id='".$row['id']."'";
+				}elseif($changement=='moins'){
+					$requete="UPDATE join_panier_option SET nombre=nombre-1 where id='".$row['id']."'";
+				}else{
+					throw new Exception('Erreur Panier/changeNombreOption: paramètre "changement" incorrect');
+				}
+				//echo $requete;
+				$query = db()->prepare($requete);
+				$query->execute();
+			}else{
+				throw new Exception('Erreur Panier/changeNombreOption: id de join_panier_option non trouvé');
+			}
+		}
+		
 		protected function getNbOptionsByOptionID($optionID){
 			$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."' and option_id ='".$optionID."'";
 			$query = db()->prepare($requete);

@@ -65,6 +65,11 @@ class OptionController extends Controller{
 	
 	public function visualiser(){
 		if($_SESSION['droits']>=1){
+			if(isset($_GET['retour'])){
+				$data['retour']=$_GET['retour'];
+			}else{
+				$data['retour']='option/afficherTous';
+			}
 			$data['option'] = Option::findByID($_GET['option']);
 			$data['moyenneTarif'] = Option::moyenneTarifByID($_GET['option']);
 			$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByOptionID($_GET['option']);

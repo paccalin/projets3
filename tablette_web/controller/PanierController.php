@@ -21,6 +21,8 @@
 		
 		public function afficherParId(){
 			$panier = Panier::FindById($_GET['panier']);
+			$data['panierId']=$panier->id;
+			$data['retour']='panier/afficherParId-panier='.$_GET['panier'];
 			$data['joinOptionsPanier'] = Panier::FindJoinOptionsById($panier->id);
 			$data['total']=$panier->getCoutTotal();
 			$this->render('visualisationPanierParId',$data);
@@ -28,9 +30,19 @@
 		
 		public function showPanierClient(){
 			$panier = Panier::FindByClientId($_SESSION['client']);
+			$data['panierId']=$panier->id;
+			$data['retour']='panier/showPanierClient';
 			$data['joinOptionsPanier']=Panier::FindJoinOptionsById($panier->id);
 			$data['total']=$panier->getCoutTotal();
-			$this->render("visualisationPanierClient",$data);
+			$this->render("visualisationPanierParId",$data);
+		}
+		
+		public function changerNombreOptionPanier(){
+			print_r(parameters());
+			$panier=Panier::FindById(parameters()['panier']);
+			$option=Option::FindById(parameters()['option']);
+			$panier->changeNombreOption($option,parameters()['changement']);
+			header('Location: ./?r='.gereRetour(parameters()['retour']));
 		}
 		
 		public function ajouterOption(){

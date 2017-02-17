@@ -59,7 +59,7 @@ header img{
 	border-color: #606060;
 }
 
-.petitBoutonAjouter{
+.petitBouton{
 	height: 3vh;
 	border: solid;
 	border-radius: 50%;
@@ -68,6 +68,12 @@ header img{
 	background-color: #0fa2d5;
 	margin-left: 0.75vh;
 	margin-right: 1vh;
+}
+.vert{
+	background-color: #32c870;
+}
+.rouge{
+	background-color: #e74c3c;
 }
 section{
     height: 90%;
