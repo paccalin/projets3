@@ -169,6 +169,13 @@
 			}
 		}
 		
+		public function retireOption($option){
+			$requete="delete from join_panier_option WHERE option_id='".$option->id."' and panier_id='".$this->id."'";
+			echo $requete;
+			$query = db()->prepare($requete);
+			$query->execute();
+		}
+		
 		protected function getNbOptionsByOptionID($optionID){
 			$requete="select count(*) as nb from join_panier_option where panier_id='".$this->id."' and option_id ='".$optionID."'";
 			$query = db()->prepare($requete);

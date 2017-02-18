@@ -16,7 +16,7 @@ Prix des options pour ce mod&egrave;le
 	<tr><th>Libelle</th><th>Prix</th></tr>
 	<?php
 		foreach($data['joinTypeModeleOption'] as $joinTypeModeleOption){
-			echo "<tr><td><img src='./images/plus.png' class='petitBoutonAjouter'><a href='./?r=option/visualiser&option=".$joinTypeModeleOption['option']->id."&retour=constructeursModeles/afficherModele-modele=".$_GET['modele']."'>".$joinTypeModeleOption['option']->libelle."</a><td>".number_format($joinTypeModeleOption['prix'], 0,'',' ')." €</td></tr>";
+			echo "<tr><td><img src='./images/plus.png' class='petitBouton'><a href='./?r=option/visualiser&option=".$joinTypeModeleOption['option']->id."&retour=constructeursModeles/afficherModele-modele=".$_GET['modele']."'>".$joinTypeModeleOption['option']->libelle."</a><td>".number_format($joinTypeModeleOption['prix'], 0,'',' ')." €</td></tr>";
 		}
 	?>
 </table>

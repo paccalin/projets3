@@ -2,7 +2,8 @@
 	if($_SESSION['utilisateur']!=-1){
 		if($_SESSION['mode']=='client'){
 			$rubriques=[
-				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],				
+				['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 				['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'showPanierClient', 'ajout'=>null, 'recherche'=>null],
 				['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 				['nom'=>'Mode client', 'controller'=>'connexion', 'visualiser'=>'visualiser', 'switchUC'=>'swichUtilisateurClient']
@@ -11,6 +12,7 @@
 			if($_SESSION['droits']==1){
 				$rubriques=[
 					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
@@ -21,6 +23,7 @@
 			}elseif($_SESSION['droits']==2){
 				$rubriques=[
 					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
@@ -32,6 +35,7 @@
 			}else{
 				$rubriques=[
 					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
@@ -50,7 +54,7 @@
 		}
 	}else{
 		$rubriques=[
-				['nom'=>'Connexion', 'controller'=>'connexion', 'visualiser'=>'connexion', 'ajout'=>null, 'recherche'=>null],
+				['nom'=>'Connexion', 'controller'=>'connexion', 'visualiser'=>'connexion'],
 				['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo']
 			];

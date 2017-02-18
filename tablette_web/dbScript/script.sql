@@ -198,20 +198,20 @@ ADD CONSTRAINT fk_vehicule_modele_id FOREIGN KEY (modele_id) REFERENCES modele(i
 ADD CONSTRAINT fk_vehicule_client_id FOREIGN KEY (client_id) REFERENCES client(id);
 
 ALTER TABLE join_vehicule_option
-ADD CONSTRAINT fk_join_veh_opt_vehicule_id FOREIGN KEY (vehicule_id) REFERENCES vehicule(id),
-ADD CONSTRAINT fk_join_veh_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
+ADD CONSTRAINT fk_join_veh_opt_vehicule_id FOREIGN KEY (vehicule_id) REFERENCES vehicule(id) ON DELETE CASCADE,
+ADD CONSTRAINT fk_join_veh_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id) ON DELETE CASCADE;
 
 ALTER TABLE join_devis_option
-ADD CONSTRAINT fk_join_dev_opt_dev_id FOREIGN KEY (devis_id) REFERENCES devis(id),
-ADD CONSTRAINT fk_join_dev_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
+ADD CONSTRAINT fk_join_dev_opt_dev_id FOREIGN KEY (devis_id) REFERENCES devis(id) ON DELETE CASCADE,
+ADD CONSTRAINT fk_join_dev_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id) ON DELETE CASCADE;
 
 ALTER TABLE join_panier_option
-ADD CONSTRAINT fk_join_pan_opt_pan_id FOREIGN KEY (panier_id) REFERENCES panier(id),
-ADD CONSTRAINT fk_join_pan_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id);
+ADD CONSTRAINT fk_join_pan_opt_pan_id FOREIGN KEY (panier_id) REFERENCES panier(id) ON DELETE CASCADE,
+ADD CONSTRAINT fk_join_pan_opt_opt_id FOREIGN KEY (option_id) REFERENCES options(id) ON DELETE CASCADE;
 
 ALTER TABLE join_typemodele_option
-ADD CONSTRAINT fk_join_typmod_opt_modele_id FOREIGN KEY (typemodele_id) REFERENCES typemodele(id),
-ADD CONSTRAINT fk_join_typmod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id);
+ADD CONSTRAINT fk_join_typmod_opt_modele_id FOREIGN KEY (typemodele_id) REFERENCES typemodele(id) ON DELETE CASCADE,
+ADD CONSTRAINT fk_join_typmod_opt_option_id FOREIGN KEY  (option_id) REFERENCES options(id) ON DELETE CASCADE;
 
 ALTER TABLE options
-ADD CONSTRAINT fk_join_typopt_option_id FOREIGN KEY (typeoption_id) REFERENCES typeoption(id);
+ADD CONSTRAINT fk_join_typopt_option_id FOREIGN KEY (typeoption_id) REFERENCES typeoption(id) ON DELETE CASCADE;

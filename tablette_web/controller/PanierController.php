@@ -38,10 +38,17 @@
 		}
 		
 		public function changerNombreOptionPanier(){
-			print_r(parameters());
 			$panier=Panier::FindById(parameters()['panier']);
 			$option=Option::FindById(parameters()['option']);
 			$panier->changeNombreOption($option,parameters()['changement']);
+			header('Location: ./?r='.gereRetour(parameters()['retour']));
+		}
+		
+		public function retirerOptionPanier(){
+			//print_r(parameters());
+			$panier=Panier::FindById(parameters()['panier']);
+			$option=Option::FindById(parameters()['option']);
+			$panier->retireOption($option);
 			header('Location: ./?r='.gereRetour(parameters()['retour']));
 		}
 		

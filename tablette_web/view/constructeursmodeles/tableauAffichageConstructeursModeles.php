@@ -9,14 +9,14 @@
 	<?php
 		foreach($data as $row){
 			if($row['constructeur']->libelle!=""){
-				echo "<tr><td><a href='./?r=constructeursModeles/afficherConstructeur&constructeur=".$row['constructeur']->id."'><img src='./images/plus.png' class='petitBoutonAjouter'>".$row['constructeur']->libelle."</a></td>";
+				echo "<tr><td><a href='./?r=constructeursModeles/afficherConstructeur&constructeur=".$row['constructeur']->id."'><img src='./images/plus.png' class='petitBouton'>".$row['constructeur']->libelle."</a></td>";
 			}else{
 				echo "<tr><td><a href='./?r=constructeursModeles/afficherConstructeur&constructeur=".$row['constructeur']->id."'>".$row['constructeur']->libelle."</a></td>";		
 			}
 			if($row['modele']==null){
 				echo "<td><i>Aucun modèle</i></td></tr>";
 			}else{
-				echo "<td><a href='./?r=constructeursModeles/afficherModele&modele=".$row['modele']->id."'><img src='./images/plus.png' class='petitBoutonAjouter'>".$row['modele']->libelle."</a></td></tr>";
+				echo "<td><a href='./?r=constructeursModeles/afficherModele&modele=".$row['modele']->id."'><img src='./images/plus.png' class='petitBouton'>".$row['modele']->libelle."</a></td></tr>";
 			}
 		}
 	?>
