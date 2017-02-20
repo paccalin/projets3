@@ -30,7 +30,8 @@
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>'rechercher'],
-					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null]
+					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null],
+					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
 				];
 			}else{
 				$rubriques=[
@@ -42,7 +43,8 @@
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
 					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
-					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'AfficherMiseAJour', 'ajout'=>null, 'recherche'=>null]
+					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'AfficherMiseAJour', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
 				];
 			}
 			if($_SESSION['client']!=-1){

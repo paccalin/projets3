@@ -15,6 +15,14 @@ DROP TABLE IF EXISTS options;
 DROP TABLE IF EXISTS typeoption;
 DROP TABLE IF EXISTS client;
 DROP TABLE IF EXISTS socket;
+DROP TABLE IF EXISTS tablette;
+
+/* Uniquement pour l'application centrale  */
+CREATE TABLE tablette (
+	id varchar(20),
+	libelle varchar(30) DEFAULT 'tablette sans nom',
+	ip varchar(15) DEFAULT ''
+);
 
 CREATE TABLE socket (
 	id varchar(20),

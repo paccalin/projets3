@@ -1,6 +1,22 @@
+@media screen and (max-width: 849px) {
+	.rubriqueExt{
+		height: 32vw;
+		width: 32vw;
+	}
+	.texteLegendeIndex{
+		font-size: 4vw;
+	}
+}
+@media screen and (min-width: 950px) {
+	.rubriqueExt{
+		height: 23vw;
+		width: 23vw;
+	}
+	.texteLegendeIndex{
+		font-size: 3vw;
+	}
+}
 .rubriqueExt{
-	height: 32vw;
-	width: 32vw;
 	display: inline-block;
 	position: relative;
 	border: 0px solid #0fa2d5;
@@ -11,7 +27,6 @@
 
 .texteLegendeIndex{
 	color: #0fa2d5;
-	font-size: 4vw;
 	position: absolute;
 	display: inline-block;
 	bottom: 1.5%;

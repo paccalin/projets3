@@ -1,3 +1,5 @@
+/* == Tablette ==*/
+
 /*=== Socket ===*/
 
 insert into socket values('zcyCvHpkNxoXINvet3Ec','centrale','insert','client','{"id":"CUIkCWpC8j7YF1VyRBTe","nom":"Test","prenom":"Jean","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
