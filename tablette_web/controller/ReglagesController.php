@@ -9,13 +9,7 @@ class ReglagesController extends Controller{
 		$data['derniereMaj']='-';
 		$data['central']='http://192.168.1.136/projets3/tablette_web/ajax/testConnexion.php';
 		$data['ipCentral']='192.168.1.136';
-		if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-			$data['ip'] = $_SERVER['HTTP_CLIENT_IP'];
-		}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-			$data['ip'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}else{
-			$data['ip'] = $_SERVER['REMOTE_ADDR'];
-		}
+		$data['ip']=getIp();
 		$this->render('afficherMiseAJour',$data);
 	}
 
@@ -28,13 +22,7 @@ class ReglagesController extends Controller{
 	}
 	
 	public function AfficherIP(){
-		if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-			$data['ip'] = $_SERVER['HTTP_CLIENT_IP'];
-		}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-			$data['ip'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}else{
-			$data['ip'] = $_SERVER['REMOTE_ADDR'];
-		}
+		$data['ip']=getIp();
 		$this->render('afficherIP',$data);
 	}
 }
