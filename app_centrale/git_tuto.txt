@@ -1,0 +1,25 @@
+instructions pour le git:
+
+1) Afficher les fichiers qu'on a modifié
+
+git commit
+
+2) Ajouter les fichiers modifiés visibles par la commande 1, ne pas ajouter db.php et les devis.xml
+
+git add dossier/fichier1
+git add fichier2
+git add dossier/dossier/fichier3
+
+3) Enregistrer les modifications
+
+git commit -m "Message court pour expliquer ce qu'on a fait"
+
+4) Récupérer les dernières MAJ
+
+git pull
+
+5) Envoyer sur le git nos fichiers, en rentrant ensuite nos identifiants
+
+git push
+
+En cas d'erreurs d'identification, refaire uniquement l'étape 5)

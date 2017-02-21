@@ -1,0 +1,67 @@
+:root {
+	--SearchView-Mosaic-RowSize: 5;
+	--SearchView-height: 90vh;
+	--SearchView-width: 100vw;
+	--SearchView-bar-height: 100vh;
+	--ScrollBar-Margin: 2vw;
+	--unitwv: 1vw;
+	--SearchView-Mosaic-height: calc(var(--SearchView-height) - var(--SearchView-bar-height));
+	--SearchView-Tile-width: calc(calc(var(--SearchView-width) / var(--SearchView-Mosaic-RowSize)) - calc(calc(var(--ScrollBar-Margin) + var(--unitwv)) / var(--SearchView-Mosaic-RowSize)));
+	--SearchView-Tile-height: calc(var(--SearchView-Tile-width) * 9 / 16);
+}
+
+@media (max-width: 1400px) {
+  	:root {
+		--SearchView-Mosaic-RowSize: 4;
+	}
+}
+
+@media (max-width: 1100px) {
+  	:root {
+		--SearchView-Mosaic-RowSize: 3;
+		--ScrollBar-Margin: 3vw;
+		--unitwv: 2vw;
+	}
+}
+
+@media (max-width: 800px) {
+	:root {
+		--SearchView-Mosaic-RowSize: 2;
+		--ScrollBar-Margin: 4vw;
+		--unitwv: 3vw;
+	}
+}
+@media (max-width: 600px) {
+}
+
+
+#searchView{
+	height: var(--SearchView-height);
+	width: var(--SearchView-width);
+	overflow: auto;
+}
+
+.searchBar{
+	height: 90vh;
+	width: 35vw;
+	float: right;
+}
+
+.mosaicContainer{
+	height: 90vh;
+	width: 65vw;
+	overflow: auto;
+	padding: auto;
+}
+
+.aTile{
+	display: inline-block;
+	height: var(--SearchView-Tile-height);
+	width: var(--SearchView-Tile-width);
+	overflow: none;
+}
+.aTile a{
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
