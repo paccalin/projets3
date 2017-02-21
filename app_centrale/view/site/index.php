@@ -17,7 +17,7 @@
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
-					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>'rechercher']
+					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher'],
 				];
 			}elseif($_SESSION['droits']==2){
 				$rubriques=[
@@ -28,7 +28,7 @@
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
-					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>'rechercher'],
+					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
 					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
 				];
 			}else{
