@@ -18,7 +18,7 @@
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>'rechercher'],
-					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null]
+					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'index','ajout'=>null,'recherche'=>null]
 				];
 			}elseif($_SESSION['droits']==2){
 				$rubriques=[
@@ -30,8 +30,7 @@
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>'rechercher'],
-					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'AfficherMiseAJour','ajout'=>null,'recherche'=>null],
-					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
+					['nom'=>'Mises à jour','controller'=>'reglages','visualiser'=>'index','ajout'=>null,'recherche'=>null]
 				];
 			}else{
 				$rubriques=[
@@ -43,8 +42,7 @@
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
 					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
-					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'AfficherMiseAJour', 'ajout'=>null, 'recherche'=>null],
-					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
+					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'index', 'ajout'=>null, 'recherche'=>null]
 				];
 			}
 			if($_SESSION['client']!=-1){

@@ -1,19 +1,21 @@
 Statut application centrale: <span id="connecte">Chargement...</span>
 <br/>
-<p>Données en attentes de mise à jour : <?php echo $data['nbMaj'];?></p>
+<p>Données sur l'appareil en attentes de mise à jour : <?php echo $data['nbMaj'];?></p>
+<p>Données sur l'appareil en attentes d'envoi : <?php echo $data['nbEnv'];?></p>
 <p>Dernière connexion  : <?php echo $data['derniereConnexion'];?></p>
 <p>Dernière mise à jour : <?php echo $data['derniereMaj'];?></p>
 <div id='fonctionnalites'>
-	<p><a href='./?r=reglages/MettreAJour' class='lien'>Effectuer une mise à jour</a></p>
-	<p><a href='./?r=reglages/AfficherIP' class='lien'>Afficher l'adresse IP</a></p>
+	<a href='./?r=reglages/MettreAJour' class='lien'><img src='./images/maj.png' class='imageButton' alt='effectuer une mise à jour'></a>
+	<a href='./?r=reglages/AfficherIP&retour=reglages/index' class='lien'><img src='./images/ip.png' class='imageButton' alt='afficher adresse ip'></a>
 </div>
-<br/>
-<p><i>Cette partie est en cours de développement, les fonctionnalités ne sont pas encore déployées sur cette version</i></p>
 <script>
 	ping();
 	window.setInterval(ping,2000);
 	function ping(){
 		$('#connecte').text('Chargement...');
+		$('#afficheMaj').remove();
+		$('#afficheMajDesactive').remove();
+		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/dlmaj.png' class='imageButton gris' alt='Télécharger les données'></a>");
 		$.ajax("<?php echo $data['central']; ?>", {
 		  statusCode: {
 			404: function (thrownError) {
@@ -21,8 +23,9 @@ Statut application centrale: <span id="connecte">Chargement...</span>
 			},
 			200: function () {
 				$('#connecte').text('Connectée');
-				if($('#fonctionnalites p').length<3){
-					$('#fonctionnalites').append("<p id='afficheMaj'><a href='http://<?php echo $data['ipCentral']?>/projets3/tablette_web/ajax/miseAJour.php?ip=<?php echo $data['ip']?>&retour=reglagesAfficherMiseAJour' class='lien'>Télécharger les dernères données</a></p>");
+				if($('#fonctionnalites a').length<4){
+					$('#afficheMajDesactive').remove();
+					$('#fonctionnalites').append("<a id='afficheMaj' href='http://<?php echo $data['ipCentral']?>/projets3/app_centrale/?r=centraleMaj/miseAJour&ip=<?php echo $data['ip']?>&retour=reglages/index'><img src='./images/dlmaj.png' class='imageButton' alt='télécharger les données'></a>");
 				}
 			},
 			0: function(thrownError){

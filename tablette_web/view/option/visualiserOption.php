@@ -9,7 +9,7 @@
 		}else{
 			echo "./?r=panier/ajouterOption&option=".$_GET['option'];
 		}
-		echo "'><img src='./images/panier.png' class='imageButton panier' alt='Ajouter au panier'></a><br/>";
+		echo "'><img src='./images/ajoutePanier.png' class='imageButton panier' alt='Ajouter au panier'></a><br/>";
 	}
 	?>
 <table class='tableAffichage'>

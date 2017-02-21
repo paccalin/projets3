@@ -145,6 +145,12 @@ class Socket extends Model{
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
 			$lastConnect=$row['last_connect'];
+		}else{
+			$requete = "insert into tablette values('".Model::randomId()."',DEFAULT,'".parameters()['ip']."',DEFAULT)";
+			echo $requete.'<br/>';
+			$query = db()->prepare($requete);
+		    $query->execute();
+			$lastConnect = '0000-00-00 00:00:00';
 		}
 		$requete = "select * from socket where destinataire='tablette' and date_insertion > '".$lastConnect."'";
 		echo $requete.'<br/>';

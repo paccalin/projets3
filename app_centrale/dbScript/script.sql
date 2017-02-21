@@ -22,7 +22,7 @@ CREATE TABLE tablette (
 	id varchar(20),
 	libelle varchar(30) DEFAULT 'tablette sans nom',
 	ip varchar(15) DEFAULT '',
-	last_connect TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	last_connect TIMESTAMP DEFAULT '0000-00-00 00:00:00',
 	CONSTRAINT pk_tablette_id PRIMARY KEY (id)
 );
 

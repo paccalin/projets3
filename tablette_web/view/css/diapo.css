@@ -1,0 +1,99 @@
+:root {
+	--diapoView-bande-numberOfElem: 7;
+	--DiapoView-height: 90vh;
+	--DiapoView-width: 100vw;
+	--DiapoView-diapo-width: 80vw;
+	--DiapoView-diapo-height: 80vh;
+	--DiapoView-bande-height: calc(var(--DiapoView-height) - var(--DiapoView-diapo-height));
+	--DiapoView-bande-elemWidth: calc(var(--DiapoView-diapo-width) / var(--diapoView-bande-numberOfElem));
+	--DiapoView-desc-padding: calc(calc(var(--DiapoView-width) - var(--DiapoView-diapo-width)) / 10);
+}
+
+#DiapoView{
+	display: flex;
+	flex-flow: row;
+	overflow: hidden;
+}
+
+#leftContainer{
+    width: var(--DiapoView-diapo-width);
+    overflow: hidden;
+}
+
+#diapo, #bandeImg{
+    width: 100%;
+	display: flex;
+	flex-flow: row;
+	overflow: hidden;
+}
+
+#diapo{
+    height: var(--DiapoView-diapo-height);
+}
+
+#bandeImg{
+    height: var(--DiapoView-bande-height);
+}
+
+#desc{
+    height: var(--DiapoView-height);
+    width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
+    overflow: hidden;
+    border-left: 1px solid black;
+}
+
+#mainCarousel_ul, #bandeCarousel_ul, #descCarousel_ul {
+	display: flex;
+	flex-flow: row;
+	position:relative;
+	list-style-type: none;
+	margin: 0px;  
+	padding: 0px;  
+	width: 10000000vw;
+	height: 100%;
+}
+
+#mainCarousel_ul{
+	left: calc(0vw - var(--DiapoView-diapo-width));
+}
+
+#bandeCarousel_ul {
+	left: calc(0vw - var(--DiapoView-bande-elemWidth));
+} 
+
+#descCarousel_ul{
+	left: calc(0vw - calc(var(--DiapoView-width) - var(--DiapoView-diapo-width)));
+}
+
+
+#mainCarousel_ul li, #bandeCarousel_ul li, #descCarousel_ul li{
+	display: inline-block;
+	height: 100%;
+	overflow: hidden;
+}
+
+#mainCarousel_ul li{
+	width: var(--DiapoView-diapo-width);
+}
+
+#bandeCarousel_ul li{
+	width: var(--DiapoView-bande-elemWidth);
+}
+
+#descCarousel_ul li{
+	width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
+}  
+
+#mainCarousel_ul li img, #bandeCarousel_ul img{
+}
+
+.aDesc{
+	width: 100%;
+	height: 100%;
+	padding: var(--DiapoView-desc-padding);
+	overflow: auto;
+}
+
+.aDesc h3, .aDesc h4, .aDesc p{
+	text-align: center;
+}

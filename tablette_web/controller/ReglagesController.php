@@ -1,8 +1,10 @@
 <?php
 class ReglagesController extends Controller{
-	public function AfficherMiseAJour(){
+
+	public function index(){
 		$data['statut']='non connecte';/* non connecte - connecte */
 		$data['nbMaj']=Socket::compteMajEnAttente('tablette');
+		$data['nbEnv']=Socket::compteMajEnAttente('centrale');
 		$data['derniereConnexion']='-';
 		$data['derniereMaj']='-';
 		$data['central']='http://192.168.1.136/projets3/tablette_web/ajax/testConnexion.php';
@@ -22,7 +24,7 @@ class ReglagesController extends Controller{
 		foreach($sockets as $socket){
 			Socket::read($socket);
 		}
-		header('Location: ./?r=reglages/AfficherMiseAjour'); /* Commenter pour le debug */
+		header('Location: ./?r=reglages/index'); /* Commenter pour le debug */
 	}
 	
 	public function AfficherIP(){

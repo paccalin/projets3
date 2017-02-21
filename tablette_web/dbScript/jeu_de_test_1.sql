@@ -1,13 +1,11 @@
-/* == Tablette ==*/
-
 /*=== Socket ===*/
-
+/*
 insert into socket values('zcyCvHpkNxoXINvet3Ec','centrale','insert','client','{"id":"CUIkCWpC8j7YF1VyRBTe","nom":"Test","prenom":"Jean","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
 insert into socket values('MnYRo0ChnNDvZE1SOfIW','tablette','insert','client','{"id":"xLaRk8irLaSBfAiGTYvD","nom":"Test","prenom":"Jean-Socket","rue":"1, rue du test","ville":"Testville","cp":"12345","mail":"jean.test@mail.com","tel":"0450123456"}',CURRENT_TIMESTAMP);
-insert into socket values('Y1MmDpMXDmYKHMr1rAQ2','tablette','insert','option','{"id":"v8vzrjBLZGzHkOTfkacy","libelle":"Option socket","desc":"Option générée par socket","prixDeBase":"150000","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
+insert into socket values('Y1MmDpMXDmYKHMr1rAQ2','tablette','insert','option','{"id":"v8vzrjBLZGzHkOTfkacy","libelle":"Option socket","typeOption":"XlZtC4GgmC8bzKwPv56I","desc":"Option générée par socket","prixDeBase":"150000","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
 insert into socket values('fFZtPRoQD26XMPeODR6K','tablette','insert','constructeur','{"id":"5eA0eB848IPGdIiU5TQf","libelle":"Constructsocket","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
 insert into socket values('4a4v01eTxVPT1foqWlEg','tablette','insert','utilisateur','{"id":"akzFQsgx0N76V0uRYukG","pseudo":"jeansocket","motDePasse":"123","droits":"1","dateInsertion":"20/01/2017 11:19:26 pm"}',CURRENT_TIMESTAMP);
-
+*/
 /*=== Client ===*/
 
 insert into client values('E2t4Oaw1IadUzxCguDeN','Martin', 'Jean', '1, rue du centre', 'Annecy', '74000','jean.martin@gmail.com','0450672184', CURRENT_TIMESTAMP);

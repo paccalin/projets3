@@ -1,7 +1,7 @@
 <?php
 class Modele extends Model{
 	
-    public function __construct($pLibelle = null, $pConstructeur = null, $pTypeModele, $pDateInsertion = null, $pId = null){ //constructeur vide utilisé par les sockets
+    public function __construct($pLibelle = null, $pConstructeur = null, $pTypeModele = null, $pDateInsertion = null, $pId = null){ //constructeur vide utilisé par les sockets
         if($pId==null){
 			$this->id = Model::randomId();
         }else{
