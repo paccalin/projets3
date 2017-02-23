@@ -164,7 +164,13 @@ class Option extends Model{
 	}
 	
 	static public function delete($option){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$option->id."'");
+		$requete = 'DELETE FOM join_panier_option WHERE option_id='.$option->id."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+		$requete = "DELETE FROM ".self::$tableName." WHERE id='".$option->id."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
 		$query->execute();
 	}
 	

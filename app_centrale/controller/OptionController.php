@@ -132,6 +132,23 @@ class OptionController extends Controller{
 			$this->render("erreurAutorisation");
 		}	
 	}
+	
+	public function supprimer(){
+		if($_SESSION['mode']=='utilisateur' AND $_SESSION['droits']>1){
+			$data['option']=Option::FindById($_GET['option']);
+			if(isset($_POST['submit'])){
+				$option=$data['option'];
+				Option::delete($option);
+				Socket::store('tablette','delete','option',$option);
+			}elseif(isset($_POST['cancel'])){
+				header('Location: ./?r=option/visualiser&option='.$_GET['option']);
+			}else{
+				$this->render('formConfirmationSuppression',$data);
+			}
+		}else{
+			$this->render('erreurAutorisation');
+		}
+	}
 }
 
 ?>

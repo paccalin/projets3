@@ -1,7 +1,8 @@
 <a href='./?r=<?php echo $data['retour'];?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
 <?php
 	if($_SESSION['droits']>=2 AND $_SESSION['mode']=='utilisateur'){
-		echo "<a href='./?r=option/modifier&option=".$_GET['option']."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>";
+		echo "<a href='./?r=option/modifier&option=".$_GET['option']."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a>\n";
+		echo "<a href='./?r=option/supprimer&option=".$_GET['option']."'><img src='./images/poubelle.png' class='imageButton rouge' alt='Supprimer l\'option'></a><br/>";
 	}elseif($_SESSION['mode']=='client'){
 		echo "<a href='";
 		if(isset($_GET['retour'])){
