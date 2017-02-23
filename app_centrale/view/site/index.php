@@ -63,7 +63,7 @@
 		echo "\n\t<div class='rubriqueInt'>";
 		if(isset($rubrique['visualiser']) AND $rubrique['visualiser']!=null){
 			//echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'>".$rubrique['nom']."</div></a>";
-			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."' class='imageIndex'></div></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".svg' alt='".$rubrique['nom']."' class='imageIndex'></div></a>";
 		}else{
 			echo "\n\t\t<div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."'></div>";
 		}

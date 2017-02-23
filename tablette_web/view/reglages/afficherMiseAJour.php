@@ -15,7 +15,7 @@ Statut application centrale: <span id="connecte">Chargement...</span>
 		$('#connecte').text('Chargement...');
 		$('#afficheMaj').remove();
 		$('#afficheMajDesactive').remove();
-		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/dlmaj.png' class='imageButton gris' alt='Télécharger les données'></a>");
+		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/centraleHorsLigne.svg' class='imageButton gris' alt='Télécharger les données'></a>");
 		$.ajax("<?php echo $data['central']; ?>", {
 		  statusCode: {
 			404: function (thrownError) {

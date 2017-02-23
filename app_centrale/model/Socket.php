@@ -115,9 +115,23 @@ class Socket extends Model{
 		}
 	}
 
-	static public function TransfertT2C(){	
-		$requete = "select * from socket where destinataire='centrale' ORDER BY date_insertion";
-		//echo $requete;
+	static public function TransfertT2C(){
+		$requete = "select * from tablette where ip='".parameters()['ip']."'";
+		//echo $requete.'<br/>';
+		$query = db()->prepare($requete);
+        $query->execute();
+        if ($query->rowCount() > 0){
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+			$lastConnect=$row['last_connect'];
+		}else{
+			$requete = "insert into tablette values('".Model::randomId()."',DEFAULT,'".parameters()['ip']."',DEFAULT)";
+			echo $requete.'<br/>';
+			$query = db()->prepare($requete);
+		    $query->execute();
+			$lastConnect = '0000-00-00 00:00:00';
+		}
+		$requete = "select * from socket where destinataire='centrale' and date_insertion > '".$lastConnect."' ORDER BY date_insertion";
+		echo $requete;
 		$query = CentraleMajController::dbTablette()->prepare($requete);
 		$query->execute();
 		if ($query->rowCount() > 0){
@@ -131,10 +145,13 @@ class Socket extends Model{
 				Socket::read($socket);
             }
         }
+		// Les sockets restent sur la tablette		
+		/*
 		$requete = "delete from socket where destinataire='centrale'";
 		//echo $requete;
 		$query = CentraleMajController::dbTablette()->prepare($requete);
 		$query->execute();
+		*/
 	}
 
 	static public function TransfertC2T(){
