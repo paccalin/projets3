@@ -13,7 +13,7 @@
 		if($data['client']!=null){
 			echo '<table class="tableAffichage">';
 			echo '<tr><th>Nom</th><th>Prénom</th><th>Adresse</th><th>Ville</th><th>Mail</th><th>Téléphone</th></tr>';
-			echo '<tr><td><img src="./images/plus.png" class="petitBoutonAjouter"><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->nom.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->prenom.'<a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->rue.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->ville.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->mail.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->tel.'</a></td></tr>';
+			echo '<tr><td><img src="./images/plus.png" class="petitBouton"><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->nom.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->prenom.'<a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->rue.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->ville.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->mail.'</a></td><td><a href=".?r=client/afficherParId&id='.$data['client']->id.'&retour=connexion/visualiser">'.$data['client']->tel.'</a></td></tr>';
 			echo '</table>';
 		}else{
 			echo ': aucun client lié';
@@ -35,4 +35,8 @@
 	}
 ?>
 <br/>
-<a href="./?r=connexion/swichUtilisateurClient" class="lien" title="Passer en mode client"><img src="./images/switchUC.png" alt="Passer en mode client" class="imageButton boutonJaune">
+<?php
+	if($_SESSION['client']!=-1 OR $_SESSION['mode']=='client'){
+		echo '<a href="./?r=connexion/swichUtilisateurClient" class="lien" title="Passer en mode client"><img src="./images/switchUC.png" alt="Passer en mode client" class="imageButton boutonJaune">';
+	}
+?>
