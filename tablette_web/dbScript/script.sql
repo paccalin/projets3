@@ -63,7 +63,7 @@ CREATE TABLE panier (
   client_id varchar(20) NOT NULL,
   utilisateur_id varchar(20) NOT NULL,
   path varchar(30) DEFAULT '',
-  actif boolean NOT NULL,
+  /*actif boolean NOT NULL,*/
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );

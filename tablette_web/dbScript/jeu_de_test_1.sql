@@ -173,11 +173,11 @@ insert into join_devis_option values ('aDVIan7U5GQpJLIBc2MU', (select id from op
 
 /*=== Panier ===*/
 
-insert into panier values('UD07OUNBBdcl8Qdw3T9s', (select id from client where nom='Martin' and prenom='Jean'), (select id from utilisateur where pseudo='superadmin'), 'panier/panier1.pdf', 1, CURRENT_TIMESTAMP);
-insert into panier values('P9y8JVLXFmN9a5vn9quu', (select id from client where nom='Guy' and prenom='Matis'), (select id from utilisateur where pseudo='commercial'), 'panier/panier2.pdf', 1,CURRENT_TIMESTAMP);
-insert into panier values('KFR8oM7JfATxD4Q0QPzf', (select id from client where nom='Dupont' and prenom='Gérard'), (select id from utilisateur where pseudo='commercial'), 'panier/panier3.pdf', 1, CURRENT_TIMESTAMP);
-insert into panier values('au7xJJaEBVJhQlGqYT9u', (select id from client where nom='Dupuis' and prenom='Marie'), (select id from utilisateur where pseudo='commercial'), 'panier/panier4.pdf', 0, CURRENT_TIMESTAMP);
-insert into panier values('lNu6bQ6nP9MxHVghcwup', (select id from client where nom='Haim' and prenom='Julie'), (select id from utilisateur where pseudo='commercial'), 'panier/panier5.pdf', 0, CURRENT_TIMESTAMP);
+insert into panier values('UD07OUNBBdcl8Qdw3T9s', (select id from client where nom='Martin' and prenom='Jean'), (select id from utilisateur where pseudo='superadmin'), 'panier/panier1.pdf', CURRENT_TIMESTAMP);
+insert into panier values('P9y8JVLXFmN9a5vn9quu', (select id from client where nom='Guy' and prenom='Matis'), (select id from utilisateur where pseudo='commercial'), 'panier/panier2.pdf', CURRENT_TIMESTAMP);
+insert into panier values('KFR8oM7JfATxD4Q0QPzf', (select id from client where nom='Dupont' and prenom='Gérard'), (select id from utilisateur where pseudo='commercial'), 'panier/panier3.pdf', CURRENT_TIMESTAMP);
+insert into panier values('au7xJJaEBVJhQlGqYT9u', (select id from client where nom='Dupuis' and prenom='Marie'), (select id from utilisateur where pseudo='commercial'), 'panier/panier4.pdf', CURRENT_TIMESTAMP);
+insert into panier values('lNu6bQ6nP9MxHVghcwup', (select id from client where nom='Haim' and prenom='Julie'), (select id from utilisateur where pseudo='commercial'), 'panier/panier5.pdf', CURRENT_TIMESTAMP);
 
 /*=== JoinPanierOption ===*/
 insert into join_panier_option values ('03UU6365H89tRxkHVDIy', (select id from options where libelle='couleur'), 'UD07OUNBBdcl8Qdw3T9s', 1, CURRENT_TIMESTAMP);
