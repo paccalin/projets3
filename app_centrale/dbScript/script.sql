@@ -15,16 +15,6 @@ DROP TABLE IF EXISTS options;
 DROP TABLE IF EXISTS typeoption;
 DROP TABLE IF EXISTS client;
 DROP TABLE IF EXISTS socket;
-DROP TABLE IF EXISTS tablette;
-
-/* Uniquement pour l'application centrale  */
-CREATE TABLE tablette (
-	id varchar(20),
-	libelle varchar(30) DEFAULT 'tablette sans nom',
-	ip varchar(15) DEFAULT '',
-	last_connect TIMESTAMP DEFAULT '0000-00-00 00:00:00',
-	CONSTRAINT pk_tablette_id PRIMARY KEY (id)
-);
 
 CREATE TABLE socket (
 	id varchar(20),
@@ -73,7 +63,7 @@ CREATE TABLE panier (
   client_id varchar(20) NOT NULL,
   utilisateur_id varchar(20) NOT NULL,
   path varchar(30) DEFAULT '',
-  actif boolean NOT NULL,
+  /*actif boolean NOT NULL,*/
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_devis_id PRIMARY KEY (id)
 );

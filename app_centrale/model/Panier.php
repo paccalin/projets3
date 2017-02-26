@@ -27,10 +27,12 @@
 		protected $dateInsertion;
 		
 		static public function create($clientId){
-			$requete="insert into ".self::$tableName." values(default,".$clientId.",".$_SESSION['utilisateur'].",'path',CURRENT_TIMESTAMP)";
-			echo $requete;
+			$id = Model::RandomId();
+			$requete="insert into ".self::$tableName." values('".$id."','".$clientId."','".$_SESSION['utilisateur']."','path',CURRENT_TIMESTAMP)";
+			//echo $requete;
 			$query = db()->prepare($requete);
 			$query->execute();
+			return $id;
 		}
 		
 		public function getCoutTotal(){
@@ -74,8 +76,6 @@
 				$path = $row['path'];
 				$dateInsertion = $row['date_insertion'];       
 				return new Panier($client, $utilisateur, $path, $dateInsertion, $id);
-			}else{
-				self::create($_SESSION['client']);
 			}
 			return null;
 		}
@@ -103,8 +103,7 @@
 				$row = $query->fetch(PDO::FETCH_ASSOC);
 				return self::FindById($row['id']);
 			}else{
-				self::create($clientId);
-				$id=db()->lastInsertId();
+				$id = self::create($clientId);
 				return self::FindById($id);
 			}
 		}
