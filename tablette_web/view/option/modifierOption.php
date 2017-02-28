@@ -8,14 +8,14 @@
 		echo "</p>";
 	}
 ?>
-<form action='./?r=option/modifier<?php echo '&option='.$_GET['option']; ?>' method='post'>
+<form action='./?r=option/modifier<?php echo '&option='.$_GET['option'].'&retour='.$_GET['retour']; ?>' method='post'>
 	<label for='libelle'>Libelle</label><!--	
 	<?php
-		echo "--><input type='text' id='libelle' name='libelle'";
+		echo '--><input type="text" id="libelle" name="libelle"';
 		if(isset($_POST['libelle'])){
-			echo "value='".$_POST['libelle']."'";
+			echo 'value="'.$_POST['libelle'].'"';
 		}elseif(isset($data['option'])){
-			echo "value='".$data['option']->libelle."'";
+			echo 'value="'.$data['option']->libelle.'"';
 		}
 		echo "><!--\n";
 	?>
@@ -37,11 +37,11 @@
 	</select><!--
 	--><label for='description'>Description</label><!--
 	<?php
-		echo "--><input type='text' id='description' name='description'";
+		echo '--><input type="text" id="description" name="description"';
 		if(isset($_POST['description'])){
-			echo "value='".$_POST['description']."'";
+			echo 'value="'.$_POST['description'].'"';
 		}elseif(isset($data['option'])){
-			echo "value='".$data['option']->desc."'";
+			echo 'value="'.$data['option']->desc.'"';
 		}
 		echo "><!--\n";
 	?>

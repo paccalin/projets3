@@ -66,7 +66,7 @@
 			//echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'>".$rubrique['nom']."</div></a>";
 			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".svg' alt='".$rubrique['nom']."' class='imageIndex'></div></a>";
 		}else{
-			echo "\n\t\t<div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."'></div>";
+			echo "\n\t\t<div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".svg' alt='".$rubrique['nom']."'></div>";
 		}
 		if(isset($rubrique['ajout']) AND $rubrique['ajout']!=null){
 			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['ajout']."&retour=site/index'><img src='./images/plus.png' class='boutonIndex boutonVert boutonHD' alt='Ajout'></a>";
