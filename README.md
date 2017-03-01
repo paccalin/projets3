@@ -1,3 +1,8 @@
+# Taches urgentes à faire
+  - la doc (sur le drive)
+  - terminer les MAJ des données
+  - trouver le moyen de mettre des images vectorielles sur la tablette_web (.svg sur KSWEB ne fonctionnent pas -> faire des tests sur la tablette
+
 # Important
   - avec la séparation des branches, on doit mettre nos améliorations sur les applis centrale et web
     -> on doit écrire le nouveau code à 2 endroits en même temps
@@ -5,10 +10,6 @@
 # Derniers ajouts importants
   - séparation des appliations
   - application centrale en PHP
-
-# Taches urgentes à faire
-  - la doc (sur le drive)
-  - terminer les MAJ des données
   
 # Notes
   - pull régulièrement et surtout avant de coder
