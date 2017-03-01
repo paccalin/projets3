@@ -10,7 +10,7 @@
   - la doc (sur le drive)
   - terminer les MAJ des données
   
-# Notespush
+# Notes
   - pull régulièrement et surtout avant de coder
   - push son code dès qu'il est écrit et fonctionnel, un code qui reste en local sur la session ne sert à rien et sera écrasé à un moment ou à un autre
   - pull avant de push
