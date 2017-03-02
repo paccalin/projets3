@@ -76,7 +76,32 @@ class Vehicule  extends Model{
 		$query->execute();
 	}
 
-    static public function AdvancedSearch($pGlobalTxt, $pConstructeur, $pModele, $pOptionTypes){
+    static public function SearchByTxt($pTxt){
+        $preQuery = "";
+        $returnList = array();
+
+        $preQuery .= "SELECT DISTINCT vehi.id FROM ".self::$tableName." ";
+        $preQuery .= "vehi JOIN ".Modele::$tableName." mo ON vehi.modele_id = mo.id ";
+        $preQuery .= "JOIN ".TypeModele::$tableName." tmo ON mo.typemodele_id = tmo.id ";
+        $preQuery .= "JOIN join_vehicule_option jvo ON vehi.id = jvo.vehicule_id ";
+        $preQuery .= "JOIN ".Option::$tableName." opt ON jvo.option_id = opt.id ";
+
+        $preQuery .= "WHERE lower(tmo.libelle) like lower(\"%".$pTxt."%\") ";
+        $preQuery .= "OR lower(concat(opt.libelle, ' ', opt.description) like lower(\"%".$pTxt."%\"))";
+
+        $query = db()->prepare($preQuery);
+        $query->execute();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+
+    }
+
+    static public function AdvancedSearch($pConstructeur, $pModele, $pOptionTypes){
         $preQuery = "";
         $preWhere = "";
         $whereIterator = 0;

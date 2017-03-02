@@ -4,8 +4,10 @@ class SearchVehicleAjax extends Controller {
 	public function index(){
 
 		$constructeur = null;
-		if(parameters()['constructeur'] != -1)
+		if(parameters()['constructeur'] != -1){
 			$constructeur = Constructeur::FindById(parameters()['constructeur']);
+			echo("why?");
+		}
 
 		$modele = null;
 		if(parameters()['modele'] != -1 && parameters()['modele'] != -1)
@@ -18,10 +20,14 @@ class SearchVehicleAjax extends Controller {
 			}
 
 		$correspondingVecicles = Vehicule::AdvancedSearch(
-			parameters()['searchtxt'],
 			$constructeur,
 			$modele,
 			$optionTypeList);
+
+		if(isset(parameters()['searchtxt']) && parameters()['searchtxt'] !=""){
+			$textSearchResults = Vehicule::SearchByTxt(parameters()['searchtxt']);
+			$correspondingVecicles = $this->phpJoinVehicles($correspondingVecicles, $textSearchResults);
+		}
 		
 		$photoToshow = array();
 		foreach ($correspondingVecicles as $aVehicule) {
@@ -57,6 +63,19 @@ class SearchVehicleAjax extends Controller {
 
 		return $pPhotoArray;
 	}
+
+	private function phpJoinVehicles($pFirstArray, $pSecondArray){
+		$result = array();
+		foreach ($pFirstArray as $aVehicule) {
+			foreach ($pSecondArray as $aComparingVehicule) {
+				if($aVehicule->id == $aComparingVehicule->id){
+					array_push($result, $aVehicule);
+				}
+			}
+		}
+		return $result;
+	}
 }
+
 
 ?>

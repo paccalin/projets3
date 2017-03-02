@@ -27,14 +27,15 @@ function flattenArray($pNonFlatArray){
         }
     }
     return $flat;
+}
 
 
 function gereRetour($defaut){
-		if(isset(param()['retour'])){
-			$data['retour']=str_replace('-','&',$_GET['retour']);
-		}else{
-			$data['retour']='option/afficherTous';
-		}
+	if(isset(param()['retour'])){
+		$data['retour']=str_replace('-','&',$_GET['retour']);
+	}else{
+		$data['retour']='option/afficherTous';
+	}
 }
 
 function removeQuote($st){
