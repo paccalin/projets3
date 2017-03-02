@@ -9,13 +9,13 @@
 		}else{
 			echo "./?r=panier/ajouterOption&option=".$_GET['option'];
 		}
-		echo "'><img src='./images/panier.png' class='imageButton panier' alt='Ajouter au panier'></a><br/>";
+		echo "'><img src='./images/ajoutePanier.png' class='imageButton panier' alt='Ajouter au panier'></a><br/>";
 	}
 	?>
 <table class='tableAffichage'>
 	<tr><th>Libelle</th><th>Type</th><th>Description</th><th>Prix de base</th><!--<th>Prix moyen pratiqué</th>--></tr>
 	<?php
-		echo"<tr><td>".$data['option']->libelle."</td><td><a href='./?r=option/visualiserParType&type=".$data['option']->typeOption->id."&retour=option/visualiser&option=".parameters()['option']."'><img src='./images/plus.png' class='petitBoutonAjouter'>".$data['option']->typeOption->libelle."</a></td><td>".$data['option']->desc."</td><td>".number_format($data['option']->prixDeBase, 0,'',' ')." €</td><!--<td>".number_format($data['moyenneTarif'], 0,'',' ')." €</td>--></tr>";
+		echo"<tr><td>".$data['option']->libelle."</td><td><a href='./?r=option/visualiserParType&type=".$data['option']->typeOption->id."&retour=option/visualiser&option=".parameters()['option']."'><img src='./images/plus.png' class='petitBouton'>".$data['option']->typeOption->libelle."</a></td><td>".$data['option']->desc."</td><td>".number_format($data['option']->prixDeBase, 0,'',' ')." €</td><!--<td>".number_format($data['moyenneTarif'], 0,'',' ')." €</td>--></tr>";
 	?>
 </table>
 Tarifs par catégorie de véhicules: <br/>

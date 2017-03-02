@@ -39,7 +39,7 @@ class Socket extends Model{
 			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
 				$nomAttrMaj=ucfirst($nomAttr);
 				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule'];
-				echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
+				//echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
 				if(in_array($nomAttrMaj,$classes)){
 					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
 				}else{
@@ -51,7 +51,6 @@ class Socket extends Model{
         }
         return null;
     }
-
 
     static public function FindAllFor($pDest = null) {
 		if($pDest=='centrale' or $pDest=='tablette'){

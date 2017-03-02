@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devis>
+  <titre>Devis</titre>
+  <societe>
+    <nom>ID Aménagements utilitaires</nom>
+    <telephone>0474451739</telephone>
+    <mail>id.utilitaires@orange.fr</mail>
+    <adresse>2799, Route Départementale 1075</adresse>
+    <ville> Montagnat</ville>
+  </societe>
+  <reference>
+    <identifiant>3</identifiant>
+    <date>2017-01-07 11:49:32</date>
+    <num_client>2</num_client>
+  </reference>
+  <client>
+    <nom>Guy</nom>
+    <prenom>Matis</prenom>
+    <telephone>0450642784</telephone>
+  </client>
+  <options>
+    <option_1>
+      <libelle>couleur</libelle>
+      <prix>3 200,00</prix>
+    </option_1>
+    <option_2>
+      <libelle>benne</libelle>
+      <prix>2 100,00</prix>
+    </option_2>
+    <option_3>
+      <libelle>climatisation</libelle>
+      <prix>2 000,00</prix>
+    </option_3>
+  </options>
+  <total>7 300,00</total>
+</devis>

@@ -30,14 +30,30 @@ function flattenArray($pNonFlatArray){
 }
 
 
-function gereRetour($defaut){
-	if(isset(param()['retour'])){
-		$data['retour']=str_replace('-','&',$_GET['retour']);
+function gereRetour($defaut=null){
+	if(isset($_GET['retour'])){
+		$retour=str_replace('-','&',$_GET['retour']);
 	}else{
-		$data['retour']='option/afficherTous';
+		if($defaut!=null){
+			$retour=$defaut;
+		}else{
+			$retour='site/index';
+		}
 	}
+	return $retour;
 }
 
 function removeQuote($st){
 	return str_replace("'", "\'",$st);
 }
+
+function getIp(){
+	if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+			return $_SERVER['HTTP_CLIENT_IP'];
+		}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+			return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}else{
+			return $_SERVER['REMOTE_ADDR'];
+		}
+}
+?>

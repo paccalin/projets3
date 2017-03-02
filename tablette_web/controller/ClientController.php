@@ -58,9 +58,8 @@ class ClientController extends Controller{
 						}
 					}
 					if($key=='mail'){
-						if($value==''){
-							array_push($data['erreursSaisie'],"Le champ \"Mail\" est obligatoire");
-						}else{
+						//mail obligatoire?
+						if($value!=''){
 							if(!preg_match("#^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$#", $value)){
 								array_push($data['erreursSaisie'],"Le champ \"Mail\" doit être de type nom@domaine.extention");	
 							}

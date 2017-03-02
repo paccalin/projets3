@@ -13,6 +13,10 @@ body{
 	width: 100%;
 }
 
+.requis{
+	color: red;
+}
+
 .erreursSaisie{
 	color: red;
 }
@@ -59,8 +63,9 @@ header img{
 	border-color: #606060;
 }
 
-.petitBoutonAjouter{
+.petitBouton{
 	height: 3vh;
+	width: 3vh;
 	border: solid;
 	border-radius: 50%;
 	border-width: 0vh;
@@ -68,6 +73,15 @@ header img{
 	background-color: #0fa2d5;
 	margin-left: 0.75vh;
 	margin-right: 1vh;
+}
+.vert{
+	background-color: #32c870;
+}
+.rouge{
+	background-color: #e74c3c;
+}
+.gris{
+	background-color: #7a828f;
 }
 section{
     height: 90%;

@@ -1,0 +1,14 @@
+SUPER ADMIN
+
+client créer ==> problème d'include sur le controller (je peux pas tester)
+détails : (Warning: include_once(view/client/formCreationRendezvous.php): failed to open stream: No such file or directory in /var/www/desmazia/projets3/tablette_web/controller/Controller.php on line 22)
+
+créer devis ==> OK
+option créer ==> erreur de propriété static non déclaré (Fatal error: Access to undeclared static property: OptionController::$tableName in /var/www/desmazia/projets3/tablette_web/controller/OptionController.php on line 45)
+
+
+
+
+probl_me règler :
+création modèle : pas de valeur par défault au contructeur (evite les erreurs de saisi)
+
