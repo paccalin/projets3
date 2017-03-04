@@ -65,6 +65,7 @@ header img{
 
 .petitBouton{
 	height: 3vh;
+	width: 3vh;
 	border: solid;
 	border-radius: 50%;
 	border-width: 0vh;

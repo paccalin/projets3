@@ -1,4 +1,13 @@
 <a href='./?r=<?php if(isset($_GET['retour'])){echo $_GET['retour'];}else{echo 'site/index';}?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
+<?php
+	if(isset($data['erreursSaisie'])){
+		echo "<p class='erreursSaisie'>Il y a des erreurs de saisie:<br/>";
+		foreach($data['erreursSaisie'] as $erreurSaisie){
+			echo "-".$erreurSaisie."<br/>";
+		}
+		echo "</p>";
+	}
+?>
 <form action='./?r=connexion/ajouterClient<?php if(isset($_GET['retour'])){echo '&retour='.$_GET['retour'];}?>' method='post'>
 	<label for='client'>Client : </label><!--
 	--><select name='client' id='client' class='input'>

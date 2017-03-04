@@ -54,11 +54,19 @@ class ConnexionController extends Controller{
 			}elseif(isset($_POST['cancel'])){
 				
 			}else{
-				$_SESSION['client']=$_POST['client'];
-				if(isset($_GET['retour'])){
-					header('Location: ./?r='.$_GET['retour']);
+				$data['erreursSaisie']=[];
+				if($_POST['client']=='null'){
+					array_push($data['erreursSaisie'],'cet utilisateur est incorrect');
+				}
+				if($data['erreursSaisie']==[]){
+					$_SESSION['client']=$_POST['client'];
+					if(isset($_GET['retour'])){
+						header('Location: ./?r='.$_GET['retour']);
+					}else{
+						header('Location: ./?r=site/index');
+					}
 				}else{
-					header('Location: ./?r=site/index');
+					$this->render('formLiaisonClient',$data);
 				}
 			}
 		}else{
@@ -122,7 +130,7 @@ class ConnexionController extends Controller{
 			}else{
 				$user->motDePasse=$_POST['motPasse1'];
 				Utilisateur::Update($user);
-				Socket::store('tablette','update','utilisateur',$user);
+				Socket::store('centrale','update','utilisateur',$user);
 				header('Location: .?r=connexion/visualiser');
 			}
 		}elseif(isset($_POST['cancel'])){

@@ -7,8 +7,16 @@ $(document).ready(function() {
 });
 
 $('#constructeur').change(function(){
-	$.when(adaptModel()).then(refresh());
+	adaptModel();
 });
+
+$("form :input").change(function() {
+	refresh();
+});
+
+$('#searchtxt').bind('input', function() {
+    refresh();
+} );
 
 function adaptModel(){
 	var constructeur = $("#constructeur option:selected").text();

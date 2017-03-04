@@ -1,3 +1,0 @@
-../?r=insert/viewInsert
-
-../?r={nomfichier}/{methode}

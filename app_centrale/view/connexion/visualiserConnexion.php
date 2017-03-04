@@ -26,7 +26,7 @@
 <?php
 	if($_SESSION['mode']=='utilisateur'){
 		echo '<br/>';
-		if($_SESSION['client']==-1){
+		if($_SESSION['client']==-1 OR $_SESSION['client']=='null'){
 			echo '<a href="./?r=connexion/ajouterClient&retour=connexion/visualiser" class="lien" title="Lier un client"><img src="./images/ajouteClient.png" alt="Retour à l\'acceuil" class="imageButton boutonVert"></a>';
 		}else{
 			echo '<a href="./?r=connexion/ajouterClient&retour=connexion/visualiser" class="lien" title="Changer de client"><img src="./images/changeClient.png" alt="Retour à l\'acceuil" class="imageButton boutonVert"></a>';
@@ -36,7 +36,7 @@
 ?>
 <br/>
 <?php
-	if($_SESSION['client']!=-1 OR $_SESSION['mode']=='client'){
+	if(($_SESSION['client']!=-1 AND $_SESSION['client']!='null')OR $_SESSION['mode']=='client'){
 		echo '<a href="./?r=connexion/swichUtilisateurClient" class="lien" title="Passer en mode client"><img src="./images/switchUC.png" alt="Passer en mode client" class="imageButton boutonJaune">';
 	}
 ?>

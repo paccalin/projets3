@@ -9,28 +9,29 @@ Statut application centrale: <span id="connecte">Chargement...</span>
 	<a href='./?r=reglages/AfficherIP&retour=reglages/index' class='lien'><img src='./images/ip.png' class='imageButton' alt='afficher adresse ip'></a>
 </div>
 <script>
+	console.log("Test de connexion à <?php echo $data['central']; ?>");
+	console.log("Adresse à changer dans reglagesController/index()");
 	ping();
 	window.setInterval(ping,2000);
 	function ping(){
-		$('#connecte').text('Chargement...');
+		$('#connecte').html("<span class='petitBouton gris'>&nbsp;&nbsp;&nbsp;&nbsp;</span> Chargement...");
 		$('#afficheMaj').remove();
 		$('#afficheMajDesactive').remove();
-		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/centraleHorsLigne.svg' class='imageButton gris' alt='Télécharger les données'></a>");
+		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/centraleHorsLigne.svg' class='imageButton gris' alt='Serveur inaccessible'></a>");
 		$.ajax("<?php echo $data['central']; ?>", {
 		  statusCode: {
 			404: function (thrownError) {
-				$('#connecte').text('Erreur 404');
+				$('#connecte').html("<span class='petitBouton rouge'>&nbsp;&nbsp;&nbsp;&nbsp;</span>Serveur accessible mais fichier de test introuvable (erreur 404)");
 			},
 			200: function () {
-				$('#connecte').text('Connectée');
+				$('#connecte').html("<span class='petitBouton vert'>&nbsp;&nbsp;&nbsp;&nbsp;</span>Connecté");
 				if($('#fonctionnalites a').length<4){
 					$('#afficheMajDesactive').remove();
 					$('#fonctionnalites').append("<a id='afficheMaj' href='http://<?php echo $data['ipCentral']?>/projets3/app_centrale/?r=centraleMaj/miseAJour&ip=<?php echo $data['ip']?>&retour=reglages/index'><img src='./images/dlmaj.png' class='imageButton' alt='télécharger les données'></a>");
 				}
 			},
-			0: function(thrownError){
-				$('#connecte').text('Non connectée ('+thrownError+')');
-				//console.log(JSON.stringify(thrownError));
+			0: function(){
+				$('#connecte').html("<span class='petitBouton gris'>&nbsp;&nbsp;&nbsp;&nbsp;</span> Serveur inaccessible");
 			}
 		  }
 		})
