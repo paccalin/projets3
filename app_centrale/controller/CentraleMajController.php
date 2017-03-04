@@ -3,7 +3,8 @@
 class CentraleMajController extends Controller{
 
 	public function afficher(){
-		$this->render('index');
+		$data['tablettes']=Tablette::FindAll();
+		$this->render('index',$data);
 	}
 
 	public function miseAJour(){
@@ -17,10 +18,10 @@ class CentraleMajController extends Controller{
 			CentraleMajController::initialiseDb();
 
 			//On récupère sur dbTablette() les sockets destinés à centrale dbT -> db
-			Socket::TransfertT2C();			
+			//Socket::TransfertT2C();			
 
 			//On copie sur dbTablette() les sockets destinés à centrale db -> dbT
-			Socket::TransfertC2T();
+			//Socket::TransfertC2T();
 
 			//header('Location: http://'.parameters()['ip'].'8080');
 		}
@@ -31,7 +32,7 @@ class CentraleMajController extends Controller{
 		$host = parameters()['ip'];
 		$databaseName = "projet";
 		$user = "root";
-		$password = "root";		
+		$password = "";		
 		try {
 			$dbTab = new PDO("mysql:host=".$host.";dbname=".$databaseName, $user, $password);
 		}catch(Exception $e)	{

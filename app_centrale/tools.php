@@ -48,11 +48,27 @@ function removeQuote($st){
 
 function getIp(){
 	if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-			return $_SERVER['HTTP_CLIENT_IP'];
-		}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-			return _SERVER['HTTP_X_FORWARDED_FOR'];
-		}else{
-			return $_SERVER['REMOTE_ADDR'];
-		}
+		return $_SERVER['HTTP_CLIENT_IP'];
+	}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+		return _SERVER['HTTP_X_FORWARDED_FOR'];
+	}else{
+		return $_SERVER['REMOTE_ADDR'];
+	}
+}
+
+function timestampFormat($timestamp){
+	if($timestamp=='0000-00-00 00:00:00'){
+		return 'jamais';
+	}else{
+		$mois=['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+	list($date,$heure)=explode(' ',$timestamp);
+		$date=explode('-',$date);
+		//$date=$date[2].'/'.$date[1].'/'.$date[0];
+		$date=$date[2].' '.$mois[$date[1]-1].' '.$date[0];
+		/* Commenter les 2 premières lignes pour un affichage 15:04:02 */
+		$heure=explode(':',$heure);
+		$heure=$heure[0].'h'.$heure[1];
+		return $date.' '.$heure;
+	}
 }
 ?>

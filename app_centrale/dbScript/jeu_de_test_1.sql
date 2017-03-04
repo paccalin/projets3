@@ -6,6 +6,12 @@ insert into socket values('Y1MmDpMXDmYKHMr1rAQ2','tablette','insert','option','{
 insert into socket values('fFZtPRoQD26XMPeODR6K','tablette','insert','constructeur','{"id":"5eA0eB848IPGdIiU5TQf","libelle":"Constructsocket","dateInsertion":"20/01/2017 11:00:13 pm"}',CURRENT_TIMESTAMP);
 insert into socket values('4a4v01eTxVPT1foqWlEg','tablette','insert','utilisateur','{"id":"akzFQsgx0N76V0uRYukG","pseudo":"jeansocket","motDePasse":"123","droits":"1","dateInsertion":"20/01/2017 11:19:26 pm"}',CURRENT_TIMESTAMP);
 */
+
+/*=== Tablette ===*/
+
+insert into tablette values('g6kFamVY5zLkMBf5BiZa','tablette de test 1','1.2.3.4','2017-03-04 13:29:09',DEFAULT);
+insert into tablette values('JfZBOLkeu7XdQ52pHFRd','tablette de test 2','121.122.123.124',DEFAULT,DEFAULT);
+
 /*=== Client ===*/
 
 insert into client values('E2t4Oaw1IadUzxCguDeN','Martin', 'Jean', '1, rue du centre', 'Annecy', '74000','jean.martin@gmail.com','0450672184', CURRENT_TIMESTAMP);
