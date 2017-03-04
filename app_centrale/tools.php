@@ -71,4 +71,5 @@ function timestampFormat($timestamp){
 		$heure=$heure[0].'h'.$heure[1];
 		return $date.' '.$heure;
 	}
+}
 ?>
