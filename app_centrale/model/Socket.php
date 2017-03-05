@@ -24,8 +24,13 @@ class Socket extends Model{
     protected $objet;
     protected $dateInsertion;
 	
-	static public function FindById($pId) {
-        $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
+	static public function FindById($pId, $source = null) {
+		$requete = "SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'";
+		if($source!=null and $source == 'tablette'){
+        	$query = CentraleMajController::dbTablette()->prepare($requete);
+		}else{
+       		$query = db()->prepare($requete);
+		}
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +43,7 @@ class Socket extends Model{
             $objet = new $table();
 			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
 				$nomAttrMaj=ucfirst($nomAttr);
-				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule'];
+				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule','TypeOption'];
 				//echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
 				if(in_array($nomAttrMaj,$classes)){
 					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
@@ -52,35 +57,29 @@ class Socket extends Model{
         return null;
     }
 
-    static public function FindAllFor($pDest = null) {
+    static public function FindAll($pSource = null, $pDest = null,$date = null) {
 		if($pDest=='centrale' or $pDest=='tablette'){
-       		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE destinataire='".$pDest."'");
+       		$requete = "SELECT id FROM ".self::$tableName." WHERE destinataire='".$pDest."'";
 		}else{
-			$query = db()->prepare("SELECT id FROM ".self::$tableName);
+			$requete = "SELECT id FROM ".self::$tableName." WHERE 1=1";
+		}
+		if($date!=null){
+			$requete .= " AND date_insertion > '".$date."'";
+		}
+		//echo '<br/>';
+		//echo $requete;
+		//echo '<br/> Depuis '.$pSource.' vers '.$pDest;
+		if($pSource != null and $pSource == 'tablette'){
+			$query = CentraleMajController::dbTablette()->prepare($requete);
+		}else{
+			$query = db()->prepare($requete);
 		}
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
             $results = $query->fetchAll();
             foreach ($results as $row) {
-                array_push($returnList, self::FindById($row["id"]));
-            }
-        }
-        return $returnList;
-    }
-
-	static public function FindAllOnTabFor($pDest = null) {
-		if($pDest=='centrale' or $pDest=='tablette'){
-       		$query = CentraleMajController::dbTablette()->prepare("SELECT id FROM ".self::$tableName." WHERE destinataire='".$pDest."'");
-		}else{
-			$query = CentraleMajController::dbTablette()->prepare("SELECT id FROM ".self::$tableName);
-		}
-        $query->execute();
-        $returnList = array();
-        if ($query->rowCount() > 0){
-            $results = $query->fetchAll();
-            foreach ($results as $row) {
-                array_push($returnList, self::FindByIdOnTab($row["id"]));
+                array_push($returnList, self::FindById($row["id"],$pSource));
             }
         }
         return $returnList;
@@ -101,10 +100,11 @@ class Socket extends Model{
 
 	static public function compteMajEnAttente($pDest = null){
 		if($pDest=='centrale' or $pDest=='tablette'){
-       		$query = db()->prepare("SELECT count(id) as nb FROM ".self::$tableName." WHERE destinataire='".$pDest."'");
+       		$requete = "SELECT count(id) as nb FROM ".self::$tableName." WHERE destinataire='".$pDest."'";
 		}else{
-			$query = db()->prepare("SELECT count(id) as nb FROM ".self::$tableName);
+			$requete = "SELECT count(id) as nb FROM ".self::$tableName;
 		}
+		$query = db()->prepare($requete);
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -116,87 +116,74 @@ class Socket extends Model{
 	}
 
 	static public function TransfertT2C(){
-		$requete = "select * from tablette where ip='".parameters()['ip']."'";
-		//echo $requete.'<br/>';
-		$query = db()->prepare($requete);
-        $query->execute();
-        if ($query->rowCount() > 0){
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-			$lastConnect=$row['last_connect'];
-		}else{
-			$requete = "insert into tablette values('".Model::randomId()."',DEFAULT,'".parameters()['ip']."',DEFAULT)";
-			echo $requete.'<br/>';
-			$query = db()->prepare($requete);
-		    $query->execute();
-			$lastConnect = '0000-00-00 00:00:00';
+		$tab = Tablette::FindByIp(parameters()['ip']);
+		if($tab==null){
+			$tab = new Tablette(parameters()['ip']);
+			Tablette::insert($tab);
 		}
-		$requete = "select * from socket where destinataire='centrale' and date_insertion > '".$lastConnect."' ORDER BY date_insertion";
-		echo $requete;
-		$query = CentraleMajController::dbTablette()->prepare($requete);
-		$query->execute();
-		if ($query->rowCount() > 0){
-            $results = $query->fetchAll();
-            foreach ($results as $row) {
-				$requete = "INSERT INTO ".self::$tableName." VALUES ('".$row['id']."','tablette','".$row['action']."','".$row['tableDb']."','".$row['json']."', CURRENT_TIMESTAMP)";
-				//echo $requete;
-				$query = db()->prepare($requete);
-				$query->execute();
-				$socket = Socket::findById($row['id']);
-				Socket::read($socket);
-            }
-        }
-		// Les sockets restent sur la tablette		
-		/*
-		$requete = "delete from socket where destinataire='centrale'";
-		//echo $requete;
-		$query = CentraleMajController::dbTablette()->prepare($requete);
-		$query->execute();
-		*/
+		//print_r($tab);
+		$sockets = Socket::FindAll('tablette','centrale');
+		print_r($sockets);
+		foreach($sockets as $socket){
+			//Socket::insert($socket,'centrale','tablette');
+			//Socket::delete($socket,'tablette');
+		}
+		foreach($sockets as $socket){
+			echo '<br/>';
+			//print_r($socket);
+/* ============================================================================= */
+			/* Faire qu'ils soient lus par vagues avec un ordre précis */
+/*
+	1. Instancier les nouveaux objets Socket avec objet=null
+	2. Boucle:
+		-instancier les sockets avec objets sans dépendance (ou avec la dépendance déjà créée) -> voir schéma
+		-read le cocket
+*/
+			//Socket::read($socket);
+		}
+		$s=['b','c'];
+		unset($s[array_search('b',$s)]);
+		print_r($s);
 	}
 
 	static public function TransfertC2T(){
-		$requete = "select * from tablette where ip='".parameters()['ip']."'";
-		//echo $requete.'<br/>';
-		$query = db()->prepare($requete);
-        $query->execute();
-        if ($query->rowCount() > 0){
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-			$lastConnect=$row['last_connect'];
+		$tab = Tablette::FindByIp(parameters()['ip']);
+		if($tab==null){
+			$tab = new Tablette(parameters()['ip']);
+			Tablette::insert($tab,'tablette');
+		}
+		$sockets = Socket::FindAll('centrale','tablette',$tab->lastConnect);
+		foreach($sockets as $socket){
+			Socket::insert($socket,'tablette','tablette');
+		}
+		Tablette::updateLastConnect($tab);
+		//print_r($tab);
+	}
+	
+	static public function insert($socket,$db=null,$dest=null){
+		if($dest!=null){
+			$requete = "INSERT INTO ".self::$tableName." VALUES ('".$socket->id."','".$dest."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
 		}else{
-			$requete = "insert into tablette values('".Model::randomId()."',DEFAULT,'".parameters()['ip']."',DEFAULT)";
-			echo $requete.'<br/>';
-			$query = db()->prepare($requete);
-		    $query->execute();
-			$lastConnect = '0000-00-00 00:00:00';
+			$requete = "INSERT INTO ".self::$tableName." VALUES ('".$socket->id."','".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
 		}
-		$requete = "select * from socket where destinataire='tablette' and date_insertion > '".$lastConnect."'";
-		echo $requete.'<br/>';
-		$query = db()->prepare($requete);
-		$query->execute();
-		if ($query->rowCount() > 0){
-            $results = $query->fetchAll();
-            foreach ($results as $row) {
-				$requete = "INSERT INTO ".self::$tableName." VALUES ('".$row['id']."','tablette','".$row['action']."','".$row['tableDb']."','".$row['json']."', CURRENT_TIMESTAMP)";
-				echo $requete.'<br/>';
-				$query = CentraleMajController::dbTablette()->prepare($requete);
-				$query->execute();
-			}
-		}
-		$requete = "update tablette set last_connect = CURRENT_TIMESTAMP where ip='".parameters()['ip']."'";
-		echo $requete.'<br/>';
-		$query = db()->prepare($requete);
-        $query->execute();
-	}
-	
-	static public function insert($socket){
-		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$socket->id."','".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
+		
 		//echo $requete;
-		$query = db()->prepare($requete);
+		if($db != null and $db == 'tablette'){
+			$query = CentraleMajController::dbTablette()->prepare($requete);
+		}else{
+			$query = db()->prepare($requete);
+		}
 		$query->execute();
 	}
 	
-	static public function delete($socket){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$socket->id."'");
+	static public function delete($socket,$db=null){
+		$requete = "DELETE FROM ".self::$tableName." WHERE id='".$socket->id."'";
+		//echo $requete;
+		if($db != null and $db == 'tablette'){
+			$query = CentraleMajController::dbTablette()->prepare($requete);
+		}else{
+			$query = db()->prepare($requete);
+		}
 		$query->execute();
 	}
 }

@@ -1,21 +1,24 @@
 <?php
 
 class Tablette extends Model{
-	public function __construct($pNom = null, $pIp= null, $pLastConnect = null, $pDateInsertion = null, $pId = null){
+	public function __construct($pIp= null, $pNom = null, $pLastConnect = null, $pDateInsertion = null, $pId = null){
 		/* constructeur vide utilisé par les sockets */
         if($pId==null){
 			$this->id = Model::randomId();
         }else{
 			$this->id = $pId;
 		}
-		$this->nom = $pNom;
+		if($pNom==null){
+			$this->nom = 'tablette sans nom';
+        }else{
+			$this->nom = $pNom;
+		}
         $this->ip = $pIp;
 		if($pLastConnect == null){
 			$this->lastConnect = '0000-00-00 00:00:00';
 		}else{
-			$this->lastConnect = $pDateInsertion;
+			$this->lastConnect = $pLastConnect;
 		}
-        $this->lastConnect = $pLastConnect;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -27,10 +30,9 @@ class Tablette extends Model{
     protected $nom;
     protected $ip;
     protected $lastConnect;
-    protected $tel;
     protected $dateInsertion;
 
-    static public function FindByID($pId) {
+    static public function FindById($pId) {
         $query = db()->prepare("SELECT * FROM ".self::$tableName." WHERE id = '".$pId."'");
         $query->execute();
         if ($query->rowCount() > 0){
@@ -40,7 +42,7 @@ class Tablette extends Model{
             $ip = $row['ip'];
             $lastConnect = $row['last_connect'];
             $dateInsertion = $row['date_insertion'];  
-            return new Tablette($nom, $ip, $lastConnect, $dateInsertion, $id);
+            return new Tablette($ip, $nom, $lastConnect, $dateInsertion, $id);
         }
         return null;
     }
@@ -57,25 +59,48 @@ class Tablette extends Model{
         }
         return $returnList;
     }
+
+	static public function FindByIp($pIp) {
+		$requete = "SELECT id FROM ".self::$tableName." where ip='".$pIp."'";
+		//echo $requete;
+        $query = db()->prepare($requete);
+        $query->execute();
+        if ($query->rowCount() > 0){
+			$row = $query->fetch(PDO::FETCH_ASSOC);
+            return self::FindById($row['id']);
+        }else{
+			return null;
+		}
+    }
+
+	static public function insert($tablette){
+		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$tablette->id."', '".$tablette->nom."', '".$tablette->ip."', '".$tablette->lastConnect."', CURRENT_TIMESTAMP)";		
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+	}
+
+	static public function updateLastConnect($tablette){
+		$tablette->lastConnect = 'CURRENT_TIMSTAMP';
+		$requete="UPDATE ".self::$tableName." SET last_connect= CURRENT_TIMESTAMP WHERE id='".$tablette->id."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+		//$tablette->lastConnect=date('Y-m-d H:i:s', time()-10*60*60);//correspond au temps actuel de la DB (on enlève 10h par rapport au PHP time)
+	}
+
+	static public function update($tablette){
+		$requete="UPDATE ".self::$tableName." SET nom='".$tablette->nom."', ip='".$tablette->ip."', last_connect='".$tablette->lastConnect."' WHERE id='".$tablette->id."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+	}
 	/*
-	static public function insert($client){
-		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$client->id."','".$client->nom."','".$client->prenom."','".$client->rue."','".$client->ville."','".$client->cp."','".$client->mail."','".$client->tel."',CURRENT_TIMESTAMP)";		
-		//echo $requete;
-		$query = db()->prepare($requete);
-		$query->execute();
-	}
-
-	static public function update($client){
-		$requete="UPDATE ".self::$tableName." SET nom='".$client->nom."', prenom='".$client->prenom."', rue='".$client->rue."', ville='".$client->ville."', cp='".$client->cp."', mail='".$client->mail."', tel='".$client->tel."' WHERE id='".$client->id."'";
-		//echo $requete;
-		$query = db()->prepare($requete);
-		$query->execute();
-	}
-
 	static public function delete($client){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$client->id."'");
 		$query->execute();
-	}*/
+	}
+	*/
 }
 
 ?>

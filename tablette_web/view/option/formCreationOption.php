@@ -9,7 +9,7 @@
 	}
 ?>
 
-<form action="./?r=option/creer<?php echo '&retour='.$_GET['retour'];?>" method="post">
+<form action="./?r=option/creer<?php if(isset($_GET['retour'])){echo '&retour='.$_GET['retour'];}?>" method="post">
 	<label for="libelle">Libelle : <span class="requis">*</span></label><!--
 	--><input type='text' name='libelle' id='libelle' <?php if(isset($_POST['libelle'])){echo 'value="'.$_POST['libelle'].'"';}?>/><!--
 	--><label for="typeOption_id">Type : <span class="requis">*</span></label><!--

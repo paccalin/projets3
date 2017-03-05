@@ -118,8 +118,8 @@ class OptionController extends Controller{
 						}
 					}
 					//print_r($_POST);
-					$optionU = new Option($_POST['libelle'],TypeOption::FindById($_POST['typeOption_id']),$_POST['description'],$_POST['prixDeBase'],null,$data['option']->id);
-					Option::update($optionU);
+					$option = new Option($_POST['libelle'],TypeOption::FindById($_POST['typeOption_id']),$_POST['description'],$_POST['prixDeBase'],null,$data['option']->id);
+					Option::update($option);
 					Socket::store('tablette','update','option',$option);
 					Option::updateJoinTypeModeleOption($data['option'],$joins);
 					$data['option'] = Option::findByID($_GET['option']);

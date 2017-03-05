@@ -38,7 +38,7 @@ class Socket extends Model{
             $objet = new $table();
 			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
 				$nomAttrMaj=ucfirst($nomAttr);
-				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule'];
+				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule','TypeOption'];
 				//echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
 				if(in_array($nomAttrMaj,$classes)){
 					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
