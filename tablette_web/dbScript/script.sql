@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS join_typemodele_option;
+DROP TABLE IF EXISTS join_modele_option;
 DROP TABLE IF EXISTS join_vehicule_option;
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS vehicule;
