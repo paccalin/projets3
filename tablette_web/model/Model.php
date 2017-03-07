@@ -32,6 +32,24 @@ abstract class Model {
 		return json_encode($attributs);
 	}
 	
+	static public function toObject($class,$json){		
+		$table = ucfirst($class);
+		$objet = new $table();
+		$jsonArr = json_decode($json);
+		foreach ($jsonArr as $nomAttr => $valeurAttr){
+			$nomAttrMaj=ucfirst($nomAttr);
+			$nomAttr=lcfirst($nomAttr);
+			$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule','TypeOption','TypeModele'];
+			//echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
+			if(in_array($nomAttrMaj,$classes)){
+				$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
+			}else{
+				$objet->$nomAttr=$valeurAttr;
+			}
+		}
+		return $objet;
+	}
+	
 	static public function randomId(){
 		$st='';
 		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

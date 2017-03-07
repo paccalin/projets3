@@ -14,10 +14,8 @@ class ReglagesController extends Controller{
 
 	public function MettreAJour(){
 		$sockets=Socket::findAllFor('tablette');
-		foreach($sockets as $socket){
-			Socket::read($socket);
-		}
-		header('Location: ./?r=reglages/index'); /* Commenter pour le debug */
+		Socket::readMultiple($sockets,0);
+		//header('Location: ./?r=reglages/index'); /* Commenter pour le debug */
 	}
 	
 	public function AfficherIP(){

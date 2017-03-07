@@ -1,6 +1,6 @@
 <?php
 class Socket extends Model{
-    public function __construct($pDestinataire, $pAction, $pTable, $pObjet, $pDateInsertion = null, $pId=null){
+    public function __construct($pDestinataire, $pAction, $pTable, $pJson, $pDateInsertion = null, $pId=null){
         if($pId==null){
 			$this->id = Model::randomId();
         }else{
@@ -9,7 +9,7 @@ class Socket extends Model{
 		$this->destinataire = $pDestinataire;
 		$this->action = $pAction;
 		$this->table = $pTable;
-        $this->objet = $pObjet;
+        $this->json = $pJson;
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -21,7 +21,7 @@ class Socket extends Model{
 	protected $destinataire;
 	protected $action;
 	protected $table;
-    protected $objet;
+    protected $json;
     protected $dateInsertion;
 	
 	static public function FindById($pId) {
@@ -29,25 +29,14 @@ class Socket extends Model{
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-			$objetJson = json_decode($row['json']);
 			//print_r($objetJson);
             $id = $row['id'];
 			$destinataire = $row['destinataire'];
             $action = $row['action'];
-            $table = ucfirst($row['tableDb']);
-            $objet = new $table();
-			foreach (get_object_vars($objetJson) as $nomAttr=>$valeurAttr){
-				$nomAttrMaj=ucfirst($nomAttr);
-				$classes=['Client','Constructeur','Devis','Model','Modele','Option','Photo','Rendezvous','Socket','Utilisateur','Vehicule','TypeOption'];
-				//echo $nomAttr." => ".$valeurAttr."<br/>";	/* DEBUG */
-				if(in_array($nomAttrMaj,$classes)){
-					$objet->$nomAttr=$nomAttrMaj::FindById($valeurAttr);
-				}else{
-					$objet->$nomAttr=$valeurAttr;
-				}
-			}
+			$table = $row['tableDb'];
+			$json = $row['json'];
             $dateInsertion = $row['date_insertion'];
-            return new Socket($destinataire, $action, $table, $objet, $dateInsertion, $id);
+            return new Socket($destinataire, $action, $table, $json, $dateInsertion, $id);
         }
         return null;
     }
@@ -69,19 +58,55 @@ class Socket extends Model{
         return $returnList;
     }
 	
-	static public function store($dest,$action,$table,$objet){
-		$socket = new Socket($dest,$action,$table,$objet);
+	static public function store($dest,$action,$table,$json){
+		$socket = new Socket($dest,$action,$table,$json);
 		Socket::insert($socket);
 	}
 	
-	static public function read($socket){
+	static public function readMultiple($sockets,$passage){
+		/* Plusieurs passages:
+			- utilisateur, typeOption, client, constructeur, typeModele
+			- (rdv), option, panier, modele
+			- vehicule, joinPanierOption, joinTypeModeleOption
+			- (joinVehiculeOption)
+		*/
+		if($passage<4){
+			$tables = [
+				0 => ["utilisateur","typeOption","client","constructeur","typeModele"],
+				1 => ["rendezvous","option","panier","modele"],
+				2 => ["vehicule","joinPanierOption","joinTypeModeleOption"],
+				3 => ["joinVehiculeOption"]
+			];
+			//echo "<br/>--- passage ".$passage."<br/>";
+			foreach($sockets as $socket){
+				if(in_array($socket->table, $tables[$passage])){
+					//print_r($socket);
+					//echo "<br/>";
+					//$socket->read();
+					//echo "réussite<br/>";
+					try{
+						$socket->read();
+						echo "[OK] ".$socket->action." ".$socket->table."<br/>";
+					}catch(Exception $e){
+						echo "[ECHEC] ".$socket->action." ".$socket->table."<br/>";
+					}
+				}
+			}
+			Socket::readMultiple($sockets,$passage+1);
+		}
+	}
+	
+	private function read(){
 		//print_r($socket->objet); 	/* DEBUG */
 		//echo '<br/>';				/* DEBUG */
-		$table=$socket->table;
-		$action=$socket->action;
-		$table::$action($socket->objet);
+		$table=$this->table;
+		$table=ucfirst($table);
+		$action=$this->action;
+		$obj = Model::toObject($table,$this->json);
+		//var_dump($obj);
+		$table::$action($obj);
 
-		Socket::delete($socket);
+		Socket::delete($this);
 	}
 
 	static public function compteMajEnAttente($pDest = null){
@@ -101,7 +126,7 @@ class Socket extends Model{
 	}
 	
 	static public function insert($socket){
-		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$socket->id."','".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->objet->toJson()."',CURRENT_TIMESTAMP)";
+		$requete = "INSERT INTO ".self::$tableName." VALUES ('".$socket->id."','".$socket->destinataire."','".$socket->action."','".$socket->table."','".$socket->json."',CURRENT_TIMESTAMP)";
 		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();

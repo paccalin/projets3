@@ -130,7 +130,7 @@ class ConnexionController extends Controller{
 			}else{
 				$user->motDePasse=$_POST['motPasse1'];
 				Utilisateur::Update($user);
-				Socket::store('centrale','update','utilisateur',$user);
+				Socket::store('centrale','update','utilisateur',$user->toJson());
 				header('Location: .?r=connexion/visualiser');
 			}
 		}elseif(isset($_POST['cancel'])){

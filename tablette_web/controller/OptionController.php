@@ -59,7 +59,7 @@ class OptionController extends Controller{
 				}else{
 					$option = new Option(removeQuote($_POST['libelle']), TypeOption::FindById($_POST['typeOption_id']), removeQuote($_POST['description']),$_POST['prixDeBase']);
 					Option::insert($option);
-					Socket::store('centrale','insert','option',$option);
+					Socket::store('centrale','insert','option',$option->toJson());
 					header('Location: ./?r=option/visualiser&option='.$option->id);
 				}
 			}

@@ -98,7 +98,7 @@ class ConstructeursModelesController extends Controller{
 				}else{
 					$constructeur = new Constructeur($_POST['libelle'], null, $_GET['constructeur']);
 					Constructeur::update($constructeur);
-					Socket::store('centrale','update','constructeur',$constructeur);
+					Socket::store('centrale','update','constructeur',$constructeur->toJson());
 					header('Location: ./?r=constructeursModeles/afficherConstructeur&constructeur='.$_GET['constructeur']);
 				}
 			}
@@ -126,7 +126,7 @@ class ConstructeursModelesController extends Controller{
 						}else{
 							$constructeur= new Constructeur($_POST['libelle']);
 							Constructeur::insert($constructeur);
-							Socket::store('centrale','insert','constructeur',$constructeur);
+							Socket::store('centrale','insert','constructeur',$constructeur->toJson());
 							$this->afficher();
 						}
 					}else{
@@ -156,7 +156,7 @@ class ConstructeursModelesController extends Controller{
 						}else{
 							$modele = new Modele($_POST['libelle'],Constructeur::FindByID($_POST['constructeur_id']),TypeModele::FindById($_POST['typeModele_id']));
 							Modele::insert($modele);
-							Socket::store('centrale','insert','modele',$modele);
+							Socket::store('centrale','insert','modele',$modele->toJson());
 							header('Location: ./?r=constructeursModeles/afficherModele&modele='.$modele->id);
 							//$this->afficher();
 						}

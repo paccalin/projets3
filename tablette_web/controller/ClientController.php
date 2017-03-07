@@ -80,7 +80,7 @@ class ClientController extends Controller{
 				}else{
 					$newClient = new Client($_POST['nom'],$_POST['prenom'],$_POST['rue'],$_POST['ville'],$_POST['cp'],$_POST['mail'],$_POST['telephone']);
 					Client::insert($newClient);
-					Socket::store('centrale','insert','client',$newClient);
+					Socket::store('centrale','insert','client',$newClient->toJson());
 					print_r($newClient);
 					header('Location: ./?r=client/afficherParId&id='.$newClient->id);
 				}
@@ -202,7 +202,7 @@ class ClientController extends Controller{
 				}else{
 					$updateClient= new Client($_POST['nom'], $_POST['prenom'], $_POST['rue'], $_POST['ville'], $_POST['cp'], $_POST['mail'], $_POST['tel'], null, $_GET['id']);
 					Client::update($updateClient);
-					Socket::store('centrale','update','client',$updateClient);
+					Socket::store('centrale','update','client',$updateClient->toJson());
 					$_POST = array();
 					$this->afficherParId($_GET['id']);
 				}
