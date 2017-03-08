@@ -4,7 +4,7 @@ class Vehicule  extends Model{
     public function __construct($pModele = null, $pClient = null, $pImmatriculation = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
         if($pId == null){
-				$this->id = uniqid();
+				$this->id = Model::RandomId();
 		}
 		else{
 				$this->id = $pId;
@@ -70,7 +70,22 @@ class Vehicule  extends Model{
         }
         return $returnList;
 	}
-
+	
+	static public function insert($vehicule){
+		$requete="INSERT INTO ".self::$tableName." VALUES ('".$vehicule->id."','".$vehicule->modele->id."','".$vehicule->client->id."','".$vehicule->immatriculation."',CURRENT_TIMESTAMP)";
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+	}
+	
+	static public function update($vehicule){
+		/* Fonction non testée */
+		$requete="UPDATE ".self::$tableName."SET modele_id='".$vehicule->modele->id."', client_id='".$vehicule->client->id."',immatriculation='".$vehicule->immatriculation.",date_insertion='".$vehicule->dateInsertion."'";
+		//echo $requete;
+		$query = db()->prepare($requete);
+		$query->execute();
+	}
+	
 	static public function delete($vehicule){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$vehicule->id);
 		$query->execute();

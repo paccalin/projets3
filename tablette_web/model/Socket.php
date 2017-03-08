@@ -29,7 +29,6 @@ class Socket extends Model{
         $query->execute();
         if ($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_ASSOC);
-			//print_r($objetJson);
             $id = $row['id'];
 			$destinataire = $row['destinataire'];
             $action = $row['action'];
@@ -91,7 +90,6 @@ class Socket extends Model{
 				if(in_array($socket->table, $tables[$passage])){
 					//print_r($socket);
 					//echo "<br/>";
-					//$socket->read();
 					//echo "réussite<br/>";
 					try{
 						$socket->read();
@@ -114,10 +112,10 @@ class Socket extends Model{
 		$table=ucfirst($table);
 		$action=$this->action;
 		$obj = Model::toObject($table,$this->json);
-		var_dump($obj);
+		//var_dump($obj);
 		$table::$action($obj);
 
-		//Socket::delete($this);
+		Socket::delete($this);
 	}
 
 	static public function compteMajEnAttente($pDest = null){

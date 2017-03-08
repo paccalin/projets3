@@ -1,6 +1,6 @@
 <a href='./?r=<?php if(isset($_GET['retour'])){echo $_GET['retour'];}else{echo 'Reglages/index';}?>' class='lien'><img src='./images/back.png' alt='Retour ' class="imageButton"></a>
 <?php
-	print_r($data);
+	//print_r($data);
 	/*foreach($data['traces'] as $trace){
 		echo "<p>";
 		if($trace["statut"]!="OK"){
