@@ -63,13 +63,22 @@ class Socket extends Model{
 		Socket::insert($socket);
 	}
 	
-	static public function readMultiple($sockets,$passage){
+	static public function readMultiple($sockets,$passage,$trace=null){
+		/*
+			Ajouter:
+				-passage d'insertion (4x)
+				-passage de modification  (4x)
+				-passage de suppresion (4x)
+		*/
 		/* Plusieurs passages:
 			- utilisateur, typeOption, client, constructeur, typeModele
 			- (rdv), option, panier, modele
 			- vehicule, joinPanierOption, joinTypeModeleOption
 			- (joinVehiculeOption)
 		*/
+		if($trace==null){
+			$trace=[];
+		}
 		if($passage<4){
 			$tables = [
 				0 => ["utilisateur","typeOption","client","constructeur","typeModele"],
@@ -86,13 +95,15 @@ class Socket extends Model{
 					//echo "réussite<br/>";
 					try{
 						$socket->read();
-						echo "[OK] ".$socket->action." ".$socket->table."<br/>";
+						array_push($trace,["statut"=>"OK","action"=>$socket->action,"table"=>$socket->table]);
 					}catch(Exception $e){
-						echo "[ECHEC] ".$socket->action." ".$socket->table."<br/>";
+						array_push($trace,["statut"=>"ECHEC","action"=>$socket->action,"table"=>$socket->table]);
 					}
 				}
 			}
-			Socket::readMultiple($sockets,$passage+1);
+			Socket::readMultiple($sockets,$passage+1,$trace);
+		}else{
+			return $trace;
 		}
 	}
 	
@@ -103,10 +114,10 @@ class Socket extends Model{
 		$table=ucfirst($table);
 		$action=$this->action;
 		$obj = Model::toObject($table,$this->json);
-		//var_dump($obj);
+		var_dump($obj);
 		$table::$action($obj);
 
-		Socket::delete($this);
+		//Socket::delete($this);
 	}
 
 	static public function compteMajEnAttente($pDest = null){

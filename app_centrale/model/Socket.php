@@ -90,7 +90,54 @@ class Socket extends Model{
 		Socket::insert($socket);
 	}
 	
-	static public function read($socket){
+	static public function readMultiple($sockets,$passage=null,$trace=null){
+		/*
+			Ajouter:
+				-passage d'insertion (4x)
+				-passage de modification  (4x)
+				-passage de suppresion (4x)
+		*/
+		/* Plusieurs passages:
+			- utilisateur, typeOption, client, constructeur, typeModele
+			- (rdv), option, panier, modele
+			- vehicule, joinPanierOption, joinTypeModeleOption
+			- (joinVehiculeOption)
+		*/
+		if($passage==null){
+			$passage=0;
+		}
+		if($trace==null){
+			$trace=[];
+		}
+		if($passage<4){
+			$tables = [
+				0 => ["utilisateur","typeOption","client","constructeur","typeModele"],
+				1 => ["rendezvous","option","panier","modele"],
+				2 => ["vehicule","joinPanierOption","joinTypeModeleOption"],
+				3 => ["joinVehiculeOption"]
+			];
+			//echo "<br/>--- passage ".$passage."<br/>";
+			foreach($sockets as $socket){
+				if(in_array($socket->table, $tables[$passage])){
+					//print_r($socket);
+					//echo "<br/>";
+					//$socket->read();
+					//echo "réussite<br/>";
+					try{
+						$socket->read();
+						array_push($trace,["statut"=>"OK","action"=>$socket->action,"table"=>$socket->table]);
+					}catch(Exception $e){
+						array_push($trace,["statut"=>"ECHEC","action"=>$socket->action,"table"=>$socket->table]);
+					}
+				}
+			}
+			Socket::readMultiple($sockets,$passage+1,$trace);
+		}else{
+			return $trace;
+		}
+	}
+	
+	private function read($socket){
 		//print_r($socket->objet); 	/* DEBUG */
 		//echo '<br/>';				/* DEBUG */
 		$table=$socket->table;
@@ -125,25 +172,10 @@ class Socket extends Model{
 		$sockets = Socket::FindAll('tablette','centrale');
 		print_r($sockets);
 		foreach($sockets as $socket){
-			//Socket::insert($socket,'centrale','tablette');
-			//Socket::delete($socket,'tablette');
+			Socket::insert($socket,'centrale','tablette');
+			Socket::delete($socket,'tablette');
 		}
-		foreach($sockets as $socket){
-			echo '<br/>';
-			//print_r($socket);
-/* ============================================================================= */
-			/* Faire qu'ils soient lus par vagues avec un ordre précis */
-/*
-	1. Instancier les nouveaux objets Socket avec objet=null
-	2. Boucle:
-		-instancier les sockets avec objets sans dépendance (ou avec la dépendance déjà créée) -> voir schéma
-		-read le cocket
-*/
-			//Socket::read($socket);
-		}
-		$s=['b','c'];
-		unset($s[array_search('b',$s)]);
-		print_r($s);
+		Socket::readMultiple($sockets);
 	}
 
 	static public function TransfertC2T(){

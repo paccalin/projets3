@@ -14,8 +14,9 @@ class ReglagesController extends Controller{
 
 	public function MettreAJour(){
 		$sockets=Socket::findAllFor('tablette');
-		Socket::readMultiple($sockets,0);
-		//header('Location: ./?r=reglages/index'); /* Commenter pour le debug */
+		$data['trace'] = Socket::readMultiple($sockets,0);
+		//print_r($data['traces']);
+		$this->render('afficherFinInstallationMaj',$data);
 	}
 	
 	public function AfficherIP(){
