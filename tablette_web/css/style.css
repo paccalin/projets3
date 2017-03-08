@@ -40,6 +40,7 @@ header img{
 	height: 10vh;
     width: auto;
 }
+
 .imageButton{
 	height: 10vh;
 	border: solid;
@@ -74,15 +75,27 @@ header img{
 	margin-left: 0.75vh;
 	margin-right: 1vh;
 }
+
 .vert{
 	background-color: #32c870;
 }
+
 .rouge{
 	background-color: #e74c3c;
 }
+
 .gris{
 	background-color: #7a828f;
 }
+
+.texteVert{
+	color: #32c870;
+}
+
+.texteRouge{
+	color: #e74c3c;
+}
+
 section{
     height: 90%;
     width: 100%;
@@ -136,38 +149,48 @@ input, .input{
 	font-weight: bold;
 	-webkit-appearance:none;
 }
+
 .form_boutons input[name=submit] { 
     background-color: #32c870;
 }
+
 .form_boutons input[name=cancel] { 
     background-color: #e74c3c;
 }
+
 .form_boutons{
 	text-align: center;
 }
 
 .tableAffichage{
+	/*position:fixed;*/
 	margin-left: auto;
 	margin-right: auto;
 	width: 95%;
-	border: solid 1px black;
+	border: solid 0.3vh black;
 	border-collapse: collapse;
+	/*bottom:0;
+	top:90px;*/
 }
 
 .tableAffichage th{
 	text-align: center;
-	background-color: #0fa2d5;
+	background-color: #0fa2d5;/* 0fa2d5 */
 	color: white;
 }
 
 .tableAffichage td a{
-	text-align: center;
 	color: #7a828f;
 }
 
 .tableAffichage td{
-	border-bottom: solid 1px black;
+	/*border-bottom: solid 1px black;*/
 }
+
+.tableAffichage tr:nth-child(odd) td{
+	background-color: #b3d9e6;
+}
+
 .boutonTableUser{
 	font-size: 5vh;
 	margin-left: auto;
@@ -180,11 +203,13 @@ input, .input{
 	background-color: #e6edf2;
 	color: #7a828f;
 }
+
 .boutonTableUserDesactive {
 	text-align:center;
 	color: white;
 	text-decoration: none;
 }
+
 #ip{
 	font-weight: bold;
 	text-align: center;
