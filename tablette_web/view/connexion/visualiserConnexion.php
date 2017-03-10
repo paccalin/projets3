@@ -27,10 +27,10 @@
 	if($_SESSION['mode']=='utilisateur'){
 		echo '<br/>';
 		if($_SESSION['client']==-1 OR $_SESSION['client']=='null'){
-			echo '<a href="./?r=connexion/ajouterClient&retour=connexion/visualiser" class="lien" title="Lier un client"><img src="./images/ajouteClient.png" alt="Retour à l\'acceuil" class="imageButton boutonVert"></a>';
+			echo '<a href="./?r=connexion/ajouterClient&retour=connexion/visualiser" class="lien" title="Lier un client"><img src="./images/ajouteClient.png" alt="Lier un client" class="imageButton boutonVert"></a>';
 		}else{
-			echo '<a href="./?r=connexion/ajouterClient&retour=connexion/visualiser" class="lien" title="Changer de client"><img src="./images/changeClient.png" alt="Retour à l\'acceuil" class="imageButton boutonVert"></a>';
-			echo '<a href="./?r=connexion/delierClient&retour=connexion/visualiser" class="lien" title="Retirer le client"><img src="./images/delierClient.png" alt="Retour à l\'acceuil" class="imageButton boutonRouge"></a>';
+			echo '<a href="./?r=connexion/ajouterClient&retour=connexion/visualiser" class="lien" title="Changer de client"><img src="./images/changeClient.png" alt="Changer de client" class="imageButton boutonVert"></a>';
+			echo '<a href="./?r=connexion/delierClient&retour=connexion/visualiser" class="lien" title="Retirer le client"><img src="./images/delierClient.png" alt="Retirer le client" class="imageButton boutonRouge"></a>';
 		}
 	}
 ?>
