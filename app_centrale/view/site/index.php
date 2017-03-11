@@ -18,6 +18,7 @@
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher'],
+					['nom'=>'Véhicules', 'controller'=>'vehicule', 'visualiser'=>'afficherTous', 'recherche'=>'rechercher','ajout'=>'creer']
 				];
 			}elseif($_SESSION['droits']==2){
 				$rubriques=[
@@ -29,6 +30,7 @@
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
+					['nom'=>'Véhicules', 'controller'=>'vehicule', 'visualiser'=>'afficherTous', 'recherche'=>'rechercher','ajout'=>'creer'],
 					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
 				];
 			}else{
@@ -40,6 +42,7 @@
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
+					['nom'=>'Véhicules', 'controller'=>'vehicule', 'visualiser'=>'afficherTous', 'recherche'=>'rechercher','ajout'=>'creer'],
 					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
 					['nom'=>'Centrale', 'controller'=>'centraleMaj', 'visualiser'=>'afficher']
 				];
@@ -63,7 +66,7 @@
 		echo "\n\t<div class='rubriqueInt'>";
 		if(isset($rubrique['visualiser']) AND $rubrique['visualiser']!=null){
 			//echo "<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'>".$rubrique['nom']."</div></a>";
-			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".svg' alt='".$rubrique['nom']."' class='imageIndex'></div></a>";
+			echo "\n\t\t<a href='./?r=".$rubrique['controller']."/".$rubrique['visualiser']."&retour=site/index'><div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."' class='imageIndex'></div></a>";
 		}else{
 			echo "\n\t\t<div class='rubriqueTexte'><img src='./images/".$rubrique['controller'].".png' alt='".$rubrique['nom']."'></div>";
 		}

@@ -6,8 +6,8 @@ class ReglagesController extends Controller{
 		$data['nbEnv']=Socket::compteMajEnAttente('centrale');
 		$data['derniereConnexion']='-';
 		$data['derniereMaj']='-';
-		$data['central']='http://192.168.1.87/projets3/tablette_web/ajax/testConnexion.php'; /* fichier de test pour le ping */
-		$data['ipCentral']='192.168.1.87'; /* adresse IP de l'app centrale */
+		$data['central']='http://192.168.1.41/projets3/tablette_web/ajax/testConnexion.php'; /* fichier de test pour le ping */
+		$data['ipCentral']='192.168.1.41'; /* adresse IP de l'app centrale */
 		$data['ip']=getIp();
 		$this->render('afficherMiseAJour',$data);
 	}

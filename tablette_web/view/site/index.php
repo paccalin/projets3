@@ -2,7 +2,7 @@
 	if($_SESSION['utilisateur']!=-1){
 		if($_SESSION['mode']=='client'){
 			$rubriques=[
-				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],				
+				['nom'=>'Diapo', 'controller'=>'diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],				
 				['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 				['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'showPanierClient', 'ajout'=>null, 'recherche'=>null],
 				['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
@@ -11,18 +11,19 @@
 		}else{
 			if($_SESSION['droits']==1){
 				$rubriques=[
-					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Diapo', 'controller'=>'diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher'],
-					['nom'=>'Mises à jour', 'controller'=>'Reglages', 'visualiser'=>'index']
+					['nom'=>'Véhicules', 'controller'=>'vehicule', 'visualiser'=>'afficherTous', 'recherche'=>'rechercher','ajout'=>'creer'],
+					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'index']
 				];
 			}elseif($_SESSION['droits']==2){
 				$rubriques=[
-					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Diapo', 'controller'=>'diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
@@ -30,19 +31,21 @@
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Construct. & modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
-					['nom'=>'Mises à jour', 'controller'=>'Reglages', 'visualiser'=>'index']
+					['nom'=>'Véhicules', 'controller'=>'vehicule', 'visualiser'=>'afficherTous', 'recherche'=>'rechercher','ajout'=>'creer'],
+					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'index']
 				];
 			}else{
 				$rubriques=[
-					['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
+					['nom'=>'Diapo', 'controller'=>'diapo', 'visualiser'=>'view_diapo', 'ajout'=>null, 'recherche'=>null],
 					['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
 					['nom'=>'Clients', 'controller'=>'client', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Rendez-vous', 'controller'=>'rendezvous', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Panier', 'controller'=>'panier', 'visualiser'=>'afficherTous', 'ajout'=>null, 'recherche'=>'rechercher'],
 					['nom'=>'Options', 'controller'=>'option', 'visualiser'=>'afficherTous', 'ajout'=>'creer', 'recherche'=>'rechercher'],
 					['nom'=>'Constr/Modèles', 'controller'=>'constructeursModeles', 'visualiser'=>'afficher', 'ajout'=>'ajouter&ajout=constructeur', 'ajout2'=>'ajouter&ajout=modele', 'recherche'=>'rechercher'],
+					['nom'=>'Véhicules', 'controller'=>'vehicule', 'visualiser'=>'afficherTous', 'recherche'=>'rechercher','ajout'=>'creer'],
 					['nom'=>'Comptes', 'controller'=>'administration', 'visualiser'=>'gererComptes', 'ajout'=>'creerCompte', 'recherche'=>null],
-					['nom'=>'Mises à jour', 'controller'=>'Reglages', 'visualiser'=>'index']
+					['nom'=>'Mises à jour', 'controller'=>'reglages', 'visualiser'=>'index']
 				];
 			}
 			if($_SESSION['client']!=-1){
@@ -56,7 +59,7 @@
 		$rubriques=[
 				['nom'=>'Connexion', 'controller'=>'connexion', 'visualiser'=>'connexion'],
 				['nom'=>'Recherche', 'controller'=>'Search', 'visualiser'=>'index'],
-				['nom'=>'Diapo', 'controller'=>'Diapo', 'visualiser'=>'view_diapo']
+				['nom'=>'Diapo', 'controller'=>'diapo', 'visualiser'=>'view_diapo']
 			];
 	}
 	foreach($rubriques as $rubrique){

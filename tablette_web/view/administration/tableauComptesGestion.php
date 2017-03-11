@@ -7,24 +7,24 @@
 			echo "<td>".$user['droitsNom']."</td>";
 			if($user['droitsNb']<3){
 				if($user['droitsNb']==2){
-					echo "<td><a href='./?r=administration/confirmeAugmenteDroit&pseudo=".$user['pseudo']."&id=".$user['id']."'><div class='boutonTableUser'>+</div></a>";
+					echo "<td><a href='./?r=administration/confirmeAugmenteDroit&pseudo=".$user['pseudo']."&id=".$user['id']."'><img src='./images/plus.png' class='petitBouton vert'></a>";
 				}else{
-					echo "<td><a href='./?r=administration/augmenteDroits&id=".$user['id']."'><div class='boutonTableUser'>+</div></a>";
+					echo "<td><a href='./?r=administration/augmenteDroits&id=".$user['id']."'><img src='./images/plus.png' class='petitBouton vert'></a>";
 				}
 			}else{
-				echo "<td><div class='boutonTableUser boutonTableUserDesactive'>+</div>";
+				echo "<td><img src='./images/plus.png' class='petitBouton gris'>";
 			}
 			if($user['droitsNb']==2){
-				echo "<a href='./?r=administration/reduitDroits&id=".$user['id']."'><div class='boutonTableUser'>-</div></a></td>";
+				echo "<a href='./?r=administration/reduitDroits&id=".$user['id']."'><img src='./images/moins.png' class='petitBouton rouge'></a></td>";
 			}else{
-				echo "<div class='boutonTableUser boutonTableUserDesactive'>-</div></td>";
+				echo "<img src='./images/moins.png' class='petitBouton gris'></td>";
 			}
 			if($user['droitsNb']<3){
-				echo "<td><a href='./?r=administration/confirmeSupression&pseudo=".$user['pseudo']."&id=".$user['id']."'><div class='boutonTableUser'>X</div></a>";
-				echo "<td><a href='./?r=administration/changerMotPasse&pseudo=".$user['pseudo']."'><div class='boutonTableUser'>...</div></a>";
+				echo "<td><a href='./?r=administration/confirmeSupression&pseudo=".$user['pseudo']."&id=".$user['id']."'><img src='./images/delete.png' class='petitBouton rouge'></a>";
+				echo "<td><a href='./?r=administration/changerMotPasse&pseudo=".$user['pseudo']."'><img src='./images/crayon.png' class='petitBouton'></a>";
 			}else{
-				echo "<td><div class='boutonTableUser boutonTableUserDesactive'>X</div>";
-				echo "<td><div class='boutonTableUser boutonTableUserDesactive'>...</div>";	
+				echo "<td><img src='./images/delete.png' class='petitBouton gris'></div>";
+				echo "<td><img src='./images/crayon.png' class='petitBouton gris'></div>";	
 			}
 		}
 	?>

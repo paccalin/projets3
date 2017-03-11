@@ -10,7 +10,7 @@
 		}else{
 			echo "<img src='./images/moins.png' class='petitBouton gris'>";
 		}
-		echo $joinOptionsPanier['nombre']."<a href='.?r=panier/changerNombreOptionPanier&changement=plus&panier=".$data['panierId']."&option=".$joinOptionsPanier['option']->id."&retour=".$data['retour']."'><img src='./images/plus.png' class='petitBouton vert'></a></td><td><a href='.?r=panier/retirerOptionPanier&panier=".$data['panierId']."&option=".$joinOptionsPanier['option']->id."&retour=".$data['retour']."'><img src='./images/poubelle.png' class='petitBouton rouge'></a></td></tr>";
+		echo $joinOptionsPanier['nombre']."<a href='.?r=panier/changerNombreOptionPanier&changement=plus&panier=".$data['panierId']."&option=".$joinOptionsPanier['option']->id."&retour=".$data['retour']."'><img src='./images/plus.png' class='petitBouton vert'></a></td><td><a href='.?r=panier/retirerOptionPanier&panier=".$data['panierId']."&option=".$joinOptionsPanier['option']->id."&retour=".$data['retour']."'><img src='./images/delete.png' class='petitBouton rouge'></a></td></tr>";
 	}
 ?>
 </table>
