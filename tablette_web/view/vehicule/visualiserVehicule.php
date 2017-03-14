@@ -11,7 +11,7 @@
 	?>
 </table>
 <br/>
-Liste des options installées:
+<div id="listeoptions">Liste des options installées:</div><br/>
 <table class='tableAffichage'>
 	<tr><th>Libellé</th><th>Description</th><tr>
 	<?php
@@ -19,4 +19,4 @@ Liste des options installées:
 	<tr><td></td><td></td><td></td></tr>
 </table>
 <br/>
-Photos:
+<div id="photos">Photos:</div>

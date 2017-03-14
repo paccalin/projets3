@@ -219,7 +219,30 @@ div#vehicule{
 	width:150px;
 	color:white;
 	font-weight: bold;
-	border-top:solid 1px black;
+}
+
+div#tarifcategorie{
+	padding-left:15px;
+	background-color:#0fa2d5;
+	width:450px;
+	color:white;
+	font-weight: bold;
+}
+
+div#listeoptions{
+	padding-left:15px;
+	background-color:#0fa2d5;
+	width:400px;
+	color:white;
+	font-weight: bold;
+}
+
+div#photos{
+	padding-left:15px;
+	background-color:#0fa2d5;
+	width:150px;
+	color:white;
+	font-weight: bold;
 }
 
 #ip{
