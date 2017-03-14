@@ -187,6 +187,7 @@ input, .input{
 
 .tableAffichage td{
 	border-bottom: solid 1px black;
+	color: #7a828f;
 }
 
 .tableAffichage tr:nth-child(odd){
@@ -210,6 +211,15 @@ input, .input{
 	text-align:center;
 	color: white;
 	text-decoration: none;
+}
+
+div#vehicule{
+	padding-left:15px;
+	background-color:#0fa2d5;
+	width:150px;
+	color:white;
+	font-weight: bold;
+	border-top:solid 1px black;
 }
 
 #ip{

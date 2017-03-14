@@ -8,7 +8,7 @@
 <?php
 	echo "<a href='./?r=client/modifier&id=".$data['client']->id."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>"
 ?>
-Véhicules:
+<div id="vehicule">Véhicules</div>
 <table class="tableAffichage">
 	<tr><th>Constructeur</th><th>Modèle</th><th>Immatriculation</th></tr>
 	<?php
