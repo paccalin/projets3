@@ -89,6 +89,12 @@ class Modele extends Model{
 		$query->execute();
 	}
 
+	static public function update($modele){
+		$requete="UPDATE ".self::$tableName." SET libelle='".$modele->libelle."', constructeur_id='".$modele->constructeur->id."', typemodele_id='".$modele->typeModele->id."', date_insertion='".$modele->dateInsertion."' WHERE id='".$modele->id."'";
+		$query = db()->prepare($requete);
+		$query->execute();
+	}
+	
 	static public function delete($modele){
 		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$modele->id."'");
 		$query->execute();

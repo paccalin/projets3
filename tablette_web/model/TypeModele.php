@@ -46,6 +46,17 @@ class TypeModele extends Model{
         return $returnList;
     }
 	
+	static public function FindByLibelle($pLibelle){
+		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE libelle='".$pLibelle."'");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+            return self::FindById($row["id"]);
+        }
+        return null;
+	}
+	
 	static public function FindByJoinOptionId($joinOptionId){
 		$query = db()->prepare("SELECT typeModele_id FROM join_typemodele_option WHERE id='".$joinOptionId."'");
         $query->execute();
@@ -55,5 +66,9 @@ class TypeModele extends Model{
             array_push($returnList, self::FindByID($row["typeModele_id"]));
         }
         return $returnList;
+	}
+	
+	static public function insert($typeModele){
+		
 	}
 }

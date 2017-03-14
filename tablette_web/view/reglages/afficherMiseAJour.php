@@ -14,24 +14,26 @@ Statut application centrale: <span id="connecte">Chargement...</span>
 	ping();
 	window.setInterval(ping,2000);
 	function ping(){
-		$('#connecte').html("<span class='gris'>&bull;</span> Chargement...");
+		$('#connecte').html("<span class='texteGris'>&bull;</span> Chargement...");
 		$('#afficheMaj').remove();
 		$('#afficheMajDesactive').remove();
-		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/centraleHorsLigne.svg' class='imageButton gris' alt='Serveur inaccessible'></a>");
+		$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/centraleHorsLigne.png' class='imageButton gris' alt='Serveur inaccessible'></a>");
 		$.ajax("<?php echo $data['central']; ?>", {
 		  statusCode: {
 			404: function (thrownError) {
-				$('#connecte').html("<span class='rouge'>&bull;</span> Serveur accessible mais fichier de test introuvable (erreur 404)");
+				$('#connecte').html("<span class='texteRouge'>&bull;</span> Serveur accessible mais fichier de test introuvable (erreur 404)");
+				$('#afficheMajDesactive').remove();
+				$('#fonctionnalites').append("<a id='afficheMajDesactive'><img src='./images/majErreurInconnue.png' class='imageButton rouge' alt='Serveur inaccessible'></a>");
 			},
 			200: function () {
-				$('#connecte').html("<span class='vert'>&bull;</span> Connecté");
+				$('#connecte').html("<span class='texteVert'>&bull;</span> Connecté");
 				if($('#fonctionnalites a').length<4){
 					$('#afficheMajDesactive').remove();
-					$('#fonctionnalites').append("<a id='afficheMaj' href='http://<?php echo $data['ipCentral']?>/projets3/app_centrale/?r=centraleMaj/miseAJour&ip=<?php echo $data['ip']?>&retour=reglages/index'><img src='./images/dlmaj.png' class='imageButton' alt='télécharger les données'></a>");
+					$('#fonctionnalites').append("<a id='afficheMaj' href='http://<?php echo $data['ipCentral']?>/projets3/app_centrale/?r=centraleMaj/miseAJour&ip=<?php echo $data['ip']?>&retour=reglages/index'><img src='./images/dlmaj.png' class='imageButton vert' alt='télécharger les données'></a>");
 				}
 			},
 			0: function(){
-				$('#connecte').html("<span class='gris'>&bull;</span> Serveur inaccessible");
+				$('#connecte').html("<span class='texteGris'>&bull;</span> Serveur inaccessible");
 			}
 		  }
 		})

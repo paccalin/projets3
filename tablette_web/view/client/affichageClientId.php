@@ -13,7 +13,7 @@ Véhicules:
 	<tr><th>Constructeur</th><th>Modèle</th><th>Immatriculation</th></tr>
 	<?php
 		foreach($data['vehicules'] as $vehicule){
-			echo "<tr><td>".$vehicule->modele->constructeur->libelle."</td><td>".$vehicule->modele->libelle."</td><td>".$vehicule->immatriculation."</td></tr>";
+			echo"<tr><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."&retour=client/afficherParId-id=E2t4Oaw1IadUzxCguDeN'><img src='./images/loupe.png' class='petitBouton'>".$vehicule->modele->constructeur->libelle."</a></td><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."&retour=client/afficherParId-id=E2t4Oaw1IadUzxCguDeN'>".$vehicule->modele->libelle."</a></td><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."&retour=client/afficherParId-id=E2t4Oaw1IadUzxCguDeN'>".$vehicule->immatriculation."</a></td></tr>";
 		}
 	?>
 </table>

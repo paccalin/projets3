@@ -31,7 +31,7 @@ class OptionController extends Controller{
 				if(!isset($_POST['cancel'])){
 					$this->render("formCreationOption",$data);
 				}else{
-					header('Location: ./?r=option/afficherGerer');
+					header('Location: ./?r=option/afficherTous');
 				}
 			}else{
 				$data['erreursSaisie']=[];

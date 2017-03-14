@@ -12,7 +12,6 @@ class Vehicule  extends Model{
         $this->modele = $pModele;
 		$this->client = $pClient;
 		$this->immatriculation = $pImmatriculation;
-        $this->optionList = Option::FindByVehicule($this->id);
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -24,7 +23,6 @@ class Vehicule  extends Model{
     protected $modele;
 	protected $client;
 	protected $immatriculation;
-    protected $optionList;
     protected $dateInsertion;
 
     static public function FindByID($pId) {
@@ -71,6 +69,21 @@ class Vehicule  extends Model{
         return $returnList;
 	}
 
+	static public function FindByImmatriculation($immat){
+		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE immatriculation = ?");
+        $query->bindParam(1, $immat, PDO::PARAM_STR);
+        $query->execute();
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+	}
+	
 	static public function insert($vehicule){
 		$requete="INSERT INTO ".self::$tableName." VALUES ('".$vehicule->id."','".$vehicule->modele->id."','".$vehicule->client->id."','".$vehicule->immatriculation."',CURRENT_TIMESTAMP)";
 		//echo $requete;
@@ -87,7 +100,7 @@ class Vehicule  extends Model{
 	}
 	
 	static public function delete($vehicule){
-		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id=".$vehicule->id);
+		$query = db()->prepare("DELETE FROM ".self::$tableName." WHERE id='".$vehicule->id."'");
 		$query->execute();
 	}
 

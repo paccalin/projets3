@@ -37,38 +37,40 @@ class ConstructeursModelesController extends Controller{
 	}
 
 	public function modifierModele(){
-		$data=array();
-		$data['modele']=Modele::findByID($_GET['modele']);
-		//Afichage des join options
-		$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByType($data['modele']->typeModele->id);
-		if(!isset($_POST['submit'])){
-			$this->render("formModificationModele",$data);
-			if(isset($_POST['cancel'])){
-				//                                *** GERER L'ANNULATION
+		if($_SESSION['droits']>=2){
+			$data=array();
+			$modele = Modele::findByID($_GET['modele']);
+			$data['modele']=$modele;
+			$data['constructeurs']=Constructeur::FindAll();
+			$data['typeModele']=TypeModele::FindAll();
+			if(!isset($_POST['submit'])){
+				$this->render("formModificationModele",$data);
+				if(isset($_POST['cancel'])){
+					//
+				}
+			}else{
+				$data['erreursSaisie']=[];
+				if($_POST['typeModele_id']=="null"){
+					array_push($data['erreursSaisie'],"Aucun type de modèle n'est sélectionné");
+				}
+				if($_POST['constructeur_id']=="null"){
+					array_push($data['erreursSaisie'],"Aucun constructeur n'est sélectionné");
+				}
+				if($_POST['libelle']==""){
+					array_push($data['erreursSaisie'],"Le libelle est une chaîne vide");
+				}
+				if($data['erreursSaisie']!=[]){
+					$this->render("formModificationModele",$data);
+				}else{
+					$newModele = new Modele($_POST['libelle'],Constructeur::FindById($_POST['constructeur_id']),TypeModele::FindById($_POST['typeModele_id']),$modele->dateInsertion,$modele->id);
+					Modele::update($newModele);
+					header('Location: ?r=constructeursModeles/afficherModele&modele='.$newModele->id);
+				}
 			}
 		}else{
-			$data['erreursSaisie']=[];
-			if(true){
-				array_push($data['erreursSaisie'],'Traitement à faire -> voir constructeurModeleController/modifierModele()');
-			}
-			if($data['erreursSaisie']!=[]){
-				$this->render("formModificationModele",$data);
-			}else{
-				/*
-					Faire le traitement: boucler sur les options avec juste une seule des propriétés modifiées
-				*/
-				$joins=[];
-				foreach ($_POST as $post=>$postValue){
-					if($post!="submit"){
-						array_push($joins,["id"=>$post,"tarif"=>$postValue]);
-					}
-				}
-				Option::updateJoinModeleOption($data['option'],$joins);
-				$data['option'] = Option::findByID($_GET['option']);
-				$data['joinModeleOption']=Option::findJoinModeleOptionByOptionID($_GET['option']);
-				$this->render("formModificationModele",$data);
-			}
+			$this->render('erreurAutorisation');
 		}
+		
 	}
 	
 	public function afficherConstructeur(){
@@ -107,6 +109,11 @@ class ConstructeursModelesController extends Controller{
 		}
 	}
 	
+	public function afficherTypeModele(){
+		$data['typeModele']=TypeModele::FindById($_GET['id']);
+		$this->render("afficherTypeModele",$data);
+	}
+	
 	public function ajouter(){
 		if($_SESSION['droits']>=2){
 			if(!isset($_GET['ajout'])){
@@ -136,8 +143,7 @@ class ConstructeursModelesController extends Controller{
 							header('Location: ./?r=constructeursModeles/afficher');
 						}
 					}
-				}
-				elseif($_GET['ajout']=="modele"){
+				}elseif($_GET['ajout']=="modele"){
 					if(isset($_POST['submit'])){
 						$data['erreursSaisie']=array();
 						if(strlen(trim($_POST['libelle']))==0){
@@ -165,6 +171,33 @@ class ConstructeursModelesController extends Controller{
 						$data['typeModele']=TypeModele::findAll();
 						if(!isset($_POST['cancel'])){
 							$this->render("formAjoutModele",$data);
+						}else{
+							header('Location: ./?r=constructeursModeles/afficher');
+						}
+					}
+				}elseif($_GET['ajout']=="typeModele"){
+					if(isset($_POST['submit'])){
+						$data['erreursSaisie']=array();
+						if(strlen(trim($_POST['libelle']))==0){
+							array_push($data['erreursSaisie'],'Le libelle ne soit pas être une chaîne vide');
+						}
+						if(TypeModele::FindByLibelle($_POST['libelle'])!=[]){
+							array_push($data['erreursSaisie'],'Il y a déjà un type de modèle à ce nom');
+						}
+						if($data['erreursSaisie']!=[]){
+							$this->render("formAjoutTypeModele",$data);
+						}else{
+							$typeModele = new TypeModele($_POST['libelle']);
+							TypeModele::insert($typeModele);
+							Socket::store('centrale','insert','typeModele',$typeModele->toJson());
+							header('Location: ./?r=constructeursModeles/afficherTypeModele&id='.$typeModele->id);
+							//$this->afficher();
+						}
+					}else{
+						$data['constructeurs']=Constructeur::findAll();
+						$data['typeModele']=TypeModele::findAll();
+						if(!isset($_POST['cancel'])){
+							$this->render("formAjoutTypeModele",$data);
 						}else{
 							header('Location: ./?r=constructeursModeles/afficher');
 						}

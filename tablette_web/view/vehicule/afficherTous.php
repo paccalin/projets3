@@ -7,7 +7,7 @@
 	<tr><th>Modèle</th><th>Client</th><th>Immatriculation</th></tr>
 	<?php
 		foreach($data['vehicules'] as $vehicule){
-			echo"<tr><td><a href='./?r=vehicule/visualiser&vehicule=".$vehicule->id."'><img src='./images/loupe.png' class='petitBouton'>".$vehicule->modele->libelle."</a></td><td><a href='./?r=vehicule/visualiser&vehicule=".$vehicule->id."'>".$vehicule->client->nom." ".$vehicule->client->prenom."</a></td><td><a href='./?r=vehicule/visualiser&vehicule=".$vehicule->id."'>".$vehicule->immatriculation."</a></td></tr>";
+			echo"<tr><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."'><img src='./images/loupe.png' class='petitBouton'>".$vehicule->modele->libelle."</a></td><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."'>".$vehicule->client->nom." ".$vehicule->client->prenom."</a></td><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."'>".$vehicule->immatriculation."</a></td></tr>";
 		}
 	?>
 </table>
