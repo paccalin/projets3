@@ -16,5 +16,5 @@
 			echo "<tr><td>".$vehicule->modele->constructeur->libelle."</td><td>".$vehicule->modele->libelle."</td><td>".$vehicule->immatriculation."</td></tr>";
 		}
 	?>
-</table>
-<a href="">Ajouter un véhicule</a><br/>
+</table><br/>
+<a href='' class='lien'><img src="./images/plus.png" class="imageButton ajout" alt="Ajouter un vehicule"></a><a href=""></a><br/>
