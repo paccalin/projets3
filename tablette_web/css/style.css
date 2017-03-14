@@ -169,26 +169,28 @@ input, .input{
 	width: 95%;
 	border: solid 0.3vh black;
 	border-collapse: collapse;
+	box-shadow:10px 10px 5px #888888;
 	/*bottom:0;
 	top:90px;*/
 }
 
 .tableAffichage th{
 	text-align: center;
-	background-color: #0fa2d5;/* 0fa2d5 */
+	background-color: #0fa2d5;
 	color: white;
 }
 
 .tableAffichage td a{
+	text-align: center;
 	color: #7a828f;
 }
 
 .tableAffichage td{
-	/*border-bottom: solid 1px black;*/
+	border-bottom: solid 1px black;
 }
 
-.tableAffichage tr:nth-child(odd) td{
-	background-color: #b3d9e6;
+.tableAffichage tr:nth-child(odd){
+  background-color:#e6edf2;
 }
 
 .boutonTableUser{
