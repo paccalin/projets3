@@ -12,7 +12,7 @@
 	?>
 </table>
 <br/>
-Liste des options installées:
+<div id="listeoptions">Liste des options installées:</div><br/>
 <table class='tableAffichage'>
 	<tr><th>Libellé</th><th>Description</th><tr>
 	<?php
@@ -20,9 +20,6 @@ Liste des options installées:
 	?>
 </table>
 <br/>
-Photos:
-
-
 <!--<?php
 	/* Réparer la mise en page en faisant un truc dans le genre */
 	if($_SESSION['droits']>=1 AND $_SESSION['mode']=='utilisateur'){
@@ -32,3 +29,4 @@ Photos:
 <?php
 	}
 ?>-->
+<div id="photos">Photos:</div>

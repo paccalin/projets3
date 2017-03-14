@@ -8,7 +8,7 @@
 <?php
 	echo "<a href='./?r=client/modifier&id=".$data['client']->id."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>"
 ?>
-Véhicules:
+<div id="vehicule">Véhicules</div><br/>
 <table class="tableAffichage">
 	<tr><th>Constructeur</th><th>Modèle</th><th>Immatriculation</th></tr>
 	<?php
@@ -16,5 +16,5 @@ Véhicules:
 			echo"<tr><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."&retour=client/afficherParId-id=E2t4Oaw1IadUzxCguDeN'><img src='./images/loupe.png' class='petitBouton'>".$vehicule->modele->constructeur->libelle."</a></td><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."&retour=client/afficherParId-id=E2t4Oaw1IadUzxCguDeN'>".$vehicule->modele->libelle."</a></td><td><a href='./?r=vehicule/visualiser&id=".$vehicule->id."&retour=client/afficherParId-id=E2t4Oaw1IadUzxCguDeN'>".$vehicule->immatriculation."</a></td></tr>";
 		}
 	?>
-</table>
-<a href="">Ajouter un véhicule</a><br/>
+</table><br/>
+<a href='' class='lien'><img src="./images/plus.png" class="imageButton ajout" alt="Ajouter un vehicule"></a><a href=""></a><br/>
