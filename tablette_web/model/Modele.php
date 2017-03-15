@@ -52,8 +52,8 @@ class Modele extends Model{
         return $returnList;
     }
 
-	static public function FindByConstructeurID($constructeur_id) {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE constructeur_id='".$constructeur_id."'");
+	static public function FindByConstructeurId($constructeur_id) {
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE constructeur_id='".$constructeur_id."' ORDER BY libelle");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){
@@ -64,6 +64,19 @@ class Modele extends Model{
         }
         return $returnList;
     }
+	
+	static public function FindByTypeModeleId($typeModele_id){
+		$query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE typemodele_id='".$typeModele_id."' ORDER BY libelle");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+            $results = $query->fetchAll();
+            foreach ($results as $row) {
+                array_push($returnList, self::FindById($row["id"]));
+            }
+        }
+        return $returnList;
+	}
 
 	static public function FindByLibelle($libelle) {
         $query = db()->prepare("SELECT id FROM ".self::$tableName." WHERE UCASE(libelle)=UCASE('".$libelle."')");
@@ -77,10 +90,6 @@ class Modele extends Model{
         }
         return $returnList;
     }
-	
-	static public function FindByTypeModeleId($pTypeModeleId){
-		throw new Exception('Code à réliser');
-	}
 	
 	static public function insert($modele){
 		$requete="INSERT INTO ".self::$tableName." VALUES ('".$modele->id."','".$modele->libelle."','".$modele->constructeur->id."','".$modele->typeModele->id."',CURRENT_TIMESTAMP)";

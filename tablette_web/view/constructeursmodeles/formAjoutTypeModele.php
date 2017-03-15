@@ -17,4 +17,4 @@
 
 </form>
 <p class='requis'>*Champ requis</p>
-<p><i>Les types de modèles sont utilisés pour déterminer des classes différentes de côut pour les installations d'options</i></p>
+<p><i>Les types de modèles sont utilisés pour déterminer des classes différentes de coût pour les installations d'options</i></p>

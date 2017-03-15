@@ -69,6 +69,18 @@ class TypeModele extends Model{
 	}
 	
 	static public function insert($typeModele){
-		
+		$query = db()->prepare("INSERT INTO ".self::$tableName." VALUES('".$typeModele->id."','".$typeModele->libelle."',CURRENT_TIMESTAMP)");
+        $query->execute();
+		foreach(Option::FindAll() as $option){
+			$requete="INSERT INTO join_typemodele_option VALUES('".Model::randomId()."','".$option->id."','".$typeModele->id."',".$option->prixDeBase.",CURRENT_TIMESTAMP)";
+			//echo $requete;
+			$query=db()->prepare($requete);
+			$query->execute();
+		}
+	}
+	
+	static public function update($typeModele){
+		$query = db()->prepare("UPDATE ".self::$tableName." SET libelle='".$typeModele->libelle."' WHERE id='".$typeModele->id."'");
+		$query->execute();
 	}
 }

@@ -135,7 +135,7 @@ CREATE TABLE vehicule (
   id varchar(20),
   modele_id varchar(20) NOT NULL,
   client_id varchar(20) NOT NULL,
-  immatriculation varchar(7) NOT NULL,
+  immatriculation varchar(8) NOT NULL,
   date_insertion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT pk_vehicule_id PRIMARY KEY (id)
 );

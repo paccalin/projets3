@@ -1,5 +1,5 @@
 /*=== Socket ===*/
-
+/*
 insert into socket values('ah2uf4m0LRmuQK6KwJVn', 'tablette', 'insert', 'constructeur', '{"id":"76NyTBh3OXdlVvQvY6zf","libelle":"Constructeur socket","dateInsertion":"00/00/00000 00:00:00 am"}', '0000-00-00 00:00:00');
 insert into socket values('HR7O6nODrsq30UVMH32e', 'tablette', 'insert', 'modele', '{"id":"OJOwWCq9hNZZR24NzEjZ","libelle":"Modèle socket 1","constructeur":"76NyTBh3OXdlVvQvY6zf","typeModele":"IEgNSVQVNfGrDhpV1BNp","dateInsertion":"00/00/0000 00:00:00 am"}', '0000-00-00 00:00:00');
 insert into socket values('koyUKwLbJaKa4lshLLkx', 'tablette', 'insert', 'modele', '{"id":"llaISizEzIAXGU7nKTZw","libelle":"Modèle socket 2","constructeur":"76NyTBh3OXdlVvQvY6zf","typeModele":"mDGqxTxGBMsgVt3d4gLl","dateInsertion":"00/00/0000 00:00:00 am"}', '0000-00-00 00:00:00');
@@ -7,7 +7,7 @@ insert into socket values('5ldDknlvSelgXOmHrNtF', 'tablette', 'insert', 'client'
 insert into socket values('OxpeBYknGewlpRvfVlGA', 'tablette', 'insert', 'vehicule', '{"id":"EQ3X9PsjH7YHPydbmG4T","modele":"1Nskr4WTIf4s7TV6Fk1m","client":"E2t4Oaw1IadUzxCguDeN","immatriculation":"SK000SK","dateInsertion":"00/00/0000 00:00:00 am"}','0000-00-00 00:00:00');
 insert into socket values('bT2noVCcgVdPwasC9uUY', 'tablette', 'insert', 'vehicule', '{"id":"y1dZWrMNfIKtWzbjLVsf","modele":"OJOwWCq9hNZZR24NzEjZ","client":"3IbtauQJcaWnSilFfBjh","immatriculation":"SK111SK","dateInsertion":"00/00/0000 00:00:00 am"}','0000-00-00 00:00:00');
 insert into socket values('bthAl95amAHNQn4dGsLH', 'tablette', 'insert', 'vehicule', '{"id":"zTzs3Zrghm0vky4mvNr9","modele":"llaISizEzIAXGU7nKTZw","client":"3IbtauQJcaWnSilFfBjh","immatriculation":"SK222SK","dateInsertion":"00/00/0000 00:00:00 am"}','0000-00-00 00:00:00');
-
+*/
 /*=== Client ===*/
 
 insert into client values('E2t4Oaw1IadUzxCguDeN','Martin', 'Jean', '1, rue du centre', 'Annecy', '74000','jean.martin@gmail.com','0450672184', CURRENT_TIMESTAMP);

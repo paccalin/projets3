@@ -42,7 +42,7 @@ class Vehicule  extends Model{
     }
 
     static public function FindAll() {
-        $query = db()->prepare("SELECT id FROM ".self::$tableName);
+        $query = db()->prepare("SELECT id FROM ".self::$tableName." ORDER BY immatriculation");
         $query->execute();
         $returnList = array();
         if ($query->rowCount() > 0){

@@ -212,7 +212,10 @@ input, .input{
 	color: white;
 	text-decoration: none;
 }
-
+/*
+	Mais pourquoi?
+*/
+/*
 div#vehicule{
 	padding-left:15px;
 	background-color:#0fa2d5;
@@ -228,7 +231,7 @@ div#tarifcategorie{
 	color:white;
 	font-weight: bold;
 }
-
+	
 div#listeoptions{
 	padding-left:15px;
 	background-color:#0fa2d5;
@@ -244,7 +247,7 @@ div#photos{
 	color:white;
 	font-weight: bold;
 }
-
+*/
 #ip{
 	font-weight: bold;
 	text-align: center;

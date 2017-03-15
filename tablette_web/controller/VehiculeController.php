@@ -15,7 +15,7 @@ class VehiculeController extends Controller{
 				if($_POST['client_id']=='null'){
 					array_push($data['erreursSaisie'],"Aucun client n'est sélectionné");
 				}
-				if(strlen($_POST['immat'])!=7){
+				if(strlen($_POST['immat'])!=7 AND strlen($_POST['immat'])!=8){
 					array_push($data['erreursSaisie'],"L'immaticulation n'est pas correcte");
 				}
 				if(Vehicule::FindByImmatriculation($_POST['immat'])!=null){
@@ -27,7 +27,7 @@ class VehiculeController extends Controller{
 					$newVehicule = new Vehicule(Modele::FindById($_POST['modele_id']), Client::FindById($_POST['client_id']), $_POST['immat']);
 					Vehicule::insert($newVehicule);
 					Socket::store('centrale','insert','vehicule',$newVehicule->toJson());
-					header('Location: ./?r=vehicule/visualiser&vehicule='.$newVehicule->id);
+					header('Location: ./?r=vehicule/visualiser&id='.$newVehicule->id);
 				}
 			}
 		}

@@ -42,6 +42,10 @@ function gereRetour($defaut=null){
 	return $retour;
 }
 
+function formatCout($montant){
+	return number_format($montant, 0,'',' ');
+}
+
 function removeQuote($st){
 	return str_replace("'", "\'",$st);
 }

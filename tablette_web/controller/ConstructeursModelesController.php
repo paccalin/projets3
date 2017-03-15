@@ -75,6 +75,7 @@ class ConstructeursModelesController extends Controller{
 	
 	public function afficherConstructeur(){
 		$data['constructeur']=Constructeur::findByID($_GET['constructeur']);
+		$data['modeles']=Modele::FindByConstructeurId($_GET['constructeur']);
 		$this->render("affichageConstructeur",$data);
 	}
 	
@@ -111,7 +112,39 @@ class ConstructeursModelesController extends Controller{
 	
 	public function afficherTypeModele(){
 		$data['typeModele']=TypeModele::FindById($_GET['id']);
-		$this->render("afficherTypeModele",$data);
+		$data['modeles']=Modele::FindByTypeModeleId($_GET['id']);
+		$data['joinOption']=Option::findJoinTypeModeleOptionByType($_GET['id']);
+		$this->render("tableauAffichageTypeModele",$data);
+	}
+	
+	public function modifierTypeModele(){
+		if($_SESSION['droits']>=2){
+			if(!isset($_POST['submit'])){
+				if(isset($_POST['cancel'])){
+					header('Location: ./?r=constructeursModeles/afficherTypeModele&id='.$_GET['id']);
+				}else{
+					$this->render("formModificationTypeModele");
+				}
+			}else{
+				$data['erreursSaisie']=[];
+				if(strlen(trim($_POST['libelle']))==0){
+					array_push($data['erreursSaisie'],'Le libelle ne doit pas être une chaîne vide');
+				}
+				if(TypeModele::findByLibelle($_POST['libelle'])){
+					array_push($data['erreursSaisie'],'Il y a déjà un type de modèle à nom');
+				}
+				if($data['erreursSaisie']!=[]){
+					$this->render("formModificationTypeModele",$data);
+				}else{
+					$typeModele = new typeModele($_POST['libelle'], null, $_GET['id']);
+					TypeModele::update($typeModele);
+					Socket::store('centrale','update','typemodele',$typeModele->toJson());
+					header('Location: ./?r=constructeursModeles/afficherTypeModele&id='.$_GET['id']);
+				}
+			}
+		}else{
+			$this->render("erreurAutorisation");
+		}
 	}
 	
 	public function ajouter(){
