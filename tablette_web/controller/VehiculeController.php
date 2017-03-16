@@ -49,6 +49,15 @@ class VehiculeController extends Controller{
 		
 	}
 	
+	public function modifier(){
+		if($_SESSION['droits']>=1){
+			$data['modeles'] = Modele::FindAll();
+			$data['clients'] = Client::FindAll();
+			$data['vehicule'] = Vehicule::FindById($_GET['id']);
+			$this->render('formModificationVehicule',$data);
+		}
+	}
+	
 	public function supprimer(){
 		if($_SESSION['droits']>=1){
 			$vehicule = Vehicule::FindById($_GET['id']);
