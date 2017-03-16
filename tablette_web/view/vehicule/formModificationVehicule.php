@@ -24,7 +24,7 @@
 				}else{
 					foreach($data['modeles'] as $modele){
 						echo '<option value="'.$modele->id.'"';
-						if($modele->id==$data['modele']->id){
+						if($modele->id==$data['vehicule']->modele->id){
 							echo ' selected';
 						}
 						echo '>'.$modele->libelle.'</option>';
