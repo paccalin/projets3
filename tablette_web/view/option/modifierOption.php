@@ -9,7 +9,7 @@
 	}
 ?>
 <form action='./?r=option/modifier<?php echo '&option='.$_GET['option']; ?>' method='post'>
-	<label for='libelle'>Libelle</label><!--	
+	<label for='libelle'>Libelle <span class='requis'>*</span></label><!--	
 	<?php
 		echo "--><input type='text' id='libelle' name='libelle'";
 		if(isset($_POST['libelle'])){
@@ -19,7 +19,7 @@
 		}
 		echo "><!--\n";
 	?>
-	--><label for='type'>Type d'option</label><!--
+	--><label for='type'>Type d'option <span class='requis'>*</span></label><!--
 	--><select name='typeOption_id' class='input'>
 			<option value="null">-- défaut --</option>
 		<?php
@@ -45,7 +45,7 @@
 		}
 		echo "><!--\n";
 	?>
-	--><label for='prixDeBase'>Prix de base</label><!--
+	--><label for='prixDeBase'>Prix de base <span class='requis'>*</span></label><!--
 	<?php
 		echo "--><input type='text' id='prixDeBase' name='prixDeBase'";
 		if(isset($_POST['prixDeBase'])){
@@ -71,3 +71,4 @@ Tarifs par catégorie de véhicules:<br/>
 		--><input type='submit' name='cancel' value='Annuler' id='cancel'/>
 	</div>
 </form>
+<span class='requis'>*</span>Champ requis

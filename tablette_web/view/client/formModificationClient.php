@@ -9,19 +9,19 @@
 ?>
 <form action='./?r=client/modifier&id=<?php echo $_GET['id']?>' method='post'>
 
-	<label for='nom'>Nom :</label><!--
+	<label for='nom'>Nom : <span class='requis'>*</span></label><!--
 	--><input type='text' name='nom' id='nom' <?php if(isset($_POST['nom'])){echo "value='".$_POST['nom']."'";}else{echo "value='".$data['nom']."'";} ?> /><!--
-	--><label for='prenom'>Prénom :</label><!--
+	--><label for='prenom'>Prénom : <span class='requis'>*</span></label><!--
 	--><input type='text' name='prenom' id='prenom' <?php if(isset($_POST['prenom'])){echo "value='".$_POST['prenom']."'";}else{echo "value='".$data['prenom']."'";} ?> /><!--
-	--><label for='rue'>Rue :</label><!--
+	--><label for='rue'>Rue : <span class='requis'>*</span></label><!--
 	--><input type='text' name='rue' id='rue' <?php if(isset($_POST['rue'])){echo "value='".$_POST['rue']."'";}else{echo "value='".$data['rue']."'";} ?> /><!--
-	--><label for='ville'>Ville :</label><!--
+	--><label for='ville'>Ville : <span class='requis'>*</span></label><!--
 	--><input type='text' name='ville' id='ville' <?php if(isset($_POST['ville'])){echo "value='".$_POST['ville']."'";}else{echo "value='".$data['ville']."'";} ?> /><!--
-	--><label for='cp'>CP :</label><!--
+	--><label for='cp'>CP : <span class='requis'>*</span></label><!--
 	--><input type='text' name='cp' id='cp' <?php if(isset($_POST['cp'])){echo "value='".$_POST['cp']."'";}else{echo "value='".$data['cp']."'";} ?> /><!--
 	--><label for='mail'>Mail :</label><!--
 	--><input type='text' name='mail' id='mail' <?php if(isset($_POST['mail'])){echo "value='".$_POST['mail']."'";}else{echo "value='".$data['mail']."'";} ?> /><!--
-	--><label for='tel'>Téléphone :</label><!--
+	--><label for='tel'>Téléphone : <span class='requis'>*</span></label><!--
 	--><input type='text' name='tel' id='tel' <?php if(isset($_POST['tel'])){echo "value='".$_POST['tel']."'";}else{echo "value='".$data['tel']."'";} ?> />
 		
 	<div class="form_boutons">
@@ -30,3 +30,4 @@
 	</div>
 
 </form>
+<span class='requis'>*</span> Champ requis

@@ -113,31 +113,61 @@ class ConstructeursModelesController extends Controller{
 	public function afficherTypeModele(){
 		$data['typeModele']=TypeModele::FindById($_GET['id']);
 		$data['modeles']=Modele::FindByTypeModeleId($_GET['id']);
-		$data['joinOption']=Option::findJoinTypeModeleOptionByType($_GET['id']);
+		$data['joinOption']=Option::findJoinTypeModeleOptionByTypeModeleId($_GET['id']);
 		$this->render("tableauAffichageTypeModele",$data);
 	}
 	
 	public function modifierTypeModele(){
 		if($_SESSION['droits']>=2){
+			$data['typeModele']=TypeModele::FindById($_GET['id']);
+			$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByTypeModeleId($_GET['id']);
 			if(!isset($_POST['submit'])){
 				if(isset($_POST['cancel'])){
 					header('Location: ./?r=constructeursModeles/afficherTypeModele&id='.$_GET['id']);
 				}else{
-					$this->render("formModificationTypeModele");
+					$this->render("formModificationTypeModele",$data);
 				}
 			}else{
 				$data['erreursSaisie']=[];
-				if(strlen(trim($_POST['libelle']))==0){
-					array_push($data['erreursSaisie'],'Le libelle ne doit pas être une chaîne vide');
-				}
-				if(TypeModele::findByLibelle($_POST['libelle'])){
-					array_push($data['erreursSaisie'],'Il y a déjà un type de modèle à nom');
+				foreach($_POST as $key=>$value){
+					if($key!='submit'){
+						if($key=='libelle' and $value==''){
+							array_push($data['erreursSaisie'],'Le libelle doit être spécifié');
+						}
+						if($key=='libelle' and (TypeModele::findByLibelle($value)!=null and $value!=$data['typeModele']->libelle)){
+							array_push($data['erreursSaisie'],'Il y a déjà un type de modèle à nom');
+						}
+						if($key=='prixDeBase' and strlen(trim($value))==0){
+							array_push($data['erreursSaisie'],'Le prix doit être spécifié');
+						}elseif($key=='prixDeBase' and $value<=0){
+							array_push($data['erreursSaisie'],'Le prix doit être un nombre positif');
+						}
+						if(substr($key, 0, 3)=='opt'){
+							if(!is_numeric($value)){
+								$option=Option::FindByJoinOptionId(substr($key, 3))[0];
+								array_push($data['erreursSaisie'],'Le coût de l\'option '.$option->libelle.' doit être un nombre');
+							}elseif($value<=0){
+								$option=Option::FindByJoinOptionId(substr($key, 3))[0];
+								array_push($data['erreursSaisie'],'Le coût de l\'option '.$option->libelle.' doit être un nombre positif');
+							}
+						}
+						
+					}
 				}
 				if($data['erreursSaisie']!=[]){
 					$this->render("formModificationTypeModele",$data);
 				}else{
+					$joins=[];
+					foreach ($_POST as $post=>$postValue){
+						if($post!="submit"){
+							if(substr($post, 0, 3)=='opt'){
+								array_push($joins,["id"=>substr($post, 3),"tarif"=>$postValue]);
+							}
+						}
+					}
 					$typeModele = new typeModele($_POST['libelle'], null, $_GET['id']);
 					TypeModele::update($typeModele);
+					Option::updateJoinTypeModeleOption($joins);
 					Socket::store('centrale','update','typemodele',$typeModele->toJson());
 					header('Location: ./?r=constructeursModeles/afficherTypeModele&id='.$_GET['id']);
 				}

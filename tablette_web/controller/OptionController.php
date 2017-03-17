@@ -140,7 +140,7 @@ class OptionController extends Controller{
 					}
 					$optionU = new Option(removeQuote($_POST['libelle']),TypeOption::FindById($_POST['typeOption_id']),removeQuote($_POST['description']),$_POST['prixDeBase'],null,$data['option']->id);
 					Option::update($optionU);
-					Option::updateJoinTypeModeleOption($data['option'],$joins);
+					Option::updateJoinTypeModeleOption($joins);
 					$data['option'] = Option::findByID($_GET['option']);
 					$data['moyenneTarif'] = number_format(Option::moyenneTarifByID($_GET['option']), 0,'','');
 					$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByOptionID($_GET['option']);

@@ -92,8 +92,7 @@ class Vehicule  extends Model{
 	}
 	
 	static public function update($vehicule){
-		/* Fonction non testée */
-		$requete="UPDATE ".self::$tableName."SET modele_id='".$vehicule->modele->id."', client_id='".$vehicule->client->id."',immatriculation='".$vehicule->immatriculation.",date_insertion='".$vehicule->dateInsertion."'";
+		$requete="UPDATE ".self::$tableName." SET modele_id='".$vehicule->modele->id."', client_id='".$vehicule->client->id."', immatriculation='".$vehicule->immatriculation."' WHERE id='".$vehicule->id."'";
 		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();

@@ -43,4 +43,4 @@
 		--><input type='submit' name='cancel' value='Annuler' id='cancel'/>
 	</div>
 </form>
-<span class='requis'>*Champ requis</span>
+<span class='requis'>*</span>Champ requis

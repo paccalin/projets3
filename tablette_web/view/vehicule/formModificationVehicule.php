@@ -37,20 +37,31 @@
 	--><select name='client_id' class='input'>
 			<option value="null">-- défaut --</option>
 		<?php
-			foreach($data['clients'] as $client){
-				echo '<option value="'.$client->id.'"';
-				if(isset($_POST['client_id']) and $_POST['client_id']==$client->id){
-					echo ' selected';
+			if(isset($_POST['client_id'])){
+				foreach($data['clients'] as $client){
+					echo '<option value="'.$client->id.'"';
+					if($client->id==$_POST['client_id']){
+						echo ' selected';
+					}
+					echo '>'.$client->nom.' '.$client->prenom.'</option>';
 				}
-				echo '>'.$client->nom.' '.$client->prenom.'</option>';			
+			}else{
+				foreach($data['clients'] as $client){
+					echo '<option value="'.$client->id.'"';
+					if($client->id==$data['vehicule']->client->id){
+						echo ' selected';
+					}
+					echo '>'.$client->nom.' '.$client->prenom.'</option>';
+				}
 			}
+			
 		?>
 	</select><!--
 	--><label for='immat'>Immatriculation : <span class='requis'>*</span></label><!--
-	--><input type='text' name='immat' id='immat' <?php if(isset($_POST['immat'])){echo "value='".$_POST['immat']."'";} ?> />
+	--><input type='text' name='immat' id='immat' <?php if(isset($_POST['immat'])){echo "value='".$_POST['immat']."'";}else{echo "value='".$data['vehicule']->immatriculation."'";} ?> />
 	<div class="form_boutons">
 		<input type='submit' name='submit' value='Confirmer' id='submit'/><!--
 		--><input type='submit' name='cancel' value='Annuler' id='cancel'/>
 	</div>
 </form>
-<span class='requis'>*Champ requis</span>
+<span class='requis'>*</span>Champ requis

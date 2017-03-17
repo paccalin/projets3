@@ -147,7 +147,7 @@ class ClientController extends Controller{
 							array_push($data['erreursSaisie'],"Le champ \"Prénom\" est obligatoire");
 						}else{
 							if(!preg_match("#[a-zA-Z -]#", $value)){
-									array_push($data['erreursSaisie'],"Le champ \"Prénom\" doit être un de type littéral");
+									array_push($data['erreursSaisie'],"Le champ \"Prénom\" doit être de type littéral");
 							}
 						}
 					}

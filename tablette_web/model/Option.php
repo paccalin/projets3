@@ -81,8 +81,19 @@ class Option extends Model{
             }
         }
         return $returnList;
-	}	
-
+	}
+	
+	static public function FindByJoinOptionId($joinOptionId){
+		$query = db()->prepare("SELECT option_id FROM join_typemodele_option WHERE id='".$joinOptionId."'");
+        $query->execute();
+        $returnList = array();
+        if ($query->rowCount() > 0){
+        	$row = $query->fetch(PDO::FETCH_ASSOC);
+            array_push($returnList, self::FindByID($row["option_id"]));
+        }
+        return $returnList;
+	}
+	
     static public function FindAll() {
         $query = db()->prepare("SELECT id FROM ".self::$tableName);
         $query->execute();
@@ -110,7 +121,7 @@ class Option extends Model{
         return $returnList;
     }
 	
-	static public function findJoinTypeModeleOptionByType($typeId){
+	static public function findJoinTypeModeleOptionByTypeModeleId($typeId){
         $query = db()->prepare("SELECT * FROM join_typemodele_option WHERE typeModele_id='".$typeId."'");
         $query->execute();
         $returnList = array();
@@ -122,7 +133,7 @@ class Option extends Model{
         }
         return $returnList;
     }
-
+	
 	static public function moyenneTarifByID($optionId) {
         $query = db()->prepare("SELECT AVG(prix) as moyenne FROM join_typemodele_option WHERE option_id='".$optionId."'");
         $query->bindParam(1, $pId, PDO::PARAM_INT);
@@ -146,13 +157,13 @@ class Option extends Model{
 	}
 
 	static public function update($option){
-		$requete = "UPDATE ".self::$tableName." SET libelle='".$option->libelle."',typeoption_id='".$option->typeOption->id."',description='".$option->desc."',prixDeBase=".$option->prixDeBase.",date_insertion='".$option->dateInsertion."' where id='".$option->id."'";
+		$requete = "UPDATE ".self::$tableName." SET libelle='".$option->libelle."',typeoption_id='".$option->typeOption->id."',description='".$option->desc."',prixDeBase=".$option->prixDeBase." where id='".$option->id."'";
 		//echo $requete;
 		$query = db()->prepare($requete);
 		$query->execute();
 	}
 	
-	static public function updateJoinTypeModeleOption($option,$joins){
+	static public function updateJoinTypeModeleOption($joins){
 		$requete="";
 		foreach($joins as $updateJoinTypeModeleOption){
 			$requete.="UPDATE join_typemodele_option SET prix=".$updateJoinTypeModeleOption['tarif']." WHERE id='".$updateJoinTypeModeleOption['id']."';";	

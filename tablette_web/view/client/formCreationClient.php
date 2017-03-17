@@ -31,4 +31,4 @@
 	</div>
 
 </form>
-<span class='requis'>*Champ requis</span>
+<span class='requis'>*</span> Champ requis
