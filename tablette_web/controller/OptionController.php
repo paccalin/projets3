@@ -26,6 +26,7 @@ class OptionController extends Controller{
 		$data=array();
 		/* Mettre les modeles dans $data pour créer les join_modele_option */
 		if($_SESSION['droits']>=2){
+			$data['retour']=gereRetour('option/afficherTous');
 			$data['typeOption']=TypeOption::FindAll();
 			if(!isset($_POST['submit'])){
 				if(!isset($_POST['cancel'])){
@@ -66,6 +67,10 @@ class OptionController extends Controller{
 		}else{
 			$this->render("erreurAutorisation");
 		}
+	}
+	
+	public function rechercher(){
+		
 	}
 	
 	public function visualiser(){

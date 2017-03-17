@@ -3,6 +3,7 @@ class VehiculeController extends Controller{
 
 	public function creer(){
 		if($_SESSION['droits']>=1){
+			$data['retour']=gereRetour('option/afficherTous');
 			$data['modeles'] = Modele::FindAll();
 			$data['clients'] = Client::FindAll();
 			if(!isset($_POST['submit'])){

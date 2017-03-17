@@ -179,6 +179,7 @@ class ConstructeursModelesController extends Controller{
 	
 	public function ajouter(){
 		if($_SESSION['droits']>=2){
+			$data['retour']=gereRetour('constructeursModeles/afficher');
 			if(!isset($_GET['ajout'])){
 				$this->render("choixAjout");
 			}else{
@@ -201,7 +202,7 @@ class ConstructeursModelesController extends Controller{
 						}
 					}else{
 						if(!isset($_POST['cancel'])){
-							$this->render("formAjoutConstructeur");
+							$this->render("formAjoutConstructeur",$data);
 						}else{
 							header('Location: ./?r=constructeursModeles/afficher');
 						}

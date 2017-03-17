@@ -1,4 +1,5 @@
-<a href='./?r=constructeursModeles/afficher' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a><?php
+<a href='./?r=<?php echo $data['retour'];?>' class='lien'><img src='./images/back.png' alt='Retour' class="imageButton"></a>
+<?php
 	if(isset($data['erreursSaisie'])){
 		echo "<p class='erreursSaisie'>Le formulaire comporte des erreurs:<br/>";
 		foreach($data['erreursSaisie'] as $erreurSaisie){

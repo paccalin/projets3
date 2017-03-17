@@ -3,8 +3,9 @@ class ClientController extends Controller{
 
 	public function creer(){
 		if($_SESSION['droits']>=1){
+			$data['retour']=gereRetour('client/afficherTous');
 			if(!isset($_POST['nom'])){
-				$this->render("formCreationClient");
+				$this->render("formCreationClient",$data);
 			}else{
 				$data=array();
 				$data['erreursSaisie']=array();

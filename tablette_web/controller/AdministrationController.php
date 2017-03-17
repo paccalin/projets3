@@ -4,7 +4,8 @@ class AdministrationController extends Controller{
 
 	public function creerCompte(){
 		if($_SESSION['droits']>=2){
-			$this->render("formCreationCompte");
+			$data['retour']=gereRetour('administration/gererComptes');
+			$this->render("formCreationCompte",$data);
 		}else{
 			$this->render("erreurAutorisation");
 		}
@@ -13,7 +14,7 @@ class AdministrationController extends Controller{
 	public function verifieCreationCompte(){
 		if(!isset($_POST['submit'])){
 			if(!isset($_POST['cancel'])){
-				$this->render("formCreationCompte");
+				$this->render("formCreationCompte",$data);
 			}else{
 				header('Location: ./?r=administration/gererComptes');
 			}
