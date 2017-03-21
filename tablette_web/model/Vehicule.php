@@ -4,14 +4,15 @@ class Vehicule  extends Model{
     public function __construct($pModele = null, $pClient = null, $pImmatriculation = null, $pDateInsertion = null, $pId=null){
 		/* constructeur vide utilisé par les sockets */
         if($pId == null){
-				$this->id = Model::RandomId();
+			$this->id = Model::RandomId();
 		}
 		else{
-				$this->id = $pId;
+			$this->id = $pId;
 		}
         $this->modele = $pModele;
 		$this->client = $pClient;
 		$this->immatriculation = $pImmatriculation;
+		$this->optionList = Option::FindByVehicule($this->id);
         if($pDateInsertion == null)
             $this->dateInsertion = date('d/m/Y h:i:s a', time());
         else
@@ -23,6 +24,7 @@ class Vehicule  extends Model{
     protected $modele;
 	protected $client;
 	protected $immatriculation;
+	protected $optionList;
     protected $dateInsertion;
 
     static public function FindByID($pId) {
