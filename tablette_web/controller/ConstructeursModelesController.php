@@ -32,7 +32,7 @@ class ConstructeursModelesController extends Controller{
 
 	public function afficherModele(){
 		$data['modele']=Modele::findByID($_GET['modele']);
-		$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByType($data['modele']->typeModele->id);
+		$data['joinTypeModeleOption']=Option::findJoinTypeModeleOptionByTypeModeleId($data['modele']->typeModele->id);
 		$this->render("tableauAffichageModele",$data);
 	}
 
