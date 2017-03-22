@@ -2,7 +2,7 @@
 	--diapoView-bande-numberOfElem: 7;
 	--DiapoView-height: 90vh;
 	--DiapoView-width: 100vw;
-	--DiapoView-diapo-width: 80vw;
+	--DiapoView-diapo-width: 70vw;
 	--DiapoView-diapo-height: 80vh;
 	--DiapoView-bande-height: calc(var(--DiapoView-height) - var(--DiapoView-diapo-height));
 	--DiapoView-bande-elemWidth: calc(var(--DiapoView-diapo-width) / var(--diapoView-bande-numberOfElem));
@@ -39,8 +39,7 @@
     height: var(--DiapoView-height);
     width: calc(var(--DiapoView-width) - var(--DiapoView-diapo-width));
     overflow: hidden;
-    border-left: 1px solid black;
-	background-color:#e6edf2;
+    border-left: 0.15vw solid black;
 }
 
 #mainCarousel_ul, #bandeCarousel_ul, #descCarousel_ul {
