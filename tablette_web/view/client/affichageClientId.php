@@ -1,14 +1,14 @@
 <a href='./?r=<?php if(isset($_GET['retour'])){echo $_GET['retour'];}else{echo 'client/afficherTous';}?>' class='lien'><img src='./images/back.png' alt='Retour ' class="imageButton"></a>
+<?php
+	if($_SESSION['droits']>=1){echo "<a href='./?r=client/modifier&id=".$data['client']->id."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>";}
+?>
 <table class="tableAffichage">
 	<tr><th>Nom</th><th>Prénom</th><th>Adresse</th><th>Ville</th><th>Mail</th><th>Téléphone</th></tr>
 	<?php
 		echo "<tr><td>".$data['client']->nom."</td><td>".$data['client']->prenom."</td><td>".$data['client']->rue."</td><td>".$data['client']->ville."</td><td>".$data['client']->mail."</td><td>".$data['client']->tel."</td></tr>";
 	?>
-</table>
-<?php
-	echo "<a href='./?r=client/modifier&id=".$data['client']->id."'><img src='./images/crayon.png' class='imageButton' alt='Modifier les données'></a><br/>"
-?>
-<div id="vehicule">Véhicules</div><br/>
+</table><br/>
+Véhicules
 <table class="tableAffichage">
 	<tr><th>Constructeur</th><th>Modèle</th><th>Immatriculation</th></tr>
 	<?php
@@ -17,4 +17,4 @@
 		}
 	?>
 </table><br/>
-<a href='' class='lien'><img src="./images/plus.png" class="imageButton ajout" alt="Ajouter un vehicule"></a><a href=""></a><br/>
+<a href='?r=vehicule/creer&client=<?php echo $data['client']->id;?>&retour=client/afficherParId-id=IJg8EN7uszWsZ0a7RSGA' class='lien'><img src="./images/plus.png" class="imageButton ajout" alt="Ajouter un vehicule"></a><br/>

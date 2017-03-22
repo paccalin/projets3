@@ -6,6 +6,9 @@ class VehiculeController extends Controller{
 			$data['retour']=gereRetour('option/afficherTous');
 			$data['modeles'] = Modele::FindAll();
 			$data['clients'] = Client::FindAll();
+			if(isset($_GET['client'])){
+				$_POST['client_id']=$_GET['client'];
+			}
 			if(!isset($_POST['submit'])){
 				$this->render('formCreationVehicule',$data);
 			}else{
@@ -17,7 +20,7 @@ class VehiculeController extends Controller{
 					array_push($data['erreursSaisie'],"Aucun client n'est sélectionné");
 				}
 				if(strlen($_POST['immat'])!=7 AND strlen($_POST['immat'])!=8){
-					array_push($data['erreursSaisie'],"L'immaticulation n'est pas correcte");
+					array_push($data['erreursSaisie'],"L'immaticulation n'est pas correcte (7 ou 8 caractères)");
 				}
 				if(Vehicule::FindByImmatriculation($_POST['immat'])!=null){
 					array_push($data['erreursSaisie'],"Il y a déjà un véhicule avec cette immatriculation");

@@ -1,10 +1,12 @@
 <?php
 $host = "localhost";
-$databaseName = "projet";
-$user = "root";
-$password = "root";
+$databaseName = "moalexan";
+$user = "moalexan";
+$password = "BCiXck";
 
-$db = new PDO("mysql:host=".$host.";dbname=".$databaseName,$user,$password);
+$db = new PDO("mysql:host=".$host.";dbname=".$databaseName,
+				$user,
+				$password);
 $db->exec("SET CHARACTER SET utf8");
 
 function db(){

@@ -14,11 +14,12 @@ body{
 }
 
 .requis{
-	color: red;
+	color: #ff3333;
 }
 
 .erreursSaisie{
-	color: red;
+	color: #7a1f1f;
+	background-color:#ff8080;
 }
 
 a{

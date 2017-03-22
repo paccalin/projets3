@@ -1,4 +1,7 @@
 /*=== Socket ===*/
+insert into socket values('gKDwJm2IqwvVZUxEFb1e', 'tablette', 'insert', 'client','{"id":"2GtWuClC4ImGXZEMRZX7","nom":"Phaneuf","prenom":"Orlene","rue":"51, Rue de la Pompe","ville":"Mamoudzou","cp":"97600","mail":"","tel":"0202037074","dateInsertion":"23/03/2017 03:15:22 am"}',CURRENT_TIMESTAMP);
+insert into socket values('94vz8v2dfXsVBMg2V7zd', 'tablette', 'insert', 'client','{"id":"iW68yl0HoNfGghMpQMRX","nom":"Varieur","prenom":"Chantal","rue":"90, rue Lenotre","ville":"Rennes","cp":"35000","mail":"ChantalVarieur@gmail.com","tel":"0281253653","dateInsertion":"23/03/2017 03:16:25 am"}',CURRENT_TIMESTAMP);
+insert into socket values('aqRlGxDqJ5PHKeGrHpPO', 'tablette', 'update', 'client','{"id":"E2t4Oaw1IadUzxCguDeN","nom":"Martin","prenom":"Jean","rue":"10, rue du centre","ville":"Annecy","cp":"74000","mail":"jean.martin@gmail.com","tel":"0450672184","dateInsertion":"23/03/2017 03:19:53 am"}', CURRENT_TIMESTAMP);
 /*
 insert into socket values('ah2uf4m0LRmuQK6KwJVn', 'tablette', 'insert', 'constructeur', '{"id":"76NyTBh3OXdlVvQvY6zf","libelle":"Constructeur socket","dateInsertion":"00/00/00000 00:00:00 am"}', '0000-00-00 00:00:00');
 insert into socket values('HR7O6nODrsq30UVMH32e', 'tablette', 'insert', 'modele', '{"id":"OJOwWCq9hNZZR24NzEjZ","libelle":"Modèle socket 1","constructeur":"76NyTBh3OXdlVvQvY6zf","typeModele":"IEgNSVQVNfGrDhpV1BNp","dateInsertion":"00/00/0000 00:00:00 am"}', '0000-00-00 00:00:00');

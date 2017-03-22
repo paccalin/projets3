@@ -9,8 +9,9 @@ insert into socket values('4a4v01eTxVPT1foqWlEg','tablette','insert','utilisateu
 
 /*=== Tablette ===*/
 
-insert into tablette values('g6kFamVY5zLkMBf5BiZa','tablette de test 1','1.2.3.4','2017-03-04 13:29:09',DEFAULT);
-insert into tablette values('JfZBOLkeu7XdQ52pHFRd','tablette de test 2','121.122.123.124',DEFAULT,DEFAULT);
+insert into tablette values('g6kFamVY5zLkMBf5BiZa','tablette LG','1.2.3.4','2017-03-04 13:29:09',DEFAULT);
+insert into tablette values('JfZBOLkeu7XdQ52pHFRd','tablette 2','121.122.123.124','2017-03-15 11:20:21',DEFAULT);
+insert into tablette values('QYguicNWH5jnxbGgNkJ5','tablette 3','121.122.123.124',DEFAULT,DEFAULT);
 
 /*=== Client ===*/
 

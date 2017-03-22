@@ -3,11 +3,11 @@ class ClientController extends Controller{
 
 	public function creer(){
 		if($_SESSION['droits']>=1){
+			$data=array();
 			$data['retour']=gereRetour('client/afficherTous');
 			if(!isset($_POST['nom'])){
 				$this->render("formCreationClient",$data);
 			}else{
-				$data=array();
 				$data['erreursSaisie']=array();
 				if(false){/* Gestion des erreurs de saisie */
 					array_push($data['erreurSaisies'],"Erreur de saisie 1");

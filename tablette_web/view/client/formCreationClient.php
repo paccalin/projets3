@@ -9,7 +9,6 @@
 	}
 ?>
 <form action='./?r=client/creer' method='post'>
-
 	<label for='nom'>Nom : <span class='requis'>*</span></label><!--
 	--><input type='text' name='nom' id='nom' <?php if(isset($_POST['nom'])){echo "value='".$_POST['nom']."'";} ?> /><!--
 	--><label for='prenom'>Prénom : <span class='requis'>*</span></label><!--
