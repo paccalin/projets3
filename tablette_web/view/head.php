@@ -6,10 +6,10 @@
 		<link rel="icon" href="images/favicon.png">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/diapo.css" />
-		<link rel="stylesheet" type="text/css" href="css/mosaic.css" />
 		<link rel="stylesheet" type="text/css" href="css/menuDefil.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/mosaic.css" />
 
 		<script type='text/javascript' src='./js/jquery.js'></script>
 		<script type='text/javascript' src='./js/jquery-ui.js'></script>

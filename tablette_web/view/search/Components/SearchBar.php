@@ -31,7 +31,7 @@
             $returnValue .= "<h3>Types de produits: </h3>";
 
             foreach ($pOptionTypes as $aType) {
-                  $returnValue .= "<input type='checkbox' name='optionTypes[]' id='".$aType->id."' value='".$aType->id."' checked>";
+                  $returnValue .= "<input class='checkB' type='checkbox' name='optionTypes[]' id='".$aType->id."' value='".$aType->id."' ></input>";
                   $returnValue .= "<label for='".$aType->id."'>".$aType->libelle."</label>";
             }
 

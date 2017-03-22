@@ -6,7 +6,6 @@ class SearchVehicleAjax extends Controller {
 		$constructeur = null;
 		if(parameters()['constructeur'] != -1){
 			$constructeur = Constructeur::FindById(parameters()['constructeur']);
-			echo("why?");
 		}
 
 		$modele = null;

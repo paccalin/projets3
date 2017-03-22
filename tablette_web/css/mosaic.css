@@ -45,6 +45,37 @@
 	height: 90vh;
 	width: 35vw;
 	float: right;
+	border-left: solid;
+    border-width: 0.15vw;
+    border-color: black;
+}
+
+
+#searchtxt{
+	width: 80%;
+}
+
+#modele, #constructeur{
+	width: 90%;
+	margin-top: 5%
+}
+
+.checkB{
+	display: none;
+}
+
+
+:checked + label {
+   background-color: #10a0d4;
+   color: lightgray;
+}
+
+label{
+	background-color: lightgray;
+	border-radius: 1.5vh;
+	color: grey;
+	width: 90%;
+	margin: 1%;
 }
 
 .mosaicContainer{
@@ -64,4 +95,10 @@
 	display: inline-block;
 	height: 100%;
 	width: 100%;
+}
+
+.aTile img{
+	border-style: solid;
+    border-width: 0.15vw;
+    border-color: black;
 }
